@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "MainViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -19,6 +19,27 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    _mapManager = [[BMKMapManager alloc]init];
+    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+    BOOL ret = [_mapManager start:@"G6468a6AM46tY5G70D32xFlS"  generalDelegate:self];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }else{
+        NSLog(@"百度OK");
+    }
+    
+    [SliderViewController sharedSliderController].LeftVC=[[LeftViewController alloc] init];
+    [SliderViewController sharedSliderController].RightVC=[[RightViewController alloc] init];
+    [SliderViewController sharedSliderController].RightSContentOffset=260;
+    [SliderViewController sharedSliderController].RightSContentScale=0.6;
+    [SliderViewController sharedSliderController].RightSOpenDuration=0.8;
+    [SliderViewController sharedSliderController].RightSCloseDuration=0.8;
+    [SliderViewController sharedSliderController].RightSJudgeOffset=160;
+    [SliderViewController sharedSliderController].LeftSContentScale=1.0;
+    [SliderViewController sharedSliderController].LeftSContentOffset=260;
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[SliderViewController sharedSliderController]];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

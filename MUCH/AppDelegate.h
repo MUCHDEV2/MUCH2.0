@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#import "BMapKit.h"
+#import "LeftViewController.h"
+#import "RightViewController.h"
+#import "SliderViewController.h"
+@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate>{
+    BMKMapManager* _mapManager;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 
