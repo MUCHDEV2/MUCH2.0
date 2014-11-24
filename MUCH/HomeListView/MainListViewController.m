@@ -92,7 +92,7 @@
         hud.minSize = CGSizeMake(132.f, 108.0f);
         [hud hide:YES afterDelay:3];
     }else{
-        startIndex = startIndex +5;
+        startIndex = startIndex +7;
         [MuchApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 //NSLog(@"posts ==> %@",posts);
