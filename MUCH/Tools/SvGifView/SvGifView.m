@@ -100,7 +100,7 @@ void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTim
     
     NSMutableArray *times = [NSMutableArray arrayWithCapacity:3];
     CGFloat currentTime = 0;
-    int count = _frameDelayTimes.count;
+    NSInteger count = _frameDelayTimes.count;
     for (int i = 0; i < count; ++i) {
         [times addObject:[NSNumber numberWithFloat:(currentTime / _totalTime)]];
         currentTime += [[_frameDelayTimes objectAtIndex:i] floatValue];

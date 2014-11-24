@@ -133,6 +133,8 @@
 		D3D8C0911A1B08BD007222CC /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8C0811A1B08BD007222CC /* UIView+WebCacheOperation.m */; };
 		D3E1EA131A22C781009F0910 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E1EA121A22C781009F0910 /* LeftViewController.m */; };
 		D3E1EA161A22C78C009F0910 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E1EA151A22C78C009F0910 /* RightViewController.m */; };
+		D3E1EA1C1A22D9E6009F0910 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E1EA191A22D9E6009F0910 /* GTMBase64.m */; };
+		D3E1EA201A22DB36009F0910 /* ReleaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E1EA1F1A22DB36009F0910 /* ReleaseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -412,6 +414,12 @@
 		D3E1EA121A22C781009F0910 /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
 		D3E1EA141A22C78C009F0910 /* RightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewController.h; sourceTree = "<group>"; };
 		D3E1EA151A22C78C009F0910 /* RightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
+		D3E1EA181A22D9E6009F0910 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		D3E1EA191A22D9E6009F0910 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		D3E1EA1A1A22D9E6009F0910 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		D3E1EA1B1A22D9E6009F0910 /* GTMObjectSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMObjectSingleton.h; sourceTree = "<group>"; };
+		D3E1EA1E1A22DB36009F0910 /* ReleaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReleaseViewController.h; sourceTree = "<group>"; };
+		D3E1EA1F1A22DB36009F0910 /* ReleaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReleaseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -648,6 +656,7 @@
 			isa = PBXGroup;
 			children = (
 				D3D546B51A203891001AE44E /* Model */,
+				D3E1EA1D1A22DB22009F0910 /* ReleaseView */,
 				D3E1EA0F1A22C771009F0910 /* LeftView */,
 				D3E1EA101A22C771009F0910 /* RightView */,
 				D3D546AB1A20319C001AE44E /* HomeListView */,
@@ -710,6 +719,7 @@
 		D3D8BF781A1AEF76007222CC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3E1EA171A22D9E6009F0910 /* GTM */,
 				5B7B36731A22CD3F00DC0C50 /* GetImagePath */,
 				D3D6A2A11A206DD700B2410E /* SycleScrollView */,
 				D3D546B91A203A2D001AE44E /* Connection */,
@@ -1001,6 +1011,26 @@
 			path = RightView;
 			sourceTree = "<group>";
 		};
+		D3E1EA171A22D9E6009F0910 /* GTM */ = {
+			isa = PBXGroup;
+			children = (
+				D3E1EA181A22D9E6009F0910 /* GTMBase64.h */,
+				D3E1EA191A22D9E6009F0910 /* GTMBase64.m */,
+				D3E1EA1A1A22D9E6009F0910 /* GTMDefines.h */,
+				D3E1EA1B1A22D9E6009F0910 /* GTMObjectSingleton.h */,
+			);
+			path = GTM;
+			sourceTree = "<group>";
+		};
+		D3E1EA1D1A22DB22009F0910 /* ReleaseView */ = {
+			isa = PBXGroup;
+			children = (
+				D3E1EA1E1A22DB36009F0910 /* ReleaseViewController.h */,
+				D3E1EA1F1A22DB36009F0910 /* ReleaseViewController.m */,
+			);
+			path = ReleaseView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1173,6 +1203,7 @@
 				D3D8C08C1A1B08BD007222CC /* UIImage+GIF.m in Sources */,
 				D3D8C08D1A1B08BD007222CC /* UIImage+MultiFormat.m in Sources */,
 				D3D6A2A71A206DD700B2410E /* NSTimer+Addition.m in Sources */,
+				D3E1EA1C1A22D9E6009F0910 /* GTMBase64.m in Sources */,
 				D3D8C0291A1AFE24007222CC /* AFHTTPSessionManager.m in Sources */,
 				D3D8C08E1A1B08BD007222CC /* UIImage+WebP.m in Sources */,
 				D3D8C08A1A1B08BD007222CC /* SDWebImagePrefetcher.m in Sources */,
@@ -1206,6 +1237,7 @@
 				D3D54DF11A1F383A005DAAB6 /* UIView+Extension.m in Sources */,
 				5B7B36701A22CBDB00DC0C50 /* SmallUserImageView.m in Sources */,
 				D3D8C0271A1AFE24007222CC /* AFHTTPRequestOperation.m in Sources */,
+				D3E1EA201A22DB36009F0910 /* ReleaseViewController.m in Sources */,
 				D3D54DF51A1F38D6005DAAB6 /* SvGifView.m in Sources */,
 				D3D546C31A203A2D001AE44E /* ConnectionAvailable.m in Sources */,
 				D3D54DBA1A1EF6AD005DAAB6 /* XHYScrollingNavBarViewController.m in Sources */,

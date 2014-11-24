@@ -122,7 +122,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row>=2){
-        NSLog(@"%d",indexPath.row);
+        NSLog(@"%ld",(long)indexPath.row);
     }
 }
 

@@ -56,9 +56,9 @@
     __block UIActivityIndicatorView *activityIndicator;
     [bgImageView sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         if (!activityIndicator) {
-            [bgImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
-            activityIndicator.center = bgImageView.center;
-            [activityIndicator startAnimating];
+//            [bgImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
+//            activityIndicator.center = bgImageView.center;
+//            [activityIndicator startAnimating];
         }
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         [activityIndicator removeFromSuperview];
@@ -66,18 +66,20 @@
     }];
     
     if(![[NSString stringWithFormat:@"%@",model.createdby] isEqualToString:@"<null>"]){
-//        [headImageView sd_setImageWithURL:[NSURL URLWithString:model.createdby[@"avatar"]] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-//            if (!activityIndicator) {
-//                [headImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
-//                activityIndicator.center = headImageView.center;
-//                [activityIndicator startAnimating];
-//            }
-//        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//            [activityIndicator removeFromSuperview];
-//            activityIndicator = nil;
-//        }];
+        headImageView.hidden = NO;
+        [headImageView.userImageView sd_setImageWithURL:[NSURL URLWithString:model.createdby[@"avatar"]] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+            if (!activityIndicator) {
+                [headImageView.userImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
+                activityIndicator.center = headImageView.center;
+                [activityIndicator startAnimating];
+            }
+        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            [activityIndicator removeFromSuperview];
+            activityIndicator = nil;
+        }];
     }else{
-        //[headImageView sd_setImageWithURL:nil];
+        //[headImageView.userImageView sd_setImageWithURL:nil];
+        headImageView.hidden = YES;
     }
     
     distanceLabel.text = model.distance;

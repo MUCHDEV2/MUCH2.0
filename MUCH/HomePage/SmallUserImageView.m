@@ -36,16 +36,16 @@
 //用户头像背后的小圆圈，并且将其作为按钮触发事件
 -(void)initUserBack{
     self.userBack=[UIButton buttonWithType:UIButtonTypeSystem];
-    [self.userBack setBackgroundImage:[GetImagePath getImagePath:@"user_avatar_white"] forState:UIControlStateNormal];
-    self.userBack.frame=CGRectMake(-0.75, 0, 47.5, 47.5);
+    //[self.userBack setBackgroundImage:[GetImagePath getImagePath:@"user_avatar_white"] forState:UIControlStateNormal];
+    self.userBack.frame=CGRectMake(-0.75, 0, 46, 46);
     [self addSubview:self.userBack];
     [self.userBack addTarget:self action:@selector(showTotalBack) forControlEvents:UIControlEventTouchUpInside];
 }
 
 //用户头像
 -(void)initUserImageView{
-    self.userImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 42, 42)];
-    self.userImageView.center=CGPointMake(23.75, 23.75);
+    self.userImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 47.5, 47.5)];
+    self.userImageView.center=CGPointMake(23.75, 23.75-.7);
     self.userImageView.layer.cornerRadius=self.userImageView.frame.size.height*.5;
     self.userImageView.layer.masksToBounds=YES;
     self.userImageView.image=[GetImagePath getImagePath:@"QQ20141121-1@2x"];

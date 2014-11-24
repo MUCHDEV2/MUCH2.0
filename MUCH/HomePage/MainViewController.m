@@ -13,7 +13,9 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "MuchApi.h"
-@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>{
+#import "GTMBase64.h"
+#import "ReleaseViewController.h"
+@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     NSTimeInterval lastOffsetCapture;
     CGPoint lastOffset;
     BOOL isScrollingFast;
@@ -235,6 +237,8 @@
 
 -(void)addPhoto{
     NSLog(@"拍照");
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
+    [actionSheet showInView:self.tableView.superview];
 }
 
 -(void)gotoLeftView{
@@ -244,6 +248,79 @@
 -(void)popView{
     [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
 }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.removeFromSuperViewOnHide =YES;
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"当前网络不可用，请检查网络连接！";
+        hud.labelFont = [UIFont fontWithName:nil size:14];
+        hud.minSize = CGSizeMake(132.f, 108.0f);
+        [hud hide:YES afterDelay:3];
+    }
+    //呼出的菜单按钮点击后的响应
+    switch (buttonIndex)
+    {
+        case 0:  //打开照相机拍照
+            [self takePhoto];
+            break;
+        case 1:  //打开本地相册
+            [self LocalPhoto];
+            break;
+    }
+}
+
+//开始拍照
+-(void)takePhoto{
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        //设置拍照后的图片可被编辑
+        picker.allowsEditing = YES;
+        picker.sourceType = sourceType;
+        [self.view.window.rootViewController presentViewController:picker animated:YES completion:nil];
+    }else{
+        NSLog(@"模拟其中无法打开照相机,请在真机中使用");
+    }
+}
+
+//打开本地相册
+-(void)LocalPhoto{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.delegate = self;
+    //设置选择后的图片可被编辑
+    picker.allowsEditing = YES;
+    [self.view.window.rootViewController presentViewController:picker animated:YES completion:nil];
+}
+
+//当选择一张图片后进入这里
+-(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
+    
+    NSString* imageStr = [[NSString alloc] initWithData:[GTMBase64 encodeData:imageData] encoding:NSUTF8StringEncoding];
+    [self gotoAddImage:imageStr image:image];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    NSLog(@"您取消了选择图片");
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)gotoAddImage:(NSString *)imageStr image:(UIImage *)image{
+    ReleaseViewController *releaseView = [[ReleaseViewController alloc] init];
+    releaseView.image = image;
+    releaseView.imageStr = imageStr;
+    [self.navigationController pushViewController:releaseView animated:YES];
+}
+
 
 -(void)reloadList{
     self.tableView.scrollEnabled = NO;

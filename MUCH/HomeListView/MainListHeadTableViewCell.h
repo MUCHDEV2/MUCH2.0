@@ -18,5 +18,5 @@
     UIButton *addPhotoBtn;
 }
 @property(nonatomic,weak)id<MainListHeadTableViewCellDelegate>delegate;
--(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier index:(int)index;
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier index:(NSInteger)index;
 @end

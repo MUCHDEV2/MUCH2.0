@@ -10,7 +10,7 @@
 
 @implementation MainListHeadTableViewCell
 
--(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier index:(int)index{
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier index:(NSInteger)index{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
@@ -20,7 +20,7 @@
     return self;
 }
 
--(void)addContent:(int)index{
+-(void)addContent:(NSInteger)index{
     UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 55, 320, 2)];
     lineImage.backgroundColor = RGBCOLOR(77, 77, 77);
     [self.contentView addSubview:lineImage];
