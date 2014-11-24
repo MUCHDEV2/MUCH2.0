@@ -9,6 +9,10 @@
 #import "MainListViewController.h"
 #import "MJRefresh.h"
 #import "SliderViewController.h"
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
+#import "AppDelegate.h"
+#import "MuchApi.h"
 @interface MainListViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSTimeInterval lastOffsetCapture;
     CGPoint lastOffset;
@@ -44,9 +48,10 @@
     [self.backTopBtn addTarget:self action:@selector(gotoTop) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backTopBtn];
     self.backTopBtn.alpha = .5;
-    
+    showArr = [[NSMutableArray alloc] init];
     //集成刷新控件
     [self setupRefresh];
+    [self reloadList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,15 +76,33 @@
 - (void)headerRereshing
 {
     NSLog(@"headerRereshing");
-    [self.tableView headerEndRefreshing];
-    [self.tableView footerEndRefreshing];
+    [self reloadList];
 }
 
 - (void)footerRereshing
 {
     NSLog(@"footerRereshing");
-    [self.tableView headerEndRefreshing];
-    [self.tableView footerEndRefreshing];
+    [[AppDelegate instance]._locService startUserLocationService];
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.removeFromSuperViewOnHide =YES;
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"当前网络不可用，请检查网络连接！";
+        hud.labelFont = [UIFont fontWithName:nil size:14];
+        hud.minSize = CGSizeMake(132.f, 108.0f);
+        [hud hide:YES afterDelay:3];
+    }else{
+        startIndex = startIndex +5;
+        [MuchApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                //NSLog(@"posts ==> %@",posts);
+                [showArr addObjectsFromArray:posts];
+                [self.tableView reloadData];
+                [self.tableView headerEndRefreshing];
+                [self.tableView footerEndRefreshing];
+            }
+        }start:startIndex indexSize:7 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -201,5 +224,32 @@
 
 -(void)gotoLeftView{
     [[SliderViewController sharedSliderController] leftItemClick];
+}
+
+-(void)reloadList{
+    self.tableView.scrollEnabled = NO;
+    [[AppDelegate instance]._locService startUserLocationService];
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.removeFromSuperViewOnHide =YES;
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"当前网络不可用，请检查网络连接！";
+        hud.labelFont = [UIFont fontWithName:nil size:14];
+        hud.minSize = CGSizeMake(132.f, 108.0f);
+        [hud hide:YES afterDelay:3];
+    }else{
+        startIndex = 0;
+        [MuchApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                //NSLog(@"posts ==> %@",posts);
+                showArr = posts;
+                [self.tableView reloadData];
+                [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
+                [self.tableView headerEndRefreshing];
+                [self.tableView footerEndRefreshing];
+                self.tableView.scrollEnabled = YES;
+            }
+        }start:startIndex indexSize:7 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
+    }
 }
 @end

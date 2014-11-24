@@ -14,7 +14,6 @@
 #import "MBProgressHUD.h"
 #import "MuchApi.h"
 #import "GTMBase64.h"
-#import "ReleaseViewController.h"
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     NSTimeInterval lastOffsetCapture;
     CGPoint lastOffset;
@@ -105,7 +104,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView footerEndRefreshing];
             }
-        }start:startIndex log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
+        }start:startIndex indexSize:5 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
     }
 }
 
@@ -318,9 +317,13 @@
     ReleaseViewController *releaseView = [[ReleaseViewController alloc] init];
     releaseView.image = image;
     releaseView.imageStr = imageStr;
+    releaseView.delegate = self;
     [self.navigationController pushViewController:releaseView animated:YES];
 }
 
+-(void)releaseSucess{
+    [self reloadList];
+}
 
 -(void)reloadList{
     self.tableView.scrollEnabled = NO;
@@ -345,7 +348,7 @@
                 [self.tableView footerEndRefreshing];
                 self.tableView.scrollEnabled = YES;
             }
-        }start:startIndex log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
+        }start:startIndex indexSize:5 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
     }
 }
 @end

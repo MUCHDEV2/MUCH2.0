@@ -11,7 +11,8 @@
 #import "MainHeadTableViewCell.h"
 #import "MainViewTableViewCell.h"
 #import "MainListViewController.h"
-@interface MainViewController : UIViewController<MainHeadTableViewCellDelegate,MainListViewControllerDelegate>{
+#import "ReleaseViewController.h"
+@interface MainViewController : UIViewController<MainHeadTableViewCellDelegate,MainListViewControllerDelegate,ReleaseViewControllerDelegate>{
     NSMutableArray *showArr;
     int startIndex;
 }
