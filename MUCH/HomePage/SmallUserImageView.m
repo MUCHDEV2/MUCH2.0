@@ -24,7 +24,7 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self=[super initWithFrame:frame]) {
         self.clipsToBounds=YES;
-        self.animationRangeY=50;
+        self.animationRangeY=60;
         [self initUserBack];//用户头像背后的小圆圈，并且将其作为按钮触发事件
         [self initUserImageView];//用户头像
         [self initTotalBack];//用于显示点击用户头像后出来的背景
@@ -61,6 +61,7 @@
     
     self.totalBack=[[UIImageView alloc]initWithFrame:self.bounds];
     self.totalBack.userInteractionEnabled=YES;
+    [self.totalBack addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeLoveHeart)]];
     self.totalBack.image=[GetImagePath getImagePath:@"user_fav_bg"];
     CGRect frame=self.totalBack.frame;
     frame.origin.y-=self.frame.size.height-partBack.frame.size.height+self.animationRangeY;
