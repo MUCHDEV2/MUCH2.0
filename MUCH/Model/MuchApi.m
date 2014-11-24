@@ -103,13 +103,13 @@
     NSString *urlStr = [NSString stringWithFormat:@"user/"];
     NSDictionary *parametersdata = [[NSDictionary alloc] initWithObjectsAndKeys:
                                     imaStr,@"avatar",
-                                    [LoginSqlite getdata:@"userId"],@"_id",
+                                    @"53fee4d9ccf756e440f64819",@"_id",
                                     nil];
-    //NSLog(@"parametersdata ===> %@",parametersdata);
+    NSLog(@"parametersdata ===> %@",parametersdata);
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:parametersdata forKey:@"user"];
     return [[AFAppDotNetAPIClient sharedClient] PUT:urlStr parameters:parameters success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        //NSLog(@"JSON===>%@",JSON);
+        NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"code"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             [mutablePosts addObject:JSON[@"result"][@"avatar"]];
