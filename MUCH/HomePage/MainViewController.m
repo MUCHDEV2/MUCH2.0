@@ -158,8 +158,13 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ListModel *model = showArr[indexPath.row-2];
     if(indexPath.row>=2){
-        NSLog(@"%ld",(long)indexPath.row);
+        DetailViewController *detailView = [[DetailViewController alloc] init];
+        detailView.aid = model.aid;
+        detailView.imageUrl = model.content;
+        detailView.youlikeit = [NSString stringWithFormat:@"%@",model.youlikeit];
+        [self.navigationController pushViewController:detailView animated:YES];
     }
 }
 
