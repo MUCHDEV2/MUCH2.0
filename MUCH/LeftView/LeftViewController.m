@@ -8,31 +8,60 @@
 
 #import "LeftViewController.h"
 
-@interface LeftViewController ()
-
+@interface LeftViewController ()<UITableViewDataSource,UITableViewDelegate>
 @end
 
 @implementation LeftViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor=[UIColor greenColor];
+    [self getMainView];
+}
+
+-(void)getMainView{
+    UIView* mainView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 200)];
+    mainView.backgroundColor=[UIColor yellowColor];
+    [self.view addSubview:mainView];
+}
+
+-(void)getListView{
+    UITableView* tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 200, 320, 180) style:UITableViewStylePlain];
+    tableView.delegate=self;
+    tableView.dataSource=self;
+    tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    tableView.rowHeight=45;
+    [self.view addSubview:tableView];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 4;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (!cell) {
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
+    NSArray* imageNames=@[];
+    NSArray* titles=@[];
+    [cell.contentView addSubview:[self getSingleListViewWithImageName:<#(NSString *)#> title: remindNumber:<#(NSInteger)#>]];
+    return cell;
+}
+
+-(UIView*)getSingleListViewWithImageName:(NSString*)imageName title:(NSString*)title remindNumber:(NSInteger)remindNumber{
+    UIView* singleListView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 45)];
+    UIImageView* imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:imageName]];
+    imageView.center=CGPointMake(30, 22.5);
+    [singleListView addSubview:imageView];
+    
+    UILabel* titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(60, 12.5, 200, 20)];
+    titleLabel.text=title;
+    [singleListView addSubview:titleLabel];
+    return singleListView;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
