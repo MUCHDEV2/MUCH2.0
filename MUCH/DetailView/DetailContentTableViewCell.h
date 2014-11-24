@@ -10,6 +10,11 @@
 
 @interface DetailContentTableViewCell : UITableViewCell{
     UIImageView *headImage;
+    UILabel *distanceLabel;
+    UILabel *priceLabel;
 }
+@property(nonatomic,strong)NSString *headImageUrl;
+@property(nonatomic,strong)NSString *distance;
+@property(nonatomic,strong)NSString *price;
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 @end

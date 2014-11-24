@@ -24,6 +24,7 @@
     [self.view addSubview:self.tableView];
     [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
     self.tableView.separatorStyle = NO;
+    self.tableView.backgroundColor = RGBCOLOR(221, 221, 221);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,7 +34,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //if(indexPath.row == 0){
+    if(indexPath.row == 0){
         NSString *stringcell = @"DetailHeadTableViewCell";
         DetailHeadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
         if(!cell){
@@ -42,16 +43,26 @@
         cell.delegate = self;
         cell.imageUrl = self.imageUrl;
         cell.aid = self.aid;
-    NSLog(@"====>%@",self.youlikeit);
         cell.youlikeit = self.youlikeit;
         cell.selectionStyle = NO;
         return cell;
-    //}
+    }else{
+        NSString *stringcell = @"DetailContentTableViewCell";
+        DetailContentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
+        if(!cell){
+            cell = [[DetailContentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
+        }
+        cell.headImageUrl = self.dic[@"avatar"];
+        cell.distance = self.distance;
+        cell.price = self.price;
+        cell.selectionStyle = NO;
+        return cell;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
