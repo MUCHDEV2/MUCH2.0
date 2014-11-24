@@ -43,8 +43,6 @@
 		D3D54DB91A1EF6AD005DAAB6 /* SliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D54DB51A1EF6AD005DAAB6 /* SliderViewController.m */; };
 		D3D54DBA1A1EF6AD005DAAB6 /* XHYScrollingNavBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D54DB81A1EF6AD005DAAB6 /* XHYScrollingNavBarViewController.m */; };
 		D3D54DBE1A1EF6F1005DAAB6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D54DBD1A1EF6F1005DAAB6 /* MainViewController.m */; };
-		D3D54DC11A1EF75E005DAAB6 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D54DC01A1EF75E005DAAB6 /* LeftViewController.m */; };
-		D3D54DC41A1EF769005DAAB6 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D54DC31A1EF769005DAAB6 /* RightViewController.m */; };
 		D3D54DD51A1F3766005DAAB6 /* MainViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D54DD41A1F3766005DAAB6 /* MainViewTableViewCell.m */; };
 		D3D54DD81A1F3781005DAAB6 /* MainHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D54DD71A1F3781005DAAB6 /* MainHeadTableViewCell.m */; };
 		D3D54DEA1A1F383A005DAAB6 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3D54DDA1A1F383A005DAAB6 /* MJRefresh.bundle */; };
@@ -131,6 +129,8 @@
 		D3D8C08F1A1B08BD007222CC /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8C07D1A1B08BD007222CC /* UIImageView+HighlightedWebCache.m */; };
 		D3D8C0901A1B08BD007222CC /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8C07F1A1B08BD007222CC /* UIImageView+WebCache.m */; };
 		D3D8C0911A1B08BD007222CC /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8C0811A1B08BD007222CC /* UIView+WebCacheOperation.m */; };
+		D3E1EA131A22C781009F0910 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E1EA121A22C781009F0910 /* LeftViewController.m */; };
+		D3E1EA161A22C78C009F0910 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E1EA151A22C78C009F0910 /* RightViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,10 +192,6 @@
 		D3D54DB81A1EF6AD005DAAB6 /* XHYScrollingNavBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHYScrollingNavBarViewController.m; sourceTree = "<group>"; };
 		D3D54DBC1A1EF6F1005DAAB6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		D3D54DBD1A1EF6F1005DAAB6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		D3D54DBF1A1EF75E005DAAB6 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
-		D3D54DC01A1EF75E005DAAB6 /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
-		D3D54DC21A1EF769005DAAB6 /* RightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewController.h; sourceTree = "<group>"; };
-		D3D54DC31A1EF769005DAAB6 /* RightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
 		D3D54DD31A1F3766005DAAB6 /* MainViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewTableViewCell.h; sourceTree = "<group>"; };
 		D3D54DD41A1F3766005DAAB6 /* MainViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewTableViewCell.m; sourceTree = "<group>"; };
 		D3D54DD61A1F3781005DAAB6 /* MainHeadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHeadTableViewCell.h; sourceTree = "<group>"; };
@@ -406,6 +402,10 @@
 		D3D8C0801A1B08BD007222CC /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		D3D8C0811A1B08BD007222CC /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		D3D8C0921A1B0937007222CC /* MUCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MUCH.pch; sourceTree = "<group>"; };
+		D3E1EA111A22C781009F0910 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
+		D3E1EA121A22C781009F0910 /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
+		D3E1EA141A22C78C009F0910 /* RightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewController.h; sourceTree = "<group>"; };
+		D3E1EA151A22C78C009F0910 /* RightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -542,10 +542,6 @@
 			children = (
 				D3D54DBC1A1EF6F1005DAAB6 /* MainViewController.h */,
 				D3D54DBD1A1EF6F1005DAAB6 /* MainViewController.m */,
-				D3D54DBF1A1EF75E005DAAB6 /* LeftViewController.h */,
-				D3D54DC01A1EF75E005DAAB6 /* LeftViewController.m */,
-				D3D54DC21A1EF769005DAAB6 /* RightViewController.h */,
-				D3D54DC31A1EF769005DAAB6 /* RightViewController.m */,
 				D3D54DD31A1F3766005DAAB6 /* MainViewTableViewCell.h */,
 				D3D54DD41A1F3766005DAAB6 /* MainViewTableViewCell.m */,
 				D3D54DD61A1F3781005DAAB6 /* MainHeadTableViewCell.h */,
@@ -635,6 +631,8 @@
 			isa = PBXGroup;
 			children = (
 				D3D546B51A203891001AE44E /* Model */,
+				D3E1EA0F1A22C771009F0910 /* LeftView */,
+				D3E1EA101A22C771009F0910 /* RightView */,
 				D3D546AB1A20319C001AE44E /* HomeListView */,
 				D3D54DBB1A1EF6DF005DAAB6 /* HomePage */,
 				D3D8BFEE1A1AF1CC007222CC /* RootViewController.h */,
@@ -967,6 +965,24 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		D3E1EA0F1A22C771009F0910 /* LeftView */ = {
+			isa = PBXGroup;
+			children = (
+				D3E1EA111A22C781009F0910 /* LeftViewController.h */,
+				D3E1EA121A22C781009F0910 /* LeftViewController.m */,
+			);
+			path = LeftView;
+			sourceTree = "<group>";
+		};
+		D3E1EA101A22C771009F0910 /* RightView */ = {
+			isa = PBXGroup;
+			children = (
+				D3E1EA141A22C78C009F0910 /* RightViewController.h */,
+				D3E1EA151A22C78C009F0910 /* RightViewController.m */,
+			);
+			path = RightView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1112,6 +1128,7 @@
 				D3D8C02F1A1AFE24007222CC /* AFURLSessionManager.m in Sources */,
 				D3D8C0891A1B08BD007222CC /* SDWebImageManager.m in Sources */,
 				D3D8BF551A1AECD9007222CC /* AppDelegate.m in Sources */,
+				D3E1EA161A22C78C009F0910 /* RightViewController.m in Sources */,
 				D3D8C0391A1AFE24007222CC /* UIProgressView+AFNetworking.m in Sources */,
 				D3D54DEE1A1F383A005DAAB6 /* MJRefreshHeaderView.m in Sources */,
 				D3D546C41A203A2D001AE44E /* networkConnect.m in Sources */,
@@ -1158,14 +1175,13 @@
 				D3D8C0831A1B08BD007222CC /* NSData+ImageContentType.m in Sources */,
 				D3D8C0381A1AFE24007222CC /* UIImageView+AFNetworking.m in Sources */,
 				D3D54DB91A1EF6AD005DAAB6 /* SliderViewController.m in Sources */,
-				D3D54DC41A1EF769005DAAB6 /* RightViewController.m in Sources */,
 				D3D546C51A203A2D001AE44E /* Reachability.m in Sources */,
 				D3D8C02B1A1AFE24007222CC /* AFSecurityPolicy.m in Sources */,
 				D3D54DD81A1F3781005DAAB6 /* MainHeadTableViewCell.m in Sources */,
 				D3D8C0841A1B08BD007222CC /* SDImageCache.m in Sources */,
 				D3D546C61A203A2D001AE44E /* MBProgressHUD.m in Sources */,
-				D3D54DC11A1EF75E005DAAB6 /* LeftViewController.m in Sources */,
 				D3D8C02E1A1AFE24007222CC /* AFURLResponseSerialization.m in Sources */,
+				D3E1EA131A22C781009F0910 /* LeftViewController.m in Sources */,
 				D3D546B41A203381001AE44E /* MainListTableViewCell.m in Sources */,
 				D3D54DF11A1F383A005DAAB6 /* UIView+Extension.m in Sources */,
 				D3D8C0271A1AFE24007222CC /* AFHTTPRequestOperation.m in Sources */,

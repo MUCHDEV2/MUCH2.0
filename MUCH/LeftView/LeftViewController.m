@@ -2,7 +2,7 @@
 //  LeftViewController.m
 //  MUCH
 //
-//  Created by 汪洋 on 14/11/21.
+//  Created by 汪洋 on 14/11/24.
 //  Copyright (c) 2014年 wy. All rights reserved.
 //
 
@@ -17,7 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor redColor];
 }
 
 - (void)didReceiveMemoryWarning {
