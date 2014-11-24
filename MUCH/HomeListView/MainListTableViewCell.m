@@ -46,36 +46,71 @@
     priceLabel.textColor = [UIColor whiteColor];
     [priceImage addSubview:priceLabel];
     
-    headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(252, 21, 48, 48)];
-    [headImageView setImage:[UIImage imageNamed:@"user_avatar_white"]];
+    headImageView = [[SmallUserImageView alloc] initWithFrame:CGRectMake(252, 21, 46, 82.5)];
     [self.contentView addSubview:headImageView];
+}
+
+-(void)setModel:(ListModel *)model{
+    __block UIActivityIndicatorView *activityIndicator;
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, 318, 174)];
+    [bgImageView sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        //图片裁剪
+        UIImage *srcimg = image;
+        CGRect rect =  CGRectMake(0, 145, 640, 350);//要裁剪的图片区域，按照原图的像素大小来，超过原图大小的边自动适配
+        CGImageRef cgimg = CGImageCreateWithImageInRect([srcimg CGImage], rect);
+        bgImageView.image = [UIImage imageWithCGImage:cgimg];
+        CGImageRelease(cgimg);//用完一定要释放，否则内存泄露
+    }];
+    
+    if(![[NSString stringWithFormat:@"%@",model.createdby] isEqualToString:@"<null>"]){
+        headImageView.hidden = NO;
+        [headImageView.userImageView sd_setImageWithURL:[NSURL URLWithString:model.createdby[@"avatar"]] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+            if (!activityIndicator) {
+                [headImageView.userImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
+                activityIndicator.center = headImageView.center;
+                [activityIndicator startAnimating];
+            }
+        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            [activityIndicator removeFromSuperview];
+            activityIndicator = nil;
+        }];
+    }else{
+        //[headImageView.userImageView sd_setImageWithURL:nil];
+        headImageView.hidden = YES;
+    }
+    
+    distanceLabel.text = model.distance;
+    priceLabel.text = [NSString stringWithFormat:@"¥%@",model.price];
+    
+    [self.mainScorllView removeFromSuperview];
+    self.mainScorllView = nil;
     
     NSMutableArray *viewsArray = [@[] mutableCopy];
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < model.comments.count; ++i) {
         UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 318, 20)];
         //tempLabel.backgroundColor = [UIColor blackColor];
-        tempLabel.text = [NSString stringWithFormat:@"%d",i];
+        tempLabel.text = [NSString stringWithFormat:@"%@",model.comments[i][@"content"]];
         tempLabel.textColor = [UIColor whiteColor];
-        tempLabel.font = [UIFont systemFontOfSize:12];
+        tempLabel.font = [UIFont systemFontOfSize:14];
         [viewsArray addObject:tempLabel];
     }
     
-    self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(1, 154, 318, 20) animationDuration:2];
-    self.mainScorllView.backgroundColor = [UIColor blackColor];
-    self.mainScorllView.alpha = 0.5;
-    
-    self.mainScorllView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-        return viewsArray[pageIndex];
-    };
-    
-    self.mainScorllView.totalPagesCount = ^NSInteger(void){
-        return 5;
-    };
-    
-    self.mainScorllView.TapActionBlock = ^(NSInteger pageIndex){
+    if(self.mainScorllView == nil){
+        self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(1, 154, 318, 20) animationDuration:2];
+        self.mainScorllView.backgroundColor = [UIColor blackColor];
+        self.mainScorllView.alpha = 0.5;
         
-    };
-    [self.contentView addSubview:self.mainScorllView];
+        if(model.comments.count !=0){
+            self.mainScorllView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
+                return viewsArray[pageIndex];
+            };
+            
+            self.mainScorllView.totalPagesCount = ^NSInteger(void){
+                return model.comments.count;
+            };
+        }
+        
+        [self.contentView addSubview:self.mainScorllView];
+    }
 }
-
 @end

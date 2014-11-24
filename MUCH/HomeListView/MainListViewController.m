@@ -92,7 +92,7 @@
         hud.minSize = CGSizeMake(132.f, 108.0f);
         [hud hide:YES afterDelay:3];
     }else{
-        startIndex = startIndex +5;
+        startIndex = startIndex +7;
         [MuchApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
                 //NSLog(@"posts ==> %@",posts);
@@ -107,28 +107,39 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row <2){
+    if(indexPath.row == 0){
         NSString *stringcell = @"MainListHeadTableViewCell";
         MainListHeadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
         if(!cell){
-            cell = [[MainListHeadTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell index:indexPath.row] ;
+            cell = [[MainListHeadTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell index:0] ;
         }
         cell.delegate = self;
         cell.selectionStyle = NO;
         return cell;
+    }else if (indexPath.row == 1){
+        NSString *stringcell = @"MainListHeadTableViewCell2";
+        MainListHeadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
+        if(!cell){
+            cell = [[MainListHeadTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell index:1] ;
+        }
+        cell.delegate = self;
+        cell.selectionStyle = NO;
+        return cell;
+    }else{
+        NSString *stringcell = @"MainViewTableViewCell";
+        MainListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
+        if(!cell){
+            cell = [[MainListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
+        }
+        cell.model = showArr[indexPath.row -2];
+        cell.selectionStyle = NO;
+        return cell;
     }
-    NSString *stringcell = @"MainViewTableViewCell";
-    MainListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
-    if(!cell){
-        cell = [[MainListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
-    }
-    cell.selectionStyle = NO;
-    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return showArr.count +2;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -183,12 +194,12 @@
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    NSLog(@"scrollViewDidEndDecelerating");
+    //NSLog(@"scrollViewDidEndDecelerating");
     [self showBtn];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    NSLog(@"scrollViewDidEndDragging");
+    //NSLog(@"scrollViewDidEndDragging");
     [self showBtn];
 }
 

@@ -52,6 +52,7 @@
     confirmBtn.backgroundColor = RGBCOLOR(219, 219, 219);
     [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
     [confirmBtn addTarget:self action:@selector(confirmBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    confirmBtn.enabled=NO;
     [self.view addSubview:confirmBtn];
 }
 
@@ -121,12 +122,6 @@
     priceTextField.backgroundColor = [UIColor whiteColor];
 }
 
--(void)textFieldDidEndEditing:(UITextField *)textField{
-    if(![priceTextField.text isEqualToString:@""]){
-        confirmBtn.backgroundColor = RGBCOLOR(37, 162, 78);
-    }
-}
-
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     return [self validateNumber:string];
 }
@@ -151,8 +146,11 @@
     [priceTextField resignFirstResponder];
     if([priceTextField.text isEqualToString:@""]){
         priceTextField.backgroundColor = RGBCOLOR(221, 221, 221);
+        confirmBtn.backgroundColor = RGBCOLOR(219, 219, 219);
     }else{
         priceTextField.backgroundColor = [UIColor whiteColor];
+        confirmBtn.backgroundColor = RGBCOLOR(37, 162, 78);
+        confirmBtn.enabled = YES;
     }
 }
 
