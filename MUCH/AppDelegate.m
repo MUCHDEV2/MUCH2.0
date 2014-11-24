@@ -8,16 +8,25 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "LoginSqlite.h"
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
-
++ (AppDelegate *)instance {
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.window.bounds];
+    imageView.image = [UIImage imageNamed:@"huanying"];
+    [self.window addSubview:imageView];
+    [self.window makeKeyAndVisible];
     self.window.backgroundColor = [UIColor whiteColor];
     
     _mapManager = [[BMKMapManager alloc]init];
@@ -29,18 +38,28 @@
         NSLog(@"百度OK");
     }
     
-    [SliderViewController sharedSliderController].LeftVC=[[LeftViewController alloc] init];
-    [SliderViewController sharedSliderController].RightVC=[[RightViewController alloc] init];
-    [SliderViewController sharedSliderController].RightSContentOffset=260;
-    [SliderViewController sharedSliderController].RightSContentScale=0.6;
-    [SliderViewController sharedSliderController].RightSOpenDuration=0.8;
-    [SliderViewController sharedSliderController].RightSCloseDuration=0.8;
-    [SliderViewController sharedSliderController].RightSJudgeOffset=160;
-    [SliderViewController sharedSliderController].LeftSContentScale=1.0;
-    [SliderViewController sharedSliderController].LeftSContentOffset=260;
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[SliderViewController sharedSliderController]];
+    self._locService = [[BMKLocationService alloc]init];
+    self._locService.delegate = self;
+    [self._locService startUserLocationService];
     
-    [self.window makeKeyAndVisible];
+    [LoginSqlite opensql];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [SliderViewController sharedSliderController].LeftVC=[[LeftViewController alloc] init];
+        [SliderViewController sharedSliderController].RightVC=[[RightViewController alloc] init];
+        [SliderViewController sharedSliderController].RightSContentOffset=260;
+        [SliderViewController sharedSliderController].RightSContentScale=0.6;
+        [SliderViewController sharedSliderController].RightSOpenDuration=0.8;
+        [SliderViewController sharedSliderController].RightSCloseDuration=0.8;
+        [SliderViewController sharedSliderController].RightSJudgeOffset=160;
+        [SliderViewController sharedSliderController].LeftSContentScale=1.0;
+        [SliderViewController sharedSliderController].LeftSContentOffset=260;
+        self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[SliderViewController sharedSliderController]];
+        
+        [self.window makeKeyAndVisible];
+    });
+    
+    
     return YES;
 }
 
@@ -66,4 +85,11 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)didUpdateUserLocation:(BMKUserLocation *)userLocation{
+    NSLog(@"定位跟新");
+    NSLog(@"当前的坐标  维度:%f,经度:%f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    self.coor = userLocation.location.coordinate;
+    [self._locService stopUserLocationService];
+    
+}
 @end

@@ -11,12 +11,13 @@
 #import "LeftViewController.h"
 #import "RightViewController.h"
 #import "SliderViewController.h"
-@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate>{
+@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate,BMKLocationServiceDelegate,CLLocationManagerDelegate>{
     BMKMapManager* _mapManager;
 }
 
 @property (strong, nonatomic) UIWindow *window;
-
-
+@property (nonatomic) CLLocationCoordinate2D coor;
+@property (strong, nonatomic) BMKLocationService* _locService;
++ (AppDelegate *)instance;
 @end
 

@@ -1,19 +1,15 @@
 //
-//  MainViewController.m
+//  MainListViewController.m
 //  MUCH
 //
-//  Created by 汪洋 on 14/11/21.
+//  Created by 汪洋 on 14/11/22.
 //  Copyright (c) 2014年 wy. All rights reserved.
 //
 
-#import "MainViewController.h"
+#import "MainListViewController.h"
 #import "MJRefresh.h"
 #import "SliderViewController.h"
-#import "AppDelegate.h"
-#import "ConnectionAvailable.h"
-#import "MBProgressHUD.h"
-#import "MuchApi.h"
-@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>{
+@interface MainListViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSTimeInterval lastOffsetCapture;
     CGPoint lastOffset;
     BOOL isScrollingFast;
@@ -23,7 +19,7 @@
 @property(nonatomic,retain)UITableView *tableView;
 @end
 
-@implementation MainViewController
+@implementation MainListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,11 +45,8 @@
     [self.view addSubview:self.backTopBtn];
     self.backTopBtn.alpha = .5;
     
-    showArr = [[NSMutableArray alloc] init];
     //集成刷新控件
     [self setupRefresh];
-    
-    [self reloadList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,7 +71,8 @@
 - (void)headerRereshing
 {
     NSLog(@"headerRereshing");
-    [self reloadList];
+    [self.tableView headerEndRefreshing];
+    [self.tableView footerEndRefreshing];
 }
 
 - (void)footerRereshing
@@ -90,39 +84,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == 0){
-        NSString *stringcell = @"MainHeadTableViewCell";
-        MainHeadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
+    if(indexPath.row <2){
+        NSString *stringcell = @"MainListHeadTableViewCell";
+        MainListHeadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
         if(!cell){
-            cell = [[MainHeadTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell index:0] ;
+            cell = [[MainListHeadTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell index:indexPath.row] ;
         }
         cell.delegate = self;
-        cell.selectionStyle = NO;
-        return cell;
-    }else if (indexPath.row == 1){
-        NSString *stringcell = @"MainHeadTableViewCell2";
-        MainHeadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
-        if(!cell){
-            cell = [[MainHeadTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell index:1] ;
-        }
-        cell.delegate = self;
-        cell.selectionStyle = NO;
-        return cell;
-    }else{
-        NSString *stringcell = @"MainViewTableViewCell";
-        MainViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
-        if(!cell){
-            cell = [[MainViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
-        }
-        cell.model = showArr[indexPath.row-2];
         cell.selectionStyle = NO;
         return cell;
     }
+    NSString *stringcell = @"MainViewTableViewCell";
+    MainListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
+    if(!cell){
+        cell = [[MainListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
+    }
+    cell.selectionStyle = NO;
+    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return showArr.count+2;
+    return 10;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -134,12 +117,12 @@
     if(indexPath.row <2){
         return 57;
     }
-    return 319;
+    return 175;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row>=2){
-        NSLog(@"%ld",(long)indexPath.row);
+        NSLog(@"%d",indexPath.row);
     }
 }
 
@@ -177,12 +160,12 @@
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    //NSLog(@"scrollViewDidEndDecelerating");
+    NSLog(@"scrollViewDidEndDecelerating");
     [self showBtn];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    //NSLog(@"scrollViewDidEndDragging");
+    NSLog(@"scrollViewDidEndDragging");
     [self showBtn];
 }
 
@@ -208,9 +191,8 @@
 
 -(void)gotoList{
     NSLog(@"列表");
-    MainListViewController *mainList = [[MainListViewController alloc] init];
-    mainList.delegate = self;
-    [self.navigationController pushViewController:mainList animated:NO];
+    [self.navigationController popViewControllerAnimated:NO];
+    [self.delegate popView];
 }
 
 -(void)addPhoto{
@@ -219,36 +201,5 @@
 
 -(void)gotoLeftView{
     [[SliderViewController sharedSliderController] leftItemClick];
-}
-
--(void)popView{
-    [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
-}
-
--(void)reloadList{
-    self.tableView.scrollEnabled = NO;
-    [[AppDelegate instance]._locService startUserLocationService];
-    if (![ConnectionAvailable isConnectionAvailable]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.removeFromSuperViewOnHide =YES;
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"当前网络不可用，请检查网络连接！";
-        hud.labelFont = [UIFont fontWithName:nil size:14];
-        hud.minSize = CGSizeMake(132.f, 108.0f);
-        [hud hide:YES afterDelay:3];
-    }else{
-        startIndex = 0;
-        [MuchApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if(!error){
-                //NSLog(@"posts ==> %@",posts);
-                showArr = posts;
-                [self.tableView reloadData];
-                [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
-                [self.tableView headerEndRefreshing];
-                [self.tableView footerEndRefreshing];
-                self.tableView.scrollEnabled = YES;
-            }
-        }start:startIndex log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
-    }
 }
 @end

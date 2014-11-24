@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "XHYScrollingNavBarViewController.h"
-@interface MainViewController : UITableViewController
+#import "MainHeadTableViewCell.h"
+#import "MainViewTableViewCell.h"
+#import "MainListViewController.h"
+@interface MainViewController : UIViewController<MainHeadTableViewCellDelegate,MainListViewControllerDelegate>{
+    NSMutableArray *showArr;
+    int startIndex;
+}
 
 @end
