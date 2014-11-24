@@ -12,8 +12,8 @@
 #import "ListModel.h"
 @implementation MuchApi
 //获取列表
-+ (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block start:(int)start log:(NSString *)log lat:(NSString *)lat{
-    NSString *urlStr = [NSString stringWithFormat:@"/post?offset=%d&size=5&userid=%@&longitude=%@&latitude=%@",start,[LoginSqlite getdata:@"userId"],log,lat];
++ (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block start:(int)start indexSize:(int)indexSize log:(NSString *)log lat:(NSString *)lat{
+    NSString *urlStr = [NSString stringWithFormat:@"/post?offset=%d&size=%d&userid=%@&longitude=%@&latitude=%@",start,indexSize,[LoginSqlite getdata:@"userId"],log,lat];
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
@@ -31,6 +31,35 @@
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"text"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
++(NSURLSessionDataTask *)ReleaseWithBlock:(void (^)(NSMutableArray *, NSError *))block price:(NSString *)price imgStr:(NSString *)imgStr log:(NSString *)log lat:(NSString *)lat{
+    NSLog(@"=====>%@",[NSString stringWithFormat:@"%@",[LoginSqlite getdata:@"userId"]]);
+    
+    NSString *urlStr = [NSString stringWithFormat:@"/post"];
+    NSDictionary *parametersdata = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                    price,@"title",
+                                    imgStr,@"content",
+                                    lat,@"latitude",
+                                    log,@"longitude",
+                                    @"53fee4d9ccf756e440f64819",@"createdby",
+                                    nil];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setValue:parametersdata forKey:@"post"];
+    //NSLog(@"parametersdata ===> %@",parameters);
+    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:parameters success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+        [mutablePosts addObject:[JSON objectForKey:@"status"]];
+        if (block) {
+            block([NSMutableArray arrayWithArray:mutablePosts], nil);
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         NSLog(@"error ==> %@",error);

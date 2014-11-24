@@ -15,6 +15,9 @@
 -(void)popView;
 
 @end
-@interface MainListViewController : UIViewController<MainListHeadTableViewCellDelegate>
+@interface MainListViewController : UIViewController<MainListHeadTableViewCellDelegate>{
+    NSMutableArray *showArr;
+    int startIndex;
+}
 @property(nonatomic,weak)id<MainListViewControllerDelegate>delegate;
 @end

@@ -9,7 +9,10 @@
 #import "ReleaseViewController.h"
 #import "AppDelegate.h"
 #import "SliderViewController.h"
-@interface ReleaseViewController ()<UITextFieldDelegate>
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
+#import "MuchApi.h"
+@interface ReleaseViewController ()<UITextFieldDelegate,UIAlertViewDelegate>
 
 @end
 
@@ -28,14 +31,28 @@
     [self.view addSubview:imageView];
     
     priceTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 322, 320, 60)];
-    priceTextField.backgroundColor = [UIColor grayColor];
+    priceTextField.backgroundColor = RGBCOLOR(221, 221, 221);
     priceTextField.placeholder = @"输入价格";
     priceTextField.textAlignment = NSTextAlignmentCenter;
     priceTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    priceTextField.font =  [UIFont systemFontOfSize:15];
+    priceTextField.font =  [UIFont systemFontOfSize:20];
     [priceTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
     priceTextField.delegate = self;
     [self.view addSubview:priceTextField];
+    
+    cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    cancelBtn.frame = CGRectMake(0, 384, 159, 45);
+    cancelBtn.backgroundColor = RGBCOLOR(223, 52, 45);
+    [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelBtn addTarget:self action:@selector(cancelBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:cancelBtn];
+    
+    confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    confirmBtn.frame = CGRectMake(161, 384, 159, 45);
+    confirmBtn.backgroundColor = RGBCOLOR(219, 219, 219);
+    [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
+    [confirmBtn addTarget:self action:@selector(confirmBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:confirmBtn];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +68,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [SliderViewController sharedSliderController].canMoveWithGesture = YES;
 }
 
 - (void)registerForKeyboardNotifications
@@ -78,11 +96,11 @@
     CGRect rect = [aNotification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat ty = - rect.size.height;
     [UIView animateWithDuration:[aNotification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
-        self.view.transform = CGAffineTransformMakeTranslation(0, ty+183);
+        self.view.transform = CGAffineTransformMakeTranslation(0, ty+184);
     }];
     
     bgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    bgBtn.frame = self.view.frame;
+    bgBtn.frame = CGRectMake(0, self.view.frame.origin.y, 320, 320);
     [bgBtn addTarget:self action:@selector(closeBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bgBtn];
 }
@@ -99,13 +117,23 @@
     bgBtn = nil;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    priceTextField.backgroundColor = [UIColor whiteColor];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if(![priceTextField.text isEqualToString:@""]){
+        confirmBtn.backgroundColor = RGBCOLOR(37, 162, 78);
+    }
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     return [self validateNumber:string];
 }
 
 - (BOOL)validateNumber:(NSString*)number {
     BOOL res = YES;
-    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789."];
     int i = 0;
     while (i < number.length) {
         NSString * string = [number substringWithRange:NSMakeRange(i, 1)];
@@ -121,5 +149,49 @@
 
 -(void)closeBtn{
     [priceTextField resignFirstResponder];
+    if([priceTextField.text isEqualToString:@""]){
+        priceTextField.backgroundColor = RGBCOLOR(221, 221, 221);
+    }else{
+        priceTextField.backgroundColor = [UIColor whiteColor];
+    }
+}
+
+-(void)cancelBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)confirmBtnClick{
+    if([priceTextField.text isEqualToString:@""]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入价格" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }else{
+        confirmBtn.enabled = NO;
+        if (![ConnectionAvailable isConnectionAvailable]) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.removeFromSuperViewOnHide =YES;
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"当前网络不可用，请检查网络连接！";
+            hud.labelFont = [UIFont fontWithName:nil size:14];
+            hud.minSize = CGSizeMake(132.f, 108.0f);
+            [hud hide:YES afterDelay:1];
+        }else{
+            [[AppDelegate instance]._locService startUserLocationService];
+            [MuchApi ReleaseWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if(!error){
+                    NSLog(@"posts ==> %@",posts);
+                    if([[NSString stringWithFormat:@"%@",posts[0][@"code"]] isEqualToString:@"200"]){
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发布成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                        [alertView show];
+                    }
+                }
+            }price:priceTextField.text imgStr:self.imageStr log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
+        }
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    confirmBtn.enabled = YES;
+    [self.delegate releaseSucess];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end
