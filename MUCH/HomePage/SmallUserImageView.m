@@ -45,7 +45,7 @@
 //用户头像
 -(void)initUserImageView{
     self.userImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 47.5, 47.5)];
-    self.userImageView.center=CGPointMake(23.75, 23.75-.7);
+    self.userImageView.center=CGPointMake(23.75, 23.75-.7);//因为切图下方有阴影，所以要上去点，否则看上去不像在中心
     self.userImageView.layer.cornerRadius=self.userImageView.frame.size.height*.5;
     self.userImageView.layer.masksToBounds=YES;
     self.userImageView.image=[GetImagePath getImagePath:@"QQ20141121-1@2x"];
