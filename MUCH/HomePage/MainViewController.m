@@ -84,8 +84,27 @@
 - (void)footerRereshing
 {
     NSLog(@"footerRereshing");
-    [self.tableView headerEndRefreshing];
-    [self.tableView footerEndRefreshing];
+    [[AppDelegate instance]._locService startUserLocationService];
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.removeFromSuperViewOnHide =YES;
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"当前网络不可用，请检查网络连接！";
+        hud.labelFont = [UIFont fontWithName:nil size:14];
+        hud.minSize = CGSizeMake(132.f, 108.0f);
+        [hud hide:YES afterDelay:3];
+    }else{
+        startIndex = startIndex +5;
+        [MuchApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                //NSLog(@"posts ==> %@",posts);
+                [showArr addObjectsFromArray:posts];
+                [self.tableView reloadData];
+                [self.tableView headerEndRefreshing];
+                [self.tableView footerEndRefreshing];
+            }
+        }start:startIndex log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -204,6 +223,7 @@
 
 -(void)gotofiltrate{
     NSLog(@"筛选");
+    [[SliderViewController sharedSliderController] rightItemClick];
 }
 
 -(void)gotoList{

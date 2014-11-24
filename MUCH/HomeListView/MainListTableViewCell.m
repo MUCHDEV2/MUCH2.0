@@ -52,14 +52,15 @@
     
     NSMutableArray *viewsArray = [@[] mutableCopy];
     for (int i = 0; i < 5; ++i) {
-        UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 19)];
+        UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 318, 20)];
         //tempLabel.backgroundColor = [UIColor blackColor];
         tempLabel.text = [NSString stringWithFormat:@"%d",i];
         tempLabel.textColor = [UIColor whiteColor];
+        tempLabel.font = [UIFont systemFontOfSize:12];
         [viewsArray addObject:tempLabel];
     }
     
-    self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(1, 155, 318, 19) animationDuration:2];
+    self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(1, 154, 318, 20) animationDuration:2];
     self.mainScorllView.backgroundColor = [UIColor blackColor];
     self.mainScorllView.alpha = 0.5;
     

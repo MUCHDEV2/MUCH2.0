@@ -29,6 +29,8 @@
 @property(nonatomic,assign)float LeftSCloseDuration;
 @property(nonatomic,assign)float RightSCloseDuration;
 
+@property (nonatomic, assign) BOOL canMoveWithGestureRight;
+
 + (SliderViewController*)sharedSliderController;
 
 - (void)showContentControllerWithModel:(NSString*)className;
