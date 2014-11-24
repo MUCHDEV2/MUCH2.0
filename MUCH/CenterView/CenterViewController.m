@@ -8,7 +8,7 @@
 
 #import "CenterViewController.h"
 
-@interface CenterViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface CenterViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 @end
 
 @implementation CenterViewController
@@ -18,6 +18,11 @@
     self.view.backgroundColor=RGBCOLOR(220, 220, 220);
     [self getTitleView];
     [self getListView];
+    [self getTapResign];
+}
+
+-(void)getTapResign{
+    
 }
 
 -(void)getTitleView{
@@ -62,6 +67,8 @@
     UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.contentView.backgroundColor=RGBCOLOR(239, 239, 239);
     }
     //分割线
     if (indexPath.row==0|indexPath.row==1||indexPath.row==5) {
@@ -70,7 +77,6 @@
         [cell.contentView addSubview:separatorLine];
     }
     //背景
-    cell.contentView.backgroundColor=RGBCOLOR(239, 239, 239);
     //名称label
     UILabel* nameLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, 100, 20)];
     NSArray* names=@[@"头像",@"昵称",@"性别",@"所在城市",@"手机号",@"使用帮助",@"关于MUCH"];
@@ -93,8 +99,18 @@
         userBtn.layer.masksToBounds=YES;
         [userBtn setBackgroundImage:[UIImage imageNamed:@"icon114"] forState:UIControlStateNormal];
         [cell.contentView addSubview:userBtn];
+    }else if (indexPath.row<=4&&indexPath.row>=1){
+        UITextField* content=[[UITextField alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
+        content.delegate=self;
+        content.center=CGPointMake(200, 27.5);
+        [cell.contentView addSubview:content];
     }
     return cell;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {
