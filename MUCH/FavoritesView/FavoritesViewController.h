@@ -1,5 +1,5 @@
 //
-//  LeftViewController.h
+//  FavoritesViewController.h
 //  MUCH
 //
 //  Created by 汪洋 on 14/11/24.
@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface LeftViewController : UIViewController
+
+@interface FavoritesViewController : UIViewController
 
 @end

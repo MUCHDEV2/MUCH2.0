@@ -52,7 +52,6 @@
 
 -(void)setModel:(ListModel *)model{
     __block UIActivityIndicatorView *activityIndicator;
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, 318, 174)];
     [bgImageView sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         //图片裁剪
         UIImage *srcimg = image;

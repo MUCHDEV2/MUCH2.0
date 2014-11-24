@@ -7,7 +7,7 @@
 //
 
 #import "LeftViewController.h"
-
+#import "SliderViewController.h"
 @interface LeftViewController ()<UITableViewDataSource,UITableViewDelegate>
 @end
 
@@ -106,6 +106,19 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"选择了第%d行",indexPath.row);
+    if(indexPath.row == 0){
+        [[SliderViewController sharedSliderController] showContentControllerWithModel:@"MainViewController"];
+        [[SliderViewController sharedSliderController] closeSideBar];
+    }else if(indexPath.row == 1){
+        [[SliderViewController sharedSliderController] showContentControllerWithModel:@"FavoritesViewController"];
+        [[SliderViewController sharedSliderController] closeSideBar];
+    }else if (indexPath.row == 2){
+        [[SliderViewController sharedSliderController] showContentControllerWithModel:@"AttentionViewController"];
+        [[SliderViewController sharedSliderController] closeSideBar];
+    }else if(indexPath.row == 3){
+        [[SliderViewController sharedSliderController] showContentControllerWithModel:@"CenterViewController"];
+        [[SliderViewController sharedSliderController] closeSideBar];
+    }
 }
 
 -(UIView*)getSingleListViewWithImageName:(NSString*)imageName title:(NSString*)title remindNumber:(NSInteger)remindNumber{

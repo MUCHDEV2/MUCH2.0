@@ -36,5 +36,5 @@
 - (void)showContentControllerWithModel:(NSString*)className;
 - (void)leftItemClick;
 - (void)rightItemClick;
-
+- (void)closeSideBar;
 @end

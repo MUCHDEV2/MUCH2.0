@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "MainListHeadTableViewCell.h"
 #import "MainListTableViewCell.h"
-
+#import "ReleaseViewController.h"
 @protocol MainListViewControllerDelegate <NSObject>
 
 -(void)popView;
 
 @end
-@interface MainListViewController : UIViewController<MainListHeadTableViewCellDelegate>{
+@interface MainListViewController : UIViewController<MainListHeadTableViewCellDelegate,ReleaseViewControllerDelegate>{
     NSMutableArray *showArr;
     int startIndex;
 }
