@@ -9,6 +9,7 @@
 #import "CenterViewController.h"
 #import "MuchApi.h"
 #import "GTMBase64.h"
+#import "userModel.h"
 @interface CenterViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(nonatomic,weak)UIButton* userImageView;
 @property(nonatomic,strong)UIImage* userImage;
@@ -20,8 +21,17 @@
     [super viewDidLoad];
     self.view.backgroundColor=RGBCOLOR(220, 220, 220);
     [self getTitleView];
-    [self getListView];
     [self getTapResign];
+    [MuchApi GetUserWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            userModel* model=posts[0];
+            model.avatar;
+            [self getListView];
+        }else{
+            NSLog(@"%@",error);
+        }
+    }];
+    
 }
 
 -(void)getTapResign{
