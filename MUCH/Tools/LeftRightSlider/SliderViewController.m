@@ -74,6 +74,7 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
         _RightSOpenDuration=0.4;
         _LeftSCloseDuration=0.3;
         _RightSCloseDuration=0.3;
+        _canMoveWithGesture = YES;
     }
         
     return self;
@@ -224,6 +225,10 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
 
 - (void)moveViewWithGesture:(UIPanGestureRecognizer *)panGes
 {
+    if (!_canMoveWithGesture)
+    {
+        return;
+    }else{}
     
     static CGFloat currentTranslateX;
     if (panGes.state == UIGestureRecognizerStateBegan)

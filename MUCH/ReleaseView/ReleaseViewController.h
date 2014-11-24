@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ReleaseViewController : UIViewController
+@interface ReleaseViewController : UIViewController{
+    UITextField *priceTextField;
+    UIButton *bgBtn;
+}
 @property(nonatomic,strong)NSString *imageStr;
 @property(nonatomic,strong)UIImage *image;
 @end
