@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "CycleScrollView.h"
 #import "ListModel.h"
+#import "SmallUserImageView.h"
+
 @interface MainViewTableViewCell : UITableViewCell{
     UIImageView *bgImageView;
     UIImageView *distanceImage;
     UIImageView *priceImage;
     UILabel *distanceLabel;
     UILabel *priceLabel;
-    UIImageView *headImageView;
+    SmallUserImageView *headImageView;
 }
 @property(nonatomic,strong)ListModel *model;
 @property (nonatomic , retain) CycleScrollView *mainScorllView;
