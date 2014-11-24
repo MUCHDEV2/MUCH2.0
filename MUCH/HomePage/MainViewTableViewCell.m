@@ -46,7 +46,7 @@
     priceLabel.textColor = [UIColor whiteColor];
     [priceImage addSubview:priceLabel];
     
-    headImageView = [[SmallUserImageView alloc] initWithFrame:CGRectMake(252, 21, 46, 82.5)];
+    headImageView = [[SmallUserImageView alloc] initWithFrame:CGRectMake(252, 21, 46, 92.5)];
     //headImageView.layer.cornerRadius = 24;
     //headImageView.layer.masksToBounds = YES;
     [self.contentView addSubview:headImageView];
