@@ -92,7 +92,7 @@
     NSArray* titles=@[@"卖来卖趣",
                       @"我的MUCH",
                       @"我收藏的人",
-                      @"设置",
+                      @"个人中心",
                       @"登出"];
     [cell.contentView addSubview:[self getSingleListViewWithImageName:imageNames[indexPath.row] title:titles[indexPath.row] remindNumber:indexPath.row==1?5:-1]];//徐烨要求本来“我的MUCH”右边有个数字，现在数字不要了，但是还是要预留个位置，以后可能会变成一张图
     cell.contentView.backgroundColor=RGBCOLOR(221, 221, 221);
