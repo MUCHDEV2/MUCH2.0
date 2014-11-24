@@ -91,6 +91,7 @@
 		D3D5EAF41A232CEA00411D50 /* good_icon_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5EAF01A232CEA00411D50 /* good_icon_selected@2x.png */; };
 		D3D5EAF51A232CEA00411D50 /* good_icon_unselect.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5EAF11A232CEA00411D50 /* good_icon_unselect.png */; };
 		D3D5EAF61A232CEA00411D50 /* good_icon_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5EAF21A232CEA00411D50 /* good_icon_unselect@2x.png */; };
+		D3D5EAF91A2334A300411D50 /* DetailContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D5EAF81A2334A300411D50 /* DetailContentTableViewCell.m */; };
 		D3D6A2A61A206DD700B2410E /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6A2A31A206DD700B2410E /* CycleScrollView.m */; };
 		D3D6A2A71A206DD700B2410E /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6A2A51A206DD700B2410E /* NSTimer+Addition.m */; };
 		D3D8BF521A1AECD9007222CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8BF511A1AECD9007222CC /* main.m */; };
@@ -309,6 +310,8 @@
 		D3D5EAF01A232CEA00411D50 /* good_icon_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "good_icon_selected@2x.png"; sourceTree = "<group>"; };
 		D3D5EAF11A232CEA00411D50 /* good_icon_unselect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = good_icon_unselect.png; sourceTree = "<group>"; };
 		D3D5EAF21A232CEA00411D50 /* good_icon_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "good_icon_unselect@2x.png"; sourceTree = "<group>"; };
+		D3D5EAF71A2334A300411D50 /* DetailContentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailContentTableViewCell.h; sourceTree = "<group>"; };
+		D3D5EAF81A2334A300411D50 /* DetailContentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailContentTableViewCell.m; sourceTree = "<group>"; };
 		D3D6A2A21A206DD700B2410E /* CycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
 		D3D6A2A31A206DD700B2410E /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
 		D3D6A2A41A206DD700B2410E /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
@@ -755,6 +758,8 @@
 				D3D5EAC91A231DC900411D50 /* DetailViewController.m */,
 				D3D5EACB1A23249600411D50 /* DetailHeadTableViewCell.h */,
 				D3D5EACC1A23249600411D50 /* DetailHeadTableViewCell.m */,
+				D3D5EAF71A2334A300411D50 /* DetailContentTableViewCell.h */,
+				D3D5EAF81A2334A300411D50 /* DetailContentTableViewCell.m */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -1429,6 +1434,7 @@
 				D3D5EACA1A231DC900411D50 /* DetailViewController.m in Sources */,
 				D3D54DEC1A1F383A005DAAB6 /* MJRefreshConst.m in Sources */,
 				D3D5EAC61A231B5300411D50 /* FavoritesViewController.m in Sources */,
+				D3D5EAF91A2334A300411D50 /* DetailContentTableViewCell.m in Sources */,
 				5B7B36761A22CD3F00DC0C50 /* GetImagePath.m in Sources */,
 				D3D8C0881A1B08BD007222CC /* SDWebImageDownloaderOperation.m in Sources */,
 				D3D8C0341A1AFE24007222CC /* AFNetworkActivityIndicatorManager.m in Sources */,
