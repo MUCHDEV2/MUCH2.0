@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B7B36701A22CBDB00DC0C50 /* SmallUserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */; };
+		5B7B36761A22CD3F00DC0C50 /* GetImagePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B36751A22CD3F00DC0C50 /* GetImagePath.m */; };
 		D3D5468D1A2028DB001AE44E /* back_to_top.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D546751A2028DB001AE44E /* back_to_top.png */; };
 		D3D5468E1A2028DB001AE44E /* back_to_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D546761A2028DB001AE44E /* back_to_top@2x.png */; };
 		D3D5468F1A2028DB001AE44E /* closed_icon_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D546771A2028DB001AE44E /* closed_icon_grey.png */; };
@@ -144,6 +146,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B7B366E1A22CBDB00DC0C50 /* SmallUserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallUserImageView.h; sourceTree = "<group>"; };
+		5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallUserImageView.m; sourceTree = "<group>"; };
+		5B7B36741A22CD3F00DC0C50 /* GetImagePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetImagePath.h; sourceTree = "<group>"; };
+		5B7B36751A22CD3F00DC0C50 /* GetImagePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetImagePath.m; sourceTree = "<group>"; };
 		D3D546751A2028DB001AE44E /* back_to_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_to_top.png; sourceTree = "<group>"; };
 		D3D546761A2028DB001AE44E /* back_to_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_to_top@2x.png"; sourceTree = "<group>"; };
 		D3D546771A2028DB001AE44E /* closed_icon_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closed_icon_grey.png; sourceTree = "<group>"; };
@@ -442,6 +448,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B7B36731A22CD3F00DC0C50 /* GetImagePath */ = {
+			isa = PBXGroup;
+			children = (
+				5B7B36741A22CD3F00DC0C50 /* GetImagePath.h */,
+				5B7B36751A22CD3F00DC0C50 /* GetImagePath.m */,
+			);
+			path = GetImagePath;
+			sourceTree = "<group>";
+		};
 		D3D546741A2028DB001AE44E /* 大图列表模式元素 */ = {
 			isa = PBXGroup;
 			children = (
@@ -546,6 +561,8 @@
 				D3D54DD41A1F3766005DAAB6 /* MainViewTableViewCell.m */,
 				D3D54DD61A1F3781005DAAB6 /* MainHeadTableViewCell.h */,
 				D3D54DD71A1F3781005DAAB6 /* MainHeadTableViewCell.m */,
+				5B7B366E1A22CBDB00DC0C50 /* SmallUserImageView.h */,
+				5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -693,6 +710,7 @@
 		D3D8BF781A1AEF76007222CC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				5B7B36731A22CD3F00DC0C50 /* GetImagePath */,
 				D3D6A2A11A206DD700B2410E /* SycleScrollView */,
 				D3D546B91A203A2D001AE44E /* Connection */,
 				D3D546C01A203A2D001AE44E /* MBProgressHUD */,
@@ -1036,6 +1054,7 @@
 					};
 					D3D8BF5E1A1AECD9007222CC = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 4ZYUXBS9ZB;
 						TestTargetID = D3D8BF4B1A1AECD9007222CC;
 					};
 				};
@@ -1137,6 +1156,7 @@
 				D3D8C0851A1B08BD007222CC /* SDWebImageCompat.m in Sources */,
 				D3D54DEF1A1F383A005DAAB6 /* UIScrollView+Extension.m in Sources */,
 				D3D54DEC1A1F383A005DAAB6 /* MJRefreshConst.m in Sources */,
+				5B7B36761A22CD3F00DC0C50 /* GetImagePath.m in Sources */,
 				D3D8C0881A1B08BD007222CC /* SDWebImageDownloaderOperation.m in Sources */,
 				D3D8C0341A1AFE24007222CC /* AFNetworkActivityIndicatorManager.m in Sources */,
 				D3D8BFF01A1AF1CC007222CC /* RootViewController.mm in Sources */,
@@ -1184,6 +1204,7 @@
 				D3E1EA131A22C781009F0910 /* LeftViewController.m in Sources */,
 				D3D546B41A203381001AE44E /* MainListTableViewCell.m in Sources */,
 				D3D54DF11A1F383A005DAAB6 /* UIView+Extension.m in Sources */,
+				5B7B36701A22CBDB00DC0C50 /* SmallUserImageView.m in Sources */,
 				D3D8C0271A1AFE24007222CC /* AFHTTPRequestOperation.m in Sources */,
 				D3D54DF51A1F38D6005DAAB6 /* SvGifView.m in Sources */,
 				D3D546C31A203A2D001AE44E /* ConnectionAvailable.m in Sources */,
@@ -1259,6 +1280,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "5cf4366f-e8f0-41cd-9fdd-7346b70dfdbe";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1294,6 +1316,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "5cf4366f-e8f0-41cd-9fdd-7346b70dfdbe";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1355,6 +1378,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1366,6 +1391,7 @@
 				INFOPLIST_FILE = MUCHTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MUCH.app/MUCH";
 			};
 			name = Debug;
@@ -1374,6 +1400,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1381,6 +1409,7 @@
 				INFOPLIST_FILE = MUCHTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MUCH.app/MUCH";
 			};
 			name = Release;

@@ -46,10 +46,9 @@
     priceLabel.textColor = [UIColor whiteColor];
     [priceImage addSubview:priceLabel];
     
-    headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(252, 21, 48, 48)];
-    [headImageView setImage:[UIImage imageNamed:@"user_avatar_white"]];
-    headImageView.layer.cornerRadius = 24;
-    headImageView.layer.masksToBounds = YES;
+    headImageView = [[SmallUserImageView alloc] initWithFrame:CGRectMake(252, 21, 46, 82.5)];
+    //headImageView.layer.cornerRadius = 24;
+    //headImageView.layer.masksToBounds = YES;
     [self.contentView addSubview:headImageView];
 }
 
@@ -67,18 +66,18 @@
     }];
     
     if(![[NSString stringWithFormat:@"%@",model.createdby] isEqualToString:@"<null>"]){
-        [headImageView sd_setImageWithURL:[NSURL URLWithString:model.createdby[@"avatar"]] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-            if (!activityIndicator) {
-                [headImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
-                activityIndicator.center = headImageView.center;
-                [activityIndicator startAnimating];
-            }
-        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            [activityIndicator removeFromSuperview];
-            activityIndicator = nil;
-        }];
+//        [headImageView sd_setImageWithURL:[NSURL URLWithString:model.createdby[@"avatar"]] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+//            if (!activityIndicator) {
+//                [headImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
+//                activityIndicator.center = headImageView.center;
+//                [activityIndicator startAnimating];
+//            }
+//        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//            [activityIndicator removeFromSuperview];
+//            activityIndicator = nil;
+//        }];
     }else{
-        [headImageView sd_setImageWithURL:nil];
+        //[headImageView sd_setImageWithURL:nil];
     }
     
     distanceLabel.text = model.distance;
