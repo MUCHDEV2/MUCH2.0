@@ -15,5 +15,7 @@
 @property (nonatomic, copy) NSString *gender;
 @property (nonatomic, copy) NSString *nickname;
 @property (nonatomic, copy) NSString *username;
+@property (nonatomic, copy) NSString *phone;
+@property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSDictionary *dict;
 @end

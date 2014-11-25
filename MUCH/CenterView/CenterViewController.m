@@ -123,9 +123,9 @@
         }else if (indexPath.row == 2){
             content.text = self.model.gender;
         }else if (indexPath.row == 3){
-            
+            content.text = self.model.city;
         }else{
-            content.text = self.model.username;
+            content.text = self.model.phone;
         }
         [cell.contentView addSubview:content];
     }
