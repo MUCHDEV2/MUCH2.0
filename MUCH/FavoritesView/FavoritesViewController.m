@@ -7,7 +7,7 @@
 //
 
 #import "FavoritesViewController.h"
-
+#import "MuchApi.h"
 @interface FavoritesViewController ()
 
 @end

@@ -72,4 +72,8 @@
 -(void)setPrice:(NSString *)price{
     priceLabel.text = [NSString stringWithFormat:@"¥%@",price];
 }
+
+-(void)commentBtnClick{
+    NSLog(@"commentBtnClick");
+}
 @end

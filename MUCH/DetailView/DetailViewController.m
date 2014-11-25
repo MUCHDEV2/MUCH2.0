@@ -51,7 +51,11 @@
         if(!cell){
             cell = [[DetailContentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
         }
-        cell.headImageUrl = self.dic[@"avatar"];
+        if([[NSString stringWithFormat:@"%@",self.dic] isEqualToString:@"<null>"]){
+            cell.headImageUrl = @"";
+        }else{
+            cell.headImageUrl = self.dic[@"avatar"];
+        }
         cell.distance = self.distance;
         cell.price = self.price;
         cell.selectionStyle = NO;

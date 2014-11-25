@@ -1,5 +1,5 @@
 //
-//  AttentionViewController.h
+//  CommentModel.h
 //  MUCH
 //
 //  Created by 汪洋 on 14/11/24.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AttentionViewController : UIViewController{
-    NSMutableArray *showArr;
-}
+@interface CommentModel : UIView
 
 @end

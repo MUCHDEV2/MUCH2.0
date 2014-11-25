@@ -7,7 +7,7 @@
 //
 
 #import "MainViewTableViewCell.h"
-
+#import "MuchApi.h"
 @implementation MainViewTableViewCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -47,12 +47,12 @@
     [priceImage addSubview:priceLabel];
     
     headImageView = [[SmallUserImageView alloc] initWithFrame:CGRectMake(252, 21, 46, 92.5)];
-    //headImageView.layer.cornerRadius = 24;
-    //headImageView.layer.masksToBounds = YES;
+    headImageView.delegate = self;
     [self.contentView addSubview:headImageView];
 }
 
 -(void)setModel:(ListModel *)model{
+    postId = model.aid;
     __block UIActivityIndicatorView *activityIndicator;
     [bgImageView sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         if (!activityIndicator) {
@@ -66,7 +66,6 @@
     }];
     
     if(![[NSString stringWithFormat:@"%@",model.createdby] isEqualToString:@"<null>"]){
-        headImageView.hidden = NO;
         [headImageView.userImageView sd_setImageWithURL:[NSURL URLWithString:model.createdby[@"avatar"]] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             if (!activityIndicator) {
                 [headImageView.userImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
@@ -78,8 +77,7 @@
             activityIndicator = nil;
         }];
     }else{
-        //[headImageView.userImageView sd_setImageWithURL:nil];
-        headImageView.hidden = YES;
+        [headImageView.userImageView setImage:[UIImage imageNamed:@"user_avatar_white"]];
     }
     
     distanceLabel.text = model.distance;
@@ -114,6 +112,16 @@
         }
         
         [self.contentView addSubview:self.mainScorllView];
+    }
+}
+
+-(void)chooseLoveHeartWithIsChoose:(BOOL)isChoose{
+    if(isChoose){
+        [MuchApi AddFavWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+            
+            }
+        } dic:[@{@"selfid":@"5473191a31d75ba261097923",@"userid":postId} mutableCopy]];
     }
 }
 @end

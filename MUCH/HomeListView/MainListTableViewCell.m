@@ -62,7 +62,6 @@
     }];
     
     if(![[NSString stringWithFormat:@"%@",model.createdby] isEqualToString:@"<null>"]){
-        headImageView.hidden = NO;
         [headImageView.userImageView sd_setImageWithURL:[NSURL URLWithString:model.createdby[@"avatar"]] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             if (!activityIndicator) {
                 [headImageView.userImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
@@ -74,8 +73,7 @@
             activityIndicator = nil;
         }];
     }else{
-        //[headImageView.userImageView sd_setImageWithURL:nil];
-        headImageView.hidden = YES;
+        [headImageView.userImageView setImage:[UIImage imageNamed:@"user_avatar_white"]];
     }
     
     distanceLabel.text = model.distance;
