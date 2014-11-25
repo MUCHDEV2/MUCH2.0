@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "<#header#>"
 @interface CommentView : UIView
 @property(nonatomic,strong)NSMutableArray *showArr;
-+(CommentView *)setFram:(ActivesModel *)model;
+//+(CommentView *)setFram:(ActivesModel *)model;
 @end

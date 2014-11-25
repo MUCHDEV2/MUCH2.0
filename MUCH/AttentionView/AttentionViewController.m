@@ -7,7 +7,7 @@
 //
 
 #import "AttentionViewController.h"
-
+#import "MuchApi.h"
 @interface AttentionViewController ()
 
 @end
@@ -18,6 +18,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor redColor];
+    showArr = [[NSMutableArray alloc] init];
+    [MuchApi GetFavWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            showArr = posts;
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

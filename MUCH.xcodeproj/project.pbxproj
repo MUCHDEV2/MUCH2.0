@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5B7B36701A22CBDB00DC0C50 /* SmallUserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */; };
 		5B7B36761A22CD3F00DC0C50 /* GetImagePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B36751A22CD3F00DC0C50 /* GetImagePath.m */; };
+		D3D32D2D1A2424F400A86F54 /* AttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D32D2C1A2424F400A86F54 /* AttentionModel.m */; };
 		D3D5468D1A2028DB001AE44E /* back_to_top.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D546751A2028DB001AE44E /* back_to_top.png */; };
 		D3D5468E1A2028DB001AE44E /* back_to_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D546761A2028DB001AE44E /* back_to_top@2x.png */; };
 		D3D5468F1A2028DB001AE44E /* closed_icon_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D546771A2028DB001AE44E /* closed_icon_grey.png */; };
@@ -206,6 +207,8 @@
 		5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallUserImageView.m; sourceTree = "<group>"; };
 		5B7B36741A22CD3F00DC0C50 /* GetImagePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetImagePath.h; sourceTree = "<group>"; };
 		5B7B36751A22CD3F00DC0C50 /* GetImagePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetImagePath.m; sourceTree = "<group>"; };
+		D3D32D2B1A2424F400A86F54 /* AttentionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionModel.h; sourceTree = "<group>"; };
+		D3D32D2C1A2424F400A86F54 /* AttentionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionModel.m; sourceTree = "<group>"; };
 		D3D546751A2028DB001AE44E /* back_to_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_to_top.png; sourceTree = "<group>"; };
 		D3D546761A2028DB001AE44E /* back_to_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_to_top@2x.png"; sourceTree = "<group>"; };
 		D3D546771A2028DB001AE44E /* closed_icon_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closed_icon_grey.png; sourceTree = "<group>"; };
@@ -638,6 +641,8 @@
 				D3D5EAFF1A23460800411D50 /* userModel.m */,
 				D3D5EB071A23479D00411D50 /* CommentModel.h */,
 				D3D5EB081A23479D00411D50 /* CommentModel.m */,
+				D3D32D2B1A2424F400A86F54 /* AttentionModel.h */,
+				D3D32D2C1A2424F400A86F54 /* AttentionModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1496,6 +1501,7 @@
 				D3D8BF521A1AECD9007222CC /* main.m in Sources */,
 				D3D8C0261A1AFE24007222CC /* AFAppDotNetAPIClient.m in Sources */,
 				D3D5EACD1A23249600411D50 /* DetailHeadTableViewCell.m in Sources */,
+				D3D32D2D1A2424F400A86F54 /* AttentionModel.m in Sources */,
 				D3D8BF7F1A1AEFD6007222CC /* SqliteHelper.m in Sources */,
 				D3D6A2A61A206DD700B2410E /* CycleScrollView.m in Sources */,
 				D3D8C0821A1B08BD007222CC /* MKAnnotationView+WebCache.m in Sources */,

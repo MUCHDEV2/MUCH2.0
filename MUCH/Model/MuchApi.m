@@ -11,6 +11,7 @@
 #import "AFAppDotNetAPIClient.h"
 #import "ListModel.h"
 #import "userModel.h"
+#import "AttentionModel.h"
 @implementation MuchApi
 //获取列表
 + (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block start:(int)start indexSize:(int)indexSize log:(NSString *)log lat:(NSString *)lat{
@@ -139,6 +140,59 @@
             userModel *model = [[userModel alloc] init];
             [model setDict:JSON[@"result"]];
             [mutablePosts addObject:model];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"text"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
+//关注人
++ (NSURLSessionDataTask *)AddFavWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
+    NSString *urlStr = [NSString stringWithFormat:@"fav/"];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:dic forKey:@"fav"];
+    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:parameters success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"code"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            //[mutablePosts addObject:JSON[@"result"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"text"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
+//获取关注的人
++ (NSURLSessionDataTask *)GetFavWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block{
+    NSString *urlStr = [NSString stringWithFormat:@"user/5473191a31d75ba261097923"];
+    NSLog(@"%@",urlStr);
+    return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"code"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            for(NSDictionary *item in JSON[@"result"]){
+                AttentionModel *model = [[AttentionModel alloc] init];
+                [model setDict:item];
+                [mutablePosts addObject:model];
+            }
             if (block) {
                 block([NSMutableArray arrayWithArray:mutablePosts], nil);
             }
