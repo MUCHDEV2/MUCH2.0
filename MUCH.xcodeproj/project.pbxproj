@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B6644671A241E4C009CC28D /* TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6644661A241E4C009CC28D /* TitleView.m */; };
+		5B66446A1A2426C0009CC28D /* MySearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6644691A2426C0009CC28D /* MySearchBar.m */; };
+		5B66446D1A2429A4009CC28D /* DoubleRoundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66446C1A2429A4009CC28D /* DoubleRoundImageView.m */; };
 		5B7B36701A22CBDB00DC0C50 /* SmallUserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */; };
 		5B7B36761A22CD3F00DC0C50 /* GetImagePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B36751A22CD3F00DC0C50 /* GetImagePath.m */; };
 		D3D32D2D1A2424F400A86F54 /* AttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D32D2C1A2424F400A86F54 /* AttentionModel.m */; };
@@ -205,6 +208,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B6644651A241E4C009CC28D /* TitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleView.h; sourceTree = "<group>"; };
+		5B6644661A241E4C009CC28D /* TitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleView.m; sourceTree = "<group>"; };
+		5B6644681A2426C0009CC28D /* MySearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySearchBar.h; sourceTree = "<group>"; };
+		5B6644691A2426C0009CC28D /* MySearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySearchBar.m; sourceTree = "<group>"; };
+		5B66446B1A2429A4009CC28D /* DoubleRoundImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleRoundImageView.h; sourceTree = "<group>"; };
+		5B66446C1A2429A4009CC28D /* DoubleRoundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleRoundImageView.m; sourceTree = "<group>"; };
 		5B7B366E1A22CBDB00DC0C50 /* SmallUserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallUserImageView.h; sourceTree = "<group>"; };
 		5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallUserImageView.m; sourceTree = "<group>"; };
 		5B7B36741A22CD3F00DC0C50 /* GetImagePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetImagePath.h; sourceTree = "<group>"; };
@@ -758,6 +767,10 @@
 			children = (
 				D3D5EABE1A231B3400411D50 /* AttentionViewController.h */,
 				D3D5EABF1A231B3400411D50 /* AttentionViewController.m */,
+				5B6644681A2426C0009CC28D /* MySearchBar.h */,
+				5B6644691A2426C0009CC28D /* MySearchBar.m */,
+				5B66446B1A2429A4009CC28D /* DoubleRoundImageView.h */,
+				5B66446C1A2429A4009CC28D /* DoubleRoundImageView.m */,
 			);
 			path = AttentionView;
 			sourceTree = "<group>";
@@ -767,6 +780,8 @@
 			children = (
 				D3D5EAC11A231B4000411D50 /* CenterViewController.h */,
 				D3D5EAC21A231B4000411D50 /* CenterViewController.m */,
+				5B6644651A241E4C009CC28D /* TitleView.h */,
+				5B6644661A241E4C009CC28D /* TitleView.m */,
 			);
 			path = CenterView;
 			sourceTree = "<group>";
@@ -1479,6 +1494,7 @@
 				D3D5EACA1A231DC900411D50 /* DetailViewController.m in Sources */,
 				D3D54DEC1A1F383A005DAAB6 /* MJRefreshConst.m in Sources */,
 				D3D5EAC61A231B5300411D50 /* FavoritesViewController.m in Sources */,
+				5B66446A1A2426C0009CC28D /* MySearchBar.m in Sources */,
 				D3D5EAF91A2334A300411D50 /* DetailContentTableViewCell.m in Sources */,
 				5B7B36761A22CD3F00DC0C50 /* GetImagePath.m in Sources */,
 				D3D8C0881A1B08BD007222CC /* SDWebImageDownloaderOperation.m in Sources */,
@@ -1516,6 +1532,7 @@
 				D3D546B11A2032CF001AE44E /* MainListHeadTableViewCell.m in Sources */,
 				D3D8C0281A1AFE24007222CC /* AFHTTPRequestOperationManager.m in Sources */,
 				D3D54DEB1A1F383A005DAAB6 /* MJRefreshBaseView.m in Sources */,
+				5B6644671A241E4C009CC28D /* TitleView.m in Sources */,
 				D3D54DED1A1F383A005DAAB6 /* MJRefreshFooterView.m in Sources */,
 				D3D8C0871A1B08BD007222CC /* SDWebImageDownloader.m in Sources */,
 				D3D8C08B1A1B08BD007222CC /* UIButton+WebCache.m in Sources */,
@@ -1538,6 +1555,7 @@
 				D3E1EA201A22DB36009F0910 /* ReleaseViewController.m in Sources */,
 				D3D54DF51A1F38D6005DAAB6 /* SvGifView.m in Sources */,
 				D3D546C31A203A2D001AE44E /* ConnectionAvailable.m in Sources */,
+				5B66446D1A2429A4009CC28D /* DoubleRoundImageView.m in Sources */,
 				D3D54DBA1A1EF6AD005DAAB6 /* XHYScrollingNavBarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
