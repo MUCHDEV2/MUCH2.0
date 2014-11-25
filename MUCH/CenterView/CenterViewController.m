@@ -10,7 +10,8 @@
 #import "MuchApi.h"
 #import "GTMBase64.h"
 #import "userModel.h"
-@interface CenterViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+#import "TitleView.h"
+@interface CenterViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,TitleViewDelegate>
 @property(nonatomic,weak)UIButton* userImageView;
 @property(nonatomic,strong)UIImage* userImage;
 @end
@@ -25,7 +26,6 @@
     [MuchApi GetUserWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             userModel* model=posts[0];
-            model.avatar;
             [self getListView];
         }else{
             NSLog(@"%@",error);
@@ -40,24 +40,8 @@
 }
 
 -(void)getTitleView{
-    UIView* titleView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 45)];
-    titleView.backgroundColor=RGBCOLOR(239, 239, 239);
+    TitleView* titleView=[TitleView titleViewWithTitle:@"个人中心" delegate:self];
     [self.view addSubview:titleView];
-    
-    UILabel* titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 20)];
-    titleLabel.textAlignment=NSTextAlignmentCenter;
-    titleLabel.font=[UIFont systemFontOfSize:20];
-    titleLabel.center=CGPointMake(160, 22.5);
-    titleLabel.text=@"个人中心";
-    [titleView addSubview:titleLabel];
-    
-    UIButton* sureBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    sureBtn.frame=CGRectMake(0, 0, 65, 20);
-    sureBtn.center=CGPointMake(290, 22.5);
-    [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
-    [sureBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [sureBtn addTarget:self action:@selector(makeSure) forControlEvents:UIControlEventTouchUpInside];
-    [titleView addSubview:sureBtn];
 }
 
 -(void)makeSure{

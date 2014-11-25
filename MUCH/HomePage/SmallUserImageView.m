@@ -81,11 +81,13 @@
 
 //用户选择了爱心
 -(void)changeLoveHeart{
-    if ([self.delegate respondsToSelector:@selector(chooseLoveHeartWithIsChoose:)]) {
-        [self.delegate chooseLoveHeartWithIsChoose:!self.isLove];
+    if (!self.isLove) {
+        if ([self.delegate respondsToSelector:@selector(chooseLoveHeartWithIsChoose:)]) {
+            [self.delegate chooseLoveHeartWithIsChoose:!self.isLove];
+        }
+        self.isLove=!self.isLove;
+        [self.loveHeart setBackgroundImage:[GetImagePath getImagePath:self.loveImageName] forState:UIControlStateNormal];
     }
-    self.isLove=!self.isLove;
-    [self.loveHeart setBackgroundImage:[GetImagePath getImagePath:self.loveImageName] forState:UIControlStateNormal];
 }
 
 //显示和隐藏totalBack的动画实现
