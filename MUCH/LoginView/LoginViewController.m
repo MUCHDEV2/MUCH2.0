@@ -28,9 +28,13 @@
     [bgBtn addTarget:self action:@selector(closekeyboard) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bgBtn];
     
+    UIImageView *cancelImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 15, 15)];
+    [cancelImage setImage:[UIImage imageNamed:@"cross_x_icon"]];
+    [self.view addSubview:cancelImage];
+    
     UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
-    cancelBtn.frame = CGRectMake(10, 10, 50, 30);
+    //[cancelBtn setImage:[UIImage imageNamed:@"cross_x_icon"] forState:UIControlStateNormal];
+    cancelBtn.frame = CGRectMake(10, 10, 30, 30);
     [cancelBtn addTarget:self action:@selector(cancelBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelBtn];
     
@@ -111,27 +115,32 @@
     
     UIButton *sinaBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [sinaBtn setImage:[UIImage imageNamed:@"weibo_icon"] forState:UIControlStateNormal];
-    sinaBtn.frame = CGRectMake(70, 430, 42, 41);
+    sinaBtn.frame = CGRectMake(80, 430, 42, 41);
     [self.view addSubview:sinaBtn];
     
     UIButton *qqBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [qqBtn setImage:[UIImage imageNamed:@"qq_icon"] forState:UIControlStateNormal];
-    qqBtn.frame = CGRectMake(126, 430, 42, 42);
+    qqBtn.frame = CGRectMake(136, 430, 42, 42);
     [qqBtn addTarget:self action:@selector(qqBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:qqBtn];
     
     UIButton *wechatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [wechatBtn setImage:[UIImage imageNamed:@"wechat_icon"] forState:UIControlStateNormal];
-    wechatBtn.frame = CGRectMake(183, 430, 41, 40);
+    wechatBtn.frame = CGRectMake(193, 430, 41, 40);
     [wechatBtn addTarget:self action:@selector(wechatBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:wechatBtn];
     
     UIButton *registBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    registBtn.frame = CGRectMake(240, 530, 80, 30);
+    registBtn.frame = CGRectMake(220, 530, 80, 30);
     [registBtn setTitle:@"注册卖趣" forState:UIControlStateNormal];
     [registBtn addTarget:self action:@selector(registBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:registBtn];
     
+    UIButton *forgetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    forgetBtn.frame = CGRectMake(20, 530, 80, 30);
+    [forgetBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
+    [forgetBtn addTarget:self action:@selector(forgetBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:forgetBtn];
     [self setqq];
 }
 
@@ -330,5 +339,9 @@
 
 -(void)registBtnClick{
 
+}
+
+-(void)forgetBtnClick{
+    
 }
 @end

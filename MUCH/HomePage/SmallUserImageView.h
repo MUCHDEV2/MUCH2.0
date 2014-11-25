@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoginViewController.h"
 @protocol SmallUserImageViewDelegate <NSObject>
 -(void)chooseLoveHeartWithIsChoose:(BOOL)isChoose;
 @end
