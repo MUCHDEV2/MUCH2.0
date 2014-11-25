@@ -13,6 +13,7 @@
 -(void)chooseUserImageViewInDoubleRoundView:(DoubleRoundImageView*)doubleRoundImageVIew;
 @end
 @interface DoubleRoundImageView : UIView
+@property(nonatomic,strong)UIImageView* smallRound;//用户头像圆
 @property(nonatomic,weak)id<DoubleRoundImageViewDelegate>delegate;
 +(DoubleRoundImageView*)doubleRoundImageViewWithBigRoundWidth:(CGFloat)bigWidth smallRoundWidth:(CGFloat)smallWidth;
 @end

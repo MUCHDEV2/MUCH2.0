@@ -9,7 +9,6 @@
 #import "DoubleRoundImageView.h"
 @interface DoubleRoundImageView()
 @property(nonatomic,strong)UIImageView* bigRound;//底图圆
-@property(nonatomic,strong)UIImageView* smallRound;//用户头像圆
 
 @property(nonatomic)CGFloat bigWidth;//底图圆的宽
 @property(nonatomic)CGFloat smallWidth;//用户头像圆的宽

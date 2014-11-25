@@ -13,5 +13,6 @@
 @property(nonatomic,copy)NSString* userName;
 @property(nonatomic)BOOL isFocuse;
 @property(nonatomic)NSInteger indexPathRow;
-+(AttentionViewCellModel*)modelWithImageName:(NSString*)imageName userName:(NSString*)userName isFocuse:(BOOL)isFocuse indexPathRow:(NSInteger)indexPathRow;
+@property(nonatomic,copy)NSString* userImageUrl;
++(AttentionViewCellModel*)modelWithImageName:(NSString*)imageName userName:(NSString*)userName isFocuse:(BOOL)isFocuse indexPathRow:(NSInteger)indexPathRow userImageUrl:(NSString*)userImageUrl;
 @end

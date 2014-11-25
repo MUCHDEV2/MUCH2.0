@@ -13,6 +13,7 @@
 #import "userModel.h"
 #import "AttentionModel.h"
 #import "JSONKit.h"
+#import "LoginSqlite.h"
 @implementation MuchApi
 //获取列表
 + (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block start:(int)start indexSize:(int)indexSize log:(NSString *)log lat:(NSString *)lat{
@@ -183,14 +184,15 @@
 
 //获取关注的人
 + (NSURLSessionDataTask *)GetFavWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block{
-    NSString *urlStr = [NSString stringWithFormat:@"user/5473191a31d75ba261097923"];
-    NSLog(@"%@",urlStr);
+    NSString *urlStr = 0?@"user/5473191a31d75ba261097923":[NSString stringWithFormat:@"user/%@",[LoginSqlite getdata:@"userId"]];
+    NSLog(@"==??==%@",urlStr);
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"code"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            for(NSDictionary *item in JSON[@"result"]){
+            for(NSDictionary *item in JSON[@"result"][@"favs"]){
                 AttentionModel *model = [[AttentionModel alloc] init];
+                NSLog(@"item==%@",item);
                 [model setDict:item];
                 [mutablePosts addObject:model];
             }
