@@ -12,7 +12,6 @@
 - (void)setDict:(NSDictionary *)dict{
     
     _dict = dict;
-    
     self.aid = dict[@"_id"];
     self.avatar = dict[@"avatar"];
     self.created = dict[@"created"];

@@ -22,6 +22,11 @@
     return self.isLove?@"user_faved_icon":@"user_unfav_icon";
 }
 
+-(void)setIsLove:(BOOL)isLove{
+    _isLove=isLove;
+    [self.loveHeart setBackgroundImage:[GetImagePath getImagePath:self.loveImageName] forState:UIControlStateNormal];
+}
+
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self=[super initWithFrame:frame]) {
         self.clipsToBounds=YES;
@@ -73,7 +78,6 @@
 //是在totalBack上的爱心
 -(void)initLoveHeart{
     self.loveHeart=[UIButton buttonWithType:UIButtonTypeSystem];
-    [self.loveHeart setBackgroundImage:[GetImagePath getImagePath:self.loveImageName] forState:UIControlStateNormal];
     [self.loveHeart addTarget:self action:@selector(changeLoveHeart) forControlEvents:UIControlEventTouchUpInside];
     self.loveHeart.frame=CGRectMake(0, 0, 23.5, 20);
     self.loveHeart.center=CGPointMake(self.totalBack.frame.size.width*.5, self.totalBack.frame.size.height-20);
