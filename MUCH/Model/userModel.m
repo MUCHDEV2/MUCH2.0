@@ -19,5 +19,7 @@
     self.gender = dict[@"gender"];
     self.nickname = dict[@"nickname"];
     self.username = dict[@"username"];
+    self.phone = dict[@"phone"];
+    self.city = dict[@"city"];
 }
 @end

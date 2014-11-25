@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "MBProgressHUD.h"
+#import "SliderViewController.h"
 @interface DetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @end
@@ -24,6 +25,14 @@
     [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
     self.tableView.separatorStyle = NO;
     self.tableView.backgroundColor = RGBCOLOR(221, 221, 221);
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [SliderViewController sharedSliderController].canMoveWithGesture = NO;
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [SliderViewController sharedSliderController].canMoveWithGesture = YES;
 }
 
 - (void)didReceiveMemoryWarning {

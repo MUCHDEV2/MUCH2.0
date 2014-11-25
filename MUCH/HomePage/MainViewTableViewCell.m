@@ -126,7 +126,7 @@
                 [self.contentView addSubview:tempLabel];
             }
         }else{
-            [self.contentView addSubview:self.mainScorllView];
+            //[self.contentView addSubview:self.mainScorllView];
         }
     }
 }

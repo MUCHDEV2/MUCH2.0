@@ -56,6 +56,8 @@
     [self setupRefresh];
     
     [self reloadList];
+    
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadList) name:@"reloadData" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {

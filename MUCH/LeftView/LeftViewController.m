@@ -9,6 +9,7 @@
 #import "LeftViewController.h"
 #import "SliderViewController.h"
 #import "LoginSqlite.h"
+#import "AppDelegate.h"
 @interface LeftViewController ()<UITableViewDataSource,UITableViewDelegate>
 @end
 
@@ -113,21 +114,36 @@
     if(indexPath.row == 0){
         [[SliderViewController sharedSliderController] showContentControllerWithModel:@"MainViewController"];
         [[SliderViewController sharedSliderController] closeSideBar];
+        [SliderViewController sharedSliderController].canRightMoveWithGesture = YES;
     }else if(indexPath.row == 1){
-        [[SliderViewController sharedSliderController] showContentControllerWithModel:@"FavoritesViewController"];
-        [[SliderViewController sharedSliderController] closeSideBar];
+        if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+            [self addLoginView];
+        }else{
+            [[SliderViewController sharedSliderController] showContentControllerWithModel:@"FavoritesViewController"];
+            [[SliderViewController sharedSliderController] closeSideBar];
+        }
     }else if (indexPath.row == 2){
-        [[SliderViewController sharedSliderController] showContentControllerWithModel:@"AttentionViewController"];
-        [[SliderViewController sharedSliderController] closeSideBar];
+        if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+            [self addLoginView];
+        }else{
+            [[SliderViewController sharedSliderController] showContentControllerWithModel:@"AttentionViewController"];
+            [[SliderViewController sharedSliderController] closeSideBar];
+        }
     }else if(indexPath.row == 3){
-        [[SliderViewController sharedSliderController] showContentControllerWithModel:@"CenterViewController"];
-        [[SliderViewController sharedSliderController] closeSideBar];
+        if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+            [self addLoginView];
+        }else{
+            [[SliderViewController sharedSliderController] showContentControllerWithModel:@"CenterViewController"];
+            [[SliderViewController sharedSliderController] closeSideBar];
+            [SliderViewController sharedSliderController].canRightMoveWithGesture = NO;
+        }
     }else{
         [LoginSqlite deleteAll];
         [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[LoginSqlite getdata:@"avatar"]] placeholderImage:[UIImage imageNamed:@"icon114"]];
         self.userNameLabel.text = [LoginSqlite getdata:@"nickname"];
         UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"提示" message:@"退出成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertview show];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
     }
 }
 
@@ -168,5 +184,13 @@
 -(void)changeHeadImage{
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[LoginSqlite getdata:@"avatar"]] placeholderImage:[UIImage imageNamed:@"icon114"]];
     self.userNameLabel.text = [LoginSqlite getdata:@"nickname"];
+}
+
+-(void)addLoginView{
+    AppDelegate* app=[AppDelegate instance];
+    [app initLoginView];
+    LoginViewController *loginVC = app.loginView;
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
 }
 @end

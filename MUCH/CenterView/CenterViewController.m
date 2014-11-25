@@ -11,6 +11,7 @@
 #import "GTMBase64.h"
 #import "userModel.h"
 #import "TitleView.h"
+#import "LoginSqlite.h"
 @interface CenterViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,TitleViewDelegate>
 @property(nonatomic,weak)UIButton* userImageView;
 @property(nonatomic,strong)UIImage* userImage;
@@ -25,7 +26,7 @@
     [self getTapResign];
     [MuchApi GetUserWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            //userModel* model=posts[0];
+            self.model=posts[0];
             [self getListView];
         }else{
             NSLog(@"%@",error);
@@ -102,11 +103,14 @@
         view.layer.cornerRadius=view.frame.size.width*.5;
         [cell.contentView addSubview:view];
         
+        UIImageView *userImage = [[UIImageView alloc] init];
+        [userImage sd_setImageWithURL:[NSURL URLWithString:self.model.avatar] placeholderImage:[UIImage imageNamed:@"icon114"]];
+        
         UIButton* userBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 80)];
         userBtn.center=view.center;
         userBtn.layer.cornerRadius=userBtn.frame.size.width*.5;
         userBtn.layer.masksToBounds=YES;
-        [userBtn setBackgroundImage:[UIImage imageNamed:@"icon114"] forState:UIControlStateNormal];
+        [userBtn setBackgroundImage:userImage.image forState:UIControlStateNormal];
         [userBtn addTarget:self action:@selector(chooseUserImageView) forControlEvents:UIControlEventTouchUpInside];
         [cell.contentView addSubview:userBtn];
         self.userImageView=userBtn;
@@ -114,6 +118,15 @@
         UITextField* content=[[UITextField alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
         content.delegate=self;
         content.center=CGPointMake(200, 27.5);
+        if(indexPath.row == 1){
+            content.text = self.model.nickname;
+        }else if (indexPath.row == 2){
+            content.text = self.model.gender;
+        }else if (indexPath.row == 3){
+            content.text = self.model.city;
+        }else{
+            content.text = self.model.phone;
+        }
         [cell.contentView addSubview:content];
     }
     return cell;

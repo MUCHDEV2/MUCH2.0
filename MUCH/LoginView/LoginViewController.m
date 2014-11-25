@@ -232,6 +232,7 @@
                 [LoginSqlite insertData:posts[0][@"id"] datakey:@"userId"];
                 [LoginSqlite insertData:[response.jsonResponse objectForKey:@"nickname"] datakey:@"nickname"];
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
                 [self dismissViewControllerAnimated:YES completion:nil];
                 [self.delegate loginSucsee];
             }
@@ -277,6 +278,7 @@
                             [LoginSqlite insertData:posts[0][@"id"] datakey:@"userId"];
                             [LoginSqlite insertData:[dic objectForKey:@"nickname"] datakey:@"nickname"];
                             [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
+                            [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
                             [self dismissViewControllerAnimated:YES completion:nil];
                             [self.delegate loginSucsee];
                         }
@@ -330,6 +332,7 @@
                 [LoginSqlite insertData:posts[0][@"id"] datakey:@"userId"];
                 [LoginSqlite insertData:posts[0][@"nickname"] datakey:@"nickname"];
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
                 [self dismissViewControllerAnimated:YES completion:nil];
                 [self.delegate loginSucsee];
             }
