@@ -12,7 +12,6 @@
 		5B6644701A24543D009CC28D /* AttentionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66446F1A24543D009CC28D /* AttentionTableViewCell.m */; };
 		5B7B36701A22CBDB00DC0C50 /* SmallUserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */; };
 		5B7B36761A22CD3F00DC0C50 /* GetImagePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B36751A22CD3F00DC0C50 /* GetImagePath.m */; };
-		D3AD32321A24520900A76607 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD32311A24520900A76607 /* LoginViewController.m */; };
 		D3AD32481A24543700A76607 /* check_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD32341A24543600A76607 /* check_icon.png */; };
 		D3AD32491A24543700A76607 /* check_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD32351A24543600A76607 /* check_icon@2x.png */; };
 		D3AD324C1A24543700A76607 /* login_register_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD32381A24543600A76607 /* login_register_bar.png */; };
@@ -31,6 +30,11 @@
 		D3AD325A1A24543700A76607 /* weibo_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD32461A24543600A76607 /* weibo_icon@2x.png */; };
 		D3AD325B1A24614400A76607 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3D8BFC31A1AEFFF007222CC /* libbaidumapapi.a */; };
 		D3AD325C1A24615B00A76607 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3D8BFC11A1AEFFF007222CC /* libbaidumapapi.a */; };
+		D3AD325D1A24738C00A76607 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3D8BFE21A1AF160007222CC /* libWeChatSDK.a */; };
+		D3AD32631A247AE300A76607 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD32601A247AE300A76607 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D3AD32641A247AE300A76607 /* PrintObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD32621A247AE300A76607 /* PrintObject.m */; };
+		D3AD32671A247D2A00A76607 /* cross_x_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD32651A247D2A00A76607 /* cross_x_icon.png */; };
+		D3AD32681A247D2A00A76607 /* cross_x_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD32661A247D2A00A76607 /* cross_x_icon@2x.png */; };
 		D3D32D2D1A2424F400A86F54 /* AttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D32D2C1A2424F400A86F54 /* AttentionModel.m */; };
 		D3D32D301A24270900A86F54 /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D32D2E1A24270900A86F54 /* search_icon.png */; };
 		D3D32D311A24270900A86F54 /* search_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D32D2F1A24270900A86F54 /* search_icon@2x.png */; };
@@ -236,7 +240,6 @@
 		5B7B36741A22CD3F00DC0C50 /* GetImagePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetImagePath.h; sourceTree = "<group>"; };
 		5B7B36751A22CD3F00DC0C50 /* GetImagePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetImagePath.m; sourceTree = "<group>"; };
 		D3AD32301A24520900A76607 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		D3AD32311A24520900A76607 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		D3AD32341A24543600A76607 /* check_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_icon.png; sourceTree = "<group>"; };
 		D3AD32351A24543600A76607 /* check_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check_icon@2x.png"; sourceTree = "<group>"; };
 		D3AD32381A24543600A76607 /* login_register_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_register_bar.png; sourceTree = "<group>"; };
@@ -253,6 +256,12 @@
 		D3AD32441A24543600A76607 /* wechat_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_icon@2x.png"; sourceTree = "<group>"; };
 		D3AD32451A24543600A76607 /* weibo_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo_icon.png; sourceTree = "<group>"; };
 		D3AD32461A24543600A76607 /* weibo_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo_icon@2x.png"; sourceTree = "<group>"; };
+		D3AD325F1A247AE300A76607 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		D3AD32601A247AE300A76607 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		D3AD32611A247AE300A76607 /* PrintObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintObject.h; sourceTree = "<group>"; };
+		D3AD32621A247AE300A76607 /* PrintObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintObject.m; sourceTree = "<group>"; };
+		D3AD32651A247D2A00A76607 /* cross_x_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross_x_icon.png; sourceTree = "<group>"; };
+		D3AD32661A247D2A00A76607 /* cross_x_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross_x_icon@2x.png"; sourceTree = "<group>"; };
 		D3D32D2B1A2424F400A86F54 /* AttentionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionModel.h; sourceTree = "<group>"; };
 		D3D32D2C1A2424F400A86F54 /* AttentionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionModel.m; sourceTree = "<group>"; };
 		D3D32D2E1A24270900A86F54 /* search_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_icon.png; sourceTree = "<group>"; };
@@ -596,6 +605,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3AD325D1A24738C00A76607 /* libWeChatSDK.a in Frameworks */,
 				D3AD325C1A24615B00A76607 /* libbaidumapapi.a in Frameworks */,
 				D3AD325B1A24614400A76607 /* libbaidumapapi.a in Frameworks */,
 				D3D8C05E1A1B073B007222CC /* CoreGraphics.framework in Frameworks */,
@@ -637,6 +647,8 @@
 		D3AD322E1A2451DF00A76607 /* 登陆 */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD32651A247D2A00A76607 /* cross_x_icon.png */,
+				D3AD32661A247D2A00A76607 /* cross_x_icon@2x.png */,
 				D3AD32341A24543600A76607 /* check_icon.png */,
 				D3AD32351A24543600A76607 /* check_icon@2x.png */,
 				D3AD32381A24543600A76607 /* login_register_bar.png */,
@@ -661,9 +673,19 @@
 			isa = PBXGroup;
 			children = (
 				D3AD32301A24520900A76607 /* LoginViewController.h */,
-				D3AD32311A24520900A76607 /* LoginViewController.m */,
 			);
 			path = LoginView;
+			sourceTree = "<group>";
+		};
+		D3AD325E1A247AE300A76607 /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD325F1A247AE300A76607 /* JSONKit.h */,
+				D3AD32601A247AE300A76607 /* JSONKit.m */,
+				D3AD32611A247AE300A76607 /* PrintObject.h */,
+				D3AD32621A247AE300A76607 /* PrintObject.m */,
+			);
+			path = Json;
 			sourceTree = "<group>";
 		};
 		D3D546741A2028DB001AE44E /* 大图列表模式元素 */ = {
@@ -1015,6 +1037,7 @@
 		D3D8BF781A1AEF76007222CC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD325E1A247AE300A76607 /* Json */,
 				D3E1EA171A22D9E6009F0910 /* GTM */,
 				5B7B36731A22CD3F00DC0C50 /* GetImagePath */,
 				D3D6A2A11A206DD700B2410E /* SycleScrollView */,
@@ -1442,8 +1465,10 @@
 				D3E1EA241A22EF99009F0910 /* divid_line@2x.png in Resources */,
 				D3D546921A2028DB001AE44E /* comment_bar_grey@2x.png in Resources */,
 				D3D8BFE61A1AF160007222CC /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				D3AD32671A247D2A00A76607 /* cross_x_icon.png in Resources */,
 				D3D5EAF31A232CEA00411D50 /* good_icon_selected.png in Resources */,
 				D3AD324D1A24543700A76607 /* login_register_bar@2x.png in Resources */,
+				D3AD32681A247D2A00A76607 /* cross_x_icon@2x.png in Resources */,
 				D3D32D311A24270900A86F54 /* search_icon@2x.png in Resources */,
 				D3D5469B1A2028DB001AE44E /* user_avatar_white.png in Resources */,
 				D3AD32571A24543700A76607 /* wechat_icon.png in Resources */,
@@ -1563,6 +1588,7 @@
 				D3D8C0861A1B08BD007222CC /* SDWebImageDecoder.m in Sources */,
 				D3D5EB031A2346CB00411D50 /* CommentView.m in Sources */,
 				D3D8C0911A1B08BD007222CC /* UIView+WebCacheOperation.m in Sources */,
+				D3AD32631A247AE300A76607 /* JSONKit.m in Sources */,
 				D3D8C02F1A1AFE24007222CC /* AFURLSessionManager.m in Sources */,
 				D3D8C0891A1B08BD007222CC /* SDWebImageManager.m in Sources */,
 				D3D8BF551A1AECD9007222CC /* AppDelegate.m in Sources */,
@@ -1590,7 +1616,6 @@
 				D3D8C02A1A1AFE24007222CC /* AFNetworkReachabilityManager.m in Sources */,
 				D3D8C08F1A1B08BD007222CC /* UIImageView+HighlightedWebCache.m in Sources */,
 				D3D8C03B1A1AFE24007222CC /* UIWebView+AFNetworking.m in Sources */,
-				D3AD32321A24520900A76607 /* LoginViewController.m in Sources */,
 				D3D54DD51A1F3766005DAAB6 /* MainViewTableViewCell.m in Sources */,
 				D3D8BF7E1A1AEFD6007222CC /* LoginSqlite.m in Sources */,
 				D3D8C02C1A1AFE24007222CC /* AFURLConnectionOperation.m in Sources */,
@@ -1618,6 +1643,7 @@
 				D3D546B11A2032CF001AE44E /* MainListHeadTableViewCell.m in Sources */,
 				D3D8C0281A1AFE24007222CC /* AFHTTPRequestOperationManager.m in Sources */,
 				D3D54DEB1A1F383A005DAAB6 /* MJRefreshBaseView.m in Sources */,
+				D3AD32641A247AE300A76607 /* PrintObject.m in Sources */,
 				5B6644671A241E4C009CC28D /* TitleView.m in Sources */,
 				D3D54DED1A1F383A005DAAB6 /* MJRefreshFooterView.m in Sources */,
 				D3D8C0871A1B08BD007222CC /* SDWebImageDownloader.m in Sources */,
