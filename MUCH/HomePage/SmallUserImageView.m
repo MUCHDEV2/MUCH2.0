@@ -8,6 +8,8 @@
 
 #import "SmallUserImageView.h"
 #import "GetImagePath.h"
+#import "LoginSqlite.h"
+#import "AppDelegate.h"
 @interface SmallUserImageView()
 @property(nonatomic,strong)UIButton* userBack;//用户头像背后的小圆圈，并且将其作为按钮触发事件
 @property(nonatomic,strong)UIImageView* totalBack;//用于显示点击用户头像后出来的背景
@@ -91,10 +93,18 @@
 
 //显示和隐藏totalBack的动画实现
 -(void)showTotalBack{
-    CGRect frame=self.totalBack.frame;
-    frame.origin.y-=self.animationRangeY*=-1;
-    [UIView animateWithDuration:.3 animations:^{
-        self.totalBack.frame=frame;
-    }];
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        AppDelegate* app=[AppDelegate instance];
+        [app initLoginView];
+        LoginViewController *loginVC = app.loginView;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }else{
+        CGRect frame=self.totalBack.frame;
+        frame.origin.y-=self.animationRangeY*=-1;
+        [UIView animateWithDuration:.3 animations:^{
+            self.totalBack.frame=frame;
+        }];
+    }
 }
 @end

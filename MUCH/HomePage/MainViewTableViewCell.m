@@ -8,6 +8,7 @@
 
 #import "MainViewTableViewCell.h"
 #import "MuchApi.h"
+#import "LoginSqlite.h"
 @implementation MainViewTableViewCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -136,7 +137,7 @@
             if(!error){
             
             }
-        } dic:[@{@"selfid":@"5473191a31d75ba261097923",@"userid":contactId} mutableCopy]];
+        } dic:[@{@"selfid":[LoginSqlite getdata:@"userId"],@"userid":contactId} mutableCopy]];
     }
 }
 @end

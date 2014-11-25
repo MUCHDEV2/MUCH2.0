@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <TencentOpenAPI/TencentOAuth.h>
-
+#import "WXApi.h"
 @protocol LoginViewControllerDelegate <NSObject>
 
 -(void)loginSucsee;
 
 @end
-@interface LoginViewController : UIViewController<TencentSessionDelegate>{
+@interface LoginViewController : UIViewController<TencentSessionDelegate,WXApiDelegate>{
     UITextField *phoneTextField;
     UITextField *passWordTextField;
     TencentOAuth *tencentAuth;

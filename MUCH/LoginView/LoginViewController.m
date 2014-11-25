@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"Background"]];
     self.navigationController.navigationBarHidden = YES;
     
     UIButton *bgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -28,9 +28,13 @@
     [bgBtn addTarget:self action:@selector(closekeyboard) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bgBtn];
     
+    UIImageView *cancelImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 15, 15)];
+    [cancelImage setImage:[UIImage imageNamed:@"cross_x_icon"]];
+    [self.view addSubview:cancelImage];
+    
     UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
-    cancelBtn.frame = CGRectMake(10, 10, 50, 30);
+    //[cancelBtn setImage:[UIImage imageNamed:@"cross_x_icon"] forState:UIControlStateNormal];
+    cancelBtn.frame = CGRectMake(10, 10, 30, 30);
     [cancelBtn addTarget:self action:@selector(cancelBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelBtn];
     
@@ -111,25 +115,32 @@
     
     UIButton *sinaBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [sinaBtn setImage:[UIImage imageNamed:@"weibo_icon"] forState:UIControlStateNormal];
-    sinaBtn.frame = CGRectMake(70, 430, 42, 41);
+    sinaBtn.frame = CGRectMake(80, 430, 42, 41);
     [self.view addSubview:sinaBtn];
     
     UIButton *qqBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [qqBtn setImage:[UIImage imageNamed:@"qq_icon"] forState:UIControlStateNormal];
-    qqBtn.frame = CGRectMake(126, 430, 42, 42);
+    qqBtn.frame = CGRectMake(136, 430, 42, 42);
+    [qqBtn addTarget:self action:@selector(qqBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:qqBtn];
     
     UIButton *wechatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [wechatBtn setImage:[UIImage imageNamed:@"wechat_icon"] forState:UIControlStateNormal];
-    wechatBtn.frame = CGRectMake(183, 430, 41, 40);
+    wechatBtn.frame = CGRectMake(193, 430, 41, 40);
+    [wechatBtn addTarget:self action:@selector(wechatBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:wechatBtn];
     
     UIButton *registBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    registBtn.frame = CGRectMake(240, 530, 80, 30);
+    registBtn.frame = CGRectMake(220, 530, 80, 30);
     [registBtn setTitle:@"注册卖趣" forState:UIControlStateNormal];
     [registBtn addTarget:self action:@selector(registBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:registBtn];
     
+    UIButton *forgetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    forgetBtn.frame = CGRectMake(20, 530, 80, 30);
+    [forgetBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
+    [forgetBtn addTarget:self action:@selector(forgetBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:forgetBtn];
     [self setqq];
 }
 
@@ -169,6 +180,111 @@
                                                          kOPEN_PERMISSION_GET_INTIMATE_FRIENDS_WEIBO,
                                                          kOPEN_PERMISSION_MATCH_NICK_TIPS_WEIBO,
                                                          nil]];
+}
+
+-(void)qqBtnClick{
+    [tencentAuth authorize:permissions inSafari:NO];
+}
+
+//qq登录成功
+- (void)tencentDidLogin {
+    // 登录成功
+    NSLog(@"登录成功");
+    NSLog(@"==>%@",tencentAuth.openId);
+    [self getMessage];
+}
+
+- (void)tencentDidNotLogin:(BOOL)cancelled
+{
+    if(cancelled){
+        NSLog(@"用户取消");
+    }else{
+        NSLog(@"登录失败");
+    }
+}
+
+-(void)tencentDidNotNetWork
+{
+    NSLog(@"没有网络");
+}
+
+-(void)getMessage
+{
+    if(![tencentAuth getUserInfo]){
+        [self showInvalidTokenOrOpenIDMessage];
+    }
+}
+
+- (void)showInvalidTokenOrOpenIDMessage{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"api调用失败" message:@"可能授权已过期，请重新获取" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+}
+
+//qq获取详情
+- (void)getUserInfoResponse:(APIResponse*) response {
+    if (response.retCode == URLREQUEST_SUCCEED)
+    {
+        NSLog(@"userInfo%@",response.jsonResponse);
+        int value = (arc4random() % 9999999) + 1000000;
+        [MuchApi RegisterWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [LoginSqlite insertData:[response.jsonResponse objectForKey:@"figureurl_qq_2"] datakey:@"avatar"];
+                [LoginSqlite insertData:posts[0][@"id"] datakey:@"userId"];
+                [LoginSqlite insertData:[response.jsonResponse objectForKey:@"nickname"] datakey:@"nickname"];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [self.delegate loginSucsee];
+            }
+        } userName:tencentAuth.openId passWord:[NSString stringWithFormat:@"%d",value] passwordConfirmation:[NSString stringWithFormat:@"%d",value] avatar:[response.jsonResponse objectForKey:@"figureurl_qq_2"] nickName:[response.jsonResponse objectForKey:@"nickname"]];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"操作失败" message:[NSString stringWithFormat:@"%@", response.errorMsg]
+                              
+                                                       delegate:self cancelButtonTitle:@"我知道啦" otherButtonTitles: nil];
+        [alert show];
+        
+    }
+}
+
+//微信
+-(void)wechatBtnClick{
+    NSLog(@"wenxinbtnClick");
+    //构造SendAuthReq结构体
+    if([WXApi isWXAppInstalled]){
+        SendAuthReq* req =[[SendAuthReq alloc ] init];
+        req.scope = @"snsapi_userinfo" ;
+        req.state = @"MUCH" ;
+        //第三方向微信终端发送一个SendAuthReq消息结构
+        [WXApi sendReq:req];
+    }else{
+        UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"还没有安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [view show];
+    }
+}
+
+//微信回调
+-(void) onResp:(SendAuthResp *)resp{
+    [MuchApi GetWeiXin:^(NSDictionary *posts, NSError *error) {
+        if(!error){
+            NSLog(@"%@",posts[@"access_token"]);
+            [MuchApi GetWeiXinUser:^(NSDictionary *dic, NSError *error) {
+                if(!error){
+                    int value = (arc4random() % 9999999) + 1000000;
+                    [MuchApi RegisterWithBlock:^(NSMutableArray *posts, NSError *error) {
+                        if(!error){
+                            [LoginSqlite insertData:[dic objectForKey:@"headimgurl"] datakey:@"avatar"];
+                            [LoginSqlite insertData:posts[0][@"id"] datakey:@"userId"];
+                            [LoginSqlite insertData:[dic objectForKey:@"nickname"] datakey:@"nickname"];
+                            [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                            [self.delegate loginSucsee];
+                        }
+                    } userName:[dic objectForKey:@"openid"] passWord:[NSString stringWithFormat:@"%d",value] passwordConfirmation:[NSString stringWithFormat:@"%d",value] avatar:[dic objectForKey:@"headimgurl"] nickName:[dic objectForKey:@"nickname"]];
+                }
+            } access_token:posts[@"access_token"]];
+        }
+    } code:resp.code];
 }
 
 -(void)cancelBtnClick{
@@ -213,6 +329,7 @@
                 [LoginSqlite insertData:posts[0][@"avatar"] datakey:@"avatar"];
                 [LoginSqlite insertData:posts[0][@"id"] datakey:@"userId"];
                 [LoginSqlite insertData:posts[0][@"nickname"] datakey:@"nickname"];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
                 [self dismissViewControllerAnimated:YES completion:nil];
                 [self.delegate loginSucsee];
             }
@@ -222,5 +339,9 @@
 
 -(void)registBtnClick{
 
+}
+
+-(void)forgetBtnClick{
+    
 }
 @end

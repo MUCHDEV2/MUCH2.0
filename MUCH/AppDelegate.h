@@ -11,13 +11,16 @@
 #import "LeftViewController.h"
 #import "RightViewController.h"
 #import "SliderViewController.h"
-@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate,BMKLocationServiceDelegate,CLLocationManagerDelegate>{
+#import "LoginViewController.h"
+#import "WXApi.h"
+@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate,BMKLocationServiceDelegate,CLLocationManagerDelegate,WXApiDelegate>{
     BMKMapManager* _mapManager;
 }
-
+@property (strong, nonatomic) LoginViewController *loginView;
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic) CLLocationCoordinate2D coor;
 @property (strong, nonatomic) BMKLocationService* _locService;
 + (AppDelegate *)instance;
+-(void)initLoginView;
 @end
 

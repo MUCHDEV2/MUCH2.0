@@ -246,7 +246,9 @@
 -(void)addPhoto{
     NSLog(@"拍照");
     if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
-        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        AppDelegate* app=[AppDelegate instance];
+        [app initLoginView];
+        LoginViewController *loginVC = app.loginView;
         loginVC.delegate = self;
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];

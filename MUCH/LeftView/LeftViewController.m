@@ -8,6 +8,7 @@
 
 #import "LeftViewController.h"
 #import "SliderViewController.h"
+#import "LoginSqlite.h"
 @interface LeftViewController ()<UITableViewDataSource,UITableViewDelegate>
 @end
 
@@ -19,6 +20,7 @@
     [self getMainView];
     [self getListView];
     //[self getQuitView];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
 }
 
 -(void)getMainView{
@@ -33,19 +35,21 @@
     [mainView addSubview:userBack];
     
     //用户头像
-    UIImageView* userImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 95, 95)];
-    userImageView.center=userBack.center;
-    userImageView.layer.masksToBounds=YES;
-    userImageView.layer.cornerRadius=userImageView.frame.size.width*.5;
-    userImageView.image=[UIImage imageNamed:@"icon114"];
-    [mainView addSubview:userImageView];
+    self.userImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 95, 95)];
+    self.userImageView.center=userBack.center;
+    self.userImageView.layer.masksToBounds=YES;
+    self.userImageView.layer.cornerRadius=self.userImageView.frame.size.width*.5;
+    //userImageView.image=[UIImage imageNamed:@"icon114"];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[LoginSqlite getdata:@"avatar"]] placeholderImage:[UIImage imageNamed:@"icon114"]];
+    [mainView addSubview:self.userImageView];
     
     //用户名称
-    UILabel* userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 20)];
-    userNameLabel.center=CGPointMake(130, 165);
-    userNameLabel.textAlignment=NSTextAlignmentCenter;
-    userNameLabel.text=@"不开心和没头脑";
-    [mainView addSubview:userNameLabel];
+    self.userNameLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 20)];
+    self.userNameLabel.center=CGPointMake(130, 165);
+    self.userNameLabel.textAlignment=NSTextAlignmentCenter;
+    //userNameLabel.text=@"不开心和没头脑";
+    self.userNameLabel.text = [LoginSqlite getdata:@"nickname"];
+    [mainView addSubview:self.userNameLabel];
     
     [self.view addSubview:mainView];
 }
@@ -118,6 +122,12 @@
     }else if(indexPath.row == 3){
         [[SliderViewController sharedSliderController] showContentControllerWithModel:@"CenterViewController"];
         [[SliderViewController sharedSliderController] closeSideBar];
+    }else{
+        [LoginSqlite deleteAll];
+        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[LoginSqlite getdata:@"avatar"]] placeholderImage:[UIImage imageNamed:@"icon114"]];
+        self.userNameLabel.text = [LoginSqlite getdata:@"nickname"];
+        UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"提示" message:@"退出成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertview show];
     }
 }
 
@@ -153,5 +163,10 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+-(void)changeHeadImage{
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[LoginSqlite getdata:@"avatar"]] placeholderImage:[UIImage imageNamed:@"icon114"]];
+    self.userNameLabel.text = [LoginSqlite getdata:@"nickname"];
 }
 @end

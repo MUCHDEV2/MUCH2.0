@@ -18,6 +18,10 @@
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
+-(void)initLoginView{
+    self.loginView = [[LoginViewController alloc] init];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -41,8 +45,11 @@
     self._locService = [[BMKLocationService alloc]init];
     self._locService.delegate = self;
     [self._locService startUserLocationService];
-    
+    [self initLoginView];
     [LoginSqlite opensql];
+    
+    //向微信注册
+    [WXApi registerApp:@"wx2fe5e9a05cc63f07"];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [SliderViewController sharedSliderController].LeftVC=[[LeftViewController alloc] init];
@@ -96,8 +103,7 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     NSArray *arr = [[NSString stringWithFormat:@"%@",url] componentsSeparatedByString:@":"];
     if([arr[0] isEqualToString:@"wx2fe5e9a05cc63f07"]){
-        return YES;
-        //return [WXApi handleOpenURL:url delegate:self.loginView];
+        return [WXApi handleOpenURL:url delegate:self.loginView];
     }else{
         return [TencentOAuth HandleOpenURL:url];
     }
@@ -106,8 +112,7 @@
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
     NSArray *arr = [[NSString stringWithFormat:@"%@",url] componentsSeparatedByString:@":"];
     if([arr[0] isEqualToString:@"wx2fe5e9a05cc63f07"]){
-        return YES;
-        //return [WXApi handleOpenURL:url delegate:self.loginView];
+        return [WXApi handleOpenURL:url delegate:self.loginView];
     }else{
         return [TencentOAuth HandleOpenURL:url];
     }
