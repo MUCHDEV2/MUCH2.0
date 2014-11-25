@@ -10,6 +10,6 @@
 
 @implementation MySearchBar
 +(MySearchBar*)mySearchBar{
-    return <#expression#>
+    return nil;
 }
 @end

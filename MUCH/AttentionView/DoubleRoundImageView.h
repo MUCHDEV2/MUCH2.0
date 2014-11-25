@@ -8,5 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class DoubleRoundImageView;
+@protocol DoubleRoundImageViewDelegate <NSObject>
+-(void)chooseUserImageViewInDoubleRoundView:(DoubleRoundImageView*)doubleRoundImageVIew;
+@end
 @interface DoubleRoundImageView : UIView
+@property(nonatomic,weak)id<DoubleRoundImageViewDelegate>delegate;
 @end
