@@ -18,7 +18,7 @@
     UILabel *distanceLabel;
     UILabel *priceLabel;
     SmallUserImageView *headImageView;
-    NSString *postId;
+    NSString *contactId;
 }
 @property(nonatomic,strong)ListModel *model;
 @property (nonatomic , retain) CycleScrollView *mainScorllView;

@@ -14,6 +14,7 @@
 #import "MBProgressHUD.h"
 #import "MuchApi.h"
 #import "GTMBase64.h"
+#import "LoginSqlite.h"
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     NSTimeInterval lastOffsetCapture;
     CGPoint lastOffset;
@@ -158,8 +159,8 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ListModel *model = showArr[indexPath.row-2];
     if(indexPath.row>=2){
+        ListModel *model = showArr[indexPath.row-2];
         DetailViewController *detailView = [[DetailViewController alloc] init];
         detailView.aid = model.aid;
         detailView.imageUrl = model.content;
@@ -244,8 +245,15 @@
 
 -(void)addPhoto{
     NSLog(@"拍照");
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
-    [actionSheet showInView:self.tableView.superview];
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        loginVC.delegate = self;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    }else{
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
+        [actionSheet showInView:self.tableView.superview];
+    }
 }
 
 -(void)gotoLeftView{
@@ -358,5 +366,9 @@
             }
         }start:startIndex indexSize:5 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
     }
+}
+
+-(void)loginSucsee{
+    [self reloadList];
 }
 @end

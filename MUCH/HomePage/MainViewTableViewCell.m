@@ -52,7 +52,6 @@
 }
 
 -(void)setModel:(ListModel *)model{
-    postId = model.aid;
     __block UIActivityIndicatorView *activityIndicator;
     [bgImageView sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         if (!activityIndicator) {
@@ -66,6 +65,8 @@
     }];
     
     if(![[NSString stringWithFormat:@"%@",model.createdby] isEqualToString:@"<null>"]){
+        contactId = model.createdby[@"_id"];
+        headImageView.hidden = NO;
         [headImageView.userImageView sd_setImageWithURL:[NSURL URLWithString:model.createdby[@"avatar"]] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             if (!activityIndicator) {
                 [headImageView.userImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
@@ -77,7 +78,8 @@
             activityIndicator = nil;
         }];
     }else{
-        [headImageView.userImageView setImage:[UIImage imageNamed:@"user_avatar_white"]];
+        [headImageView.userImageView setImage:nil];
+        headImageView.hidden = YES;
     }
     
     distanceLabel.text = model.distance;
@@ -97,21 +99,34 @@
     }
     
     if(self.mainScorllView == nil){
-        self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(1, 287, 318, 30) animationDuration:2];
+        self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(1, 287, 318, 30)];
         self.mainScorllView.backgroundColor = [UIColor blackColor];
         self.mainScorllView.alpha = 0.5;
         
         if(model.comments.count !=0){
-            self.mainScorllView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-                return viewsArray[pageIndex];
-            };
-            
-            self.mainScorllView.totalPagesCount = ^NSInteger(void){
-                return model.comments.count;
-            };
+            if(model.comments.count !=1){
+                self.mainScorllView.animation = 2;
+                self.mainScorllView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
+                    return viewsArray[pageIndex];
+                };
+                
+                self.mainScorllView.totalPagesCount = ^NSInteger(void){
+                    return model.comments.count;
+                };
+                [self.contentView addSubview:self.mainScorllView];
+            }else{
+                self.mainScorllView.animation = 0;
+                [self.contentView addSubview:self.mainScorllView];
+                UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 287, 305, 30)];
+                //tempLabel.backgroundColor = [UIColor blackColor];
+                tempLabel.text = [NSString stringWithFormat:@"%@",model.comments[0][@"content"]];
+                tempLabel.textColor = [UIColor whiteColor];
+                tempLabel.font = [UIFont systemFontOfSize:14];
+                [self.contentView addSubview:tempLabel];
+            }
+        }else{
+            [self.contentView addSubview:self.mainScorllView];
         }
-        
-        [self.contentView addSubview:self.mainScorllView];
     }
 }
 
@@ -121,7 +136,7 @@
             if(!error){
             
             }
-        } dic:[@{@"selfid":@"5473191a31d75ba261097923",@"userid":postId} mutableCopy]];
+        } dic:[@{@"selfid":@"5473191a31d75ba261097923",@"userid":contactId} mutableCopy]];
     }
 }
 @end

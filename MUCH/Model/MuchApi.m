@@ -207,4 +207,30 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)LoginWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userName:(NSString *)userName passWord:(NSString *)passWord{
+    NSString *urlStr = [NSString stringWithFormat:@"user/signin"];
+    NSDictionary *parametersdata = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                    userName,@"username",
+                                    passWord,@"password",
+                                    nil];
+    NSLog(@"parametersdata ===> %@",parametersdata);
+    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:parametersdata success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"code"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            [mutablePosts addObject:JSON[@"result"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"text"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
 @end

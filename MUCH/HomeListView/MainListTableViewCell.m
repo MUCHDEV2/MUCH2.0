@@ -7,7 +7,7 @@
 //
 
 #import "MainListTableViewCell.h"
-
+#import "MuchApi.h"
 @implementation MainListTableViewCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -47,6 +47,7 @@
     [priceImage addSubview:priceLabel];
     
     headImageView = [[SmallUserImageView alloc] initWithFrame:CGRectMake(252, 21, 46, 82.5)];
+    headImageView.delegate = self;
     [self.contentView addSubview:headImageView];
 }
 
@@ -62,6 +63,8 @@
     }];
     
     if(![[NSString stringWithFormat:@"%@",model.createdby] isEqualToString:@"<null>"]){
+        contactId = model.createdby[@"_id"];
+        headImageView.hidden = NO;
         [headImageView.userImageView sd_setImageWithURL:[NSURL URLWithString:model.createdby[@"avatar"]] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             if (!activityIndicator) {
                 [headImageView.userImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
@@ -73,7 +76,8 @@
             activityIndicator = nil;
         }];
     }else{
-        [headImageView.userImageView setImage:[UIImage imageNamed:@"user_avatar_white"]];
+        [headImageView.userImageView setImage:nil];
+        headImageView.hidden = YES;
     }
     
     distanceLabel.text = model.distance;
@@ -93,21 +97,44 @@
     }
     
     if(self.mainScorllView == nil){
-        self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(1, 154, 318, 20) animationDuration:2];
+        self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(1, 154, 318, 20)];
         self.mainScorllView.backgroundColor = [UIColor blackColor];
         self.mainScorllView.alpha = 0.5;
         
         if(model.comments.count !=0){
-            self.mainScorllView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-                return viewsArray[pageIndex];
-            };
-            
-            self.mainScorllView.totalPagesCount = ^NSInteger(void){
-                return model.comments.count;
-            };
+            if(model.comments.count !=1){
+                self.mainScorllView.animation = 2;
+                self.mainScorllView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
+                    return viewsArray[pageIndex];
+                };
+                
+                self.mainScorllView.totalPagesCount = ^NSInteger(void){
+                    return model.comments.count;
+                };
+                [self.contentView addSubview:self.mainScorllView];
+            }else{
+                self.mainScorllView.animation = 0;
+                [self.contentView addSubview:self.mainScorllView];
+                UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 154, 305, 20)];
+                //tempLabel.backgroundColor = [UIColor blackColor];
+                tempLabel.text = [NSString stringWithFormat:@"%@",model.comments[0][@"content"]];
+                tempLabel.textColor = [UIColor whiteColor];
+                tempLabel.font = [UIFont systemFontOfSize:14];
+                [self.contentView addSubview:tempLabel];
+            }
+        }else{
+            [self.contentView addSubview:self.mainScorllView];
         }
-        
-        [self.contentView addSubview:self.mainScorllView];
+    }
+}
+
+-(void)chooseLoveHeartWithIsChoose:(BOOL)isChoose{
+    if(isChoose){
+        [MuchApi AddFavWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                
+            }
+        } dic:[@{@"selfid":@"5473191a31d75ba261097923",@"userid":contactId} mutableCopy]];
     }
 }
 @end

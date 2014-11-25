@@ -34,6 +34,18 @@
     }
 }
 
+-(void)setAnimation:(NSTimeInterval)animation{
+    NSLog(@"===>%f",animation);
+    if (animation > 0.0) {
+        self.animationTimer = [NSTimer scheduledTimerWithTimeInterval:(self.animationDuration = animation)
+                                                               target:self
+                                                             selector:@selector(animationTimerDidFired:)
+                                                             userInfo:nil
+                                                              repeats:YES];
+        [self.animationTimer pauseTimer];
+    }
+}
+
 - (id)initWithFrame:(CGRect)frame animationDuration:(NSTimeInterval)animationDuration
 {
     self = [self initWithFrame:frame];

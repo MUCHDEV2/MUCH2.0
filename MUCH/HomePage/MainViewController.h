@@ -13,7 +13,8 @@
 #import "MainListViewController.h"
 #import "ReleaseViewController.h"
 #import "DetailViewController.h"
-@interface MainViewController : UIViewController<MainHeadTableViewCellDelegate,MainListViewControllerDelegate,ReleaseViewControllerDelegate>{
+#import "LoginViewController.h"
+@interface MainViewController : UIViewController<MainHeadTableViewCellDelegate,MainListViewControllerDelegate,ReleaseViewControllerDelegate,LoginViewControllerDelegate>{
     NSMutableArray *showArr;
     int startIndex;
 }
