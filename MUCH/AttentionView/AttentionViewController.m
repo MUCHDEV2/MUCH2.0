@@ -9,7 +9,7 @@
 #import "AttentionViewController.h"
 #import "TitleView.h"
 #import "AttentionTableViewCell.h"
-@interface AttentionViewController ()<TitleViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface AttentionViewController ()<TitleViewDelegate,UITableViewDataSource,UITableViewDelegate,AttentionTableViewCellDelegate>
 
 @end
 
@@ -35,7 +35,7 @@
 }
 
 -(void)getSearchBar{
-    UISearchBar* searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 45, 320, 32.5)];
+    UISearchBar* searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(-5, 45, 330, 32.5)];
     searchBar.placeholder=@"搜索";
     [self.view addSubview:searchBar];
 }
@@ -59,11 +59,17 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     AttentionTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
-    AttentionViewCellModel* model=[AttentionViewCellModel modelWithImageName:@"good_icon_selected@2x" userName:@"啦啦啦" isFocuse:1];
-    if (!cell) {
-        cell=[[AttentionTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell" model:model];
+        if (!cell) {
+        cell=[[AttentionTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell" delegate:self];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
+    AttentionViewCellModel* model=[AttentionViewCellModel modelWithImageName:@"good_icon_selected" userName:@"lala" isFocuse:indexPath.row%2 indexPathRow:indexPath.row];
+    NSLog(@"%d",indexPath.row);
+    cell.model=model;
     return cell;
+}
+
+-(void)userFocuseWithIndexPathRow:(NSInteger)indexPathRow{
+    NSLog(@"%d",indexPathRow);
 }
 @end

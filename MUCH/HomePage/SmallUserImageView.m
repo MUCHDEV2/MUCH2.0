@@ -13,7 +13,6 @@
 @property(nonatomic,strong)UIImageView* totalBack;//用于显示点击用户头像后出来的背景
 @property(nonatomic,strong)UIButton* loveHeart;//是在totalBack上的爱心
 @property(nonatomic)CGFloat animationRangeY;//totalBack上下移动的动画距离
-@property(nonatomic)BOOL isLove;//是否爱它
 @property(nonatomic,copy)NSString* loveImageName;//爱心的图片名
 @end
 @implementation SmallUserImageView
