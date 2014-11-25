@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoginViewController.h"
 @interface LeftViewController : UIViewController
 @property(nonatomic,strong)UIImageView* userImageView;
 @property(nonatomic,strong)UILabel* userNameLabel;

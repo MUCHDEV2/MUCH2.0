@@ -128,6 +128,7 @@
         self.userNameLabel.text = [LoginSqlite getdata:@"nickname"];
         UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"提示" message:@"退出成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertview show];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
     }
 }
 

@@ -8,6 +8,7 @@
 
 #import "MainListTableViewCell.h"
 #import "MuchApi.h"
+#import "LoginSqlite.h"
 @implementation MainListTableViewCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -123,7 +124,7 @@
                 [self.contentView addSubview:tempLabel];
             }
         }else{
-            [self.contentView addSubview:self.mainScorllView];
+            //[self.contentView addSubview:self.mainScorllView];
         }
     }
 }
@@ -134,7 +135,7 @@
             if(!error){
                 
             }
-        } dic:[@{@"selfid":@"5473191a31d75ba261097923",@"userid":contactId} mutableCopy]];
+        } dic:[@{@"selfid":[LoginSqlite getdata:@"userId"],@"userid":contactId} mutableCopy]];
     }
 }
 @end
