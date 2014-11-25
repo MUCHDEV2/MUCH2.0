@@ -21,7 +21,7 @@
     showArr = [[NSMutableArray alloc] init];
     [MuchApi GetFavWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
-            showArr = posts;w
+            showArr = posts;
         }
     }];
 }
