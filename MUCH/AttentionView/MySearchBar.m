@@ -10,6 +10,7 @@
 
 @implementation MySearchBar
 +(MySearchBar*)mySearchBar{
+    UISearchBar* searchBar;
     return nil;
 }
 @end
