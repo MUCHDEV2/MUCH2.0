@@ -21,38 +21,43 @@
 }
 
 -(void)addContent{
-    bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, 318, 318)];
+    bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
     bgImageView.backgroundColor = [UIColor grayColor];
     [self.contentView addSubview:bgImageView];
     
-    distanceImage = [[UIImageView alloc] initWithFrame:CGRectMake(21, 21, 48, 48)];
+    distanceImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 48, 48)];
     [distanceImage setImage:[UIImage imageNamed:@"distance_icon_green"]];
     [self.contentView addSubview:distanceImage];
     
     distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
-    distanceLabel.font = [UIFont systemFontOfSize:9];
+    distanceLabel.font = [UIFont systemFontOfSize:12];
     distanceLabel.text = @"200m";
     distanceLabel.textAlignment = NSTextAlignmentCenter;
     distanceLabel.textColor = [UIColor whiteColor];
     [distanceImage addSubview:distanceLabel];
     
-    priceImage = [[UIImageView alloc] initWithFrame:CGRectMake(21, 79, 48, 48)];
+    priceImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 78, 48, 48)];
     [priceImage setImage:[UIImage imageNamed:@"price_icon_red"]];
     [self.contentView addSubview:priceImage];
     
     priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
-    priceLabel.font = [UIFont systemFontOfSize:9];
+    priceLabel.font = [UIFont systemFontOfSize:12];
     priceLabel.text = @"¥299";
     priceLabel.textAlignment = NSTextAlignmentCenter;
     priceLabel.textColor = [UIColor whiteColor];
     [priceImage addSubview:priceLabel];
     
-    headImageView = [[SmallUserImageView alloc] initWithFrame:CGRectMake(252, 21, 46, 92.5)];
+    headImageView = [[SmallUserImageView alloc] initWithFrame:CGRectMake(252, 20, 46, 92.5)];
     headImageView.delegate = self;
     [self.contentView addSubview:headImageView];
 }
 
 -(void)setModel:(ListModel *)model{
+    if([model.is_faved isEqualToString:@"1"]){
+        headImageView.isLove = YES;
+    }else{
+        headImageView.isLove = NO;
+    }
     __block UIActivityIndicatorView *activityIndicator;
     [bgImageView sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         if (!activityIndicator) {
@@ -100,7 +105,7 @@
     }
     
     if(self.mainScorllView == nil){
-        self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(1, 287, 318, 30)];
+        self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(0, 288, 318, 30)];
         self.mainScorllView.backgroundColor = [UIColor blackColor];
         self.mainScorllView.alpha = 0.5;
         
@@ -118,7 +123,7 @@
             }else{
                 self.mainScorllView.animation = 0;
                 [self.contentView addSubview:self.mainScorllView];
-                UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 287, 305, 30)];
+                UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 288, 305, 30)];
                 //tempLabel.backgroundColor = [UIColor blackColor];
                 tempLabel.text = [NSString stringWithFormat:@"%@",model.comments[0][@"content"]];
                 tempLabel.textColor = [UIColor whiteColor];

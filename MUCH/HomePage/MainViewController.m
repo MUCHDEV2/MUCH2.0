@@ -157,7 +157,7 @@
     if(indexPath.row <2){
         return 57;
     }
-    return 319;
+    return 320;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

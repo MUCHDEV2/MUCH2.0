@@ -20,5 +20,7 @@
     self.createdby = dict[@"createdby"];
     self.comments = dict[@"comments"];
     self.distance = dict[@"distance"];
+    self.is_closed = [NSString stringWithFormat:@"%@",dict[@"is_closed"]];
+    self.is_faved = [NSString stringWithFormat:@"%@",dict[@"is_faved"]];
 }
 @end
