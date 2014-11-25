@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"adaf");
     self.view.backgroundColor=[UIColor whiteColor];
     [self getTitleView];
     [self getSearchBar];
