@@ -104,13 +104,13 @@
     NSString *urlStr = [NSString stringWithFormat:@"user/"];
     NSDictionary *parametersdata = [[NSDictionary alloc] initWithObjectsAndKeys:
                                     imaStr,@"avatar",
-                                    [LoginSqlite getdata:@"userId"],@"_id",
+                                    @"5473191a31d75ba261097923",@"_id",
                                     nil];
-    //NSLog(@"parametersdata ===> %@",parametersdata);
+    NSLog(@"parametersdata ===> %@",parametersdata);
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:parametersdata forKey:@"user"];
     return [[AFAppDotNetAPIClient sharedClient] PUT:urlStr parameters:parameters success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        //NSLog(@"JSON===>%@",JSON);
+        NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"code"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             [mutablePosts addObject:JSON[@"result"][@"avatar"]];
@@ -131,9 +131,9 @@
 
 //获取个人信息
 + (NSURLSessionDataTask *)GetUserWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block{
-    NSString *urlStr = [NSString stringWithFormat:@"user/%@",[LoginSqlite getdata:@"userId"]];
+    NSString *urlStr = [NSString stringWithFormat:@"user/%@",@"5473191a31d75ba261097923"];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        //NSLog(@"JSON===>%@",JSON);
+        NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"code"]]isEqualToString:@"200"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             userModel *model = [[userModel alloc] init];
