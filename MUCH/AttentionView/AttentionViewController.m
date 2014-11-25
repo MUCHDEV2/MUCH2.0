@@ -8,7 +8,8 @@
 
 #import "AttentionViewController.h"
 #import "TitleView.h"
-@interface AttentionViewController ()<TitleViewDelegate>
+#import "AttentionTableViewCell.h"
+@interface AttentionViewController ()<TitleViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @end
 
@@ -19,10 +20,24 @@
     self.view.backgroundColor=[UIColor whiteColor];
     [self getTitleView];
     [self getSearchBar];
+    [self getListView];
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
+}
+
+-(void)getListView{
+    
+    UITableView* tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 77.5, 320, 568-77.5) style:UITableViewStylePlain];
+    tableView.delegate=self;
+    tableView.dataSource=self;
+    tableView.rowHeight=55;
+    tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:tableView];
 }
 
 -(void)getSearchBar{
-    
+    UISearchBar* searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(0, 45, 320, 32.5)];
+    searchBar.placeholder=@"搜索";
+    [self.view addSubview:searchBar];
 }
 
 -(void)getTitleView{
@@ -36,5 +51,19 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 5;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    AttentionTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
+    AttentionViewCellModel* model=[AttentionViewCellModel modelWithImageName:@"good_icon_selected@2x" userName:@"啦啦啦" isFocuse:1];
+    if (!cell) {
+        cell=[[AttentionTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell" model:model];
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    }
+    return cell;
 }
 @end

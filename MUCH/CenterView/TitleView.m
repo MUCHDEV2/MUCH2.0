@@ -16,7 +16,7 @@
     
     UILabel* titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 20)];
     titleLabel.textAlignment=NSTextAlignmentCenter;
-    titleLabel.font=[UIFont systemFontOfSize:20];
+    titleLabel.font=[UIFont boldSystemFontOfSize:20];
     titleLabel.center=CGPointMake(160, 22.5);
     titleLabel.text=title;
     [titleView addSubview:titleLabel];
@@ -26,6 +26,7 @@
     sureBtn.center=CGPointMake(290, 22.5);
     [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
     [sureBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    sureBtn.titleLabel.font=[UIFont boldSystemFontOfSize:17];
     if (delegate&&[delegate respondsToSelector:@selector(makeSure)]) {
         [sureBtn addTarget:delegate action:@selector(makeSure) forControlEvents:UIControlEventTouchUpInside];
     }

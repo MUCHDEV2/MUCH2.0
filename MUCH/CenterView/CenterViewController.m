@@ -25,7 +25,7 @@
     [self getTapResign];
     [MuchApi GetUserWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            userModel* model=posts[0];
+            //userModel* model=posts[0];
             [self getListView];
         }else{
             NSLog(@"%@",error);
