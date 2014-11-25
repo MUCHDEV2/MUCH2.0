@@ -14,4 +14,5 @@
 @end
 @interface DoubleRoundImageView : UIView
 @property(nonatomic,weak)id<DoubleRoundImageViewDelegate>delegate;
++(DoubleRoundImageView*)doubleRoundImageViewWithBigRoundWidth:(CGFloat)bigWidth smallRoundWidth:(CGFloat)smallWidth;
 @end

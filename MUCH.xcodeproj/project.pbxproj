@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5B6644671A241E4C009CC28D /* TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6644661A241E4C009CC28D /* TitleView.m */; };
-		5B66446A1A2426C0009CC28D /* MySearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6644691A2426C0009CC28D /* MySearchBar.m */; };
 		5B66446D1A2429A4009CC28D /* DoubleRoundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66446C1A2429A4009CC28D /* DoubleRoundImageView.m */; };
+		5B6644701A24543D009CC28D /* AttentionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66446F1A24543D009CC28D /* AttentionTableViewCell.m */; };
 		5B7B36701A22CBDB00DC0C50 /* SmallUserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */; };
 		5B7B36761A22CD3F00DC0C50 /* GetImagePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B36751A22CD3F00DC0C50 /* GetImagePath.m */; };
 		D3D32D2D1A2424F400A86F54 /* AttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D32D2C1A2424F400A86F54 /* AttentionModel.m */; };
@@ -210,10 +210,10 @@
 /* Begin PBXFileReference section */
 		5B6644651A241E4C009CC28D /* TitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleView.h; sourceTree = "<group>"; };
 		5B6644661A241E4C009CC28D /* TitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleView.m; sourceTree = "<group>"; };
-		5B6644681A2426C0009CC28D /* MySearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySearchBar.h; sourceTree = "<group>"; };
-		5B6644691A2426C0009CC28D /* MySearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySearchBar.m; sourceTree = "<group>"; };
 		5B66446B1A2429A4009CC28D /* DoubleRoundImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleRoundImageView.h; sourceTree = "<group>"; };
 		5B66446C1A2429A4009CC28D /* DoubleRoundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleRoundImageView.m; sourceTree = "<group>"; };
+		5B66446E1A24543D009CC28D /* AttentionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionTableViewCell.h; sourceTree = "<group>"; };
+		5B66446F1A24543D009CC28D /* AttentionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionTableViewCell.m; sourceTree = "<group>"; };
 		5B7B366E1A22CBDB00DC0C50 /* SmallUserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallUserImageView.h; sourceTree = "<group>"; };
 		5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallUserImageView.m; sourceTree = "<group>"; };
 		5B7B36741A22CD3F00DC0C50 /* GetImagePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetImagePath.h; sourceTree = "<group>"; };
@@ -767,8 +767,8 @@
 			children = (
 				D3D5EABE1A231B3400411D50 /* AttentionViewController.h */,
 				D3D5EABF1A231B3400411D50 /* AttentionViewController.m */,
-				5B6644681A2426C0009CC28D /* MySearchBar.h */,
-				5B6644691A2426C0009CC28D /* MySearchBar.m */,
+				5B66446E1A24543D009CC28D /* AttentionTableViewCell.h */,
+				5B66446F1A24543D009CC28D /* AttentionTableViewCell.m */,
 				5B66446B1A2429A4009CC28D /* DoubleRoundImageView.h */,
 				5B66446C1A2429A4009CC28D /* DoubleRoundImageView.m */,
 			);
@@ -1494,7 +1494,6 @@
 				D3D5EACA1A231DC900411D50 /* DetailViewController.m in Sources */,
 				D3D54DEC1A1F383A005DAAB6 /* MJRefreshConst.m in Sources */,
 				D3D5EAC61A231B5300411D50 /* FavoritesViewController.m in Sources */,
-				5B66446A1A2426C0009CC28D /* MySearchBar.m in Sources */,
 				D3D5EAF91A2334A300411D50 /* DetailContentTableViewCell.m in Sources */,
 				5B7B36761A22CD3F00DC0C50 /* GetImagePath.m in Sources */,
 				D3D8C0881A1B08BD007222CC /* SDWebImageDownloaderOperation.m in Sources */,
@@ -1526,6 +1525,7 @@
 				D3D8C0261A1AFE24007222CC /* AFAppDotNetAPIClient.m in Sources */,
 				D3D5EACD1A23249600411D50 /* DetailHeadTableViewCell.m in Sources */,
 				D3D32D2D1A2424F400A86F54 /* AttentionModel.m in Sources */,
+				5B6644701A24543D009CC28D /* AttentionTableViewCell.m in Sources */,
 				D3D8BF7F1A1AEFD6007222CC /* SqliteHelper.m in Sources */,
 				D3D6A2A61A206DD700B2410E /* CycleScrollView.m in Sources */,
 				D3D8C0821A1B08BD007222CC /* MKAnnotationView+WebCache.m in Sources */,
