@@ -7,14 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface AttentionViewCellModel : NSObject
-@property(nonatomic,copy)NSString* imageName;
-@property(nonatomic,copy)NSString* userName;
-@property(nonatomic)BOOL isFocuse;
-+(AttentionViewCellModel*)modelWithImageName:(NSString*)imageName userName:(NSString*)userName isFocuse:(BOOL)isFocuse;
+#import "AttentionViewCellModel.h"
+@protocol AttentionTableViewCellDelegate <NSObject>
+-(void)userFocuseWithIndexPathRow:(NSInteger)indexPathRow;
 @end
 
 @interface AttentionTableViewCell : UITableViewCell
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(AttentionViewCellModel*)model;
+@property(nonatomic,strong)AttentionViewCellModel* model;
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier delegate:(id<AttentionTableViewCellDelegate>)delegate;
 @end

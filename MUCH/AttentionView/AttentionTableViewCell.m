@@ -13,16 +13,14 @@
 @property(nonatomic,strong)UILabel* nameLabel;
 @property(nonatomic,strong)UIImageView* focuseBtn;
 @property(nonatomic,strong)UIImageView* separatorLine;
-@property(nonatomic,strong)AttentionViewCellModel* model;
+@property(nonatomic,weak)id<AttentionTableViewCellDelegate>delegate;
 @end
 @implementation AttentionTableViewCell
 
 -(DoubleRoundImageView *)userView{
-    struct model;
     if (!_userView) {
         _userView=[DoubleRoundImageView doubleRoundImageViewWithBigRoundWidth:45 smallRoundWidth:39];
         _userView.center=CGPointMake(28, 27.5);
-        [self addSubview:_userView];
     }
     return _userView;
 }
@@ -30,7 +28,6 @@
 -(UILabel *)nameLabel{
     if (!_nameLabel) {
         _nameLabel=[[UILabel alloc]initWithFrame:CGRectMake(58, 17.5, 200, 20)];
-        [self addSubview:_nameLabel];
     }
     return _nameLabel;
 }
@@ -38,9 +35,18 @@
 -(UIImageView *)focuseBtn{
     if (!_focuseBtn) {
         _focuseBtn=[[UIImageView alloc]initWithFrame:CGRectMake(232, 12, 74, 31)];
-        [self addSubview:_focuseBtn];
+    
+        if (self.delegate&&[self.delegate respondsToSelector:@selector(userFocuseWithIndexPathRow:)]) {
+            _focuseBtn.userInteractionEnabled=YES;
+            UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(chooseUserFocuse:)];
+            [_focuseBtn addGestureRecognizer:tap];
+        }
     }
     return _focuseBtn;
+}
+
+-(void)chooseUserFocuse:(UITapGestureRecognizer*)tap{
+    [self.delegate userFocuseWithIndexPathRow:self.model.indexPathRow];
 }
 
 -(UIImageView *)separatorLine{
@@ -51,28 +57,24 @@
     return _separatorLine;
 }
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier model:(AttentionViewCellModel*)model{
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier delegate:(id<AttentionTableViewCellDelegate>)delegate{
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.model=model;
+        self.delegate=delegate;
+        [self addSubview:self.userView];
+        [self addSubview:self.nameLabel];
+        [self addSubview:self.focuseBtn];
         [self addSubview:self.separatorLine];
     }
     return self;
 }
 
 -(void)setModel:(AttentionViewCellModel *)model{
+    _model=model;
+    NSLog(@"=====%d",self.model.indexPathRow);
     self.nameLabel.text=model.userName;
-    self.userView;
-    self.nameLabel;
-    self.focuseBtn;
+    //暂时不要去除下面三行
+    self.focuseBtn.image=[UIImage imageNamed:model.isFocuse?@"unfollow":@"follow"];
+    
 }
 @end
 
-@implementation AttentionViewCellModel
-+(AttentionViewCellModel*)modelWithImageName:(NSString*)imageName userName:(NSString*)userName isFocuse:(BOOL)isFocuse{
-    AttentionViewCellModel* model=[[AttentionViewCellModel alloc]init];
-    model.imageName=imageName;
-    model.userName=userName;
-    model.isFocuse=isFocuse;
-    return model;
-}
-@end

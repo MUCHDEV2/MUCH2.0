@@ -14,4 +14,5 @@
 @interface SmallUserImageView : UIView
 @property(nonatomic,strong)UIImageView* userImageView;//用户头像
 @property(nonatomic,weak)id<SmallUserImageViewDelegate>delegate;
+@property(nonatomic)BOOL isLove;//是否爱它
 @end
