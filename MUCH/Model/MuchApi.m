@@ -106,7 +106,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"user/"];
     NSDictionary *parametersdata = [[NSDictionary alloc] initWithObjectsAndKeys:
                                     imaStr,@"avatar",
-                                    @"5473191a31d75ba261097923",@"_id",
+                                    [LoginSqlite getdata:@"userId"],@"_id",
                                     nil];
     NSLog(@"parametersdata ===> %@",parametersdata);
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -133,7 +133,7 @@
 
 //获取个人信息
 + (NSURLSessionDataTask *)GetUserWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block{
-    NSString *urlStr = [NSString stringWithFormat:@"user/%@",@"5473191a31d75ba261097923"];
+    NSString *urlStr = [NSString stringWithFormat:@"user/%@",[LoginSqlite getdata:@"userId"]];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"code"]]isEqualToString:@"200"]){
@@ -183,7 +183,7 @@
 
 //获取关注的人
 + (NSURLSessionDataTask *)GetFavWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block{
-    NSString *urlStr = [NSString stringWithFormat:@"user/5473191a31d75ba261097923"];
+    NSString *urlStr = [NSString stringWithFormat:@"user/%@",[LoginSqlite getdata:@"userId"]];
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);

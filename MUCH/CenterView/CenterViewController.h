@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "userModel.h"
 @interface CenterViewController : UIViewController
-
+@property(nonatomic,strong)userModel *model;
 @end

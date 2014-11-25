@@ -26,7 +26,7 @@
     [self getTapResign];
     [MuchApi GetUserWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
-            //userModel* model=posts[0];
+            self.model=posts[0];
             [self getListView];
         }else{
             NSLog(@"%@",error);
@@ -104,7 +104,7 @@
         [cell.contentView addSubview:view];
         
         UIImageView *userImage = [[UIImageView alloc] init];
-        [userImage sd_setImageWithURL:[NSURL URLWithString:[LoginSqlite getdata:@"avatar"]] placeholderImage:[UIImage imageNamed:@"icon114"]];
+        [userImage sd_setImageWithURL:[NSURL URLWithString:self.model.avatar] placeholderImage:[UIImage imageNamed:@"icon114"]];
         
         UIButton* userBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 80)];
         userBtn.center=view.center;
@@ -118,6 +118,15 @@
         UITextField* content=[[UITextField alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
         content.delegate=self;
         content.center=CGPointMake(200, 27.5);
+        if(indexPath.row == 1){
+            content.text = self.model.nickname;
+        }else if (indexPath.row == 2){
+            content.text = self.model.gender;
+        }else if (indexPath.row == 3){
+            
+        }else{
+            content.text = self.model.username;
+        }
         [cell.contentView addSubview:content];
     }
     return cell;

@@ -114,6 +114,7 @@
     if(indexPath.row == 0){
         [[SliderViewController sharedSliderController] showContentControllerWithModel:@"MainViewController"];
         [[SliderViewController sharedSliderController] closeSideBar];
+        [SliderViewController sharedSliderController].canRightMoveWithGesture = YES;
     }else if(indexPath.row == 1){
         if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
             [self addLoginView];
@@ -134,6 +135,7 @@
         }else{
             [[SliderViewController sharedSliderController] showContentControllerWithModel:@"CenterViewController"];
             [[SliderViewController sharedSliderController] closeSideBar];
+            [SliderViewController sharedSliderController].canRightMoveWithGesture = NO;
         }
     }else{
         [LoginSqlite deleteAll];

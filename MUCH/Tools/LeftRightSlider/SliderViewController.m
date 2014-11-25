@@ -75,6 +75,7 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
         _LeftSCloseDuration=0.3;
         _RightSCloseDuration=0.3;
         _canMoveWithGesture = YES;
+        _canRightMoveWithGesture = YES;
     }
         
     return self;
@@ -261,6 +262,9 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
         }
         else if ((transX < 0))
         {
+            if(!_canRightMoveWithGesture){
+                return;
+            }else{}
             [self.view sendSubviewToBack:_leftSideView];
             [self configureViewShadowWithDirection:RMoveDirectionLeft];
             
@@ -315,6 +319,9 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
         }
         if ((finalX < -_RightSJudgeOffset) )
         {
+            if(!_canRightMoveWithGesture){
+                return;
+            }else{}
             CGAffineTransform conT = [self transformWithDirection:RMoveDirectionLeft];
             [UIView beginAnimations:nil context:nil];
             _mainContentView.transform = conT;
