@@ -7,8 +7,8 @@
 //
 
 #import "AttentionViewController.h"
-#import "MuchApi.h"
-@interface AttentionViewController ()
+#import "TitleView.h"
+@interface AttentionViewController ()<TitleViewDelegate>
 
 @end
 
@@ -16,14 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor redColor];
-    showArr = [[NSMutableArray alloc] init];
-    [MuchApi GetFavWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            showArr = posts;
-        }
-    }];
+    self.view.backgroundColor=[UIColor whiteColor];
+    [self getTitleView];
+    [self getSearchBar];
 }
 
 -(void)getSearchBar{
