@@ -129,7 +129,7 @@
     [registBtn setTitle:@"注册卖趣" forState:UIControlStateNormal];
     [registBtn addTarget:self action:@selector(registBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:registBtn];
-    
+    NSLog(@"aaaa");
     [self setqq];
 }
 
