@@ -95,6 +95,9 @@
 		D3D5EAFC1A23449300411D50 /* comment_icon_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5EAFA1A23449300411D50 /* comment_icon_blue.png */; };
 		D3D5EAFD1A23449300411D50 /* comment_icon_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D5EAFB1A23449300411D50 /* comment_icon_blue@2x.png */; };
 		D3D5EB001A23460800411D50 /* userModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D5EAFF1A23460800411D50 /* userModel.m */; };
+		D3D5EB031A2346CB00411D50 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D5EB021A2346CB00411D50 /* CommentView.m */; };
+		D3D5EB061A23472A00411D50 /* ToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D5EB051A23472A00411D50 /* ToolView.m */; };
+		D3D5EB091A23479D00411D50 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D5EB081A23479D00411D50 /* CommentModel.m */; };
 		D3D6A2A61A206DD700B2410E /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6A2A31A206DD700B2410E /* CycleScrollView.m */; };
 		D3D6A2A71A206DD700B2410E /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6A2A51A206DD700B2410E /* NSTimer+Addition.m */; };
 		D3D8BF521A1AECD9007222CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D8BF511A1AECD9007222CC /* main.m */; };
@@ -319,6 +322,12 @@
 		D3D5EAFB1A23449300411D50 /* comment_icon_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment_icon_blue@2x.png"; sourceTree = "<group>"; };
 		D3D5EAFE1A23460800411D50 /* userModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userModel.h; sourceTree = "<group>"; };
 		D3D5EAFF1A23460800411D50 /* userModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userModel.m; sourceTree = "<group>"; };
+		D3D5EB011A2346CB00411D50 /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
+		D3D5EB021A2346CB00411D50 /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
+		D3D5EB041A23472A00411D50 /* ToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolView.h; sourceTree = "<group>"; };
+		D3D5EB051A23472A00411D50 /* ToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolView.m; sourceTree = "<group>"; };
+		D3D5EB071A23479D00411D50 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		D3D5EB081A23479D00411D50 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		D3D6A2A21A206DD700B2410E /* CycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
 		D3D6A2A31A206DD700B2410E /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
 		D3D6A2A41A206DD700B2410E /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
@@ -627,6 +636,8 @@
 				D3D546C81A203D45001AE44E /* ListModel.m */,
 				D3D5EAFE1A23460800411D50 /* userModel.h */,
 				D3D5EAFF1A23460800411D50 /* userModel.m */,
+				D3D5EB071A23479D00411D50 /* CommentModel.h */,
+				D3D5EB081A23479D00411D50 /* CommentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -763,12 +774,16 @@
 		D3D5EAC71A231DBB00411D50 /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
+				D3D5EB041A23472A00411D50 /* ToolView.h */,
+				D3D5EB051A23472A00411D50 /* ToolView.m */,
 				D3D5EAC81A231DC900411D50 /* DetailViewController.h */,
 				D3D5EAC91A231DC900411D50 /* DetailViewController.m */,
 				D3D5EACB1A23249600411D50 /* DetailHeadTableViewCell.h */,
 				D3D5EACC1A23249600411D50 /* DetailHeadTableViewCell.m */,
 				D3D5EAF71A2334A300411D50 /* DetailContentTableViewCell.h */,
 				D3D5EAF81A2334A300411D50 /* DetailContentTableViewCell.m */,
+				D3D5EB011A2346CB00411D50 /* CommentView.h */,
+				D3D5EB021A2346CB00411D50 /* CommentView.m */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -1431,13 +1446,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3D5EB091A23479D00411D50 /* CommentModel.m in Sources */,
 				D3D8C0861A1B08BD007222CC /* SDWebImageDecoder.m in Sources */,
+				D3D5EB031A2346CB00411D50 /* CommentView.m in Sources */,
 				D3D8C0911A1B08BD007222CC /* UIView+WebCacheOperation.m in Sources */,
 				D3D8C02F1A1AFE24007222CC /* AFURLSessionManager.m in Sources */,
 				D3D8C0891A1B08BD007222CC /* SDWebImageManager.m in Sources */,
 				D3D8BF551A1AECD9007222CC /* AppDelegate.m in Sources */,
 				D3E1EA161A22C78C009F0910 /* RightViewController.m in Sources */,
 				D3D8C0391A1AFE24007222CC /* UIProgressView+AFNetworking.m in Sources */,
+				D3D5EB061A23472A00411D50 /* ToolView.m in Sources */,
 				D3D54DEE1A1F383A005DAAB6 /* MJRefreshHeaderView.m in Sources */,
 				D3D546C41A203A2D001AE44E /* networkConnect.m in Sources */,
 				D3D8C0361A1AFE24007222CC /* UIAlertView+AFNetworking.m in Sources */,
