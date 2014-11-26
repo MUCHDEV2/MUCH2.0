@@ -16,6 +16,7 @@
 		5B6644791A2479E7009CC28D /* unfollow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6644751A2479E7009CC28D /* unfollow@2x.png */; };
 		5B66447C1A248392009CC28D /* AttentionViewCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66447B1A248392009CC28D /* AttentionViewCellModel.m */; };
 		5B66447F1A25BB1D009CC28D /* RightViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66447E1A25BB1D009CC28D /* RightViewCell.m */; };
+		5B6644821A25CDD3009CC28D /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6644811A25CDD3009CC28D /* ForgetPasswordViewController.m */; };
 		5B7B36701A22CBDB00DC0C50 /* SmallUserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */; };
 		5B7B36761A22CD3F00DC0C50 /* GetImagePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B36751A22CD3F00DC0C50 /* GetImagePath.m */; };
 		D3AD32481A24543700A76607 /* check_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD32341A24543600A76607 /* check_icon.png */; };
@@ -258,6 +259,8 @@
 		5B66447B1A248392009CC28D /* AttentionViewCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionViewCellModel.m; sourceTree = "<group>"; };
 		5B66447D1A25BB1D009CC28D /* RightViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewCell.h; sourceTree = "<group>"; };
 		5B66447E1A25BB1D009CC28D /* RightViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewCell.m; sourceTree = "<group>"; };
+		5B6644801A25CDD3009CC28D /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
+		5B6644811A25CDD3009CC28D /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		5B7B366E1A22CBDB00DC0C50 /* SmallUserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallUserImageView.h; sourceTree = "<group>"; };
 		5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallUserImageView.m; sourceTree = "<group>"; };
 		5B7B36741A22CD3F00DC0C50 /* GetImagePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetImagePath.h; sourceTree = "<group>"; };
@@ -722,6 +725,8 @@
 				D3AD32711A247E7300A76607 /* LoginViewController.m */,
 				D3D3B0FE1A25C9AF0088E7E5 /* RegisterViewController.h */,
 				D3D3B0FF1A25C9AF0088E7E5 /* RegisterViewController.m */,
+				5B6644801A25CDD3009CC28D /* ForgetPasswordViewController.h */,
+				5B6644811A25CDD3009CC28D /* ForgetPasswordViewController.m */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -1723,6 +1728,7 @@
 				D3D546B11A2032CF001AE44E /* MainListHeadTableViewCell.m in Sources */,
 				D3D8C0281A1AFE24007222CC /* AFHTTPRequestOperationManager.m in Sources */,
 				D3D54DEB1A1F383A005DAAB6 /* MJRefreshBaseView.m in Sources */,
+				5B6644821A25CDD3009CC28D /* ForgetPasswordViewController.m in Sources */,
 				5B66447C1A248392009CC28D /* AttentionViewCellModel.m in Sources */,
 				5B6644671A241E4C009CC28D /* TitleView.m in Sources */,
 				D3D54DED1A1F383A005DAAB6 /* MJRefreshFooterView.m in Sources */,

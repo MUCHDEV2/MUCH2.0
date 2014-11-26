@@ -11,6 +11,7 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "LoginSqlite.h"
+#import "ForgetPasswordViewController.h"
 @interface LoginViewController ()<UITextFieldDelegate>
 
 @end
@@ -139,6 +140,7 @@
     
     UIButton *forgetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     forgetBtn.frame = CGRectMake(20, 530, 80, 30);
+    forgetBtn.backgroundColor=[UIColor redColor];
     [forgetBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
     [forgetBtn addTarget:self action:@selector(forgetBtnClick) forControlEvents:UIControlEventTouchUpInside];
     forgetBtn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -347,6 +349,7 @@
 }
 
 -(void)forgetBtnClick{
-    
+    ForgetPasswordViewController* vc=[[ForgetPasswordViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:NO];
 }
 @end
