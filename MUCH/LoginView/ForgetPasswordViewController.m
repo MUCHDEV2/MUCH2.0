@@ -21,6 +21,7 @@
     NSArray* contents=@[@"请输入手机号码",@"请输入验证码",@"请输入新密码",@"请再次输入新密码"];
     for (int i=0; i<4; i++) {
         UIView* view=[self getContentViewWithImageName:imageNames[i] content:contents[i]];
+        [view.subviews[1] setTag:i];
         view.center=CGPointMake(160, 85+56*(0.5+i));
         [self.view addSubview:view];
     }
