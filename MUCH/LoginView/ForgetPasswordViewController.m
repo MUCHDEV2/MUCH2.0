@@ -7,7 +7,7 @@
 //
 
 #import "ForgetPasswordViewController.h"
-
+#import "MuchApi.h"
 @interface ForgetPasswordViewController ()<UITextFieldDelegate>
 
 @end
@@ -60,6 +60,8 @@
 
 -(void)resetBtnClick{
     NSLog(@"选择了重置");
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:<#(id)#> forKey:<#(NSString *)#>];
 }
 
 -(void)yzmBtnClick{
