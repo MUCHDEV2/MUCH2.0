@@ -11,6 +11,7 @@
 @interface RegisterViewController : UIViewController{
     UITextField *phoneTextField;
     UITextField *passWordTextField;
+    UITextField *yzmTextField;
 }
 
 @end
