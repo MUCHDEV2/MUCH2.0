@@ -15,6 +15,7 @@
 		5B6644781A2479E7009CC28D /* unfollow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6644741A2479E7009CC28D /* unfollow.png */; };
 		5B6644791A2479E7009CC28D /* unfollow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6644751A2479E7009CC28D /* unfollow@2x.png */; };
 		5B66447C1A248392009CC28D /* AttentionViewCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66447B1A248392009CC28D /* AttentionViewCellModel.m */; };
+		5B66447F1A25BB1D009CC28D /* RightViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66447E1A25BB1D009CC28D /* RightViewCell.m */; };
 		5B7B36701A22CBDB00DC0C50 /* SmallUserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */; };
 		5B7B36761A22CD3F00DC0C50 /* GetImagePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B36751A22CD3F00DC0C50 /* GetImagePath.m */; };
 		D3AD32481A24543700A76607 /* check_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD32341A24543600A76607 /* check_icon.png */; };
@@ -255,6 +256,8 @@
 		5B6644751A2479E7009CC28D /* unfollow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unfollow@2x.png"; sourceTree = "<group>"; };
 		5B66447A1A248392009CC28D /* AttentionViewCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionViewCellModel.h; sourceTree = "<group>"; };
 		5B66447B1A248392009CC28D /* AttentionViewCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionViewCellModel.m; sourceTree = "<group>"; };
+		5B66447D1A25BB1D009CC28D /* RightViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewCell.h; sourceTree = "<group>"; };
+		5B66447E1A25BB1D009CC28D /* RightViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewCell.m; sourceTree = "<group>"; };
 		5B7B366E1A22CBDB00DC0C50 /* SmallUserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallUserImageView.h; sourceTree = "<group>"; };
 		5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallUserImageView.m; sourceTree = "<group>"; };
 		5B7B36741A22CD3F00DC0C50 /* GetImagePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetImagePath.h; sourceTree = "<group>"; };
@@ -1385,6 +1388,8 @@
 			children = (
 				D3E1EA141A22C78C009F0910 /* RightViewController.h */,
 				D3E1EA151A22C78C009F0910 /* RightViewController.m */,
+				5B66447D1A25BB1D009CC28D /* RightViewCell.h */,
+				5B66447E1A25BB1D009CC28D /* RightViewCell.m */,
 			);
 			path = RightView;
 			sourceTree = "<group>";
@@ -1732,6 +1737,7 @@
 				D3D8C02B1A1AFE24007222CC /* AFSecurityPolicy.m in Sources */,
 				D3D54DD81A1F3781005DAAB6 /* MainHeadTableViewCell.m in Sources */,
 				D3D8C0841A1B08BD007222CC /* SDImageCache.m in Sources */,
+				5B66447F1A25BB1D009CC28D /* RightViewCell.m in Sources */,
 				D3D546C61A203A2D001AE44E /* MBProgressHUD.m in Sources */,
 				D3D8C02E1A1AFE24007222CC /* AFURLResponseSerialization.m in Sources */,
 				D3E1EA131A22C781009F0910 /* LeftViewController.m in Sources */,
