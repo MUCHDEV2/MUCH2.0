@@ -36,6 +36,9 @@
 //注册
 + (NSURLSessionDataTask *)RegisterWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block userName:(NSString *)userName passWord:(NSString *)passWord passwordConfirmation:(NSString *)passwordConfirmation avatar:(NSString *)avatar nickName:(NSString *)nickName;
 
+//更新个人信息
++ (NSURLSessionDataTask *)UpdataWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
+
 //验证微信
 +(void)GetWeiXin:(void (^)(NSDictionary *posts, NSError *error))block code:(NSString *)code;
 

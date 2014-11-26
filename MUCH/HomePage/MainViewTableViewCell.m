@@ -21,11 +21,11 @@
 }
 
 -(void)addContent{
-    bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+    bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, 319, 319)];
     bgImageView.backgroundColor = [UIColor grayColor];
     [self.contentView addSubview:bgImageView];
     
-    distanceImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 48, 48)];
+    distanceImage = [[UIImageView alloc] initWithFrame:CGRectMake(21, 21, 48, 48)];
     [distanceImage setImage:[UIImage imageNamed:@"distance_icon_green"]];
     [self.contentView addSubview:distanceImage];
     
@@ -36,7 +36,7 @@
     distanceLabel.textColor = [UIColor whiteColor];
     [distanceImage addSubview:distanceLabel];
     
-    priceImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 78, 48, 48)];
+    priceImage = [[UIImageView alloc] initWithFrame:CGRectMake(21, 79, 48, 48)];
     [priceImage setImage:[UIImage imageNamed:@"price_icon_red"]];
     [self.contentView addSubview:priceImage];
     
@@ -47,7 +47,7 @@
     priceLabel.textColor = [UIColor whiteColor];
     [priceImage addSubview:priceLabel];
     
-    headImageView = [[SmallUserImageView alloc] initWithFrame:CGRectMake(252, 20, 46, 92.5)];
+    headImageView = [[SmallUserImageView alloc] initWithFrame:CGRectMake(252, 21, 46, 92.5)];
     headImageView.delegate = self;
     [self.contentView addSubview:headImageView];
 }
@@ -105,7 +105,7 @@
     }
     
     if(self.mainScorllView == nil){
-        self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(0, 290, 320, 30)];
+        self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(1, 289, 320, 30)];
         self.mainScorllView.backgroundColor = [UIColor blackColor];
         self.mainScorllView.alpha = 0.5;
         
@@ -123,7 +123,7 @@
             }else{
                 self.mainScorllView.animation = 0;
                 [self.contentView addSubview:self.mainScorllView];
-                UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 290, 320, 30)];
+                UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(1, 289, 320, 30)];
                 //tempLabel.backgroundColor = [UIColor blackColor];
                 tempLabel.text = [NSString stringWithFormat:@"  %@",model.comments[0][@"content"]];
                 tempLabel.textColor = [UIColor whiteColor];
