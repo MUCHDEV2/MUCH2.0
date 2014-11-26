@@ -10,6 +10,7 @@
 #import "MainListHeadTableViewCell.h"
 #import "MainListTableViewCell.h"
 #import "ReleaseViewController.h"
+#import "DetailViewController.h"
 @protocol MainListViewControllerDelegate <NSObject>
 
 -(void)popView;

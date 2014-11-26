@@ -15,6 +15,7 @@
 @interface CenterViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,TitleViewDelegate>
 @property(nonatomic,weak)UIButton* userImageView;
 @property(nonatomic,strong)UIImage* userImage;
+@property(nonatomic,strong)UITableView* tableView;
 @end
 
 @implementation CenterViewController
@@ -24,15 +25,8 @@
     self.view.backgroundColor=RGBCOLOR(220, 220, 220);
     [self getTitleView];
     [self getTapResign];
-    [MuchApi GetUserWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            self.model=posts[0];
-            [self getListView];
-        }else{
-            NSLog(@"%@",error);
-        }
-    }];
-    
+    [self getListView];
+    [self reloadData];
 }
 
 -(void)getTapResign{
@@ -46,23 +40,27 @@
 }
 
 -(void)makeSure{
-    NSData* data=UIImageJPEGRepresentation(self.userImage, 0.8);
-    NSString* imageStr=[[NSString alloc]initWithData:[GTMBase64 encodeData:data] encoding:NSUTF8StringEncoding];
-    [MuchApi UpdataHeadWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if (!error) {
-            NSLog(@"sucess");
-        }
-    } imaStr:imageStr];
+    if(self.userImage !=nil){
+        NSData* data=UIImageJPEGRepresentation(self.userImage, 0.8);
+        NSString* imageStr=[[NSString alloc]initWithData:[GTMBase64 encodeData:data] encoding:NSUTF8StringEncoding];
+        [MuchApi UpdataHeadWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                NSLog(@"sucess");
+            }
+        } imaStr:imageStr];
+    }else{
+        NSLog(@"asdfasf");
+    }
 }
 
 -(void)getListView{
-    UITableView* tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 45, 320, 568-45) style:UITableViewStylePlain];
-    tableView.delegate=self;
-    tableView.dataSource=self;
-    tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    tableView.backgroundColor=RGBCOLOR(220, 220, 220);
-    tableView.scrollEnabled=NO;
-    [self.view addSubview:tableView];
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 45, 320, 568-45) style:UITableViewStylePlain];
+    self.tableView.delegate=self;
+    self.tableView.dataSource=self;
+    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor=RGBCOLOR(220, 220, 220);
+    self.tableView.scrollEnabled=NO;
+    [self.view addSubview:self.tableView];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -105,6 +103,12 @@
         
         UIImageView *userImage = [[UIImageView alloc] init];
         [userImage sd_setImageWithURL:[NSURL URLWithString:self.model.avatar] placeholderImage:[UIImage imageNamed:@"icon114"]];
+        
+        if([self.model.avatar isEqualToString:@""]){
+            self.userImage = nil;
+        }else{
+            self.userImage = userImage.image;
+        }
         
         UIButton* userBtn=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 80)];
         userBtn.center=view.center;
@@ -165,5 +169,16 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+-(void)reloadData{
+    [MuchApi GetUserWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            self.model=posts[0];
+            [self.tableView reloadData];
+        }else{
+            NSLog(@"%@",error);
+        }
+    }];
 }
 @end

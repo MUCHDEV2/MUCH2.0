@@ -53,7 +53,7 @@
     //集成刷新控件
     [self setupRefresh];
     [self reloadList];
-    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadList) name:@"reloadData" object:nil];
+    //[[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadList) name:@"reloadData" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -158,7 +158,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row>=2){
-        NSLog(@"%ld",(long)indexPath.row);
+        ListModel *model = showArr[indexPath.row-2];
+        DetailViewController *detailView = [[DetailViewController alloc] init];
+        detailView.aid = model.aid;
+        detailView.imageUrl = model.content;
+        detailView.youlikeit = [NSString stringWithFormat:@"%@",model.youlikeit];
+        detailView.dic = model.createdby;
+        detailView.distance = model.distance;
+        detailView.price = model.price;
+        [self.navigationController pushViewController:detailView animated:YES];
     }
 }
 
@@ -223,6 +231,7 @@
 
 -(void)gotofiltrate{
     NSLog(@"筛选");
+    [[SliderViewController sharedSliderController] rightItemClick];
 }
 
 -(void)gotoList{

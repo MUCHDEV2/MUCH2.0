@@ -30,7 +30,7 @@
     [self.contentView addSubview:distanceImage];
     
     distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
-    distanceLabel.font = [UIFont systemFontOfSize:9];
+    distanceLabel.font = [UIFont systemFontOfSize:12];
     distanceLabel.text = @"200m";
     distanceLabel.textAlignment = NSTextAlignmentCenter;
     distanceLabel.textColor = [UIColor whiteColor];
@@ -41,7 +41,7 @@
     [self.contentView addSubview:priceImage];
     
     priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
-    priceLabel.font = [UIFont systemFontOfSize:9];
+    priceLabel.font = [UIFont systemFontOfSize:12];
     priceLabel.text = @"¥299";
     priceLabel.textAlignment = NSTextAlignmentCenter;
     priceLabel.textColor = [UIColor whiteColor];

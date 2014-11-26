@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface FavoritesViewController : UIViewController
+#import "FavoritesTableViewCell.h"
+@interface FavoritesViewController : UIViewController{
+    NSMutableArray *showArr;
+}
 
 @end

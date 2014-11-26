@@ -37,8 +37,6 @@
 		D3AD325C1A24615B00A76607 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3D8BFC11A1AEFFF007222CC /* libbaidumapapi.a */; };
 		D3AD325D1A24738C00A76607 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3D8BFE21A1AF160007222CC /* libWeChatSDK.a */; };
 		D3AD32631A247AE300A76607 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD32601A247AE300A76607 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		D3AD32641A247AE300A76607 /* PrintObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD32621A247AE300A76607 /* PrintObject.m */; };
-		D3AD32671A247D2A00A76607 /* cross_x_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD32651A247D2A00A76607 /* cross_x_icon.png */; };
 		D3AD32681A247D2A00A76607 /* cross_x_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD32661A247D2A00A76607 /* cross_x_icon@2x.png */; };
 		D3AD326F1A247E4C00A76607 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD326D1A247E4C00A76607 /* Background.png */; };
 		D3AD32701A247E4C00A76607 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD326E1A247E4C00A76607 /* Background@2x.png */; };
@@ -46,6 +44,7 @@
 		D3D32D2D1A2424F400A86F54 /* AttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D32D2C1A2424F400A86F54 /* AttentionModel.m */; };
 		D3D32D301A24270900A86F54 /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D32D2E1A24270900A86F54 /* search_icon.png */; };
 		D3D32D311A24270900A86F54 /* search_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D32D2F1A24270900A86F54 /* search_icon@2x.png */; };
+		D3D3B0E11A25730D0088E7E5 /* FavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D3B0E01A25730D0088E7E5 /* FavoritesTableViewCell.m */; };
 		D3D5468D1A2028DB001AE44E /* back_to_top.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D546751A2028DB001AE44E /* back_to_top.png */; };
 		D3D5468E1A2028DB001AE44E /* back_to_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D546761A2028DB001AE44E /* back_to_top@2x.png */; };
 		D3D5468F1A2028DB001AE44E /* closed_icon_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D546771A2028DB001AE44E /* closed_icon_grey.png */; };
@@ -283,6 +282,8 @@
 		D3D32D2C1A2424F400A86F54 /* AttentionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionModel.m; sourceTree = "<group>"; };
 		D3D32D2E1A24270900A86F54 /* search_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_icon.png; sourceTree = "<group>"; };
 		D3D32D2F1A24270900A86F54 /* search_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_icon@2x.png"; sourceTree = "<group>"; };
+		D3D3B0DF1A25730D0088E7E5 /* FavoritesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewCell.h; sourceTree = "<group>"; };
+		D3D3B0E01A25730D0088E7E5 /* FavoritesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewCell.m; sourceTree = "<group>"; };
 		D3D546751A2028DB001AE44E /* back_to_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_to_top.png; sourceTree = "<group>"; };
 		D3D546761A2028DB001AE44E /* back_to_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_to_top@2x.png"; sourceTree = "<group>"; };
 		D3D546771A2028DB001AE44E /* closed_icon_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closed_icon_grey.png; sourceTree = "<group>"; };
@@ -910,6 +911,8 @@
 			children = (
 				D3D5EAC41A231B5300411D50 /* FavoritesViewController.h */,
 				D3D5EAC51A231B5300411D50 /* FavoritesViewController.m */,
+				D3D3B0DF1A25730D0088E7E5 /* FavoritesTableViewCell.h */,
+				D3D3B0E01A25730D0088E7E5 /* FavoritesTableViewCell.m */,
 			);
 			path = FavoritesView;
 			sourceTree = "<group>";
@@ -1639,6 +1642,7 @@
 				D3D546C41A203A2D001AE44E /* networkConnect.m in Sources */,
 				D3D8C0361A1AFE24007222CC /* UIAlertView+AFNetworking.m in Sources */,
 				D3D5EB001A23460800411D50 /* userModel.m in Sources */,
+				D3D3B0E11A25730D0088E7E5 /* FavoritesTableViewCell.m in Sources */,
 				D3D54DF01A1F383A005DAAB6 /* UIScrollView+MJRefresh.m in Sources */,
 				D3D8C0851A1B08BD007222CC /* SDWebImageCompat.m in Sources */,
 				D3D54DEF1A1F383A005DAAB6 /* UIScrollView+Extension.m in Sources */,
