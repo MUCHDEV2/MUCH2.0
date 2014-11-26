@@ -28,7 +28,7 @@
     [self.view addSubview:self.tableView];
     [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
     self.tableView.separatorStyle = NO;
-    
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadList) name:@"reloadData" object:nil];
     showArr = [[NSMutableArray alloc] init];
     [self reloadList];
 }
@@ -44,7 +44,7 @@
     if(!cell){
         cell = [[FavoritesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
     }
-    //cell.model = showArr[indexPath.row];
+    cell.model = showArr[indexPath.row];
     cell.selectionStyle = NO;
     return cell;
 }
@@ -77,7 +77,8 @@
     }else{
         [MuchApi GetMyListWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                
+                showArr = posts;
+                [self.tableView reloadData];
             }
         } aid:[LoginSqlite getdata:@"userId"]];
     }

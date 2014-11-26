@@ -146,8 +146,8 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
     [self closeSideBar];
     
     UIViewController *controller = _controllersDict[className];
-    if (!controller)
-    {
+    //if (!controller)
+    //{
         Class c = NSClassFromString(className);
         
 #if __has_feature(objc_arc)
@@ -156,7 +156,7 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
         controller = [[[c alloc] init] autorelease];
 #endif
         [_controllersDict setObject:controller forKey:className];
-    }
+    //}
     
     if (_mainContentView.subviews.count > 0)
     {

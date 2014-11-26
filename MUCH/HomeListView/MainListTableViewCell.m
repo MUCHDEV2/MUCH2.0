@@ -30,7 +30,7 @@
     [self.contentView addSubview:distanceImage];
     
     distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
-    distanceLabel.font = [UIFont systemFontOfSize:12];
+    distanceLabel.font = [UIFont systemFontOfSize:10];
     distanceLabel.text = @"200m";
     distanceLabel.textAlignment = NSTextAlignmentCenter;
     distanceLabel.textColor = [UIColor whiteColor];
@@ -41,7 +41,7 @@
     [self.contentView addSubview:priceImage];
     
     priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
-    priceLabel.font = [UIFont systemFontOfSize:12];
+    priceLabel.font = [UIFont systemFontOfSize:10];
     priceLabel.text = @"¥299";
     priceLabel.textAlignment = NSTextAlignmentCenter;
     priceLabel.textColor = [UIColor whiteColor];
@@ -81,7 +81,14 @@
         headImageView.hidden = YES;
     }
     
-    distanceLabel.text = model.distance;
+    if([model.compare isEqualToString:@"2"]){
+        [distanceImage setImage:[UIImage imageNamed:@"distance_icon_green"]];
+    }else if ([model.compare isEqualToString:@"5"]){
+        [distanceImage setImage:[UIImage imageNamed:@"distance_5km"]];
+    }else if([model.compare isEqualToString:@"all"]){
+        [distanceImage setImage:[UIImage imageNamed:@"distance_all"]];
+    }
+    distanceLabel.text = model.distance_str;
     priceLabel.text = [NSString stringWithFormat:@"¥%@",model.price];
     
     [self.mainScorllView removeFromSuperview];

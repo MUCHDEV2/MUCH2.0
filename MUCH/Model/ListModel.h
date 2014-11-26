@@ -16,8 +16,10 @@
 @property (nonatomic, copy) NSString *youlikeit;
 @property (nonatomic, copy) NSString *created;
 @property (nonatomic, copy) NSString *distance;
+@property (nonatomic, copy) NSString *distance_str;
 @property (nonatomic, copy) NSString *is_closed;
 @property (nonatomic, copy) NSString *is_faved;
+@property (nonatomic, copy) NSString *compare;
 @property (nonatomic, copy) NSDictionary *createdby;
 @property (nonatomic, copy) NSArray *comments;
 @property (nonatomic, copy) NSDictionary *dict;
