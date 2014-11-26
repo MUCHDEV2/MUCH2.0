@@ -42,6 +42,9 @@
 //第三方登录
 + (NSURLSessionDataTask *)ThirdpartyWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block openId:(NSString *)openId avatar:(NSString *)avatar nickName:(NSString *)nickName;
 
+//修改密码
++ (NSURLSessionDataTask *)FindpwdWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
+
 //验证微信
 +(void)GetWeiXin:(void (^)(NSDictionary *posts, NSError *error))block code:(NSString *)code;
 
