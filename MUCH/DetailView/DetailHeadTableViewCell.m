@@ -27,9 +27,12 @@
     bgImageView.backgroundColor = [UIColor grayColor];
     [self.contentView addSubview:bgImageView];
     
+    UIImageView *backImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 24, 20)];
+    [backImage setImage:[UIImage imageNamed:@"return_icon_big"]];
+    [self.contentView addSubview:backImage];
+    
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(10, 10, 24, 20);
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"return_icon_big"] forState:UIControlStateNormal];
+    backBtn.frame = CGRectMake(0, 0, 48, 40);
     [backBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:backBtn];
     
