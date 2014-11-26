@@ -184,7 +184,7 @@
 
 //获取关注的人
 + (NSURLSessionDataTask *)GetFavWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block{
-    NSString *urlStr = 0?@"user/5473191a31d75ba261097923":[NSString stringWithFormat:@"user/%@",[LoginSqlite getdata:@"userId"]];
+    NSString *urlStr = [NSString stringWithFormat:@"user/%@",[LoginSqlite getdata:@"userId"]];
     NSLog(@"==??==%@",urlStr);
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
@@ -292,7 +292,7 @@
 
 //获取自己发的帖子
 + (NSURLSessionDataTask *)GetMyListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block aid:(NSString *)aid{
-    NSString *urlStr = [NSString stringWithFormat:@"/owner?id=%@",aid];
+    NSString *urlStr = [NSString stringWithFormat:@"/mypost/%@",aid];
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"code"]]isEqualToString:@"200"]){

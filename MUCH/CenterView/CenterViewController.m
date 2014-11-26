@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=RGBCOLOR(220, 220, 220);
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadData) name:@"reloadData" object:nil];
     [self getTitleView];
     [self getTapResign];
     [self getListView];
