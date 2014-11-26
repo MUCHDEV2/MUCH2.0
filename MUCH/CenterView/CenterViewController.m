@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     self.view.backgroundColor=RGBCOLOR(220, 220, 220);
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadData) name:@"reloadData" object:nil];
     [self getTitleView];
@@ -47,12 +48,18 @@
         NSString* imageStr=[[NSString alloc]initWithData:[GTMBase64 encodeData:data] encoding:NSUTF8StringEncoding];
         [dic setValue:imageStr forKey:@"avatar"];
     }
-//    [dic setValue:<#(id)#> forKey:<#(NSString *)#>]
-//    [MuchApi UpdataHeadWithBlock:^(NSMutableArray *posts, NSError *error) {
-//        if (!error) {
-//            NSLog(@"sucess");
-//        }
-//    } imaStr:imageStr];
+    [dic setValue:self.model.nickname forKey:@"nickname"];
+    [dic setValue:self.model.gender forKey:@"gender"];
+    [dic setValue:self.model.city forKey:@"city"];
+    [dic setValue:self.model.phone forKey:@"phone"];
+    [dic setValue:self.model.aid forKey:@"_id"];
+    [MuchApi UpdataWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            [LoginSqlite insertData:posts[0][@"avatar"] datakey:@"avatar"];
+            [LoginSqlite insertData:posts[0][@"nickname"] datakey:@"nickname"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
+        }
+    } dic:dic];
 }
 
 -(void)getListView{
@@ -106,7 +113,7 @@
         
         UIImageView *userImage = [[UIImageView alloc] init];
         [userImage sd_setImageWithURL:[NSURL URLWithString:self.model.avatar] placeholderImage:[UIImage imageNamed:@"icon114"]];
-        
+        //NSLog(@"===>%@",self.model.avatar);
         if([self.model.avatar isEqualToString:@""]){
             self.userImage = nil;
         }else{
@@ -152,18 +159,23 @@
     picker.sourceType=!buttonIndex;
     picker.delegate=self;
     picker.allowsEditing=YES;
-    [self presentViewController:picker animated:YES completion:nil];
+    [self.view.window.rootViewController presentViewController:picker animated:YES completion:^{
+        //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
+    }];
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    NSLog(@"%@",info);
     self.userImage=info[UIImagePickerControllerEditedImage];
     [self.userImageView setBackgroundImage:self.userImage forState:UIControlStateNormal];
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
+    }];
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
+    }];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{

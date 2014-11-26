@@ -225,18 +225,18 @@
     if (response.retCode == URLREQUEST_SUCCEED)
     {
         NSLog(@"userInfo%@",response.jsonResponse);
-        int value = (arc4random() % 9999999) + 1000000;
-        [MuchApi RegisterWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [MuchApi ThirdpartyWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-                [LoginSqlite insertData:[response.jsonResponse objectForKey:@"figureurl_qq_2"] datakey:@"avatar"];
+                [LoginSqlite insertData:posts[0][@"avatar"] datakey:@"avatar"];
                 [LoginSqlite insertData:posts[0][@"id"] datakey:@"userId"];
-                [LoginSqlite insertData:[response.jsonResponse objectForKey:@"nickname"] datakey:@"nickname"];
+                [LoginSqlite insertData:posts[0][@"nickname"] datakey:@"nickname"];
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
                 [self dismissViewControllerAnimated:YES completion:nil];
                 [self.delegate loginSucsee];
             }
-        } userName:tencentAuth.openId passWord:[NSString stringWithFormat:@"%d",value] passwordConfirmation:[NSString stringWithFormat:@"%d",value] avatar:[response.jsonResponse objectForKey:@"figureurl_qq_2"] nickName:[response.jsonResponse objectForKey:@"nickname"]];
+        } openId:tencentAuth.openId avatar:[response.jsonResponse objectForKey:@"figureurl_qq_2"] nickName:[response.jsonResponse objectForKey:@"nickname"]];
+        
     }
     else
     {
@@ -271,18 +271,17 @@
             NSLog(@"%@",posts[@"access_token"]);
             [MuchApi GetWeiXinUser:^(NSDictionary *dic, NSError *error) {
                 if(!error){
-                    int value = (arc4random() % 9999999) + 1000000;
-                    [MuchApi RegisterWithBlock:^(NSMutableArray *posts, NSError *error) {
+                    [MuchApi ThirdpartyWithBlock:^(NSMutableArray *posts, NSError *error) {
                         if(!error){
-                            [LoginSqlite insertData:[dic objectForKey:@"headimgurl"] datakey:@"avatar"];
+                            [LoginSqlite insertData:posts[0][@"avatar"] datakey:@"avatar"];
                             [LoginSqlite insertData:posts[0][@"id"] datakey:@"userId"];
-                            [LoginSqlite insertData:[dic objectForKey:@"nickname"] datakey:@"nickname"];
+                            [LoginSqlite insertData:posts[0][@"nickname"] datakey:@"nickname"];
                             [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
                             [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
                             [self dismissViewControllerAnimated:YES completion:nil];
                             [self.delegate loginSucsee];
                         }
-                    } userName:[dic objectForKey:@"openid"] passWord:[NSString stringWithFormat:@"%d",value] passwordConfirmation:[NSString stringWithFormat:@"%d",value] avatar:[dic objectForKey:@"headimgurl"] nickName:[dic objectForKey:@"nickname"]];
+                    } openId:dic[@"openid"] avatar:dic[@"headimgurl"] nickName:dic[@"nickname"]];
                 }
             } access_token:posts[@"access_token"]];
         }

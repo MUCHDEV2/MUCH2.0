@@ -37,6 +37,7 @@
     [self.view addSubview:self.tableView];
     [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
     self.tableView.separatorStyle = NO;
+    self.tableView.backgroundColor = RGBCOLOR(220, 220, 200);
     
     self.button = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.button setImage:[UIImage imageNamed:@"menu_icon"] forState:UIControlStateNormal];
@@ -157,7 +158,7 @@
     if(indexPath.row <2){
         return 57;
     }
-    return 320;
+    return 319;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

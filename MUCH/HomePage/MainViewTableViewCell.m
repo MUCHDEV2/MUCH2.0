@@ -21,7 +21,7 @@
 }
 
 -(void)addContent{
-    bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, 319, 319)];
+    bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, 318, 318)];
     bgImageView.backgroundColor = [UIColor grayColor];
     [self.contentView addSubview:bgImageView];
     
@@ -110,7 +110,7 @@
     }
     
     if(self.mainScorllView == nil){
-        self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(1, 289, 320, 30)];
+        self.mainScorllView = [[CycleScrollView alloc] initWithFrame:CGRectMake(1, 289, 318, 30)];
         self.mainScorllView.backgroundColor = [UIColor blackColor];
         self.mainScorllView.alpha = 0.5;
         
@@ -128,7 +128,7 @@
             }else{
                 self.mainScorllView.animation = 0;
                 [self.contentView addSubview:self.mainScorllView];
-                UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(1, 289, 320, 30)];
+                UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(1, 289, 318, 30)];
                 //tempLabel.backgroundColor = [UIColor blackColor];
                 tempLabel.text = [NSString stringWithFormat:@"  %@",model.comments[0][@"content"]];
                 tempLabel.textColor = [UIColor whiteColor];

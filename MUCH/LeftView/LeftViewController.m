@@ -185,6 +185,7 @@
 }
 
 -(void)changeHeadImage{
+    NSLog(@"%@",[LoginSqlite getdata:@"avatar"]);
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[LoginSqlite getdata:@"avatar"]] placeholderImage:[UIImage imageNamed:@"icon114"]];
     self.userNameLabel.text = [LoginSqlite getdata:@"nickname"];
 }

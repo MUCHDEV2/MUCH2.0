@@ -63,7 +63,25 @@
         CGImageRelease(cgimg);//用完一定要释放，否则内存泄露
     }];
     
-    distanceLabel.text = model.distance;
+    distanceLabel.text = model.distance_str;
     priceLabel.text = [NSString stringWithFormat:@"¥%@",model.price];
+    
+    
+    
+    if([model.is_closed isEqualToString:@"0"]){
+        statusImageView.alpha = 0;
+        if([model.compare isEqualToString:@"2"]){
+            [distanceImage setImage:[UIImage imageNamed:@"distance_icon_green"]];
+        }else if ([model.compare isEqualToString:@"5"]){
+            [distanceImage setImage:[UIImage imageNamed:@"distance_5km"]];
+        }else if([model.compare isEqualToString:@"all"]){
+            [distanceImage setImage:[UIImage imageNamed:@"distance_all"]];
+        }
+        [priceImage setImage:[UIImage imageNamed:@"price_icon_red"]];
+    }else{
+        statusImageView.alpha = 0.3;
+        [distanceImage setImage:[UIImage imageNamed:@"closed_icon_grey"]];
+        [priceImage setImage:[UIImage imageNamed:@"closed_icon_grey"]];
+    }
 }
 @end

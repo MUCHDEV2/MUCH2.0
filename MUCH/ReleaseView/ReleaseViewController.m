@@ -191,5 +191,6 @@
     confirmBtn.enabled = YES;
     [self.delegate releaseSucess];
     [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadDataFav" object:nil];
 }
 @end

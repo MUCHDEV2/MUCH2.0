@@ -12,6 +12,7 @@
 #import "ConnectionAvailable.h"
 #import "MBProgressHUD.h"
 #import "LoginSqlite.h"
+#import "SliderViewController.h"
 @interface FavoritesViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,retain)UITableView *tableView;
 
@@ -29,8 +30,17 @@
     [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
     self.tableView.separatorStyle = NO;
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadList) name:@"reloadData" object:nil];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadList) name:@"reloadDataFav" object:nil];
     showArr = [[NSMutableArray alloc] init];
     [self reloadList];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [SliderViewController sharedSliderController].canRightMoveWithGesture = NO;
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [SliderViewController sharedSliderController].canRightMoveWithGesture = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,19 +49,34 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *stringcell = @"FavoritesTableViewCell";
-    FavoritesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
-    if(!cell){
-        cell = [[FavoritesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
+    if(showArr.count !=0){
+        NSString *stringcell = @"FavoritesTableViewCell";
+        FavoritesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
+        if(!cell){
+            cell = [[FavoritesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
+        }
+        cell.model = showArr[indexPath.row];
+        cell.selectionStyle = NO;
+        return cell;
+    }else{
+        NSString *stringcell = @"Cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
+        if(!cell){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
+        }
+        cell.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"empty_data_full"]];
+        cell.selectionStyle = NO;
+        return cell;
     }
-    cell.model = showArr[indexPath.row];
-    cell.selectionStyle = NO;
-    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return showArr.count;
+    if(showArr.count !=0){
+        return showArr.count;
+    }else{
+        return 1;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -60,11 +85,14 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 151;
+    if(showArr.count !=0){
+        return 151;
+    }else{
+        return self.view.frame.size.height;
+    }
 }
 
 -(void)reloadList{
-    self.tableView.scrollEnabled = NO;
     [[AppDelegate instance]._locService startUserLocationService];
     if (![ConnectionAvailable isConnectionAvailable]) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -80,7 +108,7 @@
                 showArr = posts;
                 [self.tableView reloadData];
             }
-        } aid:[LoginSqlite getdata:@"userId"]];
+        } aid:[LoginSqlite getdata:@"userId"] log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
     }
 }
 @end

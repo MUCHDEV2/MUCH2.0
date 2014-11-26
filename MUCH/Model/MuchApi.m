@@ -247,9 +247,12 @@
     [parameters setObject:dic forKey:@"user"];
     NSLog(@"parameters ===> %@",parameters);
     return [[AFAppDotNetAPIClient sharedClient] PUT:urlStr parameters:parameters success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        //NSLog(@"JSON===>%@",JSON);
+        NSLog(@"JSON===>%@",JSON);
         NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-        
+        [mutablePosts addObject:JSON[@"result"]];
+        if (block) {
+            block([NSMutableArray arrayWithArray:mutablePosts], nil);
+        }
         if (block) {
             block([NSMutableArray arrayWithArray:mutablePosts], nil);
         }
@@ -262,8 +265,9 @@
 }
 
 //获取自己发的帖子
-+ (NSURLSessionDataTask *)GetMyListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block aid:(NSString *)aid{
++ (NSURLSessionDataTask *)GetMyListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block aid:(NSString *)aid log:(NSString *)log lat:(NSString *)lat{
     NSString *urlStr = [NSString stringWithFormat:@"/mypost/%@",aid];
+    NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"code"]]isEqualToString:@"200"]){
@@ -289,7 +293,33 @@
     }];
 }
 
-
+//第三方登录
++ (NSURLSessionDataTask *)ThirdpartyWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block openId:(NSString *)openId avatar:(NSString *)avatar nickName:(NSString *)nickName{
+    NSString *urlStr = [NSString stringWithFormat:@"user/thirdparty"];
+    NSDictionary *parametersdata = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                    openId,@"openid",
+                                    nickName,@"nickname",
+                                    avatar,@"avatar",
+                                    nil];
+    NSLog(@"parametersdata ===> %@",parametersdata);
+    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:parametersdata success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"code"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            [mutablePosts addObject:JSON[@"result"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"text"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
 
 //验证微信
 +(void)GetWeiXin:(void (^)(NSDictionary *posts, NSError *error))block code:(NSString *)code{
