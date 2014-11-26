@@ -41,17 +41,18 @@
 }
 
 -(void)makeSure{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if(self.userImage !=nil){
         NSData* data=UIImageJPEGRepresentation(self.userImage, 0.8);
         NSString* imageStr=[[NSString alloc]initWithData:[GTMBase64 encodeData:data] encoding:NSUTF8StringEncoding];
-        [MuchApi UpdataHeadWithBlock:^(NSMutableArray *posts, NSError *error) {
-            if (!error) {
-                NSLog(@"sucess");
-            }
-        } imaStr:imageStr];
-    }else{
-        NSLog(@"asdfasf");
+        [dic setValue:imageStr forKey:@"avatar"];
     }
+//    [dic setValue:<#(id)#> forKey:<#(NSString *)#>]
+//    [MuchApi UpdataHeadWithBlock:^(NSMutableArray *posts, NSError *error) {
+//        if (!error) {
+//            NSLog(@"sucess");
+//        }
+//    } imaStr:imageStr];
 }
 
 -(void)getListView{
@@ -79,6 +80,7 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         cell.contentView.backgroundColor=RGBCOLOR(239, 239, 239);
     }
+    
     //分割线
     if (indexPath.row==0|indexPath.row==1||indexPath.row==5) {
         UIImageView* separatorLine=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 1)];
@@ -132,6 +134,7 @@
         }else{
             content.text = self.model.phone;
         }
+        content.tag = indexPath.row;
         [cell.contentView addSubview:content];
     }
     return cell;
@@ -166,6 +169,19 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField;{
+    NSLog(@"%d",textField.tag);
+    if(textField.tag == 1){
+        self.model.nickname = textField.text;
+    }else if (textField.tag == 2){
+        self.model.gender = textField.text;
+    }else if(textField.tag == 3){
+        self.model.city = textField.text;
+    }else if(textField.tag == 4){
+        self.model.phone = textField.text;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

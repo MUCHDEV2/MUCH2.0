@@ -52,4 +52,18 @@
     statusImageView.alpha = 0;
     [self.contentView addSubview:statusImageView];
 }
+
+-(void)setModel:(ListModel *)model{
+    [bgImageView sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        //图片裁剪
+        UIImage *srcimg = image;
+        CGRect rect =  CGRectMake(0, 170, 640, 300);//要裁剪的图片区域，按照原图的像素大小来，超过原图大小的边自动适配
+        CGImageRef cgimg = CGImageCreateWithImageInRect([srcimg CGImage], rect);
+        bgImageView.image = [UIImage imageWithCGImage:cgimg];
+        CGImageRelease(cgimg);//用完一定要释放，否则内存泄露
+    }];
+    
+    distanceLabel.text = model.distance;
+    priceLabel.text = [NSString stringWithFormat:@"¥%@",model.price];
+}
 @end
