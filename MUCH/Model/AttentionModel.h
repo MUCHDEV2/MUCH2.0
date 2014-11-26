@@ -16,4 +16,5 @@
 @property (nonatomic, copy) NSString *nickname;
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy) NSDictionary *dict;
+@property (nonatomic)BOOL isFocuse;
 @end
