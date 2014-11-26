@@ -33,7 +33,7 @@
 }
 
 -(void)getTapResign{
-    UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self.view action:@selector(endEditing:)];
+    UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(myTextFielEndEdit)];
     [self.view addGestureRecognizer:tap];
 }
 
@@ -169,21 +169,31 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
+    [self myTextFielEndEdit];
     return YES;
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
-    CGPoint center=self.view.center;
-    center.y-=100;
-    [UIView animateWithDuration:.5 animations:^{
-        self.view.center=center;
+    if (self.view.center.y==self.orginCenter.y) {
+        CGPoint center=self.view.center;
+        center.y-=100;
+        [UIView animateWithDuration:.5 animations:^{
+            self.view.center=center;
+        }];
+    }
+}
+
+-(void)myTextFielEndEdit{
+    [UIView animateWithDuration:.3 animations:^{
+        self.view.center=self.orginCenter;
+    } completion:^(BOOL finished) {
+        [self.view endEditing:YES];
     }];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.view endEditing:YES];
+    [self myTextFielEndEdit];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField;{
@@ -197,10 +207,6 @@
     }else if(textField.tag == 4){
         self.model.phone = textField.text;
     }
-    
-    [UIView animateWithDuration:.5 animations:^{
-        self.view.center=self.orginCenter;
-    }];
 }
 
 - (void)didReceiveMemoryWarning {
