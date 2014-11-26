@@ -76,8 +76,8 @@
     [self.view addSubview:phoneTextField];
     
     UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 260, 280, 1)];
-    //[lineImage setImage:[UIImage imageNamed:@"divid_line"]];
     [lineImage setBackgroundColor:[UIColor whiteColor]];
+    lineImage.alpha = 0.5;
     [self.view addSubview:lineImage];
     
     UIImageView *passWordImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 280, 17, 18)];
@@ -97,8 +97,8 @@
     [self.view addSubview:passWordTextField];
     
     UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 310, 280, 1)];
-    //[lineImage setImage:[UIImage imageNamed:@"divid_line"]];
     [lineImage2 setBackgroundColor:[UIColor whiteColor]];
+    lineImage2.alpha = 0.5;
     [self.view addSubview:lineImage2];
     
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -135,6 +135,7 @@
     registBtn.frame = CGRectMake(220, 530, 80, 30);
     [registBtn setTitle:@"注册卖趣" forState:UIControlStateNormal];
     [registBtn addTarget:self action:@selector(registBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    registBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:registBtn];
     
     UIButton *forgetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -142,6 +143,7 @@
     forgetBtn.backgroundColor=[UIColor redColor];
     [forgetBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
     [forgetBtn addTarget:self action:@selector(forgetBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    forgetBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:forgetBtn];
     [self setqq];
 }

@@ -7,7 +7,10 @@
 //
 
 #import "RegisterViewController.h"
-
+#import "ConnectionAvailable.h"
+#import "MBProgressHUD.h"
+#import "MuchApi.h"
+#import "LoginSqlite.h"
 @interface RegisterViewController ()<UITextFieldDelegate>
 
 @end
@@ -79,9 +82,29 @@
     [self.view addSubview:yzmBtn];
     
     UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 210, 280, 1)];
-    //[lineImage setImage:[UIImage imageNamed:@"divid_line"]];
     [lineImage setBackgroundColor:[UIColor whiteColor]];
+    lineImage.alpha = 0.5;
     [self.view addSubview:lineImage];
+    
+    UIImageView *yzmImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 230, 17, 17)];
+    [yzmImage setImage:[UIImage imageNamed:@"check_icon"]];
+    [self.view addSubview:yzmImage];
+    
+    yzmTextField = [[UITextField alloc] initWithFrame:CGRectMake(50, 223, 250, 30)];
+    //yzmTextField.backgroundColor = [UIColor yellowColor];
+    yzmTextField.placeholder = @"请输入验证码";
+    yzmTextField.returnKeyType=UIReturnKeyDone;
+    yzmTextField.font =  [UIFont systemFontOfSize:15];
+    [yzmTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [yzmTextField setTextColor:[UIColor whiteColor]];
+    [yzmTextField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    yzmTextField.delegate = self;
+    [self.view addSubview:yzmTextField];
+    
+    UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 260, 280, 1)];
+    [lineImage2 setBackgroundColor:[UIColor whiteColor]];
+    lineImage2.alpha = 0.5;
+    [self.view addSubview:lineImage2];
     
     UIImageView *passWordImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 280, 17, 18)];
     [passWordImage setImage:[UIImage imageNamed:@"password_icon"]];
@@ -99,10 +122,10 @@
     [passWordTextField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self.view addSubview:passWordTextField];
     
-    UIImageView *lineImage2 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 310, 280, 1)];
-    //[lineImage setImage:[UIImage imageNamed:@"divid_line"]];
-    [lineImage2 setBackgroundColor:[UIColor whiteColor]];
-    [self.view addSubview:lineImage2];
+    UIImageView *lineImage3 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 310, 280, 1)];
+    [lineImage3 setBackgroundColor:[UIColor whiteColor]];
+    lineImage3.alpha = 0.5;
+    [self.view addSubview:lineImage3];
     
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     loginBtn.frame = CGRectMake(20, 330, 280, 45);
@@ -115,12 +138,14 @@
     registBtn.frame = CGRectMake(220, 530, 80, 30);
     [registBtn setTitle:@"登录卖趣" forState:UIControlStateNormal];
     [registBtn addTarget:self action:@selector(registBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    registBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:registBtn];
     
     UIButton *forgetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     forgetBtn.frame = CGRectMake(20, 530, 80, 30);
     [forgetBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
     [forgetBtn addTarget:self action:@selector(forgetBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    forgetBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:forgetBtn];
 }
 
@@ -131,6 +156,26 @@
 
 -(void)loginBtnClick{
     //注册
+    if (![ConnectionAvailable isConnectionAvailable]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.removeFromSuperViewOnHide =YES;
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"当前网络不可用，请检查网络连接！";
+        hud.labelFont = [UIFont fontWithName:nil size:14];
+        hud.minSize = CGSizeMake(132.f, 108.0f);
+        [hud hide:YES afterDelay:1];
+    }else{
+        [MuchApi RegisterWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                [LoginSqlite insertData:@"" datakey:@"avatar"];
+                [LoginSqlite insertData:posts[0][@"id"] datakey:@"userId"];
+                [LoginSqlite insertData:@"" datakey:@"nickname"];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+        } userName:phoneTextField.text passWord:passWordTextField.text passwordConfirmation:passWordTextField.text avatar:@"" nickName:@""];
+    }
 }
 
 -(void)registBtnClick{
@@ -141,5 +186,14 @@
 -(void)closekeyboard{
     [passWordTextField resignFirstResponder];
     [phoneTextField resignFirstResponder];
+}
+
+-(void)forgetBtnClick{
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 @end
