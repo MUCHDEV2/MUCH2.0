@@ -363,7 +363,7 @@
                 //NSLog(@"posts ==> %@",posts);
                 showArr = posts;
                 [self.tableView reloadData];
-                [self.tableView setContentOffset:CGPointMake(0, 114) animated:YES];
+                [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
                 [self.tableView headerEndRefreshing];
                 [self.tableView footerEndRefreshing];
                 self.tableView.scrollEnabled = YES;
