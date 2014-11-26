@@ -18,5 +18,6 @@
     self.gender = dict[@"gender"];
     self.nickname = dict[@"nickname"];
     self.username = dict[@"username"];
+    self.isFocuse=YES;
 }
 @end

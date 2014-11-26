@@ -11,7 +11,8 @@
 #import "AttentionTableViewCell.h"
 #import "MuchApi.h"
 #import "AttentionModel.h"
-@interface AttentionViewController ()<TitleViewDelegate,UITableViewDataSource,UITableViewDelegate,AttentionTableViewCellDelegate>
+#import "LoginSqlite.h"
+@interface AttentionViewController ()<UITableViewDataSource,UITableViewDelegate,AttentionTableViewCellDelegate>
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)NSMutableArray* datas;
 @end
@@ -25,7 +26,6 @@
     [self getSearchBar];
     [self getListView];
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
-    [self firstNetWork];
 }
 
 -(void)firstNetWork{
@@ -38,7 +38,6 @@
 }
 
 -(void)getListView{
-    
     self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 77.5, 320, 568-77.5) style:UITableViewStylePlain];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
@@ -54,12 +53,10 @@
 }
 
 -(void)getTitleView{
-    TitleView* titleView=[TitleView titleViewWithTitle:@"我关注的用户" delegate:self];
+    TitleView* titleView=[TitleView titleViewWithTitle:@"我关注的用户" delegate:nil];
+    UIView* view=titleView.subviews.lastObject;
+    view.hidden=YES;
     [self.view addSubview:titleView];
-}
-
--(void)makeSure{
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,12 +74,25 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
     AttentionModel* model=self.datas[indexPath.row];
-    AttentionViewCellModel* cellModel=[AttentionViewCellModel modelWithImageName:@"good_icon_selected" userName:model.nickname isFocuse:indexPath.row%2 indexPathRow:indexPath.row userImageUrl:model.avatar];
+    AttentionViewCellModel* cellModel=[AttentionViewCellModel modelWithImageName:@"good_icon_selected" userName:model.nickname isFocuse:model.isFocuse indexPathRow:indexPath.row userImageUrl:model.avatar];
     cell.model=cellModel;
     return cell;
 }
 
 -(void)userFocuseWithIndexPathRow:(NSInteger)indexPathRow{
-    NSLog(@"%ld",indexPathRow);
+    AttentionModel* model=self.datas[indexPathRow];
+    if (model.isFocuse) {
+        [MuchApi AddFavWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if (!error) {
+                model.isFocuse=!model.isFocuse;
+                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPathRow inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            }
+        } dic:[@{@"selfid":[LoginSqlite getdata:@"userId"],@"userid":model.aid} mutableCopy]];
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self firstNetWork];
 }
 @end
