@@ -340,7 +340,8 @@
 }
 
 -(void)registBtnClick{
-
+    RegisterViewController *regView = [[RegisterViewController alloc] init];
+    [self.navigationController pushViewController:regView animated:NO];
 }
 
 -(void)forgetBtnClick{

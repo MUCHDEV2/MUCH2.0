@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "WXApi.h"
+#import "RegisterViewController.h"
 @protocol LoginViewControllerDelegate <NSObject>
 
 -(void)loginSucsee;
