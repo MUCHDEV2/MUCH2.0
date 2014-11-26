@@ -16,6 +16,7 @@
 @property(nonatomic,weak)UIButton* userImageView;
 @property(nonatomic,strong)UIImage* userImage;
 @property(nonatomic,strong)UITableView* tableView;
+@property(nonatomic)CGPoint orginCenter;
 @end
 
 @implementation CenterViewController
@@ -32,7 +33,7 @@
 }
 
 -(void)getTapResign{
-    UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self.view action:@selector(endEditing:)];
+    UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(myTextFielEndEdit)];
     [self.view addGestureRecognizer:tap];
 }
 
@@ -87,7 +88,7 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         cell.contentView.backgroundColor=RGBCOLOR(239, 239, 239);
     }
-    
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     //分割线
     if (indexPath.row==0|indexPath.row==1||indexPath.row==5) {
         UIImageView* separatorLine=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 1)];
@@ -179,8 +180,31 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
+    [self myTextFielEndEdit];
     return YES;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (self.view.center.y==self.orginCenter.y) {
+        CGPoint center=self.view.center;
+        center.y-=100;
+        [UIView animateWithDuration:.5 animations:^{
+            self.view.center=center;
+        }];
+    }
+}
+
+-(void)myTextFielEndEdit{
+    [UIView animateWithDuration:.3 animations:^{
+        self.view.center=self.orginCenter;
+    } completion:^(BOOL finished) {
+        [self.view endEditing:YES];
+    }];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self myTextFielEndEdit];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField;{
@@ -210,4 +234,6 @@
         }
     }];
 }
+
+
 @end
