@@ -16,12 +16,14 @@
 @property(nonatomic,weak)UIButton* userImageView;
 @property(nonatomic,strong)UIImage* userImage;
 @property(nonatomic,strong)UITableView* tableView;
+@property(nonatomic)CGPoint orginCenter;
 @end
 
 @implementation CenterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.orginCenter=self.view.center;
     self.view.backgroundColor=RGBCOLOR(220, 220, 220);
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadData) name:@"reloadData" object:nil];
     [self getTitleView];
@@ -80,7 +82,7 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         cell.contentView.backgroundColor=RGBCOLOR(239, 239, 239);
     }
-    
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     //分割线
     if (indexPath.row==0|indexPath.row==1||indexPath.row==5) {
         UIImageView* separatorLine=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 1)];
@@ -171,6 +173,19 @@
     return YES;
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    CGPoint center=self.view.center;
+    center.y-=100;
+    [UIView animateWithDuration:.5 animations:^{
+        self.view.center=center;
+    }];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.view endEditing:YES];
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField;{
     NSLog(@"%d",textField.tag);
     if(textField.tag == 1){
@@ -182,6 +197,10 @@
     }else if(textField.tag == 4){
         self.model.phone = textField.text;
     }
+    
+    [UIView animateWithDuration:.5 animations:^{
+        self.view.center=self.orginCenter;
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -198,4 +217,6 @@
         }
     }];
 }
+
+
 @end

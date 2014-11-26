@@ -363,12 +363,9 @@
                 //NSLog(@"posts ==> %@",posts);
                 showArr = posts;
                 [self.tableView reloadData];
+                [self.tableView setContentOffset:CGPointMake(0, 114) animated:YES];
                 [self.tableView headerEndRefreshing];
                 [self.tableView footerEndRefreshing];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.tableView setContentOffset:CGPointMake(0, 114) animated:YES];
-
-                });
                 self.tableView.scrollEnabled = YES;
             }
         }start:startIndex indexSize:5 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
