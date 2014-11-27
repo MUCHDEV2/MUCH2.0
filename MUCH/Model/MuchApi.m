@@ -266,7 +266,7 @@
 
 //获取自己发的帖子
 + (NSURLSessionDataTask *)GetMyListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block aid:(NSString *)aid log:(NSString *)log lat:(NSString *)lat{
-    NSString *urlStr = [NSString stringWithFormat:@"/mypost/%@",aid];
+    NSString *urlStr = [NSString stringWithFormat:@"/mypost/%@?longitude=%@&latitude=%@",aid,log,lat];
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
@@ -301,6 +301,31 @@
                                     nickName,@"nickname",
                                     avatar,@"avatar",
                                     nil];
+    NSLog(@"parametersdata ===> %@",parametersdata);
+    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:parametersdata success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"code"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            [mutablePosts addObject:JSON[@"result"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"text"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
+//修改密码
++ (NSURLSessionDataTask *)FindpwdWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
+    NSString *urlStr = [NSString stringWithFormat:@"user/findpwd"];
+    NSMutableDictionary *parametersdata = [[NSMutableDictionary alloc] init];
+    [parametersdata setObject:dic forKey:@"find"];
     NSLog(@"parametersdata ===> %@",parametersdata);
     return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:parametersdata success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);

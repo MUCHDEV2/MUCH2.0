@@ -7,7 +7,7 @@
 //
 
 #import "ForgetPasswordViewController.h"
-
+#import "MuchApi.h"
 @interface ForgetPasswordViewController ()<UITextFieldDelegate>
 
 @end

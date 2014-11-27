@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DetailHeadTableViewCell.h"
 #import "DetailContentTableViewCell.h"
-@interface DetailViewController : UIViewController<DetailHeadTableViewCellDelegate>
+@interface DetailViewController : UIViewController<DetailHeadTableViewCellDelegate,DetailContentTableViewCellDelegate>
 @property(nonatomic,strong)NSString *aid;
 @property(nonatomic,strong)NSString *imageUrl;
 @property(nonatomic,strong)NSString *youlikeit;

@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol DetailContentTableViewCellDelegate <NSObject>
+
+-(void)addTextFieldView;
+
+@end
+
 @interface DetailContentTableViewCell : UITableViewCell{
     UIImageView *headImage;
     UILabel *distanceLabel;
@@ -16,5 +22,6 @@
 @property(nonatomic,strong)NSString *headImageUrl;
 @property(nonatomic,strong)NSString *distance;
 @property(nonatomic,strong)NSString *price;
+@property(nonatomic,weak)id<DetailContentTableViewCellDelegate>delegate;
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 @end

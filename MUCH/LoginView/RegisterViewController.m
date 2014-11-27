@@ -189,7 +189,8 @@
 }
 
 -(void)forgetBtnClick{
-    
+    ForgetPasswordViewController* vc=[[ForgetPasswordViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:NO];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

@@ -75,5 +75,6 @@
 
 -(void)commentBtnClick{
     NSLog(@"commentBtnClick");
+    [self.delegate addTextFieldView];
 }
 @end

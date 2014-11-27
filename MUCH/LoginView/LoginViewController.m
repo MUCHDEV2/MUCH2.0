@@ -140,7 +140,7 @@
     
     UIButton *forgetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     forgetBtn.frame = CGRectMake(20, 530, 80, 30);
-    forgetBtn.backgroundColor=[UIColor redColor];
+    //forgetBtn.backgroundColor=[UIColor redColor];
     [forgetBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
     [forgetBtn addTarget:self action:@selector(forgetBtnClick) forControlEvents:UIControlEventTouchUpInside];
     forgetBtn.titleLabel.font = [UIFont systemFontOfSize:14];
