@@ -10,6 +10,7 @@
 #import "MBProgressHUD.h"
 #import "SliderViewController.h"
 #import "ToolView.h"
+#import "CommentModel.h"
 @interface DetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ToolView *toolView;
@@ -32,6 +33,15 @@
     //toolview.delegate = self;
     [self.view addSubview:self.toolView];
     self.toolView.hidden = YES;
+    showArr = [[NSMutableArray alloc] init];
+    for(NSDictionary *item in self.commentsArr){
+        CommentModel *model = [[CommentModel alloc] init];
+        [model setDict:item];
+        [showArr addObject:model];
+    }
+    
+    CommentModel *model = showArr[0];
+    NSLog(@"%@",model.reply);
 }
 
 -(void)viewDidAppear:(BOOL)animated{

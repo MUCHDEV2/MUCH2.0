@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "DetailHeadTableViewCell.h"
 #import "DetailContentTableViewCell.h"
-@interface DetailViewController : UIViewController<DetailHeadTableViewCellDelegate,DetailContentTableViewCellDelegate>
+@interface DetailViewController : UIViewController<DetailHeadTableViewCellDelegate,DetailContentTableViewCellDelegate>{
+    NSMutableArray *showArr;
+}
 @property(nonatomic,strong)NSString *aid;
 @property(nonatomic,strong)NSString *imageUrl;
 @property(nonatomic,strong)NSString *youlikeit;
 @property(nonatomic,strong)NSString *distance;
 @property(nonatomic,strong)NSString *price;
 @property(nonatomic,strong)NSDictionary *dic;
+@property(nonatomic,strong)NSArray *commentsArr;
 @end

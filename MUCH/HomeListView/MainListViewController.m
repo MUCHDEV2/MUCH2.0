@@ -36,7 +36,7 @@
     [self.view addSubview:self.tableView];
     [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
     self.tableView.separatorStyle = NO;
-    self.tableView.backgroundColor = RGBCOLOR(220, 220, 200);
+    self.tableView.backgroundColor = RGBCOLOR(220, 220, 220);
     
     self.button = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.button setImage:[UIImage imageNamed:@"menu_icon"] forState:UIControlStateNormal];
@@ -167,11 +167,23 @@
         detailView.dic = model.createdby;
         detailView.distance = model.distance_str;
         detailView.price = model.price;
+        detailView.commentsArr = model.comments;
         [self.navigationController pushViewController:detailView animated:YES];
     }
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+        CGPoint translation = [scrollView.panGestureRecognizer translationInView:scrollView.superview];
+        NSLog(@"%f",translation.y);
+        if(translation.y>0){
+            NSLog(@"向下");
+        }else if(translation.y<0){
+            NSLog(@"向上");
+            NSLog(@"%f",scrollView.contentOffset.y);
+            if(scrollView.contentOffset.y == 100){
+                [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
+            }
+        }
     // 这里做预加载
     CGPoint currentOffset = scrollView.contentOffset;
     NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
@@ -346,10 +358,10 @@
                 //NSLog(@"posts ==> %@",posts);
                 showArr = posts;
                 [self.tableView reloadData];
-                [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
                 [self.tableView headerEndRefreshing];
                 [self.tableView footerEndRefreshing];
                 self.tableView.scrollEnabled = YES;
+                [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
             }
         }start:startIndex indexSize:7 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
     }

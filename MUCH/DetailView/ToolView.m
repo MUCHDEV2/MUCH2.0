@@ -18,12 +18,8 @@
         theSuperView = superView;
         [self setBackgroundColor:RGBCOLOR(206, 205, 205)];
         
-        UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-        [lineImage setImage:[UIImage imageNamed:@"07_03.png"]];
-        [self addSubview:lineImage];
-        
         UIImageView *fieldBgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 7, 240, 30)];
-        [fieldBgView setBackgroundColor:[UIColor yellowColor]];
+        [fieldBgView setBackgroundColor:[UIColor whiteColor]];
         [self addSubview:fieldBgView];
         
         self._textfield = [[UITextField alloc] initWithFrame:CGRectMake(20, 7, 230, 30)];
