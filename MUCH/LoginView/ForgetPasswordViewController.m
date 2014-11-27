@@ -21,9 +21,13 @@
     NSArray* contents=@[@"请输入手机号码",@"请输入验证码",@"请输入新密码",@"请再次输入新密码"];
     for (int i=0; i<4; i++) {
         UIView* view=[self getContentViewWithImageName:imageNames[i] content:contents[i]];
-        [view.subviews[1] setTag:i];
+        [view.subviews[1] setTag:i+1];
         view.center=CGPointMake(160, 85+56*(0.5+i));
         [self.view addSubview:view];
+        if (i==2||i==3) {
+            UITextField* textField=(UITextField*)[view viewWithTag:i+1];
+            textField.secureTextEntry=YES;
+        }
     }
     [self getResetBtn];
     [self getYzmBtn];
@@ -60,8 +64,8 @@
 }
 
 -(void)resetBtnClick{
-    NSLog(@"选择了重置");
-    //[self.view viewWithTag:0123];
+    NSLog(@"选择了重置%@",[self.view viewWithTag:1]);
+
 }
 
 -(void)yzmBtnClick{
