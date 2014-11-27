@@ -72,7 +72,6 @@
 -(void)setModel:(AttentionViewCellModel *)model{
     _model=model;
     self.nameLabel.text=model.userName;
-    //暂时不要去除下面三行
     self.focuseBtn.image=[UIImage imageNamed:model.isFocuse?@"unfollow":@"follow"];
     [self.userView.smallRound sd_setImageWithURL:[NSURL URLWithString:model.userImageUrl]];
 }

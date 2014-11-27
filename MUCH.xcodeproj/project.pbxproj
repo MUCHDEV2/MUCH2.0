@@ -17,6 +17,10 @@
 		5B66447C1A248392009CC28D /* AttentionViewCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66447B1A248392009CC28D /* AttentionViewCellModel.m */; };
 		5B66447F1A25BB1D009CC28D /* RightViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66447E1A25BB1D009CC28D /* RightViewCell.m */; };
 		5B6644821A25CDD3009CC28D /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6644811A25CDD3009CC28D /* ForgetPasswordViewController.m */; };
+		5B6644851A26BF1C009CC28D /* DetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6644841A26BF1C009CC28D /* DetailCommentView.m */; };
+		5B6644881A26BF4E009CC28D /* DetailCommentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6644871A26BF4E009CC28D /* DetailCommentViewModel.m */; };
+		5B66448B1A26BF71009CC28D /* DetailCommentSubview.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66448A1A26BF71009CC28D /* DetailCommentSubview.m */; };
+		5B66448E1A26BF87009CC28D /* DetailCommentSubviewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66448D1A26BF87009CC28D /* DetailCommentSubviewModel.m */; };
 		5B7B36701A22CBDB00DC0C50 /* SmallUserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */; };
 		5B7B36761A22CD3F00DC0C50 /* GetImagePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B36751A22CD3F00DC0C50 /* GetImagePath.m */; };
 		D3AD32481A24543700A76607 /* check_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD32341A24543600A76607 /* check_icon.png */; };
@@ -262,6 +266,14 @@
 		5B66447E1A25BB1D009CC28D /* RightViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewCell.m; sourceTree = "<group>"; };
 		5B6644801A25CDD3009CC28D /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
 		5B6644811A25CDD3009CC28D /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
+		5B6644831A26BF1C009CC28D /* DetailCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCommentView.h; sourceTree = "<group>"; };
+		5B6644841A26BF1C009CC28D /* DetailCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCommentView.m; sourceTree = "<group>"; };
+		5B6644861A26BF4E009CC28D /* DetailCommentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCommentViewModel.h; sourceTree = "<group>"; };
+		5B6644871A26BF4E009CC28D /* DetailCommentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCommentViewModel.m; sourceTree = "<group>"; };
+		5B6644891A26BF71009CC28D /* DetailCommentSubview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCommentSubview.h; sourceTree = "<group>"; };
+		5B66448A1A26BF71009CC28D /* DetailCommentSubview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCommentSubview.m; sourceTree = "<group>"; };
+		5B66448C1A26BF87009CC28D /* DetailCommentSubviewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCommentSubviewModel.h; sourceTree = "<group>"; };
+		5B66448D1A26BF87009CC28D /* DetailCommentSubviewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCommentSubviewModel.m; sourceTree = "<group>"; };
 		5B7B366E1A22CBDB00DC0C50 /* SmallUserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallUserImageView.h; sourceTree = "<group>"; };
 		5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallUserImageView.m; sourceTree = "<group>"; };
 		5B7B36741A22CD3F00DC0C50 /* GetImagePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetImagePath.h; sourceTree = "<group>"; };
@@ -685,6 +697,21 @@
 			path = MUCH/RegisterViewController;
 			sourceTree = SOURCE_ROOT;
 		};
+		5B6644901A26BFD2009CC28D /* DetailCommentView */ = {
+			isa = PBXGroup;
+			children = (
+				5B6644831A26BF1C009CC28D /* DetailCommentView.h */,
+				5B6644841A26BF1C009CC28D /* DetailCommentView.m */,
+				5B6644861A26BF4E009CC28D /* DetailCommentViewModel.h */,
+				5B6644871A26BF4E009CC28D /* DetailCommentViewModel.m */,
+				5B6644891A26BF71009CC28D /* DetailCommentSubview.h */,
+				5B66448A1A26BF71009CC28D /* DetailCommentSubview.m */,
+				5B66448C1A26BF87009CC28D /* DetailCommentSubviewModel.h */,
+				5B66448D1A26BF87009CC28D /* DetailCommentSubviewModel.m */,
+			);
+			name = DetailCommentView;
+			sourceTree = "<group>";
+		};
 		5B7B36731A22CD3F00DC0C50 /* GetImagePath */ = {
 			isa = PBXGroup;
 			children = (
@@ -964,6 +991,7 @@
 				D3D5EAF81A2334A300411D50 /* DetailContentTableViewCell.m */,
 				D3D5EB011A2346CB00411D50 /* CommentView.h */,
 				D3D5EB021A2346CB00411D50 /* CommentView.m */,
+				5B6644901A26BFD2009CC28D /* DetailCommentView */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -1725,6 +1753,8 @@
 				D3D8BF521A1AECD9007222CC /* main.m in Sources */,
 				D3D8C0261A1AFE24007222CC /* AFAppDotNetAPIClient.m in Sources */,
 				D3D5EACD1A23249600411D50 /* DetailHeadTableViewCell.m in Sources */,
+				5B6644881A26BF4E009CC28D /* DetailCommentViewModel.m in Sources */,
+				5B6644851A26BF1C009CC28D /* DetailCommentView.m in Sources */,
 				D3D32D2D1A2424F400A86F54 /* AttentionModel.m in Sources */,
 				5B6644701A24543D009CC28D /* AttentionTableViewCell.m in Sources */,
 				D3D3B1001A25C9AF0088E7E5 /* RegisterViewController.m in Sources */,
@@ -1747,6 +1777,7 @@
 				D3D54DB91A1EF6AD005DAAB6 /* SliderViewController.m in Sources */,
 				D3D546C51A203A2D001AE44E /* Reachability.m in Sources */,
 				D3D8C02B1A1AFE24007222CC /* AFSecurityPolicy.m in Sources */,
+				5B66448E1A26BF87009CC28D /* DetailCommentSubviewModel.m in Sources */,
 				D3D54DD81A1F3781005DAAB6 /* MainHeadTableViewCell.m in Sources */,
 				D3D8C0841A1B08BD007222CC /* SDImageCache.m in Sources */,
 				5B66447F1A25BB1D009CC28D /* RightViewCell.m in Sources */,

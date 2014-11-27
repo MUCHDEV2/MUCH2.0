@@ -24,6 +24,10 @@
         [view.subviews[1] setTag:i+1];
         view.center=CGPointMake(160, 85+56*(0.5+i));
         [self.view addSubview:view];
+        if (i==2||i==3) {
+            UITextField* textField=(UITextField*)[view viewWithTag:i+1];
+            textField.secureTextEntry=YES;
+        }
     }
     [self getResetBtn];
     [self getYzmBtn];
