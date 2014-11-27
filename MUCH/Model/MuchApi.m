@@ -266,7 +266,7 @@
 
 //获取自己发的帖子
 + (NSURLSessionDataTask *)GetMyListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block aid:(NSString *)aid log:(NSString *)log lat:(NSString *)lat{
-    NSString *urlStr = [NSString stringWithFormat:@"/mypost/%@",aid];
+    NSString *urlStr = [NSString stringWithFormat:@"/mypost/%@?longitude=%@&latitude=%@",aid,log,lat];
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);

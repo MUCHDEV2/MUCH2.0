@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ForgetPasswordViewController.h"
 @interface RegisterViewController : UIViewController{
     UITextField *phoneTextField;
     UITextField *passWordTextField;

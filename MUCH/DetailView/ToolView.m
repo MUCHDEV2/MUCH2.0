@@ -23,14 +23,14 @@
         [self addSubview:lineImage];
         
         UIImageView *fieldBgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 7, 240, 30)];
-        [fieldBgView setImage:[UIImage imageNamed:@"04_14.png"]];
+        [fieldBgView setBackgroundColor:[UIColor yellowColor]];
         [self addSubview:fieldBgView];
         
-        _textfield = [[UITextField alloc] initWithFrame:CGRectMake(20, 7, 230, 30)];
-        _textfield.delegate = self;
-        _textfield.font = [UIFont systemFontOfSize:14.0];
+        self._textfield = [[UITextField alloc] initWithFrame:CGRectMake(20, 7, 230, 30)];
+        self._textfield.delegate = self;
+        self._textfield.font = [UIFont systemFontOfSize:14.0];
         //_textfield.returnKeyType = UIReturnKeySend;
-        [self addSubview:_textfield];
+        [self addSubview:self._textfield];
         
         UIButton *sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [sendBtn setFrame:CGRectMake(260, 7, 49, 29)];
@@ -70,37 +70,29 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if(![_textfield.text isEqualToString:@""]){
+    if(![self._textfield.text isEqualToString:@""]){
         // 1、增加数据源
-        NSString *content = _textfield.text;
+        NSString *content = self._textfield.text;
         if ([delegate respondsToSelector:@selector(addMessageWithContent:)]){
             [delegate addMessageWithContent:content];
         }
         // 4、清空文本框内容
-        _textfield.text = nil;
+        self._textfield.text = nil;
     }
-    [_textfield resignFirstResponder];
+    [self._textfield resignFirstResponder];
     return YES;
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)textField{
-    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
-        if([delegate respondsToSelector:@selector(gotoLoginView)]){
-            [delegate gotoLoginView];
-        }
-    }
-}
-
 -(void)sendClick{
-    if(![_textfield.text isEqualToString:@""]){
+    if(![self._textfield.text isEqualToString:@""]){
         // 1、增加数据源
-        NSString *content = _textfield.text;
+        NSString *content = self._textfield.text;
         if ([delegate respondsToSelector:@selector(addMessageWithContent:)]){
             [delegate addMessageWithContent:content];
         }
         // 4、清空文本框内容
-        _textfield.text = nil;
-        [_textfield resignFirstResponder];
+        self._textfield.text = nil;
+        [self._textfield resignFirstResponder];
     }
 }
 @end

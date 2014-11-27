@@ -169,7 +169,7 @@
         detailView.imageUrl = model.content;
         detailView.youlikeit = [NSString stringWithFormat:@"%@",model.youlikeit];
         detailView.dic = model.createdby;
-        detailView.distance = model.distance;
+        detailView.distance = model.distance_str;
         detailView.price = model.price;
         [self.navigationController pushViewController:detailView animated:YES];
     }

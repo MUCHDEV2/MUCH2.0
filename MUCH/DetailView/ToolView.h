@@ -9,13 +9,12 @@
 #import <UIKit/UIKit.h>
 @protocol ToolViewDelegate<NSObject>
 - (void)addMessageWithContent:(NSString *)content;
-- (void)gotoLoginView;
 @end
 @interface ToolView : UIView<UITextFieldDelegate>{
     UIView *theSuperView;
-    UITextField *_textfield;
     id<ToolViewDelegate>delegate;
 }
+@property(nonatomic,strong)UITextField *_textfield;
 @property(nonatomic,strong)id<ToolViewDelegate>delegate;
 - (id)initWithFrame:(CGRect)frame superView:(UIView *)superView;
 @end
