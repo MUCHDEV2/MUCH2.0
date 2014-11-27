@@ -43,8 +43,8 @@
         [showArr addObject:model];
     }
     
-    CommentModel *model = showArr[0];
-    NSLog(@"%@",model.reply);
+    //CommentModel *model = showArr[0];
+    //NSLog(@"%@",model.reply);
 }
 
 -(void)initCommentViews{
