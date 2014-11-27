@@ -11,6 +11,7 @@
 #import "SliderViewController.h"
 #import "ToolView.h"
 #import "CommentModel.h"
+#import "DetailCommentView.h"
 @interface DetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ToolView *toolView;

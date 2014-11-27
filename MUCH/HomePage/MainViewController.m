@@ -89,6 +89,7 @@
 - (void)footerRereshing
 {
     NSLog(@"footerRereshing");
+    self.tableView.scrollEnabled = NO;
     [[AppDelegate instance]._locService startUserLocationService];
     if (![ConnectionAvailable isConnectionAvailable]) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -108,6 +109,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView footerEndRefreshing];
             }
+            self.tableView.scrollEnabled = YES;
         }start:startIndex indexSize:5 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
     }
 }
@@ -377,9 +379,9 @@
                 [self.tableView reloadData];
                 [self.tableView headerEndRefreshing];
                 [self.tableView footerEndRefreshing];
-                self.tableView.scrollEnabled = YES;
-                [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
             }
+            self.tableView.scrollEnabled = YES;
+            [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
         }start:startIndex indexSize:5 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
     }
 }

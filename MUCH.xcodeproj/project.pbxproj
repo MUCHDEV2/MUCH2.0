@@ -19,7 +19,6 @@
 		5B6644821A25CDD3009CC28D /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6644811A25CDD3009CC28D /* ForgetPasswordViewController.m */; };
 		5B6644851A26BF1C009CC28D /* DetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6644841A26BF1C009CC28D /* DetailCommentView.m */; };
 		5B6644881A26BF4E009CC28D /* DetailCommentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6644871A26BF4E009CC28D /* DetailCommentViewModel.m */; };
-		5B66448B1A26BF71009CC28D /* DetailCommentSubview.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66448A1A26BF71009CC28D /* DetailCommentSubview.m */; };
 		5B66448E1A26BF87009CC28D /* DetailCommentSubviewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66448D1A26BF87009CC28D /* DetailCommentSubviewModel.m */; };
 		5B7B36701A22CBDB00DC0C50 /* SmallUserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B366F1A22CBDB00DC0C50 /* SmallUserImageView.m */; };
 		5B7B36761A22CD3F00DC0C50 /* GetImagePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B36751A22CD3F00DC0C50 /* GetImagePath.m */; };
@@ -49,6 +48,7 @@
 		D3AD32721A247E7300A76607 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD32711A247E7300A76607 /* LoginViewController.m */; };
 		D3D2B3C61A26C90F0062224B /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2B3C51A26C90F0062224B /* CommentModel.m */; };
 		D3D2B3C91A26CD420062224B /* ReplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2B3C81A26CD420062224B /* ReplyModel.m */; };
+		D3D2B3FC1A2716540062224B /* DetailCommentSubview.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66448A1A26BF71009CC28D /* DetailCommentSubview.m */; };
 		D3D32D2D1A2424F400A86F54 /* AttentionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D32D2C1A2424F400A86F54 /* AttentionModel.m */; };
 		D3D32D301A24270900A86F54 /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D32D2E1A24270900A86F54 /* search_icon.png */; };
 		D3D32D311A24270900A86F54 /* search_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D32D2F1A24270900A86F54 /* search_icon@2x.png */; };
@@ -1699,6 +1699,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3D2B3FC1A2716540062224B /* DetailCommentSubview.m in Sources */,
 				D3D8C0861A1B08BD007222CC /* SDWebImageDecoder.m in Sources */,
 				D3D5EB031A2346CB00411D50 /* CommentView.m in Sources */,
 				D3D8C0911A1B08BD007222CC /* UIView+WebCacheOperation.m in Sources */,

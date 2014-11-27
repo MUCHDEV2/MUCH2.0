@@ -114,6 +114,7 @@ void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTim
     
     [animation setValues:images];
     [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
+    NSLog(@"_totalTime ===> %f",_totalTime);
     animation.duration = _totalTime;
     animation.delegate = self;
     animation.repeatCount = 1500;
