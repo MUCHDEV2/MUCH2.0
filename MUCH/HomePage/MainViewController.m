@@ -173,6 +173,7 @@
         detailView.dic = model.createdby;
         detailView.distance = model.distance_str;
         detailView.price = model.price;
+        detailView.commentsArr = model.comments;
         [self.navigationController pushViewController:detailView animated:YES];
     }
 }

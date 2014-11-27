@@ -21,6 +21,12 @@
 @implementation DetailViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    showArr = [[NSMutableArray alloc] init];
+    for(NSDictionary *item in self.commentsArr){
+        CommentModel *model = [[CommentModel alloc] init];
+        [model setDict:item];
+        [showArr addObject:model];
+    }
     [self initCommentViews];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
@@ -36,12 +42,6 @@
     //toolview.delegate = self;
     [self.view addSubview:self.toolView];
     self.toolView.hidden = YES;
-    showArr = [[NSMutableArray alloc] init];
-    for(NSDictionary *item in self.commentsArr){
-        CommentModel *model = [[CommentModel alloc] init];
-        [model setDict:item];
-        [showArr addObject:model];
-    }
     
     //CommentModel *model = showArr[0];
     //NSLog(@"%@",model.reply);
@@ -52,8 +52,10 @@
         self.commentViews=[[NSMutableArray alloc]init];
     }
     DetailCommentViewModel* model=[DetailCommentViewModel detailCommentViewModelWithUserImageUrl:@"http://121.40.127.189:3001/app/uploadimage/1416907988815921acac4.jpg" userName:@"用户名" userComment:@"评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容" replayContents:nil];
-    
-    for (int i=0; i<5; i++) {
+    NSLog(@"%@",showArr);
+    for (int i=0; i<showArr.count; i++) {
+        CommentModel *commentModel = showArr[i];
+        DetailCommentViewModel* model=[DetailCommentViewModel detailCommentViewModelWithUserImageUrl:commentModel.avatar userName:commentModel.nickname userComment:commentModel.content replayContents:nil];
         DetailCommentView* commentView=[DetailCommentView detailCommentViewWithModel:model];
         [self.commentViews addObject:commentView];
     }
