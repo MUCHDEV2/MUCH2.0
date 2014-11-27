@@ -64,8 +64,48 @@
 }
 
 -(void)resetBtnClick{
-    NSLog(@"选择了重置%@",[self.view viewWithTag:1]);
-
+    NSLog(@"选择了重置");
+    UITextField *textField1 = (UITextField *)[self.view viewWithTag:1];
+    UITextField *textField2 = (UITextField *)[self.view viewWithTag:2];
+    UITextField *textField3 = (UITextField *)[self.view viewWithTag:3];
+    UITextField *textField4 = (UITextField *)[self.view viewWithTag:4];
+    NSLog(@"%@",textField3.text);
+    NSLog(@"%@",textField4.text);
+    if([textField1.text isEqualToString:@""]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
+    
+    if([textField3.text isEqualToString:@""]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请输入密码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
+    
+    if([textField4.text isEqualToString:@""]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"请重复密码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
+    
+    if(![textField3.text isEqualToString:textField4.text]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码不一致" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:textField1.text forKey:@"username"];
+    [dic setValue:textField2.text forKey:@"smscode"];
+    [dic setValue:textField3.text forKey:@"password"];
+    [MuchApi FindpwdWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"密码设置成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    } dic:dic];
 }
 
 -(void)yzmBtnClick{

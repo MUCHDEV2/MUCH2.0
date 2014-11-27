@@ -61,7 +61,7 @@
         cell.youlikeit = self.youlikeit;
         cell.selectionStyle = NO;
         return cell;
-    }else{
+    }else if(indexPath.row==1){
         NSString *stringcell = @"DetailContentTableViewCell";
         DetailContentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
         if(!cell){
@@ -78,6 +78,7 @@
         cell.selectionStyle = NO;
         return cell;
     }
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
