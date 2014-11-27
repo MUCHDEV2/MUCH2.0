@@ -10,14 +10,17 @@
 #import "MBProgressHUD.h"
 #import "SliderViewController.h"
 #import "ToolView.h"
+#import "DetailCommentView.h"
 @interface DetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ToolView *toolView;
+@property(nonatomic,strong)NSMutableArray* commentViews;
 @end
 
 @implementation DetailViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initCommentViews];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
@@ -32,6 +35,18 @@
     //toolview.delegate = self;
     [self.view addSubview:self.toolView];
     self.toolView.hidden = YES;
+}
+
+-(void)initCommentViews{
+    if (!self.commentViews) {
+        self.commentViews=[[NSMutableArray alloc]init];
+    }
+    DetailCommentViewModel* model=[DetailCommentViewModel detailCommentViewModelWithUserImageUrl:@"http://121.40.127.189:3001/app/uploadimage/1416907988815921acac4.jpg" userName:@"用户名" userComment:@"评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容" replayContents:nil];
+    
+    for (int i=0; i<5; i++) {
+        DetailCommentView* commentView=[DetailCommentView detailCommentViewWithModel:model];
+        [self.commentViews addObject:commentView];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -77,13 +92,22 @@
         cell.delegate = self;
         cell.selectionStyle = NO;
         return cell;
+    }else{
+        UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (!cell) {
+            cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        }
+        [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [cell.contentView addSubview:self.commentViews[indexPath.row-2]];
+        cell.contentView.backgroundColor=RGBCOLOR(237, 237, 237);
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        return cell;
     }
-    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 2+self.commentViews.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -97,7 +121,7 @@
     }else if (indexPath.row == 1){
         return 55;
     }
-    return 175;
+    return [self.commentViews[indexPath.row-2] frame].size.height;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -12,4 +12,5 @@
 @property(nonatomic,copy)NSString* soureceUserName;
 @property(nonatomic,copy)NSString* targetUserName;
 @property(nonatomic,copy)NSString* replayContent;
++(DetailCommentSubviewModel*)detailCommentSubviewModelWithSoureceUserName:(NSString*)soureceUserName targetUserName:(NSString*)targetUserName replayContent:(NSString*)replayContent;
 @end

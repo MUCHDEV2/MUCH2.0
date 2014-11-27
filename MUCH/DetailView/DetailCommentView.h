@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailCommentViewModel.h"
 
 @interface DetailCommentView : UIView
-
++(DetailCommentView*)detailCommentViewWithModel:(DetailCommentViewModel*)model;
 @end

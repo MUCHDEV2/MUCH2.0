@@ -13,4 +13,5 @@
 @property(nonatomic,copy)NSString* userName;
 @property(nonatomic,copy)NSString* userComment;
 @property(nonatomic,strong)NSMutableArray* replayContents;//该评论被回复的数组，数组元素为DetailCommentSubviewModel类
++(DetailCommentViewModel*)detailCommentViewModelWithUserImageUrl:(NSString*)userImageUrl userName:(NSString*)userName userComment:(NSString*)userComment replayContents:(NSMutableArray*)replayContents;
 @end
