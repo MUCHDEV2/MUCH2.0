@@ -11,6 +11,7 @@
 #import "SliderViewController.h"
 #import "ToolView.h"
 #import "DetailCommentView.h"
+#import "DetailCommentSubviewModel.h"
 @interface DetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ToolView *toolView;
@@ -41,9 +42,18 @@
     if (!self.commentViews) {
         self.commentViews=[[NSMutableArray alloc]init];
     }
-    DetailCommentViewModel* model=[DetailCommentViewModel detailCommentViewModelWithUserImageUrl:@"http://121.40.127.189:3001/app/uploadimage/1416907988815921acac4.jpg" userName:@"用户名" userComment:@"评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容" replayContents:nil];
+    NSMutableArray* tempModels=[NSMutableArray array];
+    
+    //回复内容model
+    for (int i=0; i<3; i++) {
+        DetailCommentSubviewModel* subModel=[DetailCommentSubviewModel detailCommentSubviewModelWithSoureceUserName:@"源名" targetUserName:@"目标名" replayContent:@"回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试"];
+        [tempModels addObject:subModel];
+    }
+    //评论model,评论model中包含一个数组，数组中包含所有的回复内容Model
+    DetailCommentViewModel* model=[DetailCommentViewModel detailCommentViewModelWithUserImageUrl:@"http://121.40.127.189:3001/app/uploadimage/1416907988815921acac4.jpg" userName:@"用户名" userComment:@"评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容" replayContents:tempModels];
     
     for (int i=0; i<5; i++) {
+        //通过评论Model初始化cellView
         DetailCommentView* commentView=[DetailCommentView detailCommentViewWithModel:model];
         [self.commentViews addObject:commentView];
     }

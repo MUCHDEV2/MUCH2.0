@@ -48,6 +48,7 @@
 
 -(void)setYoulikeit:(NSString *)youlikeit{
     NSLog(@"====>%@",youlikeit);
+    _youlikeit=youlikeit;
     if([youlikeit isEqualToString:@"0"]){
         [loveBtn setBackgroundImage:[UIImage imageNamed:@"good_icon_unselect"] forState:UIControlStateNormal];
     }else{

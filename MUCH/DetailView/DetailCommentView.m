@@ -77,9 +77,8 @@
     if (!self.commentViews) {
         self.commentViews=[NSMutableArray array];
     }
-    DetailCommentSubviewModel* model=[DetailCommentSubviewModel detailCommentSubviewModelWithSoureceUserName:@"源名" targetUserName:@"目标名" replayContent:@"回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试"];
-    for (int i=0; i<5; i++) {
-        DetailCommentSubview* subview=[DetailCommentSubview detailCommentSubviewWithModel:model];
+    for (int i=0; i<self.commentModel.replayContents.count; i++) {
+        DetailCommentSubview* subview=[DetailCommentSubview detailCommentSubviewWithModel:self.commentModel.replayContents[i]];
         [self.commentViews addObject:subview];
     }
 }
