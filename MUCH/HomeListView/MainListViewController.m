@@ -173,17 +173,17 @@
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-        CGPoint translation = [scrollView.panGestureRecognizer translationInView:scrollView.superview];
-        NSLog(@"%f",translation.y);
-        if(translation.y>0){
-            NSLog(@"向下");
-        }else if(translation.y<0){
-            NSLog(@"向上");
-            NSLog(@"%f",scrollView.contentOffset.y);
-            if(scrollView.contentOffset.y == 100){
-                [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
-            }
-        }
+    CGFloat sectionHeaderHeight = 114;
+    
+    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+        
+        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+        
+    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+        
+        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+        
+    }
     // 这里做预加载
     CGPoint currentOffset = scrollView.contentOffset;
     NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];

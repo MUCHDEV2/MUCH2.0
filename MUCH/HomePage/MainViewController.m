@@ -171,12 +171,22 @@
         detailView.dic = model.createdby;
         detailView.distance = model.distance_str;
         detailView.price = model.price;
-        detailView.commentsArr = model.comments;
         [self.navigationController pushViewController:detailView animated:YES];
     }
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGFloat sectionHeaderHeight = 114;
+    
+    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+        
+        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+        
+    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+        
+        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+        
+    }
     // 这里做预加载
     CGPoint currentOffset = scrollView.contentOffset;
     NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];

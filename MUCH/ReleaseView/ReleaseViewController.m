@@ -189,8 +189,9 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     confirmBtn.enabled = YES;
-    [self.delegate releaseSucess];
+    //[self.delegate releaseSucess];
     [self.navigationController popViewControllerAnimated:YES];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadDataFav" object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
 }
 @end
