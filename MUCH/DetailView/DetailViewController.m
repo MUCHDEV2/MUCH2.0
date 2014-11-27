@@ -13,6 +13,7 @@
 #import "CommentModel.h"
 #import "DetailCommentView.h"
 #import "DetailCommentSubviewModel.h"
+#import "ReplyModel.h"
 @interface DetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ToolView *toolView;
@@ -49,23 +50,32 @@
 }
 
 -(void)initCommentViews{
+    NSLog(@"===>%@",self.dic[@"nickname"]);
     if (!self.commentViews) {
         self.commentViews=[[NSMutableArray alloc]init];
     }
-    NSMutableArray* tempModels=[NSMutableArray array];
-    for (int i=0; i<3; i++) {
-        DetailCommentSubviewModel* model=[DetailCommentSubviewModel detailCommentSubviewModelWithSoureceUserName:@"源名" targetUserName:@"目标名" replayContent:@"回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试回复内容测试"];
-        [tempModels addObject:model];
-    }
-    
-    DetailCommentViewModel* model2222=[DetailCommentViewModel detailCommentViewModelWithUserImageUrl:@"http://121.40.127.189:3001/app/uploadimage/1416907988815921acac4.jpg" userName:@"用户名" userComment:@"评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容" replayContents:tempModels];
-    NSLog(@"%@",showArr);
     for (int i=0; i<showArr.count; i++) {
         CommentModel *commentModel = showArr[i];
-        DetailCommentViewModel* model=[DetailCommentViewModel detailCommentViewModelWithUserImageUrl:commentModel.avatar userName:commentModel.nickname userComment:commentModel.content replayContents:nil];
-        DetailCommentView* commentView=[DetailCommentView detailCommentViewWithModel:model2222];
+        NSMutableArray* tempModels=[NSMutableArray array];
+        for (int j=0; j<commentModel.reply.count; j++) {
+            ReplyModel *replyModel = commentModel.reply[j];
+            DetailCommentSubviewModel* model=[DetailCommentSubviewModel detailCommentSubviewModelWithSoureceUserName:replyModel.nickname targetUserName:[replyModel.nickname isEqualToString:self.dic[@"nickname"]]?commentModel.nickname:self.dic[@"nickname"] replayContent:replyModel.content];
+            [tempModels addObject:model];
+        }
+        
+        DetailCommentViewModel* model=[DetailCommentViewModel detailCommentViewModelWithUserImageUrl:commentModel.avatar userName:commentModel.nickname userComment:commentModel.content replayContents:tempModels];
+        DetailCommentView* commentView=[DetailCommentView detailCommentViewWithModel:model];
         [self.commentViews addObject:commentView];
     }
+    
+//    DetailCommentViewModel* model2222=[DetailCommentViewModel detailCommentViewModelWithUserImageUrl:@"http://121.40.127.189:3001/app/uploadimage/1416907988815921acac4.jpg" userName:@"用户名" userComment:@"评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容" replayContents:tempModels];
+//    NSLog(@"%@",showArr);
+//    for (int i=0; i<showArr.count; i++) {
+//        CommentModel *commentModel = showArr[i];
+//        DetailCommentViewModel* model=[DetailCommentViewModel detailCommentViewModelWithUserImageUrl:commentModel.avatar userName:commentModel.nickname userComment:commentModel.content replayContents:nil];
+//        DetailCommentView* commentView=[DetailCommentView detailCommentViewWithModel:model2222];
+//        [self.commentViews addObject:commentView];
+//    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
