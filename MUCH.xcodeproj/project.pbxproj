@@ -46,6 +46,7 @@
 		D3AD326F1A247E4C00A76607 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD326D1A247E4C00A76607 /* Background.png */; };
 		D3AD32701A247E4C00A76607 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD326E1A247E4C00A76607 /* Background@2x.png */; };
 		D3AD32721A247E7300A76607 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AD32711A247E7300A76607 /* LoginViewController.m */; };
+		D3D23D361A271903002E0314 /* loading30ms.gif in Resources */ = {isa = PBXBuildFile; fileRef = D3D23D351A271903002E0314 /* loading30ms.gif */; };
 		D3D2B3C61A26C90F0062224B /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2B3C51A26C90F0062224B /* CommentModel.m */; };
 		D3D2B3C91A26CD420062224B /* ReplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D2B3C81A26CD420062224B /* ReplyModel.m */; };
 		D3D2B3FC1A2716540062224B /* DetailCommentSubview.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B66448A1A26BF71009CC28D /* DetailCommentSubview.m */; };
@@ -304,6 +305,7 @@
 		D3AD326D1A247E4C00A76607 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
 		D3AD326E1A247E4C00A76607 /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@2x.png"; sourceTree = "<group>"; };
 		D3AD32711A247E7300A76607 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		D3D23D351A271903002E0314 /* loading30ms.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading30ms.gif; sourceTree = "<group>"; };
 		D3D2B3C41A26C90F0062224B /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
 		D3D2B3C51A26C90F0062224B /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		D3D2B3C71A26CD420062224B /* ReplyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyModel.h; sourceTree = "<group>"; };
@@ -1114,6 +1116,7 @@
 		D3D8BF6F1A1AED90007222CC /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3D23D351A271903002E0314 /* loading30ms.gif */,
 				D3AD322E1A2451DF00A76607 /* 登陆 */,
 				D3D5EACE1A2329D300411D50 /* 详情页 */,
 				D3E1EA251A22F7DD009F0910 /* 侧边栏 */,
@@ -1617,6 +1620,7 @@
 				D3D5EAE21A2329D300411D50 /* details_view_reply_user_white@2x.png in Resources */,
 				D3D546901A2028DB001AE44E /* closed_icon_grey@2x.png in Resources */,
 				D3E1EA231A22EF99009F0910 /* divid_line.png in Resources */,
+				D3D23D361A271903002E0314 /* loading30ms.gif in Resources */,
 				D3D3B0FC1A25AEED0088E7E5 /* empty_data_full.png in Resources */,
 				D3D5EAE71A2329D300411D50 /* details_view_zan_selected_icon.png in Resources */,
 				D3E1EA481A22F7DD009F0910 /* unselect_icon.png in Resources */,
