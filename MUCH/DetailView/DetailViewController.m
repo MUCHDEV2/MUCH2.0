@@ -161,24 +161,26 @@
         }else{
             indexRow = indexPath.row;
             NSLog(@"%ld",(long)indexPath.row);
+            CommentModel *commentModel = showArr[indexPath.row-2];
             if([[LoginSqlite getdata:@"userId"] isEqualToString:self.dic[@"_id"]]){
                 NSLog(@"铁主");
-                if(self.toolView.hidden){
-                    [self.toolView._textfield becomeFirstResponder];
-                    self.toolView.hidden = NO;
-                    self.tableView.frame = CGRectMake(0, -44, 320, 568);
-                }else{
-                    [self.toolView._textfield resignFirstResponder];
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        self.toolView.hidden = YES;
-                        self.tableView.frame = self.view.frame;
-                    });
+                if (![[LoginSqlite getdata:@"userId"] isEqualToString:commentModel.userid]) {
+                    if(self.toolView.hidden){
+                        [self.toolView._textfield becomeFirstResponder];
+                        self.toolView.hidden = NO;
+                        self.tableView.frame = CGRectMake(0, -44, 320, 568);
+                    }else{
+                        [self.toolView._textfield resignFirstResponder];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            self.toolView.hidden = YES;
+                            self.tableView.frame = self.view.frame;
+                        });
+                    }
                 }
             }else{
                 NSLog(@"访客");
-                CommentModel *commentModel = showArr[indexPath.row-2];
                 if(commentModel.reply.count !=0){
-                    if(![commentModel.userid isEqualToString:[LoginSqlite getdata:@"userId"]]){
+                    if([commentModel.userid isEqualToString:[LoginSqlite getdata:@"userId"]]){
                         if(self.toolView.hidden){
                             [self.toolView._textfield becomeFirstResponder];
                             self.toolView.hidden = NO;
