@@ -275,18 +275,29 @@
             }
         } dic:dic];
     }else{
+        CommentModel *commentModel = showArr[indexRow-2];
         DetailCommentView *commentView = self.commentViews[indexRow-2];
-        ReplyModel *replyModel = [[ReplyModel alloc] init];
-        replyModel.nickname = [LoginSqlite getdata:@"nickname"];
-        replyModel.content = content;
-        replyModel.userid = [LoginSqlite getdata:@"userId"];
-        DetailCommentSubviewModel* model=[DetailCommentSubviewModel detailCommentSubviewModelWithSoureceUserName:replyModel.nickname targetUserName:self.dic[@"nickname"] replayContent:replyModel.content];
-        [commentView.commentModel.replayContents insertObject:model atIndex:0];
+        DetailCommentSubviewModel* subModel=[DetailCommentSubviewModel detailCommentSubviewModelWithSoureceUserName:[LoginSqlite getdata:@"nickname"] targetUserName:[[LoginSqlite getdata:@"nickname"] isEqualToString:commentModel.nickname]?[LoginSqlite getdata:@"nickname"]:commentModel.nickname replayContent:content];
+        [commentView.commentModel.replayContents addObject:subModel];
+        commentView=[DetailCommentView detailCommentViewWithModel:commentView.commentModel];
+        [self.commentViews replaceObjectAtIndex:indexRow-2 withObject:commentView];
         [self.tableView reloadData];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.toolView.hidden = YES;
             self.tableView.frame = self.view.frame;
         });
+        
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"userid"];
+        [dic setValue:self.aid forKey:@"postid"];
+        [dic setValue:content forKey:@"content"];
+        [dic setValue:commentModel.commentid forKey:@"commentid"];
+        
+        [MuchApi AddReplyWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+            
+            }
+        } dic:dic];
     }
 }
 @end
