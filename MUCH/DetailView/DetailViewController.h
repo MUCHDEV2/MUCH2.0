@@ -11,6 +11,8 @@
 #import "DetailContentTableViewCell.h"
 @interface DetailViewController : UIViewController<DetailHeadTableViewCellDelegate,DetailContentTableViewCellDelegate>{
     NSMutableArray *showArr;
+    int flag;//1是发评论，2是发回复
+    int indexRow;//点击第几行评论
 }
 @property(nonatomic,strong)NSString *aid;
 @property(nonatomic,strong)NSString *imageUrl;

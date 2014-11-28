@@ -11,4 +11,7 @@
 
 @interface DetailCommentView : UIView
 +(DetailCommentView*)detailCommentViewWithModel:(DetailCommentViewModel*)model;
+
+//数据层部分
+@property(nonatomic,strong)DetailCommentViewModel* commentModel;//该评论model,包括评论内容以及评论被回复的内容model
 @end

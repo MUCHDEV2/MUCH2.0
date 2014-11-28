@@ -143,7 +143,7 @@
         self.userNameLabel.text = [LoginSqlite getdata:@"nickname"];
         UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"提示" message:@"退出成功！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertview show];
-        //[[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
         [[SliderViewController sharedSliderController] showContentControllerWithModel:@"MainViewController"];
         [[SliderViewController sharedSliderController] closeSideBar];
         [SliderViewController sharedSliderController].canRightMoveWithGesture = YES;

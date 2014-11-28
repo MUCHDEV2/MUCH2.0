@@ -16,7 +16,7 @@
     if (self) {
         // Initialization code
         theSuperView = superView;
-        [self setBackgroundColor:RGBCOLOR(206, 205, 205)];
+        [self setBackgroundColor:RGBCOLOR(237, 237, 237)];
         
         UIImageView *fieldBgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 7, 240, 30)];
         [fieldBgView setBackgroundColor:[UIColor whiteColor]];
@@ -25,12 +25,13 @@
         self._textfield = [[UITextField alloc] initWithFrame:CGRectMake(20, 7, 230, 30)];
         self._textfield.delegate = self;
         self._textfield.font = [UIFont systemFontOfSize:14.0];
-        //_textfield.returnKeyType = UIReturnKeySend;
+        self._textfield.returnKeyType = UIReturnKeySend;
         [self addSubview:self._textfield];
         
         UIButton *sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [sendBtn setFrame:CGRectMake(260, 7, 49, 29)];
-        [sendBtn setImage:[UIImage imageNamed:@"04_033"] forState:UIControlStateNormal];
+        [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+        [sendBtn setTitleColor:RGBCOLOR(10, 95, 254) forState:UIControlStateNormal];
         [sendBtn addTarget:self action:@selector(sendClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:sendBtn];
         

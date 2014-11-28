@@ -21,8 +21,6 @@
 @property(nonatomic,strong)UITableView* replayTableView;//回复内容的tableView视图
 @property(nonatomic,strong)NSMutableArray* commentViews;//该评论被回复的数组的视图view，数组元素为DetailCommentSubview类
 
-//数据层部分
-@property(nonatomic,strong)DetailCommentViewModel* commentModel;//该评论model,包括评论内容以及评论被回复的内容model
 @end
 
 @implementation DetailCommentView

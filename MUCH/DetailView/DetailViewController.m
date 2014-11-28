@@ -14,7 +14,10 @@
 #import "DetailCommentView.h"
 #import "DetailCommentSubviewModel.h"
 #import "ReplyModel.h"
-@interface DetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+#import "LoginSqlite.h"
+#import "AppDelegate.h"
+#import "MuchApi.h"
+@interface DetailViewController ()<UITableViewDataSource,UITableViewDelegate,ToolViewDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ToolView *toolView;
 @property(nonatomic,strong)NSMutableArray* commentViews;
@@ -23,6 +26,9 @@
 @implementation DetailViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"%f",self.view.frame.size.height);
+    
     showArr = [[NSMutableArray alloc] init];
     for(NSDictionary *item in self.commentsArr){
         CommentModel *model = [[CommentModel alloc] init];
@@ -36,12 +42,11 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
-    [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
     self.tableView.separatorStyle = NO;
     self.tableView.backgroundColor = RGBCOLOR(221, 221, 221);
     
      self.toolView = [[ToolView alloc] initWithFrame:CGRectMake(0, 524, 320, 44) superView:self.view];
-    //toolview.delegate = self;
+    self.toolView.delegate = self;
     [self.view addSubview:self.toolView];
     self.toolView.hidden = YES;
     
@@ -154,17 +159,39 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    flag = 2;
     if(indexPath.row>=2){
-        NSLog(@"%ld",(long)indexPath.row);
+        if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+            AppDelegate* app=[AppDelegate instance];
+            [app initLoginView];
+            LoginViewController *loginVC = app.loginView;
+            UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+            [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+        }else{
+            indexRow = indexPath.row;
+            NSLog(@"%ld",(long)indexPath.row);
+            if([[LoginSqlite getdata:@"userId"] isEqualToString:self.dic[@"_id"]]){
+                NSLog(@"铁主");
+                if(self.toolView.hidden){
+                    [self.toolView._textfield becomeFirstResponder];
+                    self.toolView.hidden = NO;
+                    self.tableView.frame = CGRectMake(0, -44, 320, 568);
+                }else{
+                    [self.toolView._textfield resignFirstResponder];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        self.toolView.hidden = YES;
+                        self.tableView.frame = self.view.frame;
+                    });
+                }
+            }else{
+                NSLog(@"访客");
+            }
+        }
     }
 }
 
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
-}
-
--(void)showLoginView{
-
 }
 
 -(void)showAlertView{
@@ -178,13 +205,66 @@
 }
 
 -(void)addTextFieldView{
-    if(self.toolView.hidden){
-        [self.toolView._textfield becomeFirstResponder];
-        self.toolView.hidden = NO;
+    if([[LoginSqlite getdata:@"userId"] isEqualToString:@""]){
+        AppDelegate* app=[AppDelegate instance];
+        [app initLoginView];
+        LoginViewController *loginVC = app.loginView;
+        UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
-        [self.toolView._textfield resignFirstResponder];
+        flag = 1;
+        if(self.toolView.hidden){
+            [self.toolView._textfield becomeFirstResponder];
+            self.toolView.hidden = NO;
+            self.tableView.frame = CGRectMake(0, -44, 320, 568);
+        }else{
+            [self.toolView._textfield resignFirstResponder];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.toolView.hidden = YES;
+                self.tableView.frame = self.view.frame;
+            });
+        }
+    }
+}
+
+-(void)addMessageWithContent:(NSString *)content{
+    if(flag == 1){
+        CommentModel *commentModel = [[CommentModel alloc] init];
+        commentModel.nickname = [LoginSqlite getdata:@"nickname"];
+        commentModel.avatar = [LoginSqlite getdata:@"avatar"];
+        commentModel.content = content;
+        DetailCommentViewModel* model=[DetailCommentViewModel detailCommentViewModelWithUserImageUrl:commentModel.avatar userName:commentModel.nickname userComment:commentModel.content replayContents:nil];
+        DetailCommentView* commentView=[DetailCommentView detailCommentViewWithModel:model];
+        [self.commentViews insertObject:commentView atIndex:0];
+        [self.tableView reloadData];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.toolView.hidden = YES;
+            self.tableView.frame = self.view.frame;
+        });
+        
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"userid"];
+        [dic setValue:self.aid forKey:@"postid"];
+        [dic setValue:content forKey:@"content"];
+        
+        [MuchApi AddCommentWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                
+            }
+        } dic:dic];
+    }else{
+        DetailCommentView *commentView = self.commentViews[indexRow-2];
+        CommentModel *commentModel = showArr[indexRow-2];
+        ReplyModel *replyModel = [[ReplyModel alloc] init];
+        replyModel.nickname = [LoginSqlite getdata:@"nickname"];
+        replyModel.content = content;
+        replyModel.userid = [LoginSqlite getdata:@"userId"];
+        DetailCommentSubviewModel* model=[DetailCommentSubviewModel detailCommentSubviewModelWithSoureceUserName:replyModel.nickname targetUserName:[replyModel.nickname isEqualToString:self.dic[@"nickname"]]?commentModel.nickname:self.dic[@"nickname"] replayContent:replyModel.content];
+        [commentView.commentModel.replayContents insertObject:model atIndex:0];
+        [self.tableView reloadData];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.toolView.hidden = YES;
+            self.tableView.frame = self.view.frame;
         });
     }
 }
