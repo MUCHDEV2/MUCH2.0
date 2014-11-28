@@ -12,10 +12,10 @@
 @interface DetailCommentSubview : UIView
 +(DetailCommentSubview*)detailCommentSubviewWithModel:(DetailCommentSubviewModel*)model;
 @end
-#define NameHeight 12
-#define ContentHeight 12
-#define NameFont [UIFont boldSystemFontOfSize:NameHeight]
-#define ContentFont [UIFont systemFontOfSize:NameHeight]
+#define NameHeight 14
+#define ContentHeight 14
+#define NameFont [UIFont boldSystemFontOfSize:12]
+#define ContentFont [UIFont systemFontOfSize:12]
 #define ContentWidth 250
 #define UserNameColor RGBCOLOR(10,95,254)
 #define BackGround RGBCOLOR(237,237,237)

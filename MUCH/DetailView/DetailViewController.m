@@ -72,15 +72,6 @@
         DetailCommentView* commentView=[DetailCommentView detailCommentViewWithModel:model];
         [self.commentViews addObject:commentView];
     }
-    
-//    DetailCommentViewModel* model2222=[DetailCommentViewModel detailCommentViewModelWithUserImageUrl:@"http://121.40.127.189:3001/app/uploadimage/1416907988815921acac4.jpg" userName:@"用户名" userComment:@"评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容" replayContents:tempModels];
-//    NSLog(@"%@",showArr);
-//    for (int i=0; i<showArr.count; i++) {
-//        CommentModel *commentModel = showArr[i];
-//        DetailCommentViewModel* model=[DetailCommentViewModel detailCommentViewModelWithUserImageUrl:commentModel.avatar userName:commentModel.nickname userComment:commentModel.content replayContents:nil];
-//        DetailCommentView* commentView=[DetailCommentView detailCommentViewWithModel:model2222];
-//        [self.commentViews addObject:commentView];
-//    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -185,6 +176,20 @@
                 }
             }else{
                 NSLog(@"访客");
+                CommentModel *commentModel = showArr[indexPath.row-2];
+                if(commentModel.reply.count !=0 && [commentModel.userid isEqualToString:[LoginSqlite getdata:@"userId"]]){
+                    if(self.toolView.hidden){
+                        [self.toolView._textfield becomeFirstResponder];
+                        self.toolView.hidden = NO;
+                        self.tableView.frame = CGRectMake(0, -44, 320, 568);
+                    }else{
+                        [self.toolView._textfield resignFirstResponder];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            self.toolView.hidden = YES;
+                            self.tableView.frame = self.view.frame;
+                        });
+                    }
+                }
             }
         }
     }
