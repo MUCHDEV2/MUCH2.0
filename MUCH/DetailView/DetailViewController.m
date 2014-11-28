@@ -199,6 +199,14 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)showLoginView{
+    AppDelegate* app=[AppDelegate instance];
+    [app initLoginView];
+    LoginViewController *loginVC = app.loginView;
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+}
+
 -(void)showAlertView{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.removeFromSuperViewOnHide =YES;
@@ -258,9 +266,10 @@
             }
         } dic:dic];
     }else{
+        CommentModel *commentModel = showArr[indexRow-2];
         DetailCommentView *commentView = self.commentViews[indexRow-2];
-        DetailCommentSubviewModel* subModel=[DetailCommentSubviewModel detailCommentSubviewModelWithSoureceUserName:[LoginSqlite getdata:@"nickname"] targetUserName:self.dic[@"nickname"] replayContent:content];
-        [commentView.commentModel.replayContents insertObject:subModel atIndex:0];
+        DetailCommentSubviewModel* subModel=[DetailCommentSubviewModel detailCommentSubviewModelWithSoureceUserName:[LoginSqlite getdata:@"nickname"] targetUserName:[[LoginSqlite getdata:@"nickname"] isEqualToString:commentModel.nickname]?[LoginSqlite getdata:@"nickname"]:commentModel.nickname replayContent:content];
+        [commentView.commentModel.replayContents addObject:subModel];
         commentView=[DetailCommentView detailCommentViewWithModel:commentView.commentModel];
         [self.commentViews replaceObjectAtIndex:indexRow-2 withObject:commentView];
         [self.tableView reloadData];
@@ -268,6 +277,18 @@
             self.toolView.hidden = YES;
             self.tableView.frame = self.view.frame;
         });
+        
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:[LoginSqlite getdata:@"userId"] forKey:@"userid"];
+        [dic setValue:self.aid forKey:@"postid"];
+        [dic setValue:content forKey:@"content"];
+        [dic setValue:commentModel.commentid forKey:@"commentid"];
+        
+        [MuchApi AddReplyWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+            
+            }
+        } dic:dic];
     }
 }
 @end
