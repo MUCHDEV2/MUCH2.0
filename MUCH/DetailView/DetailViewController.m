@@ -187,7 +187,7 @@
                 NSLog(@"访客");
                 CommentModel *commentModel = showArr[indexPath.row-2];
                 if(commentModel.reply.count !=0){
-                    if(![commentModel.userid isEqualToString:[LoginSqlite getdata:@"userId"]]){
+                    if([commentModel.userid isEqualToString:[LoginSqlite getdata:@"userId"]]){
                         if(self.toolView.hidden){
                             [self.toolView._textfield becomeFirstResponder];
                             self.toolView.hidden = NO;
