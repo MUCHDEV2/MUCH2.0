@@ -254,13 +254,10 @@
         } dic:dic];
     }else{
         DetailCommentView *commentView = self.commentViews[indexRow-2];
-        CommentModel *commentModel = showArr[indexRow-2];
-        ReplyModel *replyModel = [[ReplyModel alloc] init];
-        replyModel.nickname = [LoginSqlite getdata:@"nickname"];
-        replyModel.content = content;
-        replyModel.userid = [LoginSqlite getdata:@"userId"];
-        DetailCommentSubviewModel* model=[DetailCommentSubviewModel detailCommentSubviewModelWithSoureceUserName:replyModel.nickname targetUserName:[replyModel.nickname isEqualToString:self.dic[@"nickname"]]?commentModel.nickname:self.dic[@"nickname"] replayContent:replyModel.content];
-        [commentView.commentModel.replayContents insertObject:model atIndex:0];
+        DetailCommentSubviewModel* subModel=[DetailCommentSubviewModel detailCommentSubviewModelWithSoureceUserName:[LoginSqlite getdata:@"nickname"] targetUserName:self.dic[@"nickname"] replayContent:content];
+        [commentView.commentModel.replayContents insertObject:subModel atIndex:0];
+        commentView=[DetailCommentView detailCommentViewWithModel:commentView.commentModel];
+        [self.commentViews replaceObjectAtIndex:indexRow-2 withObject:commentView];
         [self.tableView reloadData];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.toolView.hidden = YES;
