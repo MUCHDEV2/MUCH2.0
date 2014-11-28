@@ -185,6 +185,20 @@
                 }
             }else{
                 NSLog(@"访客");
+                CommentModel *commentModel = showArr[indexPath.row-2];
+                if(commentModel.reply.count !=0 && [commentModel.userid isEqualToString:[LoginSqlite getdata:@"userId"]]){
+                    if(self.toolView.hidden){
+                        [self.toolView._textfield becomeFirstResponder];
+                        self.toolView.hidden = NO;
+                        self.tableView.frame = CGRectMake(0, -44, 320, 568);
+                    }else{
+                        [self.toolView._textfield resignFirstResponder];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            self.toolView.hidden = YES;
+                            self.tableView.frame = self.view.frame;
+                        });
+                    }
+                }
             }
         }
     }
@@ -192,6 +206,14 @@
 
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)showLoginView{
+    AppDelegate* app=[AppDelegate instance];
+    [app initLoginView];
+    LoginViewController *loginVC = app.loginView;
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
 }
 
 -(void)showAlertView{
@@ -254,12 +276,11 @@
         } dic:dic];
     }else{
         DetailCommentView *commentView = self.commentViews[indexRow-2];
-        CommentModel *commentModel = showArr[indexRow-2];
         ReplyModel *replyModel = [[ReplyModel alloc] init];
         replyModel.nickname = [LoginSqlite getdata:@"nickname"];
         replyModel.content = content;
         replyModel.userid = [LoginSqlite getdata:@"userId"];
-        DetailCommentSubviewModel* model=[DetailCommentSubviewModel detailCommentSubviewModelWithSoureceUserName:replyModel.nickname targetUserName:[replyModel.nickname isEqualToString:self.dic[@"nickname"]]?commentModel.nickname:self.dic[@"nickname"] replayContent:replyModel.content];
+        DetailCommentSubviewModel* model=[DetailCommentSubviewModel detailCommentSubviewModelWithSoureceUserName:replyModel.nickname targetUserName:self.dic[@"nickname"] replayContent:replyModel.content];
         [commentView.commentModel.replayContents insertObject:model atIndex:0];
         [self.tableView reloadData];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
