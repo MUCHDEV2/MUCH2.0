@@ -53,7 +53,7 @@
     self.nameLabel.text=self.commentModel.userName;
     
     CGRect bound=[self.commentModel.userComment boundingRectWithSize:CGSizeMake(ContentWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:ContentFont} context:nil];
-    self.commentLabel=[[UILabel alloc]initWithFrame:CGRectMake(55, 29-2, ContentWidth, bound.size.height)];
+    self.commentLabel=[[UILabel alloc]initWithFrame:CGRectMake(55, 29, ContentWidth, bound.size.height)];
     self.commentLabel.numberOfLines=0;
     self.commentLabel.font=ContentFont;
     self.commentLabel.text=self.commentModel.userComment;
@@ -61,10 +61,10 @@
     
     //计算mainView的height
     CGFloat tempHeight=self.commentLabel.frame.origin.y+self.commentLabel.frame.size.height;
-    CGFloat height=tempHeight<50?50:tempHeight;
+    //CGFloat height=tempHeight<50?tempHeight:tempHeight;
     
     //给mainView.frame赋值
-    self.mainView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, height)];
+    self.mainView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, tempHeight)];
     [self addSubview:self.mainView];
     [self.mainView addSubview:self.userImageView];
     [self.mainView addSubview:self.nameLabel];
