@@ -10,6 +10,7 @@
 #import "ReplyModel.h"
 @implementation CommentModel
 -(void)setDict:(NSDictionary *)dict{
+    //NSLog(@"%@",dict);
     _dict = dict;
     self.commentid = dict[@"commentid"];
     self.avatar = dict[@"avatar"];
@@ -19,7 +20,6 @@
     
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     for (NSDictionary *item in dict[@"reply"]) {
-        NSLog(@"%@",item[@"content"]);
         ReplyModel *model = [[ReplyModel alloc] init];
         [model setDict:item];
         [arr addObject:model];

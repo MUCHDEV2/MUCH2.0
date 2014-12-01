@@ -101,6 +101,7 @@
         tempLabel.text = [NSString stringWithFormat:@"%@",model.comments[i][@"content"]];
         tempLabel.textColor = [UIColor whiteColor];
         tempLabel.font = [UIFont systemFontOfSize:14];
+        [tempLabel setTransform:CGAffineTransformMakeRotation(M_PI)];
         [viewsArray addObject:tempLabel];
     }
     
@@ -120,6 +121,7 @@
                     return model.comments.count;
                 };
                 [self.contentView addSubview:self.mainScorllView];
+                [self.mainScorllView setTransform:CGAffineTransformMakeRotation(M_PI)];
             }else{
                 self.mainScorllView.animation = 0;
                 [self.contentView addSubview:self.mainScorllView];

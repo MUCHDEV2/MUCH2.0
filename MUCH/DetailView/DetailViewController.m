@@ -26,16 +26,20 @@
 @implementation DetailViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSLog(@"%f",self.view.frame.size.height);
-    
     showArr = [[NSMutableArray alloc] init];
-    for(NSDictionary *item in self.commentsArr){
-        CommentModel *model = [[CommentModel alloc] init];
-        [model setDict:item];
-        [showArr addObject:model];
-    }
-    [self initCommentViews];
+    [MuchApi GetSingleListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            showArr = posts;
+//            for(NSDictionary *item in self.commentsArr){
+//                CommentModel *model = [[CommentModel alloc] init];
+//                [model setDict:item];
+//                [showArr addObject:model];
+//            }
+            [self initCommentViews];
+            [self.tableView reloadData];
+        }
+    } postId:self.aid];
+    
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
@@ -49,13 +53,9 @@
     self.toolView.delegate = self;
     [self.view addSubview:self.toolView];
     self.toolView.hidden = YES;
-    
-    //CommentModel *model = showArr[0];
-    //NSLog(@"%@",model.reply);
 }
 
 -(void)initCommentViews{
-    NSLog(@"===>%@",self.dic[@"nickname"]);
     if (!self.commentViews) {
         self.commentViews=[[NSMutableArray alloc]init];
     }
@@ -159,8 +159,7 @@
             UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
             [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
         }else{
-            indexRow = indexPath.row;
-            NSLog(@"%ld",(long)indexPath.row);
+            indexRow = (int)indexPath.row;
             CommentModel *commentModel = showArr[indexPath.row-2];
             if([[LoginSqlite getdata:@"userId"] isEqualToString:self.dic[@"_id"]]){
                 NSLog(@"铁主");
@@ -272,7 +271,7 @@
     }else{
         CommentModel *commentModel = showArr[indexRow-2];
         DetailCommentView *commentView = self.commentViews[indexRow-2];
-        DetailCommentSubviewModel* subModel=[DetailCommentSubviewModel detailCommentSubviewModelWithSoureceUserName:[LoginSqlite getdata:@"nickname"] targetUserName:[[LoginSqlite getdata:@"nickname"] isEqualToString:commentModel.nickname]?[LoginSqlite getdata:@"nickname"]:commentModel.nickname replayContent:content];
+        DetailCommentSubviewModel* subModel=[DetailCommentSubviewModel detailCommentSubviewModelWithSoureceUserName:[LoginSqlite getdata:@"nickname"] targetUserName:[[LoginSqlite getdata:@"nickname"] isEqualToString:self.dic[@"nickname"]]?commentModel.nickname:self.dic[@"nickname"] replayContent:content];
         [commentView.commentModel.replayContents addObject:subModel];
         commentView=[DetailCommentView detailCommentViewWithModel:commentView.commentModel];
         [self.commentViews replaceObjectAtIndex:indexRow-2 withObject:commentView];

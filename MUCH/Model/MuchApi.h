@@ -57,6 +57,9 @@
 //回复
 + (NSURLSessionDataTask *)AddReplyWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
 
+//获取单条帖子
++ (NSURLSessionDataTask *)GetSingleListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block postId:(NSString *)postId;
+
 //验证微信
 +(void)GetWeiXin:(void (^)(NSDictionary *posts, NSError *error))block code:(NSString *)code;
 

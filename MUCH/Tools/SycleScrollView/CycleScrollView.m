@@ -69,16 +69,15 @@
         self.scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         self.scrollView.autoresizingMask = 0xFF;
         self.scrollView.contentMode = UIViewContentModeCenter;
-        self.scrollView.contentSize = CGSizeMake(3 * CGRectGetWidth(self.scrollView.frame), CGRectGetHeight(self.scrollView.frame));
+        //self.scrollView.contentSize = CGSizeMake(3 * CGRectGetWidth(self.scrollView.frame), CGRectGetHeight(self.scrollView.frame));
+        self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame), 3 * CGRectGetHeight(self.scrollView.frame));
+        
         self.scrollView.delegate = self;
-        self.scrollView.contentOffset = CGPointMake(CGRectGetWidth(self.scrollView.frame), 0);
+        //dself.scrollView.contentOffset = CGPointMake(CGRectGetWidth(self.scrollView.frame), 0);
+        self.scrollView.contentOffset = CGPointMake(0, CGRectGetHeight(self.scrollView.frame));
         self.scrollView.pagingEnabled = YES;
         [self addSubview:self.scrollView];
         self.currentPageIndex = 0;
-        
-//        self.strlabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 320, 38)];
-//        self.strlabel.textColor = [UIColor whiteColor];
-//        [self.scrollView addSubview:self.strlabel];
     }
     return self;
 }
@@ -97,12 +96,13 @@
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(contentViewTapAction:)];
         [contentView addGestureRecognizer:tapGesture];
         CGRect rightRect = contentView.frame;
-        rightRect.origin = CGPointMake(CGRectGetWidth(self.scrollView.frame) * (counter ++)+10, 0);
-        
+        //rightRect.origin = CGPointMake(CGRectGetWidth(self.scrollView.frame) * (counter ++)+10, 0);
+        rightRect.origin = CGPointMake(0, CGRectGetHeight(self.scrollView.frame) * (counter ++));
         contentView.frame = rightRect;
         [self.scrollView addSubview:contentView];
     }
-    [_scrollView setContentOffset:CGPointMake(_scrollView.frame.size.width, 0)];
+    //[_scrollView setContentOffset:CGPointMake(_scrollView.frame.size.width, 0)];
+    [_scrollView setContentOffset:CGPointMake(0,_scrollView.frame.size.height)];
 }
 
 /**
@@ -150,8 +150,20 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    int contentOffsetX = scrollView.contentOffset.x;
-    if(contentOffsetX >= (2 * CGRectGetWidth(scrollView.frame))) {
+//    int contentOffsetX = scrollView.contentOffset.x;
+//    if(contentOffsetX >= (2 * CGRectGetWidth(scrollView.frame))) {
+//        self.currentPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex + 1];
+//        //NSLog(@"next，当前页:%d",self.currentPageIndex);
+//        [self configContentViews];
+//    }
+//    if(contentOffsetX <= 0) {
+//        self.currentPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex - 1];
+//        //NSLog(@"previous，当前页:%d",self.currentPageIndex);
+//        [self configContentViews];
+//    }
+    
+    int contentOffsetX = scrollView.contentOffset.y;
+    if(contentOffsetX >= (2 * CGRectGetHeight(scrollView.frame))) {
         self.currentPageIndex = [self getValidNextPageIndexWithPageIndex:self.currentPageIndex + 1];
         //NSLog(@"next，当前页:%d",self.currentPageIndex);
         [self configContentViews];
@@ -165,7 +177,8 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    [scrollView setContentOffset:CGPointMake(CGRectGetWidth(scrollView.frame), 0) animated:YES];
+    //[scrollView setContentOffset:CGPointMake(CGRectGetWidth(scrollView.frame), 0) animated:YES];
+    [scrollView setContentOffset:CGPointMake(0, CGRectGetHeight(scrollView.frame)) animated:YES];
 }
 
 #pragma mark -
@@ -173,7 +186,8 @@
 
 - (void)animationTimerDidFired:(NSTimer *)timer
 {
-    CGPoint newOffset = CGPointMake(self.scrollView.contentOffset.x + CGRectGetWidth(self.scrollView.frame), self.scrollView.contentOffset.y);
+    //CGPoint newOffset = CGPointMake(self.scrollView.contentOffset.x + CGRectGetWidth(self.scrollView.frame), self.scrollView.contentOffset.y);
+    CGPoint newOffset = CGPointMake(self.scrollView.contentOffset.x , self.scrollView.contentOffset.y+ CGRectGetHeight(self.scrollView.frame));
     [self.scrollView setContentOffset:newOffset animated:YES];
 }
 

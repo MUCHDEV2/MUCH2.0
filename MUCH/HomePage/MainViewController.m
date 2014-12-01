@@ -50,7 +50,7 @@
     [self.backTopBtn setFrame:CGRectMake(246, 30, 44, 44)];
     [self.backTopBtn addTarget:self action:@selector(gotoTop) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backTopBtn];
-    self.backTopBtn.alpha = .5;
+    self.backTopBtn.alpha = 0;
     
     showArr = [[NSMutableArray alloc] init];
     //集成刷新控件
