@@ -30,6 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    range = @"";
+    from = @"";
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     self.tableView.delegate = self;
@@ -50,7 +52,7 @@
     [self.backTopBtn setFrame:CGRectMake(246, 30, 44, 44)];
     [self.backTopBtn addTarget:self action:@selector(gotoTop) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backTopBtn];
-    self.backTopBtn.alpha = .5;
+    self.backTopBtn.alpha = 0;
     
     showArr = [[NSMutableArray alloc] init];
     //集成刷新控件
@@ -59,6 +61,7 @@
     [self reloadList];
     
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadList) name:@"reloadData" object:nil];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (filtrateData:) name:@"filtrate" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,7 +111,7 @@
                 [self.tableView headerEndRefreshing];
                 [self.tableView footerEndRefreshing];
             }
-        }start:startIndex indexSize:5 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
+        }start:startIndex indexSize:5 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude] range:range from:from];
     }
 }
 
@@ -379,11 +382,15 @@
                 [self.tableView footerEndRefreshing];
                 [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
             }
-        }start:startIndex indexSize:5 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude]];
+        }start:startIndex indexSize:5 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude] range:range from:from];
     }
 }
 
 -(void)loginSucsee{
     [self reloadList];
+}
+
+-(void)filtrateData:(NSNotification *)notification{
+    
 }
 @end

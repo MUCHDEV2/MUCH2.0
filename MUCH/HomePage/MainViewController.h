@@ -17,6 +17,8 @@
 @interface MainViewController : UIViewController<MainHeadTableViewCellDelegate,MainListViewControllerDelegate,ReleaseViewControllerDelegate,LoginViewControllerDelegate>{
     NSMutableArray *showArr;
     int startIndex;
+    NSString *range;//2公里，5公里
+    NSString *from;//0是个人，1是商家
 }
 
 @end

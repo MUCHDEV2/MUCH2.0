@@ -661,6 +661,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3D8BFE51A1AF160007222CC /* TencentOpenAPI.framework in Frameworks */,
 				D3AD325D1A24738C00A76607 /* libWeChatSDK.a in Frameworks */,
 				D3AD325C1A24615B00A76607 /* libbaidumapapi.a in Frameworks */,
 				D3AD325B1A24614400A76607 /* libbaidumapapi.a in Frameworks */,
@@ -671,7 +672,6 @@
 				D3D8BFDB1A1AF11B007222CC /* libstdc++.dylib in Frameworks */,
 				D3D8BFD91A1AF112007222CC /* libsqlite3.0.dylib in Frameworks */,
 				D3D8BFD71A1AF106007222CC /* SystemConfiguration.framework in Frameworks */,
-				D3D8BFE51A1AF160007222CC /* TencentOpenAPI.framework in Frameworks */,
 				D3D8BFD51A1AF0F9007222CC /* CoreTelephony.framework in Frameworks */,
 				D3D8BFD31A1AF0F0007222CC /* CoreLocation.framework in Frameworks */,
 				D3D8BFD11A1AF0E8007222CC /* QuartzCore.framework in Frameworks */,
@@ -1932,8 +1932,10 @@
 					"$(PROJECT_DIR)/MUCH/Tools/BaiduMap/libs/Release-iphonesimulator",
 					"$(PROJECT_DIR)/MUCH/Tools/weixin",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -1958,8 +1960,10 @@
 					"$(PROJECT_DIR)/MUCH/Tools/BaiduMap/libs/Release-iphonesimulator",
 					"$(PROJECT_DIR)/MUCH/Tools/weixin",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};

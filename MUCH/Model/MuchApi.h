@@ -10,7 +10,7 @@
 
 @interface MuchApi : NSObject
 //获取列表
-+ (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block start:(int)start indexSize:(int)indexSize log:(NSString *)log lat:(NSString *)lat;
++ (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block start:(int)start indexSize:(int)indexSize log:(NSString *)log lat:(NSString *)lat range:(NSString *)range from:(NSString *)from;
 
 //发布
 + (NSURLSessionDataTask *)ReleaseWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block price:(NSString *)price imgStr:(NSString *)imgStr log:(NSString *)log lat:(NSString *)lat;
@@ -56,6 +56,9 @@
 
 //回复
 + (NSURLSessionDataTask *)AddReplyWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
+
+//获取单条帖子
++ (NSURLSessionDataTask *)GetSingleListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block postId:(NSString *)postId;
 
 //验证微信
 +(void)GetWeiXin:(void (^)(NSDictionary *posts, NSError *error))block code:(NSString *)code;

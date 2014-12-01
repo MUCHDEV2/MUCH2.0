@@ -14,10 +14,11 @@
 #import "AttentionModel.h"
 #import "JSONKit.h"
 #import "LoginSqlite.h"
+#import "CommentModel.h"
 @implementation MuchApi
 //获取列表
-+ (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block start:(int)start indexSize:(int)indexSize log:(NSString *)log lat:(NSString *)lat{
-    NSString *urlStr = [NSString stringWithFormat:@"/post?offset=%d&size=%d&userid=%@&longitude=%@&latitude=%@",start,indexSize,[LoginSqlite getdata:@"userId"],log,lat];
++ (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block start:(int)start indexSize:(int)indexSize log:(NSString *)log lat:(NSString *)lat range:(NSString *)range from:(NSString *)from{
+    NSString *urlStr = [NSString stringWithFormat:@"/post?offset=%d&size=%d&userid=%@&longitude=%@&latitude=%@&range=%@&from=%@",start,indexSize,[LoginSqlite getdata:@"userId"],log,lat,range,from];
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
@@ -429,6 +430,35 @@
         //[mutablePosts addObject:[JSON objectForKey:@"token"]];
         if (block) {
             block([NSMutableArray arrayWithArray:mutablePosts], nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
+//获取单条帖子
++ (NSURLSessionDataTask *)GetSingleListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block postId:(NSString *)postId{
+    NSString *urlStr = [NSString stringWithFormat:@"/post/%@?userid=%@",postId,[LoginSqlite getdata:@"userId"]];
+    NSLog(@"%@",urlStr);
+    return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON[@"result"][@"comments"]);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"code"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            for(NSDictionary *item in JSON[@"result"][@"comments"]){
+                //NSLog(@"%@",item[@"commentid"]);
+                CommentModel *model = [[CommentModel alloc] init];
+                [model setDict:item];
+                [mutablePosts addObject:model];
+            }
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"text"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         NSLog(@"error ==> %@",error);
