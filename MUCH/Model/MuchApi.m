@@ -17,8 +17,8 @@
 #import "CommentModel.h"
 @implementation MuchApi
 //获取列表
-+ (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block start:(int)start indexSize:(int)indexSize log:(NSString *)log lat:(NSString *)lat{
-    NSString *urlStr = [NSString stringWithFormat:@"/post?offset=%d&size=%d&userid=%@&longitude=%@&latitude=%@",start,indexSize,[LoginSqlite getdata:@"userId"],log,lat];
++ (NSURLSessionDataTask *)GetListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block start:(int)start indexSize:(int)indexSize log:(NSString *)log lat:(NSString *)lat range:(NSString *)range from:(NSString *)from{
+    NSString *urlStr = [NSString stringWithFormat:@"/post?offset=%d&size=%d&userid=%@&longitude=%@&latitude=%@&range=%@&from=%@",start,indexSize,[LoginSqlite getdata:@"userId"],log,lat,range,from];
     NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
