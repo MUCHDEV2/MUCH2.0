@@ -7,6 +7,7 @@
 //
 
 #import "SliderViewController.h"
+#import "WeiboSDK.h"
 static CGFloat kBlackCoverMaxAlpha = 0.6f;
 
 typedef NS_ENUM(NSInteger, RMoveDirection) {
@@ -106,6 +107,13 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
     
     _panOnBlackCoverViewGestureRec = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveViewWithGesture:)];
     [_blackCoverView addGestureRecognizer:_panOnBlackCoverViewGestureRec];
+}
+
+-(void)ddd{
+    WBAuthorizeRequest* request=[WBAuthorizeRequest request];
+    request.redirectURI=kSinaRedirectURI;
+    request.scope=@"all";
+    [WeiboSDK sendRequest:request];
 }
 
 #pragma mark - Init

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "LoginSqlite.h"
+#import "WeiboSDK.h"
 @interface AppDelegate ()
 
 @end
@@ -51,6 +52,10 @@
     //向微信注册
     [WXApi registerApp:@"wx2fe5e9a05cc63f07"];
     
+    //新浪注册
+    [WeiboSDK enableDebugMode:YES];
+    [WeiboSDK registerApp:kSinaAppKey];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [SliderViewController sharedSliderController].LeftVC=[[LeftViewController alloc] init];
         [SliderViewController sharedSliderController].RightVC=[[RightViewController alloc] init];
@@ -68,6 +73,13 @@
     
     
     return YES;
+}
+
+-(void)ddd{
+    WBAuthorizeRequest* request=[WBAuthorizeRequest request];
+    request.redirectURI=kSinaRedirectURI;
+    request.scope=@"all";
+    [WeiboSDK sendRequest:request];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -112,6 +124,9 @@
     NSArray *arr = [[NSString stringWithFormat:@"%@",url] componentsSeparatedByString:@":"];
     if([arr[0] isEqualToString:@"wx2fe5e9a05cc63f07"]){
         return [WXApi handleOpenURL:url delegate:self.loginView];
+    }else if ([arr[0] isEqualToString:@"wb3478815256"]){
+        NSLog(@"333");
+        return 1;
     }else{
         return [TencentOAuth HandleOpenURL:url];
     }

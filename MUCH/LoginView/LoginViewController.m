@@ -12,6 +12,8 @@
 #import "MBProgressHUD.h"
 #import "LoginSqlite.h"
 #import "ForgetPasswordViewController.h"
+#import "AppDelegate.h"
+#import "SliderViewController.h"
 @interface LoginViewController ()<UITextFieldDelegate>
 
 @end
@@ -116,6 +118,7 @@
     
     UIButton *sinaBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [sinaBtn setImage:[UIImage imageNamed:@"weibo_icon"] forState:UIControlStateNormal];
+    [sinaBtn addTarget:self action:@selector(sinaBtnClick) forControlEvents:UIControlEventTouchUpInside];
     sinaBtn.frame = CGRectMake(80, 430, 42, 41);
     [self.view addSubview:sinaBtn];
     
@@ -292,6 +295,22 @@
     } code:resp.code];
 }
 
+/**
+ *  sina微博登录
+ */
+
+-(void)sinaBtnClick{
+    return;
+    SliderViewController* vc=[SliderViewController sharedSliderController];
+    [vc ddd];
+    return;
+    WBAuthorizeRequest* request=[WBAuthorizeRequest request];
+    request.redirectURI=kSinaRedirectURI;
+    request.scope=@"all";
+    [WeiboSDK sendRequest:request];
+}
+
+//*************************************
 -(void)cancelBtnClick{
     [self dismissViewControllerAnimated:YES completion:nil];
 }

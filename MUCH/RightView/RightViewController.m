@@ -54,22 +54,18 @@
 }
 
 -(void)sureBtnClick{
-    NSString* userType;
+    NSString* userType=@"";
     if ([[self.chooses[0] isChoose] isEqualToString:@"1"]) {
         userType=@"0";
     }else if ([[self.chooses[1] isChoose] isEqualToString:@"1"]){
         userType=@"1";
-    }else{
-        userType=@"";
     }
     
-    NSString* range;
+    NSString* range=@"";
     if ([[self.chooses[2] isChoose] isEqualToString:@"1"]) {
         range=@"2";
     }else if ([[self.chooses[3] isChoose] isEqualToString:@"1"]){
         range=@"5";
-    }else{
-        range=@"";
     }
     
     [[NSNotificationCenter defaultCenter]postNotificationName:@"filtrate" object:nil userInfo:@{@"userType":userType,@"range":range}];

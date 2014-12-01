@@ -10,12 +10,13 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "WXApi.h"
 #import "RegisterViewController.h"
+#import "WeiboSDK.h"
 @protocol LoginViewControllerDelegate <NSObject>
 
 -(void)loginSucsee;
 
 @end
-@interface LoginViewController : UIViewController<TencentSessionDelegate,WXApiDelegate>{
+@interface LoginViewController : UIViewController<TencentSessionDelegate,WXApiDelegate,WeiboSDKDelegate>{
     UITextField *phoneTextField;
     UITextField *passWordTextField;
     TencentOAuth *tencentAuth;

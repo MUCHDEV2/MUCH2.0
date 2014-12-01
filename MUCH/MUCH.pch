@@ -19,6 +19,7 @@
 #import "SDImageCache.h"
 #import "UIImageView+WebCache.h"
 #endif
-
 //RGB的宏
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
+#define kSinaAppKey         @"3478815256"
+#define kSinaRedirectURI    @"https://api.weibo.com/oauth2/default.html"

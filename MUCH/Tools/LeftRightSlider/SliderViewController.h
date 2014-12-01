@@ -39,4 +39,5 @@
 - (void)leftItemClick;
 - (void)rightItemClick;
 - (void)closeSideBar;
+-(void)ddd;
 @end
