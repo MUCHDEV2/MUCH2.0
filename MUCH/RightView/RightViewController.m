@@ -48,8 +48,31 @@
     UIButton* sureBtn=[UIButton buttonWithType:UIButtonTypeSystem];
     sureBtn.frame=CGRectMake(270, 0, 50, 30);
     [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
+    [sureBtn addTarget:self action:@selector(sureBtnClick) forControlEvents:UIControlEventTouchUpInside];
     sureBtn.titleLabel.font=font;
     [mainView addSubview:sureBtn];
+}
+
+-(void)sureBtnClick{
+    NSString* userType;
+    if ([[self.chooses[0] isChoose] isEqualToString:@"1"]) {
+        userType=@"0";
+    }else if ([[self.chooses[1] isChoose] isEqualToString:@"1"]){
+        userType=@"1";
+    }else{
+        userType=@"";
+    }
+    
+    NSString* range;
+    if ([[self.chooses[2] isChoose] isEqualToString:@"1"]) {
+        range=@"2";
+    }else if ([[self.chooses[3] isChoose] isEqualToString:@"1"]){
+        range=@"5";
+    }else{
+        range=@"";
+    }
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"filtrate" object:nil userInfo:@{@"userType":userType,@"range":range}];
 }
 
 -(void)getListView{
