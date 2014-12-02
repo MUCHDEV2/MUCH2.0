@@ -18,6 +18,7 @@
     NSTimeInterval lastOffsetCapture;
     CGPoint lastOffset;
     BOOL isScrollingFast;
+    BOOL isShow;
 }
 @property(nonatomic,retain)UIButton *button;
 @property(nonatomic,retain)UIButton *backTopBtn;
@@ -211,22 +212,39 @@
             }];
         } else {
             isScrollingFast = NO;
-            //NSLog(@"Slow");
             [self showBtn];
         }
         
         lastOffset = currentOffset;
         lastOffsetCapture = currentTime;
+        
+        if(currentOffset.y>=754){
+            isShow = YES;
+        }else{
+            isShow = NO;
+        }
     }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     //NSLog(@"scrollViewDidEndDecelerating");
+    CGPoint currentOffset = scrollView.contentOffset;
+    if(currentOffset.y>=754){
+        isShow = YES;
+    }else{
+        isShow = NO;
+    }
     [self showBtn];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     //NSLog(@"scrollViewDidEndDragging");
+    CGPoint currentOffset = scrollView.contentOffset;
+    if(currentOffset.y>=754){
+        isShow = YES;
+    }else{
+        isShow = NO;
+    }
     [self showBtn];
 }
 
@@ -234,14 +252,20 @@
     [UIView animateWithDuration:0.5 animations:^{
         self.button.alpha = 1;
         [self.view addSubview:self.button];
-        self.backTopBtn.alpha = 0.5;
-        [self.view addSubview:self.backTopBtn];
+        if(isShow){
+            self.backTopBtn.alpha = 0.5;
+            [self.view addSubview:self.backTopBtn];
+        }else{
+            self.backTopBtn.alpha = 0;
+            [self.backTopBtn removeFromSuperview];
+        }
     }];
 }
 
 -(void)gotoTop{
     [self.tableView setContentOffset:CGPointMake(0, 114) animated:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        isShow = NO;
         [self showBtn];
     });
 }
