@@ -22,6 +22,5 @@
 @property (strong, nonatomic) BMKLocationService* _locService;
 + (AppDelegate *)instance;
 -(void)initLoginView;
--(void)ddd;
 @end
 

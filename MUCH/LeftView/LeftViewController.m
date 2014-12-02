@@ -194,6 +194,6 @@
     [app initLoginView];
     LoginViewController *loginVC = app.loginView;
     UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
-    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+    [self presentViewController:nv animated:YES completion:nil];
 }
 @end

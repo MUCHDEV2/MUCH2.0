@@ -15,7 +15,6 @@
 #import "MuchApi.h"
 #import "GTMBase64.h"
 #import "LoginSqlite.h"
-#import "WeiboSDK.h"
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     NSTimeInterval lastOffsetCapture;
     CGPoint lastOffset;
@@ -63,15 +62,6 @@
     
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadList) name:@"reloadData" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (filtrateData:) name:@"filtrate" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ddd) name:@"444" object:nil];
-}
-
--(void)ddd{
-    WBAuthorizeRequest* request=[WBAuthorizeRequest request];
-    request.redirectURI=kSinaRedirectURI;
-    request.scope=@"all";
-    [WeiboSDK sendRequest:request];
-    return;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -279,7 +269,7 @@
         LoginViewController *loginVC = app.loginView;
         loginVC.delegate = self;
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
-        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+        [self presentViewController:nv animated:YES completion:nil];
     }else{
         UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
         [actionSheet showInView:self.tableView.superview];

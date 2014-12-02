@@ -75,13 +75,6 @@
     return YES;
 }
 
--(void)ddd{
-    WBAuthorizeRequest* request=[WBAuthorizeRequest request];
-    request.redirectURI=kSinaRedirectURI;
-    request.scope=@"all";
-    [WeiboSDK sendRequest:request];
-}
-
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -115,6 +108,8 @@
     NSArray *arr = [[NSString stringWithFormat:@"%@",url] componentsSeparatedByString:@":"];
     if([arr[0] isEqualToString:@"wx2fe5e9a05cc63f07"]){
         return [WXApi handleOpenURL:url delegate:self.loginView];
+    }else if ([arr[0] isEqualToString:@"wb3478815256"]){
+        return [WeiboSDK handleOpenURL:url delegate:self.loginView];
     }else{
         return [TencentOAuth HandleOpenURL:url];
     }
@@ -125,8 +120,7 @@
     if([arr[0] isEqualToString:@"wx2fe5e9a05cc63f07"]){
         return [WXApi handleOpenURL:url delegate:self.loginView];
     }else if ([arr[0] isEqualToString:@"wb3478815256"]){
-        NSLog(@"333");
-        return 1;
+        return [WeiboSDK handleOpenURL:url delegate:self.loginView];
     }else{
         return [TencentOAuth HandleOpenURL:url];
     }

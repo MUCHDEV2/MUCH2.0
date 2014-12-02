@@ -300,15 +300,13 @@
  */
 
 -(void)sinaBtnClick{
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"444" object:nil];
-    return;
-    SliderViewController* vc=[SliderViewController sharedSliderController];
-    [vc ddd];
-    return;
     WBAuthorizeRequest* request=[WBAuthorizeRequest request];
     request.redirectURI=kSinaRedirectURI;
-    request.scope=@"all";
     [WeiboSDK sendRequest:request];
+}
+
+-(void)didReceiveWeiboResponse:(WBBaseResponse *)response{
+    NSLog(@"response==%@",response.userInfo);
 }
 
 //*************************************
