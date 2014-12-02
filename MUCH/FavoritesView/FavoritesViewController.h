@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FavoritesTableViewCell.h"
-@interface FavoritesViewController : UIViewController{
+@interface FavoritesViewController : UIViewController<FavoritesTableViewCellDelegate>{
     NSMutableArray *showArr;
+    int indexrow;
 }
 
 @end

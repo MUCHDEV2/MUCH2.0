@@ -13,7 +13,7 @@
 #import "MBProgressHUD.h"
 #import "LoginSqlite.h"
 #import "SliderViewController.h"
-@interface FavoritesViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface FavoritesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
 @property(nonatomic,retain)UITableView *tableView;
 
 @end
@@ -56,7 +56,9 @@
             cell = [[FavoritesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
         }
         cell.model = showArr[indexPath.row];
+        cell.indexrow = indexPath.row;
         cell.selectionStyle = NO;
+        cell.delegate = self;
         return cell;
     }else{
         NSString *stringcell = @"Cell";
@@ -89,6 +91,28 @@
         return 151;
     }else{
         return self.view.frame.size.height;
+    }
+}
+
+-(void)showAlertView:(int)indexRow{
+    indexrow = indexRow;
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"关闭" otherButtonTitles:nil, nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+        ListModel *model = showArr[indexrow];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setValue:model.aid forKey:@"postid"];
+        [dic setValue:@"here is close reason" forKey:@"close_reason"];
+        [MuchApi GetCloseListWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关闭帖子" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+                [self reloadList];
+            }
+        } dic:dic];
     }
 }
 

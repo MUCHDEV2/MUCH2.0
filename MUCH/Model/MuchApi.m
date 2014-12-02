@@ -468,6 +468,31 @@
     }];
 }
 
+//关闭帖子
++ (NSURLSessionDataTask *)GetCloseListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic{
+    NSString *urlStr = [NSString stringWithFormat:@"/close"];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:dic forKey:@"close"];
+    NSLog(@"%@",dic);
+    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:parameters success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON[@"result"]);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"code"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"text"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
+
 //验证微信
 +(void)GetWeiXin:(void (^)(NSDictionary *posts, NSError *error))block code:(NSString *)code{
     NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx2fe5e9a05cc63f07&secret=03abac544342b22288ae0fdf5a05d630&code=%@&grant_type=authorization_code",code]];//创建URL

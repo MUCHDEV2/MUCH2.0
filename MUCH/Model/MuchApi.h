@@ -60,6 +60,9 @@
 //获取单条帖子
 + (NSURLSessionDataTask *)GetSingleListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block postId:(NSString *)postId;
 
+//关闭帖子
++ (NSURLSessionDataTask *)GetCloseListWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block dic:(NSMutableDictionary *)dic;
+
 //验证微信
 +(void)GetWeiXin:(void (^)(NSDictionary *posts, NSError *error))block code:(NSString *)code;
 

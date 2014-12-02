@@ -8,6 +8,7 @@
 
 #import "RightViewController.h"
 #import "RightViewCell.h"
+#import "SliderViewController.h"
 @interface RightViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)NSArray* chooses;
 @end
@@ -69,6 +70,7 @@
     }
     
     [[NSNotificationCenter defaultCenter]postNotificationName:@"filtrate" object:nil userInfo:@{@"userType":userType,@"range":range}];
+    [[SliderViewController sharedSliderController] closeSideBar];
 }
 
 -(void)getListView{
