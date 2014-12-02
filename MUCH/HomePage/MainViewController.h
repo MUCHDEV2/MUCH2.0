@@ -20,5 +20,5 @@
     NSString *range;//2公里，5公里
     NSString *from;//0是个人，1是商家
 }
-
+-(void)ddd;
 @end

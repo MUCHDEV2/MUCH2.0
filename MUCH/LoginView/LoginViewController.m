@@ -300,6 +300,7 @@
  */
 
 -(void)sinaBtnClick{
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"444" object:nil];
     return;
     SliderViewController* vc=[SliderViewController sharedSliderController];
     [vc ddd];

@@ -15,6 +15,7 @@
 #import "MuchApi.h"
 #import "GTMBase64.h"
 #import "LoginSqlite.h"
+#import "WeiboSDK.h"
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     NSTimeInterval lastOffsetCapture;
     CGPoint lastOffset;
@@ -62,6 +63,15 @@
     
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadList) name:@"reloadData" object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (filtrateData:) name:@"filtrate" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ddd) name:@"444" object:nil];
+}
+
+-(void)ddd{
+    WBAuthorizeRequest* request=[WBAuthorizeRequest request];
+    request.redirectURI=kSinaRedirectURI;
+    request.scope=@"all";
+    [WeiboSDK sendRequest:request];
+    return;
 }
 
 - (void)didReceiveMemoryWarning {
