@@ -330,7 +330,6 @@
                     [self.delegate loginSucsee];
                 }
             } openId:userModel.userID avatar:userModel.avatarLargeUrl nickName:userModel.name];
-            NSLog(@"%@,%@,%@",userModel.userID.class,userModel.avatarLargeUrl.class,userModel.name.class);
         }
     }];
 }
