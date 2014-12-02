@@ -110,7 +110,6 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"选择了第%d行",indexPath.row);
     if(indexPath.row == 0){
         [[SliderViewController sharedSliderController] showContentControllerWithModel:@"MainViewController"];
         [[SliderViewController sharedSliderController] closeSideBar];

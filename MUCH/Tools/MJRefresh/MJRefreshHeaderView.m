@@ -71,7 +71,7 @@
     [super willMoveToSuperview:newSuperview];
     
     // 设置自己的位置和尺寸
-    self.y = - self.height;
+    self.y = - self.height-20;
     //NSLog(@"self.height ==> %f",self.height);
     /*UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.origin.x, -500, self.frame.size.width, 500)];
     [bgView setImage:[UIImage imageNamed:@"全部项目_02.png"]];
@@ -147,8 +147,7 @@
     
     if (self.scrollView.isDragging) {
         // 普通 和 即将刷新 的临界点
-        CGFloat normal2pullingOffsetY = happenOffsetY - self.height;
-        
+        CGFloat normal2pullingOffsetY = happenOffsetY - self.height-100;
         if (self.state == MJRefreshStateNormal && currentOffsetY < normal2pullingOffsetY) {
             // 转为即将刷新状态
             self.state = MJRefreshStatePulling;

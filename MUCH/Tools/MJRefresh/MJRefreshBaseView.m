@@ -69,7 +69,7 @@
 #pragma mark - 初始化方法
 - (instancetype)initWithFrame:(CGRect)frame {
     //frame.size.height = MJRefreshViewHeight;
-    frame.size.height = 35;
+    frame.size.height = 50;
     if (self = [super initWithFrame:frame]) {
         // 1.自己的属性
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;

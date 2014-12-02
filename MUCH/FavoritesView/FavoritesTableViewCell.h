@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ListModel.h"
+
+@protocol FavoritesTableViewCellDelegate <NSObject>
+
+-(void)showAlertView:(int)indexRow;
+
+@end
 @interface FavoritesTableViewCell : UITableViewCell{
     UIImageView *bgImageView;
     UIImageView *distanceImage;
@@ -17,6 +23,8 @@
     
     UIImageView *statusImageView;
 }
+@property(nonatomic) int indexrow;
 @property(nonatomic,strong)ListModel *model;
+@property(nonatomic,weak)id<FavoritesTableViewCellDelegate>delegate;
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 @end

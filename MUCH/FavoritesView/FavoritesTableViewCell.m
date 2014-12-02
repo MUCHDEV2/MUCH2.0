@@ -51,6 +51,10 @@
     statusImageView.backgroundColor = [UIColor whiteColor];
     statusImageView.alpha = 0;
     [self.contentView addSubview:statusImageView];
+    
+    UILongPressGestureRecognizer *closePress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(closeLong:)];
+    closePress.minimumPressDuration = 0.8; //定义按的时间
+    [self addGestureRecognizer:closePress];
 }
 
 -(void)setModel:(ListModel *)model{
@@ -82,6 +86,16 @@
         statusImageView.alpha = 0.3;
         [distanceImage setImage:[UIImage imageNamed:@"closed_icon_grey"]];
         [priceImage setImage:[UIImage imageNamed:@"closed_icon_grey"]];
+    }
+}
+
+-(void)setIndexrow:(int)indexrow{
+    _indexrow = indexrow;
+}
+
+-(void)closeLong:(UILongPressGestureRecognizer *)gestureRecognizer{
+    if ([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
+        [self.delegate showAlertView:self.indexrow];
     }
 }
 @end

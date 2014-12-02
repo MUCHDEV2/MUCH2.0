@@ -130,15 +130,23 @@
             }else{
                 self.mainScorllView.animation = 0;
                 [self.contentView addSubview:self.mainScorllView];
-                UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(1, 289, 318, 30)];
+                UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 308, 30)];
                 //tempLabel.backgroundColor = [UIColor blackColor];
                 tempLabel.text = [NSString stringWithFormat:@"  %@",model.comments[0][@"content"]];
                 tempLabel.textColor = [UIColor whiteColor];
                 tempLabel.font = [UIFont systemFontOfSize:14];
-                [self.contentView addSubview:tempLabel];
+                [self.mainScorllView addSubview:tempLabel];
             }
         }else{
-            //[self.contentView addSubview:self.mainScorllView];
+            self.mainScorllView.animation = 0;
+            [self.contentView addSubview:self.mainScorllView];
+            UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 308, 30)];
+            //tempLabel.backgroundColor = [UIColor blackColor];
+            tempLabel.text = @"暂未评论！";
+            tempLabel.textColor = [UIColor whiteColor];
+            tempLabel.font = [UIFont systemFontOfSize:14];
+            tempLabel.alpha = 0.5;
+            [self.mainScorllView addSubview:tempLabel];
         }
     }
 }

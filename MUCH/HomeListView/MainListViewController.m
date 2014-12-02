@@ -370,6 +370,9 @@
 }
 
 -(void)filtrateData:(NSNotification *)notification{
-    
+    NSLog(@"%@",notification.userInfo);
+    range = notification.userInfo[@"range"];
+    from = notification.userInfo[@"from"];
+    [self reloadList];
 }
 @end
