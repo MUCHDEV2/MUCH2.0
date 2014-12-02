@@ -100,10 +100,12 @@
         self.view.transform = CGAffineTransformMakeTranslation(0, ty+184);
     }];
     
-    bgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    bgBtn.frame = CGRectMake(0, self.view.frame.origin.y, 320, 320);
-    [bgBtn addTarget:self action:@selector(closeBtn) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:bgBtn];
+    if (!bgBtn) {
+        bgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        bgBtn.frame = CGRectMake(0, self.view.frame.origin.y, 320, 320);
+        [bgBtn addTarget:self action:@selector(closeBtn) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:bgBtn];
+    }
 }
 
 //当键盘隐藏的时候

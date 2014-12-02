@@ -267,8 +267,9 @@
         //第三方向微信终端发送一个SendAuthReq消息结构
         [WXApi sendReq:req];
     }else{
-        UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"还没有安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [view show];
+        UIAlertView* alertView=[[UIAlertView alloc] initWithTitle:@"提醒" message:@"您还没有安装微信，是否安装？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"安装",nil];
+        alertView.tag=1;
+        [alertView show];
     }
 }
 
@@ -329,14 +330,15 @@
                     [self.delegate loginSucsee];
                 }
             } openId:userModel.userID avatar:userModel.avatarLargeUrl nickName:userModel.name];
-            NSLog(@"%@,%@,%@",userModel.userID.class,userModel.avatarLargeUrl.class,userModel.name.class);
         }
     }];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSString* downLoadUrl=alertView.tag?@"weixinurl":@"https://itunes.apple.com/cn/app/wei-bo/id350962117?mt=8";
-    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:downLoadUrl]];
+    if (buttonIndex) {
+        NSString* downLoadUrl=alertView.tag?@"https://itunes.apple.com/cn/app/wei-xin/id414478124?mt=8":@"https://itunes.apple.com/cn/app/wei-bo/id350962117?mt=8";
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:downLoadUrl]];
+    }
 }
 
 //*************************************
