@@ -14,7 +14,8 @@
 #import "ForgetPasswordViewController.h"
 #import "AppDelegate.h"
 #import "SliderViewController.h"
-@interface LoginViewController ()<UITextFieldDelegate>
+#import "WeiboUser.h"
+@interface LoginViewController ()<UITextFieldDelegate,UIAlertViewDelegate>
 
 @end
 
@@ -300,13 +301,42 @@
  */
 
 -(void)sinaBtnClick{
-    WBAuthorizeRequest* request=[WBAuthorizeRequest request];
-    request.redirectURI=kSinaRedirectURI;
-    [WeiboSDK sendRequest:request];
+    if ([WeiboSDK isWeiboAppInstalled]) {
+        WBAuthorizeRequest* request=[WBAuthorizeRequest request];
+        request.redirectURI=kSinaRedirectURI;
+        [WeiboSDK sendRequest:request];
+    }else{
+        UIAlertView* alertView=[[UIAlertView alloc] initWithTitle:@"提醒" message:@"您还没有安装新浪微博，是否安装？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"安装",nil];
+        alertView.tag=0;
+        [alertView show];
+    }
 }
 
 -(void)didReceiveWeiboResponse:(WBBaseResponse *)response{
     NSLog(@"response==%@",response.userInfo);
+    [WBHttpRequest requestForUserProfile:response.userInfo[@"uid"] withAccessToken:response.userInfo[@"access_token"] andOtherProperties:nil queue:nil withCompletionHandler:^(WBHttpRequest *httpRequest, id result, NSError *error) {
+        if (!error) {
+            WeiboUser* userModel=result;
+            NSLog(@"result==%@",userModel.originParaDict);
+            [MuchApi ThirdpartyWithBlock:^(NSMutableArray *posts, NSError *error) {
+                if (!error) {
+                    [LoginSqlite insertData:posts[0][@"avatar"] datakey:@"avatar"];
+                    [LoginSqlite insertData:posts[0][@"id"] datakey:@"userId"];
+                    [LoginSqlite insertData:posts[0][@"nickname"] datakey:@"nickname"];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"reloadData" object:nil];
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [self.delegate loginSucsee];
+                }
+            } openId:userModel.userID avatar:userModel.avatarLargeUrl nickName:userModel.name];
+            NSLog(@"%@,%@,%@",userModel.userID.class,userModel.avatarLargeUrl.class,userModel.name.class);
+        }
+    }];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString* downLoadUrl=alertView.tag?@"weixinurl":@"https://itunes.apple.com/cn/app/wei-bo/id350962117?mt=8";
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:downLoadUrl]];
 }
 
 //*************************************

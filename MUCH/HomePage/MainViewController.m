@@ -269,7 +269,7 @@
         LoginViewController *loginVC = app.loginView;
         loginVC.delegate = self;
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
-        [self presentViewController:nv animated:YES completion:nil];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
         UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"手机相册", nil];
         [actionSheet showInView:self.tableView.superview];

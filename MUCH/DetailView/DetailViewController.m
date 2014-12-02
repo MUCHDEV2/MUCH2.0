@@ -157,7 +157,7 @@
             [app initLoginView];
             LoginViewController *loginVC = app.loginView;
             UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
-            [self presentViewController:nv animated:YES completion:nil];
+            [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
         }else{
             indexRow = (int)indexPath.row;
             CommentModel *commentModel = showArr[indexPath.row-2];
@@ -207,7 +207,7 @@
     [app initLoginView];
     LoginViewController *loginVC = app.loginView;
     UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
-    [self presentViewController:nv animated:YES completion:nil];
+    [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
 }
 
 -(void)showAlertView{
@@ -226,7 +226,7 @@
         [app initLoginView];
         LoginViewController *loginVC = app.loginView;
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
-        [self presentViewController:nv animated:YES completion:nil];
+        [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
     }else{
         flag = 1;
         if(self.toolView.hidden){
