@@ -55,7 +55,8 @@
         if(!cell){
             cell = [[FavoritesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
         }
-        cell.model = showArr[indexPath.row];
+        ListModel *model = showArr[indexPath.row];
+        cell.model = model;
         cell.indexrow = indexPath.row;
         cell.selectionStyle = NO;
         cell.delegate = self;

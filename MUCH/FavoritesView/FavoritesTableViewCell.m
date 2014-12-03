@@ -14,6 +14,16 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        _timeFormatter = [[NSDateFormatter alloc] init];
+        _timeFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale currentLocale] localeIdentifier]];
+        _timeFormatter.timeStyle = NSDateFormatterShortStyle;
+        _timeFormatter.doesRelativeDateFormatting = YES;
+        
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        _dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale currentLocale] localeIdentifier]];
+        _dateFormatter.dateStyle = NSDateFormatterShortStyle;
+        _dateFormatter.doesRelativeDateFormatting = YES;
+        
         [self addContent];
     }
     return self;
@@ -25,7 +35,28 @@
     bgImageView.backgroundColor = [UIColor grayColor];
     [self.contentView addSubview:bgImageView];
     
-    distanceImage = [[UIImageView alloc] initWithFrame:CGRectMake(21, 21, 48, 48)];
+    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(278, 21, 32, 32)];
+    imageview.image = [UIImage imageNamed:@"clock"];
+    [self.contentView addSubview:imageview];
+    
+    _hours = [[UIView alloc] initWithFrame:CGRectMake(292.5, 32.5, 1, 7)];
+    _hours.layer.anchorPoint = CGPointMake(0.5f, 1.0/11.0f);
+    _hours.layer.cornerRadius = 1.0;
+    _hours.layer.shouldRasterize = YES;
+    _hours.layer.contentsScale = [[UIScreen mainScreen] scale];
+    _hours.backgroundColor = [UIColor whiteColor];
+    [self.contentView addSubview:_hours];
+    
+    _minutes = [[UIView alloc] initWithFrame:CGRectMake(292, 31, 1, 10)];
+    _minutes.layer.anchorPoint = CGPointMake(0.5f, 1.0/13.0f);
+    _minutes.layer.cornerRadius = 1.0;
+    _minutes.layer.shouldRasterize = YES;
+    _minutes.layer.contentsScale = [[UIScreen mainScreen] scale];
+    _minutes.backgroundColor = [UIColor whiteColor];
+    [self.contentView addSubview:_minutes];
+    
+    
+    distanceImage = [[UIImageView alloc] initWithFrame:CGRectMake(11, 21, 48, 48)];
     [distanceImage setImage:[UIImage imageNamed:@"distance_icon_green"]];
     [self.contentView addSubview:distanceImage];
     
@@ -36,7 +67,7 @@
     distanceLabel.textColor = [UIColor whiteColor];
     [distanceImage addSubview:distanceLabel];
     
-    priceImage = [[UIImageView alloc] initWithFrame:CGRectMake(21, 79, 48, 48)];
+    priceImage = [[UIImageView alloc] initWithFrame:CGRectMake(11, 79, 48, 48)];
     [priceImage setImage:[UIImage imageNamed:@"price_icon_red"]];
     [self.contentView addSubview:priceImage];
     
@@ -52,12 +83,61 @@
     statusImageView.alpha = 0;
     [self.contentView addSubview:statusImageView];
     
+    timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(170, 20, 180, 30)];
+    timeLabel.font = [UIFont systemFontOfSize:12];
+    timeLabel.textColor = [UIColor whiteColor];
+    [self.contentView addSubview:timeLabel];
+    
+    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(293, 60, 1, 80)];
+    [lineImage setImage:[UIImage imageNamed:@"distance"]];
+    [self.contentView addSubview:lineImage];
+    
     UILongPressGestureRecognizer *closePress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(closeLong:)];
     closePress.minimumPressDuration = 0.8; //定义按的时间
     [self addGestureRecognizer:closePress];
+    
 }
 
 -(void)setModel:(ListModel *)model{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    //[dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    NSArray *arr = [model.created componentsSeparatedByString:@"."];
+    NSArray *arr2 = [arr[0] componentsSeparatedByString:@"T"];
+    NSString *str = [NSString stringWithFormat:@"%@ %@",arr2[0],arr2[1]];
+    NSLog(@"%@",str);
+    NSDate *tableDate = [dateFormatter dateFromString:str];
+    NSLog(@"%@",tableDate);
+    // Update date
+    NSDate *date = tableDate;
+    if (!date || [date isEqualToDate:_lastDate]){
+        return;
+    }
+    if (!_lastDate) {
+        _lastDate = [NSDate date];
+    }
+    
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:date];
+    
+    CGFloat minuteHourAngle = 180.0f + dateComponents.minute * 6.0f;
+    CGFloat dateHourAngle = 180.0f + 0.5 * (dateComponents.hour * 60.0f);
+    
+    [UIView animateWithDuration:0.2f delay:0.0f options:(UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowAnimatedContent)  animations:^{
+        // Animate clock rotation
+        _hours.transform = CGAffineTransformMakeRotation(dateHourAngle * (M_PI / 180.0f));
+        _minutes.transform = CGAffineTransformMakeRotation(minuteHourAngle * (M_PI / 180.0f));
+        self.layer.mask.frame = self.bounds;
+    } completion:^(BOOL finished){
+    
+    }];
+    
+    _lastDate = date;
+    
+    NSString *str2 = [NSString stringWithFormat:@"%@,%@",arr2[0],arr2[1]];
+    str2 = [str2 substringWithRange:NSMakeRange(0,str2.length-3)];
+    timeLabel.text = [NSString stringWithFormat:@"%@",str2];
+    
+    
     [bgImageView sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         //图片裁剪
         UIImage *srcimg = image;

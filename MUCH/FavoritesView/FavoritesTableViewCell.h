@@ -20,11 +20,16 @@
     UIImageView *priceImage;
     UILabel *distanceLabel;
     UILabel *priceLabel;
+    UILabel *timeLabel;
     
     UIImageView *statusImageView;
 }
 @property(nonatomic) int indexrow;
 @property(nonatomic,strong)ListModel *model;
+@property (nonatomic, strong) UIView *hours, *minutes;
+@property (nonatomic, strong) NSDate *lastDate;
+@property (nonatomic, copy) NSDateFormatter *timeFormatter;
+@property (nonatomic, copy) NSDateFormatter *dateFormatter;
 @property(nonatomic,weak)id<FavoritesTableViewCellDelegate>delegate;
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 @end
