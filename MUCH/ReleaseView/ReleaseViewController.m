@@ -22,11 +22,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    NSLog(@"%f",self.image.size.height);
     [SliderViewController sharedSliderController].canMoveWithGesture = NO;
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+    bgView.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:bgView];
+    
+    UIImageView *imageView = [[UIImageView alloc] init];
+    if(self.image.size.height<320){
+        imageView.frame = CGRectMake(0, (320-self.image.size.height)/2, 320, self.image.size.height);
+    }else{
+        imageView.frame = CGRectMake(0, 0, 320, 320);
+    }
     imageView.image = self.image;
     [self.view addSubview:imageView];
     

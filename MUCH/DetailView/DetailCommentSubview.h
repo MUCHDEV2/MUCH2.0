@@ -18,5 +18,5 @@
 #define ContentFont [UIFont systemFontOfSize:12]
 #define ContentWidth 250
 #define UserNameColor RGBCOLOR(10,95,254)
-#define BackGround RGBCOLOR(237,237,237)
+#define BackGround RGBCOLOR(221,221,221)
 #define ContentColor RGBCOLOR(128,128,128)

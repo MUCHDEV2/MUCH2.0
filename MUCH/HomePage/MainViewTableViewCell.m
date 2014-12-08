@@ -21,7 +21,11 @@
 }
 
 -(void)addContent{
-    bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, 318, 318)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(1, 1, 318, 318)];
+    bgView.backgroundColor = [UIColor blackColor];
+    [self.contentView addSubview:bgView];
+    
+    bgImageView = [[UIImageView alloc] init];
     bgImageView.backgroundColor = [UIColor grayColor];
     [self.contentView addSubview:bgImageView];
     
@@ -57,30 +61,24 @@
     }else{
         headImageView.isLove = NO;
     }
-    __block UIActivityIndicatorView *activityIndicator;
+    
     [bgImageView sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-        if (!activityIndicator) {
-//            [bgImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
-//            activityIndicator.center = bgImageView.center;
-//            [activityIndicator startAnimating];
-        }
+
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        [activityIndicator removeFromSuperview];
-        activityIndicator = nil;
+        if(image.size.height<320){
+            bgImageView.frame = CGRectMake(1, (320-image.size.height)/2, 318, image.size.height);
+        }else{
+            bgImageView.frame = CGRectMake(1, 1, 318, 318);
+        }
     }];
     
     if(![[NSString stringWithFormat:@"%@",model.createdby] isEqualToString:@"<null>"]){
         contactId = model.createdby[@"_id"];
         headImageView.hidden = NO;
         [headImageView.userImageView sd_setImageWithURL:[NSURL URLWithString:model.createdby[@"avatar"]] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-            if (!activityIndicator) {
-                [headImageView.userImageView addSubview:activityIndicator = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]];
-                activityIndicator.center = headImageView.center;
-                [activityIndicator startAnimating];
-            }
+            
         } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            [activityIndicator removeFromSuperview];
-            activityIndicator = nil;
+            
         }];
     }else{
         [headImageView.userImageView setImage:nil];
@@ -103,7 +101,7 @@
     for (int i = 0; i < model.comments.count; ++i) {
         UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 305, 30)];
         //tempLabel.backgroundColor = [UIColor blackColor];
-        tempLabel.text = [NSString stringWithFormat:@"%@",model.comments[i][@"content"]];
+        tempLabel.text = [NSString stringWithFormat:@"%@: %@",model.comments[i][@"nickname"],model.comments[i][@"content"]];
         tempLabel.textColor = [UIColor whiteColor];
         tempLabel.font = [UIFont systemFontOfSize:14];
         [tempLabel setTransform:CGAffineTransformMakeRotation(M_PI)];
@@ -132,7 +130,7 @@
                 [self.contentView addSubview:self.mainScorllView];
                 UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 308, 30)];
                 //tempLabel.backgroundColor = [UIColor blackColor];
-                tempLabel.text = [NSString stringWithFormat:@"  %@",model.comments[0][@"content"]];
+                tempLabel.text = [NSString stringWithFormat:@"%@: %@",model.comments[0][@"nickname"],model.comments[0][@"content"]];
                 tempLabel.textColor = [UIColor whiteColor];
                 tempLabel.font = [UIFont systemFontOfSize:14];
                 [self.mainScorllView addSubview:tempLabel];

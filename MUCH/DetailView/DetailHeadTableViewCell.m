@@ -23,7 +23,11 @@
 }
 
 -(void)addContent{
-    bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, 318, 318)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(1, 1, 318, 318)];
+    bgView.backgroundColor = [UIColor blackColor];
+    [self.contentView addSubview:bgView];
+    
+    bgImageView = [[UIImageView alloc] init];
     bgImageView.backgroundColor = [UIColor grayColor];
     [self.contentView addSubview:bgImageView];
     
@@ -43,7 +47,15 @@
 }
 
 -(void)setImageUrl:(NSString *)imageUrl{
-    [bgImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
+    [bgImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        
+    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if(image.size.height<320){
+            bgImageView.frame = CGRectMake(1, (320-image.size.height)/2, 318, image.size.height);
+        }else{
+            bgImageView.frame = CGRectMake(1, 1, 318, 318);
+        }
+    }];
 }
 
 -(void)setYoulikeit:(NSString *)youlikeit{

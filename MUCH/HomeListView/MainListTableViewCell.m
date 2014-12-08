@@ -21,6 +21,10 @@
 }
 
 -(void)addContent{
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(1, 1, 318, 174)];
+    bgView.backgroundColor = [UIColor blackColor];
+    [self.contentView addSubview:bgView];
+    
     bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, 318, 174)];
     bgImageView.backgroundColor = [UIColor grayColor];
     [self.contentView addSubview:bgImageView];
@@ -55,12 +59,18 @@
 -(void)setModel:(ListModel *)model{
     __block UIActivityIndicatorView *activityIndicator;
     [bgImageView sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        //图片裁剪
-        UIImage *srcimg = image;
-        CGRect rect =  CGRectMake(0, 145, 640, 350);//要裁剪的图片区域，按照原图的像素大小来，超过原图大小的边自动适配
-        CGImageRef cgimg = CGImageCreateWithImageInRect([srcimg CGImage], rect);
-        bgImageView.image = [UIImage imageWithCGImage:cgimg];
-        CGImageRelease(cgimg);//用完一定要释放，否则内存泄露
+        if(image.size.height<175){
+            bgImageView.frame = CGRectMake(1, (174-image.size.height)/2, 318, image.size.height);
+             bgImageView.image = image;
+        }else{
+            //图片裁剪
+            UIImage *srcimg = image;
+            CGRect rect =  CGRectMake(0, 145, 640, 350);//要裁剪的图片区域，按照原图的像素大小来，超过原图大小的边自动适配
+            CGImageRef cgimg = CGImageCreateWithImageInRect([srcimg CGImage], rect);
+            bgImageView.frame = CGRectMake(1, 1, 318, 174);
+             bgImageView.image = [UIImage imageWithCGImage:cgimg];
+            CGImageRelease(cgimg);//用完一定要释放，否则内存泄露
+        }
     }];
     
     if(![[NSString stringWithFormat:@"%@",model.createdby] isEqualToString:@"<null>"]){
@@ -98,7 +108,7 @@
     for (int i = 0; i < model.comments.count; ++i) {
         UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 318, 20)];
         //tempLabel.backgroundColor = [UIColor blackColor];
-        tempLabel.text = [NSString stringWithFormat:@"%@",model.comments[i][@"content"]];
+        tempLabel.text = [NSString stringWithFormat:@"%@: %@",model.comments[i][@"nickname"],model.comments[i][@"content"]];
         tempLabel.textColor = [UIColor whiteColor];
         tempLabel.font = [UIFont systemFontOfSize:14];
         [tempLabel setTransform:CGAffineTransformMakeRotation(M_PI)];
@@ -127,7 +137,7 @@
                 [self.contentView addSubview:self.mainScorllView];
                 UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 154, 305, 20)];
                 //tempLabel.backgroundColor = [UIColor blackColor];
-                tempLabel.text = [NSString stringWithFormat:@"%@",model.comments[0][@"content"]];
+                tempLabel.text = [NSString stringWithFormat:@"%@: %@",model.comments[0][@"nickname"],model.comments[0][@"content"]];
                 tempLabel.textColor = [UIColor whiteColor];
                 tempLabel.font = [UIFont systemFontOfSize:14];
                 [self.mainScorllView addSubview:tempLabel];
