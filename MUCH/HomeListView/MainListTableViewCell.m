@@ -135,7 +135,7 @@
             }else{
                 self.mainScorllView.animation = 0;
                 [self.contentView addSubview:self.mainScorllView];
-                UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 154, 305, 20)];
+                UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 174, 305, 20)];
                 //tempLabel.backgroundColor = [UIColor blackColor];
                 tempLabel.text = [NSString stringWithFormat:@"%@: %@",model.comments[0][@"nickname"],model.comments[0][@"content"]];
                 tempLabel.textColor = [UIColor whiteColor];
@@ -145,7 +145,7 @@
         }else{
             self.mainScorllView.animation = 0;
             [self.contentView addSubview:self.mainScorllView];
-            UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 154, 305, 20)];
+            UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 174, 305, 20)];
             //tempLabel.backgroundColor = [UIColor blackColor];
             tempLabel.text = @"暂未评论";
             tempLabel.textColor = [UIColor whiteColor];

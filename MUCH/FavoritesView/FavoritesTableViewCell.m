@@ -99,17 +99,16 @@
 }
 
 -(void)setModel:(ListModel *)model{
+    NSLog(@"%@",model.created);
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    //[dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     NSArray *arr = [model.created componentsSeparatedByString:@"."];
     NSArray *arr2 = [arr[0] componentsSeparatedByString:@"T"];
     NSString *str = [NSString stringWithFormat:@"%@ %@",arr2[0],arr2[1]];
-    NSLog(@"%@",str);
     NSDate *tableDate = [dateFormatter dateFromString:str];
-    NSLog(@"%@",tableDate);
+    NSLog(@"%@",[tableDate dateByAddingTimeInterval:8*60*60]);
     // Update date
-    NSDate *date = tableDate;
+    NSDate *date = [tableDate dateByAddingTimeInterval:8*60*60];
     if (!date || [date isEqualToDate:_lastDate]){
         return;
     }
@@ -133,8 +132,7 @@
     
     _lastDate = date;
     
-    NSString *str2 = [NSString stringWithFormat:@"%@,%@",arr2[0],arr2[1]];
-    str2 = [str2 substringWithRange:NSMakeRange(0,str2.length-3)];
+    NSString *str2 = [[dateFormatter stringFromDate:date] substringWithRange:NSMakeRange(0,[dateFormatter stringFromDate:date].length-3)];
     timeLabel.text = [NSString stringWithFormat:@"%@",str2];
     
     
