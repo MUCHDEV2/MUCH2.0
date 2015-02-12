@@ -97,7 +97,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)didUpdateUserLocation:(BMKUserLocation *)userLocation{
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
     NSLog(@"定位跟新");
     NSLog(@"当前的坐标  维度:%f,经度:%f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     self.coor = userLocation.location.coordinate;
