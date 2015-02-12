@@ -60,10 +60,10 @@
         [SliderViewController sharedSliderController].LeftVC=[[LeftViewController alloc] init];
         [SliderViewController sharedSliderController].RightVC=[[RightViewController alloc] init];
         [SliderViewController sharedSliderController].RightSContentOffset=260;
-        [SliderViewController sharedSliderController].RightSContentScale=0.6;
-        [SliderViewController sharedSliderController].RightSOpenDuration=0.8;
-        [SliderViewController sharedSliderController].RightSCloseDuration=0.8;
-        [SliderViewController sharedSliderController].RightSJudgeOffset=160;
+        [SliderViewController sharedSliderController].RightSContentScale=1.0;
+//        [SliderViewController sharedSliderController].RightSOpenDuration=0.8;
+//        [SliderViewController sharedSliderController].RightSCloseDuration=0.8;
+//        [SliderViewController sharedSliderController].RightSJudgeOffset=160;
         [SliderViewController sharedSliderController].LeftSContentScale=1.0;
         [SliderViewController sharedSliderController].LeftSContentOffset=260;
         self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[SliderViewController sharedSliderController]];
