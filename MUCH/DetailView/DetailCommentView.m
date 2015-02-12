@@ -92,6 +92,7 @@
     self.replayTableView.dataSource=self;
     self.replayTableView.allowsSelection=NO;
     self.replayTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.replayTableView.backgroundColor = RGBCOLOR(221, 221, 221);
     [self addSubview:self.replayTableView];
 }
 

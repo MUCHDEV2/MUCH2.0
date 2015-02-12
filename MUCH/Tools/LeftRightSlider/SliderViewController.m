@@ -77,6 +77,8 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
         _RightSCloseDuration=0.3;
         _canMoveWithGesture = YES;
         _canRightMoveWithGesture = YES;
+        _LeftStartX=0;
+        _RightStartX=0;
     }
         
     return self;
@@ -174,7 +176,9 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
     
     controller.view.frame = _mainContentView.frame;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
-    nav.navigationBarHidden = YES;
+    //nav.navigationBarHidden = YES;
+    //NavigationBar设置背景图
+    nav.navigationBar.barTintColor = RGBCOLOR(255,228,19);
     [_mainContentView addSubview:nav.view];
     self.MainVC=nav;
 }
@@ -185,9 +189,10 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
     
     [self.view sendSubviewToBack:_rightSideView];
     [self configureViewShadowWithDirection:RMoveDirectionRight];
-    
+    _leftSideView.frame=CGRectMake(_LeftStartX, 0, _leftSideView.frame.size.width, _leftSideView.frame.size.height);
     [UIView animateWithDuration:_LeftSOpenDuration
                      animations:^{
+                         _leftSideView.frame=CGRectMake(0, 0, _leftSideView.frame.size.width, _leftSideView.frame.size.height);
                          _mainContentView.transform = conT;
                          _blackCoverView.hidden = NO;
                          _blackCoverView.alpha = kBlackCoverMaxAlpha;
@@ -204,9 +209,10 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
     
     [self.view sendSubviewToBack:_leftSideView];
     [self configureViewShadowWithDirection:RMoveDirectionLeft];
-    
+    _rightSideView.frame=CGRectMake(_RightStartX, 0, _rightSideView.frame.size.width, _rightSideView.frame.size.height);
     [UIView animateWithDuration:_RightSOpenDuration
                      animations:^{
+                         _rightSideView.frame=CGRectMake(0, 0, _rightSideView.frame.size.width, _rightSideView.frame.size.height);
                          _mainContentView.transform = conT;
                          _blackCoverView.hidden = NO;
                          _blackCoverView.alpha = kBlackCoverMaxAlpha;
@@ -222,6 +228,8 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
     CGAffineTransform oriT = CGAffineTransformIdentity;
     [UIView animateWithDuration:_mainContentView.transform.tx==_LeftSContentOffset?_LeftSCloseDuration:_RightSCloseDuration
                      animations:^{
+                         _leftSideView.frame=CGRectMake(_LeftStartX, 0, _leftSideView.frame.size.width, _leftSideView.frame.size.height);
+                         _rightSideView.frame=CGRectMake(_RightStartX, 0, _leftSideView.frame.size.width, _leftSideView.frame.size.height);
                          _mainContentView.transform = oriT;
                          _blackCoverView.alpha = 0.0f;
                          _blackCoverView.frame = _mainContentView.frame;
@@ -256,7 +264,7 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
         {
             [self.view sendSubviewToBack:_rightSideView];
             [self configureViewShadowWithDirection:RMoveDirectionRight];
-            
+            _rightSideView.frame=CGRectMake(_RightStartX, 0, _rightSideView.frame.size.width, _rightSideView.frame.size.height);
             if (_mainContentView.frame.origin.x < _LeftSContentOffset)
             {
                 sca = 1 - (_mainContentView.frame.origin.x/_LeftSContentOffset) * (1-_LeftSContentScale);
@@ -264,6 +272,9 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
             else
             {
                 sca = _LeftSContentScale;
+            }
+            if (_LeftStartX!=0) {
+                _leftSideView.frame=CGRectMake((_LeftStartX+transX)>=0?0:(_LeftStartX+transX), 0, _leftSideView.frame.size.width, _leftSideView.frame.size.height);
             }
             blackCoverAlpha = MIN((transX/_LeftSContentOffset * kBlackCoverMaxAlpha), kBlackCoverMaxAlpha);
             isTransformView = YES;
@@ -275,7 +286,7 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
             }else{}
             [self.view sendSubviewToBack:_leftSideView];
             [self configureViewShadowWithDirection:RMoveDirectionLeft];
-            
+            _leftSideView.frame=CGRectMake(_LeftStartX, 0, _leftSideView.frame.size.width, _leftSideView.frame.size.height);
             if (_mainContentView.frame.origin.x > -_RightSContentOffset)
             {
                 sca = 1 - (-_mainContentView.frame.origin.x/_RightSContentOffset) * (1-_RightSContentScale);
@@ -284,6 +295,14 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
             {
                 sca = _RightSContentScale;
             }
+            if (_RightStartX!=0) {
+                _rightSideView.frame=CGRectMake((_RightStartX+transX)>=0?0:(_RightStartX+transX), 0, _rightSideView.frame.size.width, _rightSideView.frame.size.height);
+            }
+            CGAffineTransform transS = CGAffineTransformMakeScale(sca, sca);
+            CGAffineTransform transT = CGAffineTransformMakeTranslation(transX, 0);
+            
+            CGAffineTransform conT = CGAffineTransformConcat(transT, transS);
+            _mainContentView.transform = conT;
             blackCoverAlpha = MIN((-transX/_RightSContentOffset * kBlackCoverMaxAlpha), kBlackCoverMaxAlpha);
             isTransformView = YES;
         }
@@ -397,9 +416,9 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
             break;
     }
     
-    //_mainContentView.layer.shadowOffset = CGSizeMake(shadowW, 1.0);
-    //_mainContentView.layer.shadowColor = [UIColor blackColor].CGColor;
-    //_mainContentView.layer.shadowOpacity = 0.8f;
+    _mainContentView.layer.shadowOffset = CGSizeMake(shadowW, 1.0);
+    _mainContentView.layer.shadowColor = [UIColor blackColor].CGColor;
+    _mainContentView.layer.shadowOpacity = 0.8f;
 }
 
 

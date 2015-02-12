@@ -12,6 +12,7 @@
 #import "userModel.h"
 #import "TitleView.h"
 #import "LoginSqlite.h"
+#import "SliderViewController.h"
 @interface CenterViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,TitleViewDelegate>
 @property(nonatomic,weak)UIButton* userImageView;
 @property(nonatomic,strong)UIImage* userImage;
@@ -60,6 +61,7 @@
             [LoginSqlite insertData:posts[0][@"avatar"] datakey:@"avatar"];
             [LoginSqlite insertData:posts[0][@"nickname"] datakey:@"nickname"];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"changHead" object:nil];
+            [[SliderViewController sharedSliderController] leftItemClick];
         }
     } dic:dic];
 }

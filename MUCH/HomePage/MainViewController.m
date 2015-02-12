@@ -33,27 +33,28 @@
     // Do any additional setup after loading the view.
     range = @"";
     from = @"";
+    self.title = @"MUCH";
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
-    [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
+    //[self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
     self.tableView.separatorStyle = NO;
     self.tableView.backgroundColor = RGBCOLOR(220, 220, 220);
     
-    self.button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.button setImage:[UIImage imageNamed:@"menu_icon"] forState:UIControlStateNormal];
-    [self.button setFrame:CGRectMake(30, 494, 44, 44)];
-    [self.button addTarget:self action:@selector(gotoLeftView) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.button];
-    
-    self.backTopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.backTopBtn setImage:[UIImage imageNamed:@"back_to_top"] forState:UIControlStateNormal];
-    [self.backTopBtn setFrame:CGRectMake(246, 30, 44, 44)];
-    [self.backTopBtn addTarget:self action:@selector(gotoTop) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.backTopBtn];
-    self.backTopBtn.alpha = 0;
+//    self.button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.button setImage:[UIImage imageNamed:@"menu_icon"] forState:UIControlStateNormal];
+//    [self.button setFrame:CGRectMake(30, 494, 44, 44)];
+//    [self.button addTarget:self action:@selector(gotoLeftView) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:self.button];
+//    
+//    self.backTopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.backTopBtn setImage:[UIImage imageNamed:@"back_to_top"] forState:UIControlStateNormal];
+//    [self.backTopBtn setFrame:CGRectMake(246, 30, 44, 44)];
+//    [self.backTopBtn addTarget:self action:@selector(gotoTop) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:self.backTopBtn];
+//    self.backTopBtn.alpha = 0;
     
     showArr = [[NSMutableArray alloc] init];
     //集成刷新控件
@@ -118,39 +119,47 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == 0){
-        NSString *stringcell = @"MainHeadTableViewCell";
-        MainHeadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
-        if(!cell){
-            cell = [[MainHeadTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell index:0] ;
-        }
-        cell.delegate = self;
-        cell.selectionStyle = NO;
-        return cell;
-    }else if (indexPath.row == 1){
-        NSString *stringcell = @"MainHeadTableViewCell2";
-        MainHeadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
-        if(!cell){
-            cell = [[MainHeadTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell index:1] ;
-        }
-        cell.delegate = self;
-        cell.selectionStyle = NO;
-        return cell;
-    }else{
-        NSString *stringcell = @"MainViewTableViewCell";
-        MainViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
-        if(!cell){
-            cell = [[MainViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
-        }
-        cell.model = showArr[indexPath.row-2];
-        cell.selectionStyle = NO;
-        return cell;
+//    if(indexPath.row == 0){
+//        NSString *stringcell = @"MainHeadTableViewCell";
+//        MainHeadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
+//        if(!cell){
+//            cell = [[MainHeadTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell index:0] ;
+//        }
+//        cell.delegate = self;
+//        cell.selectionStyle = NO;
+//        return cell;
+//    }else if (indexPath.row == 1){
+//        NSString *stringcell = @"MainHeadTableViewCell2";
+//        MainHeadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
+//        if(!cell){
+//            cell = [[MainHeadTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell index:1] ;
+//        }
+//        cell.delegate = self;
+//        cell.selectionStyle = NO;
+//        return cell;
+//    }else{
+//        NSString *stringcell = @"MainViewTableViewCell";
+//        MainViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
+//        if(!cell){
+//            cell = [[MainViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
+//        }
+//        cell.model = showArr[indexPath.row-2];
+//        cell.selectionStyle = NO;
+//        return cell;
+//    }
+    NSString *stringcell = @"MainViewTableViewCell";
+    MainViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:stringcell];
+    if(!cell){
+        cell = [[MainViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
     }
+    cell.model = showArr[indexPath.row];
+    cell.selectionStyle = NO;
+    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return showArr.count+2;
+    return showArr.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -159,15 +168,15 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.row <2){
-        return 57;
-    }
+//    if(indexPath.row <2){
+//        return 57;
+//    }
     return 319;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.row>=2){
-        ListModel *model = showArr[indexPath.row-2];
+    //if(indexPath.row>=2){
+        ListModel *model = showArr[indexPath.row];
         DetailViewController *detailView = [[DetailViewController alloc] init];
         detailView.aid = model.aid;
         detailView.imageUrl = model.content;
@@ -177,103 +186,103 @@
         detailView.price = model.price;
         detailView.commentsArr = model.comments;
         [self.navigationController pushViewController:detailView animated:YES];
-    }
+    //}
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    CGFloat sectionHeaderHeight = 114;
-    
-    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
-        
-        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
-        
-    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
-        
-        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-        
-    }
-    
-    // 这里做预加载
-    CGPoint currentOffset = scrollView.contentOffset;
-    NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
-    
-    NSTimeInterval timeDiff = currentTime - lastOffsetCapture;
-    //NSLog(@"%f",timeDiff);
-    if(timeDiff > 0.1) {
-        CGFloat distance = currentOffset.y - lastOffset.y;
-        //The multiply by 10, / 1000 isn't really necessary.......
-        CGFloat scrollSpeedNotAbs = (distance * 10) / 1700; //in pixels per millisecond
-        
-        CGFloat scrollSpeed = fabsf(scrollSpeedNotAbs);
-        if (scrollSpeed > 0.5) {
-            isScrollingFast = YES;
-            //NSLog(@"Fast");
-            [UIView animateWithDuration:0.5 animations:^{
-                self.button.alpha = 0;
-                [self.button removeFromSuperview];
-                self.backTopBtn.alpha = 0;
-                [self.backTopBtn removeFromSuperview];
-            }];
-        } else {
-            isScrollingFast = NO;
-            //NSLog(@"Slow");
-            [self showBtn];
-        }
-        
-        lastOffset = currentOffset;
-        lastOffsetCapture = currentTime;
-        
-        if(currentOffset.y>=754){
-            isShow = YES;
-        }else{
-            isShow = NO;
-        }
-    }
-}
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    CGFloat sectionHeaderHeight = 114;
+//    
+//    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+//        
+//        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+//        
+//    } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+//        
+//        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+//        
+//    }
+//    
+//    // 这里做预加载
+//    CGPoint currentOffset = scrollView.contentOffset;
+//    NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
+//    
+//    NSTimeInterval timeDiff = currentTime - lastOffsetCapture;
+//    //NSLog(@"%f",timeDiff);
+//    if(timeDiff > 0.1) {
+//        CGFloat distance = currentOffset.y - lastOffset.y;
+//        //The multiply by 10, / 1000 isn't really necessary.......
+//        CGFloat scrollSpeedNotAbs = (distance * 10) / 1700; //in pixels per millisecond
+//        
+//        CGFloat scrollSpeed = fabsf(scrollSpeedNotAbs);
+//        if (scrollSpeed > 0.5) {
+//            isScrollingFast = YES;
+//            //NSLog(@"Fast");
+//            [UIView animateWithDuration:0.5 animations:^{
+//                self.button.alpha = 0;
+//                [self.button removeFromSuperview];
+//                self.backTopBtn.alpha = 0;
+//                [self.backTopBtn removeFromSuperview];
+//            }];
+//        } else {
+//            isScrollingFast = NO;
+//            //NSLog(@"Slow");
+//            [self showBtn];
+//        }
+//        
+//        lastOffset = currentOffset;
+//        lastOffsetCapture = currentTime;
+//        
+//        if(currentOffset.y>=754){
+//            isShow = YES;
+//        }else{
+//            isShow = NO;
+//        }
+//    }
+//}
+//
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+//    //NSLog(@"scrollViewDidEndDecelerating");
+//    CGPoint currentOffset = scrollView.contentOffset;
+//    if(currentOffset.y>=754){
+//        isShow = YES;
+//    }else{
+//        isShow = NO;
+//    }
+//    [self showBtn];
+//}
+//
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+//    //NSLog(@"scrollViewDidEndDragging");
+//    CGPoint currentOffset = scrollView.contentOffset;
+//    if(currentOffset.y>=754){
+//        isShow = YES;
+//    }else{
+//        isShow = NO;
+//    }
+//    [self showBtn];
+//}
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    //NSLog(@"scrollViewDidEndDecelerating");
-    CGPoint currentOffset = scrollView.contentOffset;
-    if(currentOffset.y>=754){
-        isShow = YES;
-    }else{
-        isShow = NO;
-    }
-    [self showBtn];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    //NSLog(@"scrollViewDidEndDragging");
-    CGPoint currentOffset = scrollView.contentOffset;
-    if(currentOffset.y>=754){
-        isShow = YES;
-    }else{
-        isShow = NO;
-    }
-    [self showBtn];
-}
-
--(void)showBtn{
-    [UIView animateWithDuration:0.5 animations:^{
-        self.button.alpha = 1;
-        [self.view addSubview:self.button];
-        if(isShow){
-            self.backTopBtn.alpha = 0.5;
-            [self.view addSubview:self.backTopBtn];
-        }else{
-            self.backTopBtn.alpha = 0;
-            [self.backTopBtn removeFromSuperview];
-        }
-    }];
-}
-
--(void)gotoTop{
-    [self.tableView setContentOffset:CGPointMake(0, 114) animated:YES];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        isShow = NO;
-        [self showBtn];
-    });
-}
+//-(void)showBtn{
+//    [UIView animateWithDuration:0.5 animations:^{
+//        self.button.alpha = 1;
+//        [self.view addSubview:self.button];
+//        if(isShow){
+//            self.backTopBtn.alpha = 0.5;
+//            [self.view addSubview:self.backTopBtn];
+//        }else{
+//            self.backTopBtn.alpha = 0;
+//            [self.backTopBtn removeFromSuperview];
+//        }
+//    }];
+//}
+//
+//-(void)gotoTop{
+//    [self.tableView setContentOffset:CGPointMake(0, 114) animated:YES];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        isShow = NO;
+//        [self showBtn];
+//    });
+//}
 
 -(void)gotofiltrate{
     NSLog(@"筛选");
@@ -406,7 +415,7 @@
                 [self.tableView reloadData];
                 [self.tableView headerEndRefreshing];
                 [self.tableView footerEndRefreshing];
-                [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
+                //[self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
             }
         }start:startIndex indexSize:5 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude] range:range from:from];
     }

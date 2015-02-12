@@ -29,6 +29,9 @@
 @property(nonatomic,assign)float LeftSCloseDuration;
 @property(nonatomic,assign)float RightSCloseDuration;
 
+@property(nonatomic,assign)float LeftStartX;
+@property(nonatomic,assign)float RightStartX;
+
 @property (nonatomic, assign) BOOL canMoveWithGesture;
 
 @property (nonatomic, assign) BOOL canRightMoveWithGesture;
