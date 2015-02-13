@@ -12,9 +12,10 @@
 #import "MuchApi.h"
 #import "AttentionModel.h"
 #import "LoginSqlite.h"
-@interface AttentionViewController ()<UITableViewDataSource,UITableViewDelegate,AttentionTableViewCellDelegate>
+@interface AttentionViewController ()<UITableViewDataSource,UITableViewDelegate,AttentionTableViewCellDelegate,UISearchBarDelegate>
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)NSMutableArray* datas;
+@property(nonatomic,strong)UITapGestureRecognizer* tap;
 @end
 
 @implementation AttentionViewController
@@ -49,6 +50,7 @@
 -(void)getSearchBar{
     UISearchBar* searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(-5, 64, 330, 32.5)];
     searchBar.placeholder=@"搜索";
+    searchBar.delegate=self;
     [self.view addSubview:searchBar];
 }
 
@@ -93,6 +95,18 @@
             }
         } dic:[@{@"selfid":[LoginSqlite getdata:@"userId"],@"userid":model.aid} mutableCopy]];
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"indexPath==%d",indexPath.row);
+}
+
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    [self.view removeGestureRecognizer:self.view.gestureRecognizers.lastObject];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
