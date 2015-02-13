@@ -22,10 +22,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
-    [self getTitleView];
+    //[self getTitleView];
     [self getSearchBar];
     [self getListView];
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
+    //[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
 }
 
 -(void)firstNetWork{
@@ -38,7 +38,7 @@
 }
 
 -(void)getListView{
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 77.5, 320, 568-77.5) style:UITableViewStylePlain];
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 96.5, 320, 568-77.5) style:UITableViewStylePlain];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.rowHeight=55;
@@ -47,7 +47,7 @@
 }
 
 -(void)getSearchBar{
-    UISearchBar* searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(-5, 45, 330, 32.5)];
+    UISearchBar* searchBar=[[UISearchBar alloc]initWithFrame:CGRectMake(-5, 64, 330, 32.5)];
     searchBar.placeholder=@"搜索";
     [self.view addSubview:searchBar];
 }
@@ -77,6 +77,10 @@
     AttentionViewCellModel* cellModel=[AttentionViewCellModel modelWithImageName:@"good_icon_selected" userName:model.nickname isFocuse:model.isFocuse indexPathRow:indexPath.row userImageUrl:model.avatar];
     cell.model=cellModel;
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"asdfasfa");
 }
 
 -(void)userFocuseWithIndexPathRow:(NSInteger)indexPathRow{

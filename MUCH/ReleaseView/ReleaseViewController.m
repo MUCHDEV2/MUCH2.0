@@ -25,7 +25,7 @@
     NSLog(@"%f",self.image.size.height);
     [SliderViewController sharedSliderController].canMoveWithGesture = NO;
     
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
     bgView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:bgView];

@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     self.orginCenter=self.view.center;
     self.view.backgroundColor=RGBCOLOR(220, 220, 220);
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadData) name:@"reloadData" object:nil];
@@ -172,13 +172,13 @@
     self.userImage=info[UIImagePickerControllerEditedImage];
     [self.userImageView setBackgroundImage:self.userImage forState:UIControlStateNormal];
     [picker dismissViewControllerAnimated:YES completion:^{
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
+        //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
     }];
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissViewControllerAnimated:YES completion:^{
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
+        //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
     }];
 }
 
