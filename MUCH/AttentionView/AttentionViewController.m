@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
+    self.title = @"MUCH";
     //[self getTitleView];
     [self getSearchBar];
     [self getListView];

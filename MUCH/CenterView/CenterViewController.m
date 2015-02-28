@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    self.title = @"MUCH";
     self.orginCenter=self.view.center;
     self.view.backgroundColor=RGBCOLOR(220, 220, 220);
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadData) name:@"reloadData" object:nil];

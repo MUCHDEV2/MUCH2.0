@@ -27,6 +27,15 @@
 @implementation DetailViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"MUCH";
+    //LeftButton设置属性
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton setFrame:CGRectMake(0, 0, 13, 22)];
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"Arrow"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftButtonItem;
+    
     showArr = [[NSMutableArray alloc] init];
     [MuchApi GetSingleListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if(!error){
@@ -54,6 +63,10 @@
     self.toolView.delegate = self;
     [self.view addSubview:self.toolView];
     self.toolView.hidden = YES;
+}
+
+-(void)leftBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)initCommentViews{

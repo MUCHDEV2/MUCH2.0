@@ -12,7 +12,8 @@
 #import "MBProgressHUD.h"
 #import "PostContentView.h"
 #import "PostTableViewCell.h"
-@interface PostViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "LoginSqlite.h"
+@interface PostViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 @property(nonatomic,strong)NSMutableArray *viewArr;
 @property(nonatomic,strong)NSMutableArray *dateArr;
 @property(nonatomic,strong)NSMutableArray *showArr;
@@ -36,6 +37,41 @@
     [self.tableView setBackgroundColor:RGBCOLOR(217, 217, 217)];
     self.tableView.separatorStyle = NO;
     [self loadList];
+    
+    //LeftButton设置属性
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton setFrame:CGRectMake(0, 0, 13, 22)];
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"Arrow"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftButtonItem;
+    //RightButton设置属性
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 19, 18)];
+    [rightButton setBackgroundImage:[UIImage imageNamed:@"favourite"] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
+}
+
+-(void)leftBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)rightBtnClick{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"是否关注这个人" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
+        [MuchApi AddFavWithBlock:^(NSMutableArray *posts, NSError *error) {
+            if(!error){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"关注成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        } dic:[@{@"selfid":[LoginSqlite getdata:@"userId"],@"userid":self.targetId} mutableCopy]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

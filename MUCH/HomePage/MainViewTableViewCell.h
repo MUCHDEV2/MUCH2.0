@@ -29,6 +29,8 @@
     UILabel *contentNamelabel3;
     UILabel *contentlabel3;
     UILabel *pricelabel;
+    UIImageView *commetImage;
+    UILabel *commetLabel;
     UIImageView *goodImage;
     UILabel *goodlabel;
     UIImageView *bigImage;
