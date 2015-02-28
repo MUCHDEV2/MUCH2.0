@@ -27,7 +27,7 @@
     [self.contentView addSubview:lineImageView];
     
     UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, 320, 60)];
-    [bgImageView setImage:[UIImage imageNamed:@"矩形-4"]];
+    [bgImageView setImage:[GetImagePath getImagePath:@"矩形-4"]];
     [self.contentView addSubview:bgImageView];
     
     headImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 15, 47.5, 47.5)];
@@ -41,7 +41,7 @@
 }
 
 -(void)setAvatarUrl:(NSString *)avatarUrl{
-    [headImage sd_setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:nil];
+    [headImage sd_setImageWithURL:[NSURL URLWithString:avatarUrl] placeholderImage:[GetImagePath getImagePath:@"icon114"]];
 }
 
 -(void)setUserName:(NSString *)userName{

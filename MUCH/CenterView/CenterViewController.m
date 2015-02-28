@@ -96,7 +96,7 @@
     //分割线
     if (indexPath.row==0|indexPath.row==1||indexPath.row==5) {
         UIImageView* separatorLine=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 1)];
-        separatorLine.image=[UIImage imageNamed:@"divid_line"];
+        separatorLine.image=[GetImagePath getImagePath:@"divid_line"];
         [cell.contentView addSubview:separatorLine];
     }
     //背景
@@ -117,7 +117,7 @@
         [cell.contentView addSubview:view];
         
         UIImageView *userImage = [[UIImageView alloc] init];
-        [userImage sd_setImageWithURL:[NSURL URLWithString:self.model.avatar] placeholderImage:[UIImage imageNamed:@"icon114"]];
+        [userImage sd_setImageWithURL:[NSURL URLWithString:self.model.avatar] placeholderImage:[GetImagePath getImagePath:@"icon114"]];
         //NSLog(@"===>%@",self.model.avatar);
         if([self.model.avatar isEqualToString:@""]){
             self.userImage = nil;

@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"Background"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [GetImagePath getImagePath:@"Background"]];
     self.navigationController.navigationBarHidden = YES;
     
     UIButton *bgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -33,7 +33,7 @@
     [self.view addSubview:bgBtn];
     
     UIImageView *cancelImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 15, 15)];
-    [cancelImage setImage:[UIImage imageNamed:@"cross_x_icon"]];
+    [cancelImage setImage:[GetImagePath getImagePath:@"cross_x_icon"]];
     [self.view addSubview:cancelImage];
     
     UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -64,7 +64,7 @@
     [self.view addSubview:contentLabel2];
     
     UIImageView *telephoneImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 230, 16, 16)];
-    [telephoneImage setImage:[UIImage imageNamed:@"phone_icon"]];
+    [telephoneImage setImage:[GetImagePath getImagePath:@"phone_icon"]];
     [self.view addSubview:telephoneImage];
     
     phoneTextField = [[UITextField alloc] initWithFrame:CGRectMake(50, 223, 250, 30)];
@@ -84,7 +84,7 @@
     [self.view addSubview:lineImage];
     
     UIImageView *passWordImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 280, 17, 18)];
-    [passWordImage setImage:[UIImage imageNamed:@"password_icon"]];
+    [passWordImage setImage:[GetImagePath getImagePath:@"password_icon"]];
     [self.view addSubview:passWordImage];
     
     passWordTextField = [[UITextField alloc] initWithFrame:CGRectMake(50, 273, 250, 30)];
@@ -106,7 +106,7 @@
     
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     loginBtn.frame = CGRectMake(20, 330, 280, 45);
-    [loginBtn setBackgroundImage:[UIImage imageNamed:@"login_register_bar"] forState:UIControlStateNormal];
+    [loginBtn setBackgroundImage:[GetImagePath getImagePath:@"login_register_bar"] forState:UIControlStateNormal];
     [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     [loginBtn addTarget:self action:@selector(loginBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginBtn];
@@ -118,19 +118,19 @@
     [self.view addSubview:contentLabel3];
     
     UIButton *sinaBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [sinaBtn setImage:[UIImage imageNamed:@"weibo_icon"] forState:UIControlStateNormal];
+    [sinaBtn setImage:[GetImagePath getImagePath:@"weibo_icon"] forState:UIControlStateNormal];
     [sinaBtn addTarget:self action:@selector(sinaBtnClick) forControlEvents:UIControlEventTouchUpInside];
     sinaBtn.frame = CGRectMake(80, 430, 42, 41);
     [self.view addSubview:sinaBtn];
     
     UIButton *qqBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [qqBtn setImage:[UIImage imageNamed:@"qq_icon"] forState:UIControlStateNormal];
+    [qqBtn setImage:[GetImagePath getImagePath:@"qq_icon"] forState:UIControlStateNormal];
     qqBtn.frame = CGRectMake(136, 430, 42, 42);
     [qqBtn addTarget:self action:@selector(qqBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:qqBtn];
     
     UIButton *wechatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [wechatBtn setImage:[UIImage imageNamed:@"wechat_icon"] forState:UIControlStateNormal];
+    [wechatBtn setImage:[GetImagePath getImagePath:@"wechat_icon"] forState:UIControlStateNormal];
     wechatBtn.frame = CGRectMake(193, 430, 41, 40);
     [wechatBtn addTarget:self action:@selector(wechatBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:wechatBtn];

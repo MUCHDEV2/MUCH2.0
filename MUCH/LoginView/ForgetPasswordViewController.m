@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background"]];
+    self.view.backgroundColor=[UIColor colorWithPatternImage:[GetImagePath getImagePath:@"Background"]];
     NSArray* imageNames=@[@"phone_icon",@"check_icon",@"password_icon",@"password_icon"];
     NSArray* contents=@[@"请输入手机号码",@"请输入验证码",@"请输入新密码",@"请再次输入新密码"];
     for (int i=0; i<4; i++) {
@@ -38,7 +38,7 @@
 -(void)getResetBtn{
     UIButton *resetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     resetBtn.frame = CGRectMake(20, 330, 280, 45);
-    [resetBtn setBackgroundImage:[UIImage imageNamed:@"login_register_bar"] forState:UIControlStateNormal];
+    [resetBtn setBackgroundImage:[GetImagePath getImagePath:@"login_register_bar"] forState:UIControlStateNormal];
     [resetBtn setTitle:@"重置" forState:UIControlStateNormal];
     [resetBtn addTarget:self action:@selector(resetBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:resetBtn];
@@ -46,7 +46,7 @@
 
 -(void)getYzmBtn{
     UIButton *yzmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [yzmBtn setBackgroundImage:[UIImage imageNamed:@"verif_code_bar"] forState:UIControlStateNormal];
+    [yzmBtn setBackgroundImage:[GetImagePath getImagePath:@"verif_code_bar"] forState:UIControlStateNormal];
     [yzmBtn addTarget:self action:@selector(yzmBtnClick) forControlEvents:UIControlEventTouchUpInside];
     yzmBtn.frame = CGRectMake(217, 163, 82, 27);
     [yzmBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
@@ -126,7 +126,7 @@
     UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 56)];
     
     UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(22, 26, 17, 17)];
-    imageView.image=[UIImage imageNamed:imageName];
+    imageView.image=[GetImagePath getImagePath:imageName];
     [view addSubview:imageView];
     
     UITextField* textField=[[UITextField alloc] initWithFrame:CGRectMake(57, 25, 150, 20)];

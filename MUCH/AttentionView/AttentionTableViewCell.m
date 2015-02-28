@@ -53,7 +53,7 @@
 -(UIImageView *)separatorLine{
     if (!_separatorLine) {
         _separatorLine=[[UIImageView alloc]initWithFrame:CGRectMake(13, 54, 294, 1)];
-        _separatorLine.image=[UIImage imageNamed:@"divid_line"];
+        _separatorLine.image=[GetImagePath getImagePath:@"divid_line"];
     }
     return _separatorLine;
 }
@@ -72,7 +72,7 @@
 -(void)setModel:(AttentionViewCellModel *)model{
     _model=model;
     self.nameLabel.text=model.userName;
-    self.focuseBtn.image=[UIImage imageNamed:model.isFocuse?@"unfollow":@"follow"];
+    self.focuseBtn.image=[GetImagePath getImagePath:model.isFocuse?@"unfollow":@"follow"];
     [self.userView.smallRound sd_setImageWithURL:[NSURL URLWithString:model.userImageUrl]];
 }
 @end

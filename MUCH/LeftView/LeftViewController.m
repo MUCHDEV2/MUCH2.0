@@ -41,7 +41,7 @@
     self.userImageView.layer.masksToBounds=YES;
     self.userImageView.layer.cornerRadius=self.userImageView.frame.size.width*.5;
     //userImageView.image=[UIImage imageNamed:@"icon114"];
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[LoginSqlite getdata:@"avatar"]] placeholderImage:[UIImage imageNamed:@"icon114"]];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[LoginSqlite getdata:@"avatar"]] placeholderImage:[GetImagePath getImagePath:@"icon114"]];
     [mainView addSubview:self.userImageView];
     
     //用户名称
@@ -138,7 +138,7 @@
         }
     }else{
         [LoginSqlite deleteAll];
-        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[LoginSqlite getdata:@"avatar"]] placeholderImage:[UIImage imageNamed:@"icon114"]];
+        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[LoginSqlite getdata:@"avatar"]] placeholderImage:[GetImagePath getImagePath:@"icon114"]];
         self.userNameLabel.text = [LoginSqlite getdata:@"nickname"];
         UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"提示" message:@"退出成功！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertview show];
@@ -151,7 +151,7 @@
 
 -(UIView*)getSingleListViewWithImageName:(NSString*)imageName title:(NSString*)title remindNumber:(NSInteger)remindNumber{
     UIView* singleListView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 45)];
-    UIImageView* imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:imageName]];
+    UIImageView* imageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:imageName]];
     imageView.center=CGPointMake(30, 22.5);
     [singleListView addSubview:imageView];
     
@@ -175,7 +175,7 @@
 
 -(UIView*)getSeparatorLine{
     UIImageView* separatorLine=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 1)];
-    separatorLine.image=[UIImage imageNamed:@"divid_line"];
+    separatorLine.image=[GetImagePath getImagePath:@"divid_line"];
     return separatorLine;
 }
 
@@ -185,7 +185,7 @@
 
 -(void)changeHeadImage{
     NSLog(@"%@",[LoginSqlite getdata:@"avatar"]);
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[LoginSqlite getdata:@"avatar"]] placeholderImage:[UIImage imageNamed:@"icon114"]];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[LoginSqlite getdata:@"avatar"]] placeholderImage:[GetImagePath getImagePath:@"icon114"]];
     self.userNameLabel.text = [LoginSqlite getdata:@"nickname"];
 }
 

@@ -29,12 +29,12 @@
     self.contentLabel=[[UILabel alloc]initWithFrame:CGRectMake(35, 7, 150, 30)];
     [self addSubview:self.contentLabel];
     UIImageView* separatorLine=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 230, 1)];
-    separatorLine.image=[UIImage imageNamed:@"divid_line"];
+    separatorLine.image=[GetImagePath getImagePath:@"divid_line"];
     [self addSubview:separatorLine];
 }
 
 -(void)setCellIsChoose:(BOOL)isChoose content:(NSString*)content{
-    self.chooseImgView.image=[UIImage imageNamed:isChoose?@"selected_icon":@"unselect_icon"];
+    self.chooseImgView.image=[GetImagePath getImagePath:isChoose?@"selected_icon":@"unselect_icon"];
     self.contentLabel.text=content;
 }
 

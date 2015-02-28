@@ -13,6 +13,7 @@
 #import "AttentionModel.h"
 #import "LoginSqlite.h"
 #import "PostViewController.h"
+#import "SliderViewController.h"
 @interface AttentionViewController ()<UITableViewDataSource,UITableViewDelegate,AttentionTableViewCellDelegate,UISearchBarDelegate>
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)NSMutableArray* datas;
@@ -26,7 +27,7 @@
     self.view.backgroundColor=[UIColor whiteColor];
     self.title = @"MUCH";
     //[self getTitleView];
-    [self getSearchBar];
+    //[self getSearchBar];
     [self getListView];
     //[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
 }
@@ -41,7 +42,7 @@
 }
 
 -(void)getListView{
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 96.5, 320, 568-77.5) style:UITableViewStylePlain];
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 504) style:UITableViewStylePlain];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.rowHeight=55;
@@ -101,6 +102,7 @@
     postView.targetId = model.aid;
     postView.avatarUrl = model.avatar;
     postView.userName = model.nickname;
+    postView.userName = @"Attention";
     [self.navigationController pushViewController:postView animated:YES];
 }
 
@@ -115,5 +117,13 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self firstNetWork];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [SliderViewController sharedSliderController].canRightMoveWithGesture = NO;
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [SliderViewController sharedSliderController].canRightMoveWithGesture = YES;
 }
 @end

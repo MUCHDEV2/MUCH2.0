@@ -37,21 +37,24 @@
     [self.tableView setBackgroundColor:RGBCOLOR(217, 217, 217)];
     self.tableView.separatorStyle = NO;
     [self loadList];
-    
+    self.title = @"MUCH";
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 13, 22)];
-    [leftButton setBackgroundImage:[UIImage imageNamed:@"Arrow"] forState:UIControlStateNormal];
+    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"Arrow"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
-    //RightButton设置属性
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame:CGRectMake(0, 0, 19, 18)];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"favourite"] forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
-    self.navigationItem.rightBarButtonItem = rightButtonItem;
+    
+    if([self.viewName isEqualToString:@"Main"]){
+        //RightButton设置属性
+        UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [rightButton setFrame:CGRectMake(0, 0, 19, 18)];
+        [rightButton setBackgroundImage:[GetImagePath getImagePath:@"favourite"] forState:UIControlStateNormal];
+        [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+        self.navigationItem.rightBarButtonItem = rightButtonItem;
+    }
 }
 
 -(void)leftBtnClick{
@@ -161,7 +164,7 @@
             [cell.contentView addSubview:lineImageView];
             
             UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(1, 15, 30, 30)];
-            [imageview setImage:[UIImage imageNamed:@"椭圆-1"]];
+            [imageview setImage:[GetImagePath getImagePath:@"椭圆-1"]];
             [cell.contentView addSubview:imageview];
             
             NSArray *arr = [self.dateArr[indexPath.row-1] componentsSeparatedByString:@"-"];

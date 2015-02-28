@@ -11,6 +11,11 @@
 #import "ListModel.h"
 #import "SmallUserImageView.h"
 
+@protocol MainViewTableViewCellDelegate <NSObject>
+
+-(void)gotoPostView:(NSString *)creatById avatar:(NSString *)avatar name:(NSString *)name;
+
+@end
 @interface MainViewTableViewCell : UITableViewCell<SmallUserImageViewDelegate>{
 //    UIImageView *bgImageView;
 //    UIImageView *distanceImage;
@@ -36,7 +41,14 @@
     UIImageView *bigImage;
     UIImageView *headView;
     UIImageView * lineImageView;
+    UIImageView *noDataImageView;
+    UIImageView *dotsImageView;
+    
+    NSString *creatById;
+    NSString *creatByavatar;
+    NSString *creatnickname;
 }
+@property(nonatomic,weak)id<MainViewTableViewCellDelegate>delegate;
 @property(nonatomic,strong)ListModel *model;
 @property (nonatomic)BOOL myNeedLong;
 @property (nonatomic , retain) CycleScrollView *mainScorllView;

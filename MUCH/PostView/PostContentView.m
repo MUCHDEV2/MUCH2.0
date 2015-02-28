@@ -27,7 +27,7 @@
         [bgImage setBackgroundColor:[UIColor whiteColor]];
         [bgImage setFrame:CGRectMake(line*(90+5), row*(105+5), 90, 90)];
         UIImageView *contentImage = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 90-4, 90-4)];
-        [contentImage sd_setImageWithURL:[NSURL URLWithString:imgArr[i][@"content"]] placeholderImage:nil];
+        [contentImage sd_setImageWithURL:[NSURL URLWithString:imgArr[i][@"content"]] placeholderImage:[GetImagePath getImagePath:@"MUCH"]];
         [bgImage addSubview:contentImage];
         [postcontent addSubview:bgImage];
         

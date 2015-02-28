@@ -12,4 +12,5 @@
 @property(nonatomic,strong)NSString *targetId;
 @property(nonatomic,strong)NSString *userName;
 @property(nonatomic,strong)NSString *avatarUrl;
+@property(nonatomic,strong)NSString *viewName;
 @end

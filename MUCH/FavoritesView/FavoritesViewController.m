@@ -76,7 +76,7 @@
         if(!cell){
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
         }
-        cell.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"empty_data_full"]];
+        cell.backgroundColor = [UIColor colorWithPatternImage: [GetImagePath getImagePath:@"empty_data_full"]];
         cell.selectionStyle = NO;
         return cell;
     }

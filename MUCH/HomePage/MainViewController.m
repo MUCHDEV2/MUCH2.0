@@ -16,6 +16,7 @@
 #import "GTMBase64.h"
 #import "LoginSqlite.h"
 #import "NoDataView.h"
+#import "PostViewController.h"
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,NoDataViewDelegate>{
     NSTimeInterval lastOffsetCapture;
     CGPoint lastOffset;
@@ -25,6 +26,7 @@
 @property(nonatomic,retain)UIButton *button;
 @property(nonatomic,retain)UIButton *backTopBtn;
 @property(nonatomic,retain)UITableView *tableView;
+@property(nonatomic,retain)UIButton *photoBtn;
 @end
 
 @implementation MainViewController
@@ -39,7 +41,7 @@
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 16, 21)];
-    [leftButton setBackgroundImage:[UIImage imageNamed:@"user-alt"] forState:UIControlStateNormal];
+    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"user-alt"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
@@ -47,7 +49,7 @@
     //RightButton设置属性
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setFrame:CGRectMake(0, 0, 19, 19)];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"settings"] forState:UIControlStateNormal];
+    [rightButton setBackgroundImage:[GetImagePath getImagePath:@"settings"] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
@@ -60,6 +62,10 @@
     //[self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
     self.tableView.separatorStyle = NO;
     self.tableView.backgroundColor = RGBCOLOR(217, 217, 217);
+    
+    self.photoBtn =[self addPhotoButton];
+    self.photoBtn.center=CGPointMake(160, 568-self.photoBtn.frame.size.height*.5);
+    [self.view addSubview:self.photoBtn];
    
 //    self.button = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [self.button setImage:[UIImage imageNamed:@"menu_icon"] forState:UIControlStateNormal];
@@ -180,6 +186,7 @@
     }
     cell.myNeedLong=(indexPath.row==showArr.count)?YES:NO;
     cell.model = showArr[indexPath.row];
+    cell.delegate = self;
     cell.selectionStyle = NO;
     return cell;
 }
@@ -216,7 +223,7 @@
     //}
 }
 
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //    CGFloat sectionHeaderHeight = 114;
 //    
 //    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
@@ -228,80 +235,51 @@
 //        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
 //        
 //    }
-//    
-//    // 这里做预加载
-//    CGPoint currentOffset = scrollView.contentOffset;
-//    NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
-//    
-//    NSTimeInterval timeDiff = currentTime - lastOffsetCapture;
-//    //NSLog(@"%f",timeDiff);
-//    if(timeDiff > 0.1) {
-//        CGFloat distance = currentOffset.y - lastOffset.y;
-//        //The multiply by 10, / 1000 isn't really necessary.......
-//        CGFloat scrollSpeedNotAbs = (distance * 10) / 1700; //in pixels per millisecond
-//        
-//        CGFloat scrollSpeed = fabsf(scrollSpeedNotAbs);
-//        if (scrollSpeed > 0.5) {
-//            isScrollingFast = YES;
-//            //NSLog(@"Fast");
-//            [UIView animateWithDuration:0.5 animations:^{
-//                self.button.alpha = 0;
-//                [self.button removeFromSuperview];
-//                self.backTopBtn.alpha = 0;
-//                [self.backTopBtn removeFromSuperview];
-//            }];
-//        } else {
-//            isScrollingFast = NO;
-//            //NSLog(@"Slow");
-//            [self showBtn];
-//        }
-//        
-//        lastOffset = currentOffset;
-//        lastOffsetCapture = currentTime;
-//        
-//        if(currentOffset.y>=754){
-//            isShow = YES;
-//        }else{
-//            isShow = NO;
-//        }
-//    }
-//}
-//
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-//    //NSLog(@"scrollViewDidEndDecelerating");
-//    CGPoint currentOffset = scrollView.contentOffset;
-//    if(currentOffset.y>=754){
-//        isShow = YES;
-//    }else{
-//        isShow = NO;
-//    }
-//    [self showBtn];
-//}
-//
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-//    //NSLog(@"scrollViewDidEndDragging");
-//    CGPoint currentOffset = scrollView.contentOffset;
-//    if(currentOffset.y>=754){
-//        isShow = YES;
-//    }else{
-//        isShow = NO;
-//    }
-//    [self showBtn];
-//}
-//
-//-(void)showBtn{
-//    [UIView animateWithDuration:0.5 animations:^{
-//        self.button.alpha = 1;
-//        [self.view addSubview:self.button];
-//        if(isShow){
-//            self.backTopBtn.alpha = 0.5;
-//            [self.view addSubview:self.backTopBtn];
-//        }else{
-//            self.backTopBtn.alpha = 0;
-//            [self.backTopBtn removeFromSuperview];
-//        }
-//    }];
-//}
+    
+    // 这里做预加载
+    CGPoint currentOffset = scrollView.contentOffset;
+    NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
+    
+    NSTimeInterval timeDiff = currentTime - lastOffsetCapture;
+    //NSLog(@"%f",timeDiff);
+    if(timeDiff > 0.1) {
+        CGFloat distance = currentOffset.y - lastOffset.y;
+        //The multiply by 10, / 1000 isn't really necessary.......
+        CGFloat scrollSpeedNotAbs = (distance * 10) / 1700; //in pixels per millisecond
+        
+        CGFloat scrollSpeed = fabsf(scrollSpeedNotAbs);
+        if (scrollSpeed > 0.5) {
+            isScrollingFast = YES;
+            //NSLog(@"Fast");
+            [UIView animateWithDuration:0.5 animations:^{
+                self.photoBtn.alpha = 0;
+                [self.photoBtn removeFromSuperview];
+            }];
+        } else {
+            isScrollingFast = NO;
+            //NSLog(@"Slow");
+            [self showBtn];
+        }
+        
+        lastOffset = currentOffset;
+        lastOffsetCapture = currentTime;
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [self showBtn];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    [self showBtn];
+}
+
+-(void)showBtn{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.photoBtn.alpha = 1;
+        [self.view addSubview:self.photoBtn];
+    }];
+}
 
 //-(void)gotoTop{
 //    [self.tableView setContentOffset:CGPointMake(0, 114) animated:YES];
@@ -437,14 +415,16 @@
         startIndex = 0;
         [MuchApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
-//                NoDataView* view=[NoDataView getNoDataViewWithDelegate:self];
-//                [self.navigationController.view addSubview:view];
-//                return ;
                 //NSLog(@"posts ==> %@",posts);
                 showArr = posts;
-                [self.tableView reloadData];
-                [self.tableView headerEndRefreshing];
-                [self.tableView footerEndRefreshing];
+                if(posts.count !=0){
+                    [self.tableView reloadData];
+                    [self.tableView headerEndRefreshing];
+                    [self.tableView footerEndRefreshing];
+                }else{
+                    NoDataView* view=[NoDataView getNoDataViewWithDelegate:self];
+                    [self.navigationController.view addSubview:view];
+                }
                 //[self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
             }
         }start:startIndex indexSize:5 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude] range:range from:from];
@@ -452,7 +432,7 @@
 }
 
 -(void)noDataViewAddBtnClicked{
-    NSLog(@"noDataViewAddBtnClicked");
+    [self addPhoto];
 }
 
 -(void)loginSucsee{
@@ -464,5 +444,28 @@
     range = notification.userInfo[@"range"];
     from = notification.userInfo[@"userType"];
     [self reloadList];
+}
+
+-(UIButton *)addPhotoButton{
+    UIButton* addBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage* image=[GetImagePath getImagePath:@"NoDataViewAddBack"];
+    addBtn.frame=CGRectMake(0, 0, image.size.width, image.size.height);
+    [addBtn setBackgroundImage:image forState:UIControlStateNormal];
+    UIImageView* addImageView=[[UIImageView alloc]initWithImage:[GetImagePath getImagePath:@"NoDataViewAddBtn"]];
+    addImageView.center=CGPointMake(addBtn.frame.size.width*.5, addBtn.frame.size.height-18);
+    [addBtn addSubview:addImageView];
+    [addBtn addTarget:self action:@selector(addPhoto) forControlEvents:UIControlEventTouchUpInside];
+    return addBtn;
+}
+
+-(void)gotoPostView:(NSString *)creatById avatar:(NSString *)avatar name:(NSString *)name{
+    if(![[LoginSqlite getdata:@"userId"] isEqualToString:creatById]){
+        PostViewController *postView = [[PostViewController alloc] init];
+        postView.targetId = creatById;
+        postView.avatarUrl = avatar;
+        postView.userName = name;
+        postView.viewName = @"Main";
+        [self.navigationController pushViewController:postView animated:YES];
+    }
 }
 @end

@@ -21,7 +21,7 @@
 
 -(void)addContent{
     UIImageView *bgHeadImage = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 45, 45)];
-    [bgHeadImage setImage:[UIImage imageNamed:@"details_view_user_white"]];
+    [bgHeadImage setImage:[GetImagePath getImagePath:@"details_view_user_white"]];
     [self.contentView addSubview:bgHeadImage];
     
     headImage = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, 43, 43)];
@@ -30,7 +30,7 @@
     [bgHeadImage addSubview:headImage];
     
     UIImageView *distanceImage = [[UIImageView alloc] initWithFrame:CGRectMake(55, 5, 45, 45)];
-    [distanceImage setImage:[UIImage imageNamed:@"details_view_distance_green"]];
+    [distanceImage setImage:[GetImagePath getImagePath:@"details_view_distance_green"]];
     [self.contentView addSubview:distanceImage];
     
     distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
@@ -41,7 +41,7 @@
     [distanceImage addSubview:distanceLabel];
     
     UIImageView *priceImage = [[UIImageView alloc] initWithFrame:CGRectMake(105, 5, 45, 45)];
-    [priceImage setImage:[UIImage imageNamed:@"details_view_price_red"]];
+    [priceImage setImage:[GetImagePath getImagePath:@"details_view_price_red"]];
     [self.contentView addSubview:priceImage];
     
     priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 45, 45)];
@@ -52,7 +52,7 @@
     [priceImage addSubview:priceLabel];
     
     UIImageView *commentImage = [[UIImageView alloc] initWithFrame:CGRectMake(270, 20.5, 20, 14)];
-    [commentImage setImage:[UIImage imageNamed:@"comment_icon_blue"]];
+    [commentImage setImage:[GetImagePath getImagePath:@"comment_icon_blue"]];
     [self.contentView addSubview:commentImage];
     
     UIButton *commentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -62,7 +62,7 @@
 }
 
 -(void)setHeadImageUrl:(NSString *)headImageUrl{
-    [headImage sd_setImageWithURL:[NSURL URLWithString:headImageUrl]];
+    [headImage sd_setImageWithURL:[NSURL URLWithString:headImageUrl] placeholderImage:[GetImagePath getImagePath:@"icon114"]];
 }
 
 -(void)setDistance:(NSString *)distance{

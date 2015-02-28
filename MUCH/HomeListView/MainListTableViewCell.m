@@ -30,7 +30,7 @@
     [self.contentView addSubview:bgImageView];
     
     distanceImage = [[UIImageView alloc] initWithFrame:CGRectMake(21, 21, 48, 48)];
-    [distanceImage setImage:[UIImage imageNamed:@"distance_icon_green"]];
+    [distanceImage setImage:[GetImagePath getImagePath:@"distance_icon_green"]];
     [self.contentView addSubview:distanceImage];
     
     distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
@@ -41,7 +41,7 @@
     [distanceImage addSubview:distanceLabel];
     
     priceImage = [[UIImageView alloc] initWithFrame:CGRectMake(21, 79, 48, 48)];
-    [priceImage setImage:[UIImage imageNamed:@"price_icon_red"]];
+    [priceImage setImage:[GetImagePath getImagePath:@"price_icon_red"]];
     [self.contentView addSubview:priceImage];
     
     priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
@@ -92,11 +92,11 @@
     }
     
     if([model.compare isEqualToString:@"2"]){
-        [distanceImage setImage:[UIImage imageNamed:@"distance_icon_green"]];
+        [distanceImage setImage:[GetImagePath getImagePath:@"distance_icon_green"]];
     }else if ([model.compare isEqualToString:@"5"]){
-        [distanceImage setImage:[UIImage imageNamed:@"distance_5km"]];
+        [distanceImage setImage:[GetImagePath getImagePath:@"distance_5km"]];
     }else if([model.compare isEqualToString:@"all"]){
-        [distanceImage setImage:[UIImage imageNamed:@"distance_all"]];
+        [distanceImage setImage:[GetImagePath getImagePath:@"distance_all"]];
     }
     distanceLabel.text = model.distance_str;
     priceLabel.text = [NSString stringWithFormat:@"¥%@",model.price];

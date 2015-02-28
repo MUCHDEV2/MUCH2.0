@@ -43,7 +43,7 @@
 
 -(void)initBigRound{
     self.bigRound=[[UIImageView alloc]initWithFrame:self.frame];
-    self.bigRound.image=[UIImage imageNamed:@"user_avatar_white"];
+    self.bigRound.image=[GetImagePath getImagePath:@"user_avatar_white"];
     self.bigRound.layer.cornerRadius=self.bigRound.frame.size.width*.5;
     self.bigRound.layer.masksToBounds=YES;
     [self addSubview:self.bigRound];
@@ -51,7 +51,7 @@
 
 -(void)initSmallRound{
     self.smallRound=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.smallWidth, self.smallWidth)];
-    self.smallRound.image=[UIImage imageNamed:@"icon114"];
+    self.smallRound.image=[GetImagePath getImagePath:@"icon114"];
     self.smallRound.layer.cornerRadius=self.smallRound.frame.size.width*.5;
     self.smallRound.layer.masksToBounds=YES;
     self.smallRound.center=self.bigRound.center;

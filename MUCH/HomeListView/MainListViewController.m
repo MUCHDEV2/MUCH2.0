@@ -42,13 +42,13 @@
     self.tableView.backgroundColor = RGBCOLOR(220, 220, 220);
     
     self.button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.button setImage:[UIImage imageNamed:@"menu_icon"] forState:UIControlStateNormal];
+    [self.button setImage:[GetImagePath getImagePath:@"menu_icon"] forState:UIControlStateNormal];
     [self.button setFrame:CGRectMake(30, 494, 44, 44)];
     [self.button addTarget:self action:@selector(gotoLeftView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.button];
     
     self.backTopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.backTopBtn setImage:[UIImage imageNamed:@"back_to_top"] forState:UIControlStateNormal];
+    [self.backTopBtn setImage:[GetImagePath getImagePath:@"back_to_top"] forState:UIControlStateNormal];
     [self.backTopBtn setFrame:CGRectMake(246, 30, 44, 44)];
     [self.backTopBtn addTarget:self action:@selector(gotoTop) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.backTopBtn];

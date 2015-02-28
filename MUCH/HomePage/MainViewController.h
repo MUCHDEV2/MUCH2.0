@@ -14,7 +14,7 @@
 #import "ReleaseViewController.h"
 #import "DetailViewController.h"
 #import "LoginViewController.h"
-@interface MainViewController : UIViewController<MainHeadTableViewCellDelegate,MainListViewControllerDelegate,ReleaseViewControllerDelegate,LoginViewControllerDelegate>{
+@interface MainViewController : UIViewController<MainHeadTableViewCellDelegate,MainListViewControllerDelegate,ReleaseViewControllerDelegate,LoginViewControllerDelegate,MainViewTableViewCellDelegate>{
     NSMutableArray *showArr;
     int startIndex;
     NSString *range;//2公里，5公里

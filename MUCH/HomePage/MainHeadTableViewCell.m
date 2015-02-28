@@ -26,19 +26,19 @@
     [self.contentView addSubview:lineImage];
     if(index == 0){
         filtrateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [filtrateBtn setImage:[UIImage imageNamed:@"filter_icon"] forState:UIControlStateNormal];
+        [filtrateBtn setImage:[GetImagePath getImagePath:@"filter_icon"] forState:UIControlStateNormal];
         filtrateBtn.frame = CGRectMake(100, 15.5, 17, 20);
         [filtrateBtn addTarget:self action:@selector(filtrateBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:filtrateBtn];
         
         toListBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [toListBtn setImage:[UIImage imageNamed:@"list_view"] forState:UIControlStateNormal];
+        [toListBtn setImage:[GetImagePath getImagePath:@"list_view"] forState:UIControlStateNormal];
         toListBtn.frame = CGRectMake(200, 15.5, 20, 20);
         [toListBtn addTarget:self action:@selector(toListBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:toListBtn];
     }else{
         addPhotoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [addPhotoBtn setImage:[UIImage imageNamed:@"new_post_icon"] forState:UIControlStateNormal];
+        [addPhotoBtn setImage:[GetImagePath getImagePath:@"new_post_icon"] forState:UIControlStateNormal];
         addPhotoBtn.frame = CGRectMake(149, 16.5, 22, 22);
         [addPhotoBtn addTarget:self action:@selector(addPhotoBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:addPhotoBtn];

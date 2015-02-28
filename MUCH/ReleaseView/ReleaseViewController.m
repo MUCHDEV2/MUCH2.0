@@ -24,6 +24,14 @@
     self.view.backgroundColor = [UIColor whiteColor];
     NSLog(@"%f",self.image.size.height);
     [SliderViewController sharedSliderController].canMoveWithGesture = NO;
+    self.title = @"MUCH";
+    //LeftButton设置属性
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton setFrame:CGRectMake(0, 0, 13, 22)];
+    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"Arrow"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftButtonItem;
     
     //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
@@ -63,6 +71,10 @@
     [confirmBtn addTarget:self action:@selector(confirmBtnClick) forControlEvents:UIControlEventTouchUpInside];
     confirmBtn.enabled=NO;
     [self.view addSubview:confirmBtn];
+}
+
+-(void)leftBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

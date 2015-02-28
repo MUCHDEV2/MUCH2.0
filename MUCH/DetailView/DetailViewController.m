@@ -31,28 +31,16 @@
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 13, 22)];
-    [leftButton setBackgroundImage:[UIImage imageNamed:@"Arrow"] forState:UIControlStateNormal];
+    [leftButton setBackgroundImage:[GetImagePath getImagePath:@"Arrow"] forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftButtonItem;
     
     showArr = [[NSMutableArray alloc] init];
-    [MuchApi GetSingleListWithBlock:^(NSMutableArray *posts, NSError *error) {
-        if(!error){
-            showArr = posts;
-//            for(NSDictionary *item in self.commentsArr){
-//                CommentModel *model = [[CommentModel alloc] init];
-//                [model setDict:item];
-//                [showArr addObject:model];
-//            }
-            [self initCommentViews];
-            [self.tableView reloadData];
-        }
-    } postId:self.aid];
     
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, 320, self.view.frame.size.height-44)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -63,6 +51,13 @@
     self.toolView.delegate = self;
     [self.view addSubview:self.toolView];
     self.toolView.hidden = YES;
+    [MuchApi GetSingleListWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            showArr = posts;
+            [self initCommentViews];
+            [self.tableView reloadData];
+        }
+    } postId:self.aid];
 }
 
 -(void)leftBtnClick{

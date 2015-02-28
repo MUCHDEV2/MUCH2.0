@@ -105,6 +105,16 @@
 		D3D53C3D1AA1608E0005BFB1 /* good@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C3B1AA1608E0005BFB1 /* good@2x.png */; };
 		D3D53C401AA161D70005BFB1 /* comment_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C3E1AA161D70005BFB1 /* comment_icon.png */; };
 		D3D53C411AA161D70005BFB1 /* comment_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C3F1AA161D70005BFB1 /* comment_icon@2x.png */; };
+		D3D53C441AA181D50005BFB1 /* MUCH.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C421AA181D50005BFB1 /* MUCH.png */; };
+		D3D53C451AA181D50005BFB1 /* MUCH@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C431AA181D50005BFB1 /* MUCH@2x.png */; };
+		D3D53C481AA182000005BFB1 /* MUCH-卖趣-.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C461AA182000005BFB1 /* MUCH-卖趣-.png */; };
+		D3D53C491AA182000005BFB1 /* MUCH-卖趣-@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C471AA182000005BFB1 /* MUCH-卖趣-@2x.png */; };
+		D3D53C4C1AA189EA0005BFB1 /* bgImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C4A1AA189EA0005BFB1 /* bgImage.png */; };
+		D3D53C4D1AA189EA0005BFB1 /* bgImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C4B1AA189EA0005BFB1 /* bgImage@2x.png */; };
+		D3D53C501AA18A8B0005BFB1 /* 暂无数据.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C4E1AA18A8B0005BFB1 /* 暂无数据.png */; };
+		D3D53C511AA18A8B0005BFB1 /* 暂无数据@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C4F1AA18A8B0005BFB1 /* 暂无数据@2x.png */; };
+		D3D53C541AA18B820005BFB1 /* dots.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C521AA18B820005BFB1 /* dots.png */; };
+		D3D53C551AA18B820005BFB1 /* dots@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C531AA18B820005BFB1 /* dots@2x.png */; };
 		D3D5468D1A2028DB001AE44E /* back_to_top.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D546751A2028DB001AE44E /* back_to_top.png */; };
 		D3D5468E1A2028DB001AE44E /* back_to_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D546761A2028DB001AE44E /* back_to_top@2x.png */; };
 		D3D5468F1A2028DB001AE44E /* closed_icon_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D546771A2028DB001AE44E /* closed_icon_grey.png */; };
@@ -487,6 +497,16 @@
 		D3D53C3B1AA1608E0005BFB1 /* good@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "good@2x.png"; sourceTree = "<group>"; };
 		D3D53C3E1AA161D70005BFB1 /* comment_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment_icon.png; sourceTree = "<group>"; };
 		D3D53C3F1AA161D70005BFB1 /* comment_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment_icon@2x.png"; sourceTree = "<group>"; };
+		D3D53C421AA181D50005BFB1 /* MUCH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MUCH.png; sourceTree = "<group>"; };
+		D3D53C431AA181D50005BFB1 /* MUCH@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MUCH@2x.png"; sourceTree = "<group>"; };
+		D3D53C461AA182000005BFB1 /* MUCH-卖趣-.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MUCH-卖趣-.png"; sourceTree = "<group>"; };
+		D3D53C471AA182000005BFB1 /* MUCH-卖趣-@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MUCH-卖趣-@2x.png"; sourceTree = "<group>"; };
+		D3D53C4A1AA189EA0005BFB1 /* bgImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgImage.png; sourceTree = "<group>"; };
+		D3D53C4B1AA189EA0005BFB1 /* bgImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgImage@2x.png"; sourceTree = "<group>"; };
+		D3D53C4E1AA18A8B0005BFB1 /* 暂无数据.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "暂无数据.png"; sourceTree = "<group>"; };
+		D3D53C4F1AA18A8B0005BFB1 /* 暂无数据@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "暂无数据@2x.png"; sourceTree = "<group>"; };
+		D3D53C521AA18B820005BFB1 /* dots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dots.png; sourceTree = "<group>"; };
+		D3D53C531AA18B820005BFB1 /* dots@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dots@2x.png"; sourceTree = "<group>"; };
 		D3D546751A2028DB001AE44E /* back_to_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_to_top.png; sourceTree = "<group>"; };
 		D3D546761A2028DB001AE44E /* back_to_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_to_top@2x.png"; sourceTree = "<group>"; };
 		D3D546771A2028DB001AE44E /* closed_icon_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closed_icon_grey.png; sourceTree = "<group>"; };
@@ -826,14 +846,6 @@
 			path = libWeiboSDK;
 			sourceTree = "<group>";
 		};
-		5B6644711A2476FF009CC28D /* RegisterViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = RegisterViewController;
-			path = MUCH/RegisterViewController;
-			sourceTree = SOURCE_ROOT;
-		};
 		5B6644901A26BFD2009CC28D /* DetailCommentView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1009,6 +1021,16 @@
 		D3D53C191AA14F1F0005BFB1 /* 新图 */ = {
 			isa = PBXGroup;
 			children = (
+				D3D53C521AA18B820005BFB1 /* dots.png */,
+				D3D53C531AA18B820005BFB1 /* dots@2x.png */,
+				D3D53C4E1AA18A8B0005BFB1 /* 暂无数据.png */,
+				D3D53C4F1AA18A8B0005BFB1 /* 暂无数据@2x.png */,
+				D3D53C4A1AA189EA0005BFB1 /* bgImage.png */,
+				D3D53C4B1AA189EA0005BFB1 /* bgImage@2x.png */,
+				D3D53C461AA182000005BFB1 /* MUCH-卖趣-.png */,
+				D3D53C471AA182000005BFB1 /* MUCH-卖趣-@2x.png */,
+				D3D53C421AA181D50005BFB1 /* MUCH.png */,
+				D3D53C431AA181D50005BFB1 /* MUCH@2x.png */,
 				D3D53C3E1AA161D70005BFB1 /* comment_icon.png */,
 				D3D53C3F1AA161D70005BFB1 /* comment_icon@2x.png */,
 				D3D53C3A1AA1608E0005BFB1 /* good.png */,
@@ -1324,7 +1346,6 @@
 				D3D546B51A203891001AE44E /* Model */,
 				D3A47BF81A8DCC7500767D11 /* PostView */,
 				D3AD322F1A2451F600A76607 /* LoginView */,
-				5B6644711A2476FF009CC28D /* RegisterViewController */,
 				D3D5EAC71A231DBB00411D50 /* DetailView */,
 				D3D5EABB1A231B1F00411D50 /* AttentionView */,
 				D3D5EABC1A231B1F00411D50 /* CenterView */,
@@ -1771,6 +1792,7 @@
 				D3D53C211AA151900005BFB1 /* 椭圆-1@2x.png in Resources */,
 				D3AD32681A247D2A00A76607 /* cross_x_icon@2x.png in Resources */,
 				D3D32D311A24270900A86F54 /* search_icon@2x.png in Resources */,
+				D3D53C481AA182000005BFB1 /* MUCH-卖趣-.png in Resources */,
 				D3D5469B1A2028DB001AE44E /* user_avatar_white.png in Resources */,
 				5B3D57561AA15E66006032A9 /* NoDataViewAddBack@2x.png in Resources */,
 				D3AD32571A24543700A76607 /* wechat_icon.png in Resources */,
@@ -1806,6 +1828,7 @@
 				5BAD27FE1A8CA8910019BBAD /* mapapi.bundle in Resources */,
 				D3D53C1C1AA14F370005BFB1 /* 矩形-4.png in Resources */,
 				D3D5EAFC1A23449300411D50 /* comment_icon_blue.png in Resources */,
+				D3D53C441AA181D50005BFB1 /* MUCH.png in Resources */,
 				D3AD32491A24543700A76607 /* check_icon@2x.png in Resources */,
 				D3D53C291AA155230005BFB1 /* user-alt@2x.png in Resources */,
 				D3D53C401AA161D70005BFB1 /* comment_icon.png in Resources */,
@@ -1833,12 +1856,16 @@
 				D3D546901A2028DB001AE44E /* closed_icon_grey@2x.png in Resources */,
 				D3E1EA231A22EF99009F0910 /* divid_line.png in Resources */,
 				D3D23D361A271903002E0314 /* loading30ms.gif in Resources */,
+				D3D53C511AA18A8B0005BFB1 /* 暂无数据@2x.png in Resources */,
 				D3D53C201AA151900005BFB1 /* 椭圆-1.png in Resources */,
 				D3D3B0FC1A25AEED0088E7E5 /* empty_data_full.png in Resources */,
+				D3D53C491AA182000005BFB1 /* MUCH-卖趣-@2x.png in Resources */,
 				D3D5EAE71A2329D300411D50 /* details_view_zan_selected_icon.png in Resources */,
 				D3E1EA481A22F7DD009F0910 /* unselect_icon.png in Resources */,
+				D3D53C551AA18B820005BFB1 /* dots@2x.png in Resources */,
 				D3D5EAED1A2329DE00411D50 /* return_icon_big.png in Resources */,
 				D3D5EAE31A2329D300411D50 /* details_view_return.png in Resources */,
+				D3D53C451AA181D50005BFB1 /* MUCH@2x.png in Resources */,
 				D3D5EAE91A2329D300411D50 /* details_view_zan_unselect_icon.png in Resources */,
 				5B6644771A2479E7009CC28D /* follow@2x.png in Resources */,
 				D3D54E041A1F4461005DAAB6 /* filter_icon@2x.png in Resources */,
@@ -1889,16 +1916,20 @@
 				D3D546941A2028DB001AE44E /* distance_icon_green@2x.png in Resources */,
 				D3D5468F1A2028DB001AE44E /* closed_icon_grey.png in Resources */,
 				D3D3E7A71A2EDC9200E83BE3 /* clock.png in Resources */,
+				D3D53C541AA18B820005BFB1 /* dots.png in Resources */,
 				D3D3E7AC1A2EE91F00E83BE3 /* short@2x.png in Resources */,
 				D3AD324C1A24543700A76607 /* login_register_bar.png in Resources */,
+				D3D53C4D1AA189EA0005BFB1 /* bgImage@2x.png in Resources */,
 				5B6644791A2479E7009CC28D /* unfollow@2x.png in Resources */,
 				D3E1EA3E1A22F7DD009F0910 /* selected_icon.png in Resources */,
 				D3AD32561A24543700A76607 /* verif_code_bar@2x.png in Resources */,
 				D3D5469F1A2028DB001AE44E /* user_fav_bg.png in Resources */,
 				D3E1EA441A22F7DD009F0910 /* side_menu_mymuch_icon.png in Resources */,
+				D3D53C501AA18A8B0005BFB1 /* 暂无数据.png in Resources */,
 				D3D546911A2028DB001AE44E /* comment_bar_grey.png in Resources */,
 				D3E1EA3D1A22F7DD009F0910 /* placeholder_slider_icon@2x.png in Resources */,
 				D3E1EA3B1A22F7DD009F0910 /* placeholder_fill_blue@2x.png in Resources */,
+				D3D53C4C1AA189EA0005BFB1 /* bgImage.png in Resources */,
 				D3D5469E1A2028DB001AE44E /* user_center_avatar@2x.png in Resources */,
 				D3AD324F1A24543700A76607 /* password_icon@2x.png in Resources */,
 				D3AD32591A24543700A76607 /* weibo_icon.png in Resources */,

@@ -18,6 +18,7 @@
     self.gender = dict[@"gender"];
     self.nickname = dict[@"nickname"];
     self.username = dict[@"username"];
+    self.unreadDot = [NSString stringWithFormat:@"%@",dict[@"unreadDot"]];
     self.isFocuse=YES;
 }
 @end

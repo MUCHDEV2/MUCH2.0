@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"Background"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [GetImagePath getImagePath:@"Background"]];
     self.navigationController.navigationBarHidden = YES;
     
     UIButton *bgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -29,11 +29,11 @@
     [self.view addSubview:bgBtn];
     
 //    UIImageView *cancelImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 15, 15)];
-//    [cancelImage setImage:[UIImage imageNamed:@"cross_x_icon"]];
+//    [cancelImage setImage:[GetImagePath getImagePath:@"cross_x_icon"]];
 //    [self.view addSubview:cancelImage];
 //    
 //    UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    //[cancelBtn setImage:[UIImage imageNamed:@"cross_x_icon"] forState:UIControlStateNormal];
+//    //[cancelBtn setImage:[GetImagePath getImagePath:@"cross_x_icon"] forState:UIControlStateNormal];
 //    cancelBtn.frame = CGRectMake(10, 10, 30, 30);
 //    [cancelBtn addTarget:self action:@selector(cancelBtnClick) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview:cancelBtn];
@@ -60,7 +60,7 @@
     [self.view addSubview:contentLabel2];
     
     UIImageView *telephoneImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 180, 16, 16)];
-    [telephoneImage setImage:[UIImage imageNamed:@"phone_icon"]];
+    [telephoneImage setImage:[GetImagePath getImagePath:@"phone_icon"]];
     [self.view addSubview:telephoneImage];
     
     phoneTextField = [[UITextField alloc] initWithFrame:CGRectMake(50, 173, 160, 30)];
@@ -75,7 +75,7 @@
     [self.view addSubview:phoneTextField];
     
     UIButton *yzmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [yzmBtn setBackgroundImage:[UIImage imageNamed:@"verif_code_bar"] forState:UIControlStateNormal];
+    [yzmBtn setBackgroundImage:[GetImagePath getImagePath:@"verif_code_bar"] forState:UIControlStateNormal];
     yzmBtn.frame = CGRectMake(218, 175, 82, 27);
     [yzmBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
     yzmBtn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -87,7 +87,7 @@
     [self.view addSubview:lineImage];
     
     UIImageView *yzmImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 230, 17, 17)];
-    [yzmImage setImage:[UIImage imageNamed:@"check_icon"]];
+    [yzmImage setImage:[GetImagePath getImagePath:@"check_icon"]];
     [self.view addSubview:yzmImage];
     
     yzmTextField = [[UITextField alloc] initWithFrame:CGRectMake(50, 223, 250, 30)];
@@ -107,7 +107,7 @@
     [self.view addSubview:lineImage2];
     
     UIImageView *passWordImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 280, 17, 18)];
-    [passWordImage setImage:[UIImage imageNamed:@"password_icon"]];
+    [passWordImage setImage:[GetImagePath getImagePath:@"password_icon"]];
     [self.view addSubview:passWordImage];
     
     passWordTextField = [[UITextField alloc] initWithFrame:CGRectMake(50, 273, 250, 30)];
@@ -129,7 +129,7 @@
     
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     loginBtn.frame = CGRectMake(20, 330, 280, 45);
-    [loginBtn setBackgroundImage:[UIImage imageNamed:@"login_register_bar"] forState:UIControlStateNormal];
+    [loginBtn setBackgroundImage:[GetImagePath getImagePath:@"login_register_bar"] forState:UIControlStateNormal];
     [loginBtn setTitle:@"注册" forState:UIControlStateNormal];
     [loginBtn addTarget:self action:@selector(loginBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginBtn];

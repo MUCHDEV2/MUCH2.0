@@ -29,7 +29,7 @@
     // Override point for customization after application launch.
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.window.bounds];
-    imageView.image = [UIImage imageNamed:@"huanying"];
+    imageView.image = [GetImagePath getImagePath:@"huanying"];
     [self.window addSubview:imageView];
     [self.window makeKeyAndVisible];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -66,7 +66,7 @@
 //        [SliderViewController sharedSliderController].RightSJudgeOffset=160;
         [SliderViewController sharedSliderController].LeftSContentScale=1.0;
         [SliderViewController sharedSliderController].LeftSContentOffset=260;
-        self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[SliderViewController sharedSliderController]];
+        self.window.rootViewController = [SliderViewController sharedSliderController];
         
         [self.window makeKeyAndVisible];
     });

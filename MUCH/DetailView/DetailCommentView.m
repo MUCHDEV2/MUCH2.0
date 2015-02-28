@@ -46,7 +46,7 @@
 -(void)initMainView{
     self.userImageView=[DoubleRoundImageView doubleRoundImageViewWithBigRoundWidth:32 smallRoundWidth:28];
     self.userImageView.center=CGPointMake(27, 24);
-    [self.userImageView.smallRound sd_setImageWithURL:[NSURL URLWithString:self.commentModel.userImageUrl]];
+    [self.userImageView.smallRound sd_setImageWithURL:[NSURL URLWithString:self.commentModel.userImageUrl] placeholderImage:[GetImagePath getImagePath:@"icon114"]];
 
     self.nameLabel=[[UILabel alloc]initWithFrame:CGRectMake(55, 10, 200, NameHeight)];
     self.nameLabel.font=NameFont;

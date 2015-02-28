@@ -27,12 +27,13 @@
     bgView.backgroundColor = [UIColor blackColor];
     [self.contentView addSubview:bgView];
     
-    bgImageView = [[UIImageView alloc] init];
+    bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(1, 1, 318, 318)];
     bgImageView.backgroundColor = [UIColor grayColor];
+    bgImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:bgImageView];
     
     UIImageView *backImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 24, 20)];
-    [backImage setImage:[UIImage imageNamed:@"return_icon_big"]];
+    [backImage setImage:[GetImagePath getImagePath:@"return_icon_big"]];
     //[self.contentView addSubview:backImage];
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -47,24 +48,15 @@
 }
 
 -(void)setImageUrl:(NSString *)imageUrl{
-    [bgImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil options:SDWebImageProgressiveDownload progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-        
-    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if(image.size.height<320){
-            bgImageView.frame = CGRectMake(1, (320-image.size.height)/2, 318, image.size.height);
-        }else{
-            bgImageView.frame = CGRectMake(1, 1, 318, 318);
-        }
-    }];
+    [bgImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[GetImagePath getImagePath:@"bgImage"]];
 }
 
 -(void)setYoulikeit:(NSString *)youlikeit{
-    NSLog(@"====>%@",youlikeit);
     _youlikeit=youlikeit;
     if([youlikeit isEqualToString:@"0"]){
-        [loveBtn setBackgroundImage:[UIImage imageNamed:@"good_icon_unselect"] forState:UIControlStateNormal];
+        [loveBtn setBackgroundImage:[GetImagePath getImagePath:@"good_icon_unselect"] forState:UIControlStateNormal];
     }else{
-        [loveBtn setBackgroundImage:[UIImage imageNamed:@"good_icon_selected"] forState:UIControlStateNormal];
+        [loveBtn setBackgroundImage:[GetImagePath getImagePath:@"good_icon_selected"] forState:UIControlStateNormal];
     }
 }
 
@@ -92,7 +84,7 @@
                 [MuchApi LikeWithBlock:^(NSMutableArray *posts, NSError *error) {
                     if(!error){
                         //点赞动画
-                        [button setBackgroundImage:[UIImage imageNamed:@"good_icon_selected"] forState:UIControlStateNormal];
+                        [button setBackgroundImage:[GetImagePath getImagePath:@"good_icon_selected"] forState:UIControlStateNormal];
                         self.youlikeit = @"1";
                     }
                 } aid:self.aid];

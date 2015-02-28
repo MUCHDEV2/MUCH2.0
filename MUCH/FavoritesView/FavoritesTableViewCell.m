@@ -36,7 +36,7 @@
     [self.contentView addSubview:bgImageView];
     
     UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(278, 21, 32, 32)];
-    imageview.image = [UIImage imageNamed:@"clock"];
+    imageview.image = [GetImagePath getImagePath:@"clock"];
     [self.contentView addSubview:imageview];
     
     _hours = [[UIView alloc] initWithFrame:CGRectMake(292.5, 32.5, 1, 7)];
@@ -57,7 +57,7 @@
     
     
     distanceImage = [[UIImageView alloc] initWithFrame:CGRectMake(11, 21, 48, 48)];
-    [distanceImage setImage:[UIImage imageNamed:@"distance_icon_green"]];
+    [distanceImage setImage:[GetImagePath getImagePath:@"distance_icon_green"]];
     [self.contentView addSubview:distanceImage];
     
     distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
@@ -68,7 +68,7 @@
     [distanceImage addSubview:distanceLabel];
     
     priceImage = [[UIImageView alloc] initWithFrame:CGRectMake(11, 79, 48, 48)];
-    [priceImage setImage:[UIImage imageNamed:@"price_icon_red"]];
+    [priceImage setImage:[GetImagePath getImagePath:@"price_icon_red"]];
     [self.contentView addSubview:priceImage];
     
     priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
@@ -89,7 +89,7 @@
     [self.contentView addSubview:timeLabel];
     
     UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(293, 60, 1, 80)];
-    [lineImage setImage:[UIImage imageNamed:@"distance"]];
+    [lineImage setImage:[GetImagePath getImagePath:@"distance"]];
     [self.contentView addSubview:lineImage];
     
     UILongPressGestureRecognizer *closePress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(closeLong:)];
@@ -153,17 +153,17 @@
     if([model.is_closed isEqualToString:@"0"]){
         statusImageView.alpha = 0;
         if([model.compare isEqualToString:@"2"]){
-            [distanceImage setImage:[UIImage imageNamed:@"distance_icon_green"]];
+            [distanceImage setImage:[GetImagePath getImagePath:@"distance_icon_green"]];
         }else if ([model.compare isEqualToString:@"5"]){
-            [distanceImage setImage:[UIImage imageNamed:@"distance_5km"]];
+            [distanceImage setImage:[GetImagePath getImagePath:@"distance_5km"]];
         }else if([model.compare isEqualToString:@"all"]){
-            [distanceImage setImage:[UIImage imageNamed:@"distance_all"]];
+            [distanceImage setImage:[GetImagePath getImagePath:@"distance_all"]];
         }
-        [priceImage setImage:[UIImage imageNamed:@"price_icon_red"]];
+        [priceImage setImage:[GetImagePath getImagePath:@"price_icon_red"]];
     }else{
         statusImageView.alpha = 0.3;
-        [distanceImage setImage:[UIImage imageNamed:@"closed_icon_grey"]];
-        [priceImage setImage:[UIImage imageNamed:@"closed_icon_grey"]];
+        [distanceImage setImage:[GetImagePath getImagePath:@"closed_icon_grey"]];
+        [priceImage setImage:[GetImagePath getImagePath:@"closed_icon_grey"]];
     }
 }
 
