@@ -35,6 +35,23 @@
     from = @"";
     self.title = @"MUCH";
     self.view.backgroundColor = [UIColor whiteColor];
+    //LeftButton设置属性
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton setFrame:CGRectMake(0, 0, 16, 21)];
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"user-alt"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftButtonItem;
+    
+    //RightButton设置属性
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 19, 19)];
+    [rightButton setBackgroundImage:[UIImage imageNamed:@"settings"] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
+    
+    
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -69,6 +86,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)leftBtnClick{
+    [[SliderViewController sharedSliderController] leftItemClick];
+}
+
+-(void)rightBtnClick{
+    [[SliderViewController sharedSliderController] rightItemClick];
 }
 
 /**

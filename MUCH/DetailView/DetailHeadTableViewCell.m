@@ -33,7 +33,7 @@
     
     UIImageView *backImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 24, 20)];
     [backImage setImage:[UIImage imageNamed:@"return_icon_big"]];
-    [self.contentView addSubview:backImage];
+    //[self.contentView addSubview:backImage];
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(0, 0, 48, 40);

@@ -34,14 +34,7 @@
 //    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadList) name:@"reloadDataFav" object:nil];
 //    showArr = [[NSMutableArray alloc] init];
 //    [self reloadList];
-    
-    //RightButton设置属性
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setFrame:CGRectMake(0, 0, 19, 18)];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"favourite"] forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
-    self.navigationItem.rightBarButtonItem = rightButtonItem;
+    self.title = @"MUCH";
     
     self.postView = [[PostViewController alloc] init];
     self.postView.targetId = [LoginSqlite getdata:@"userId"];
@@ -49,10 +42,6 @@
     self.postView.userName = [LoginSqlite getdata:@"nickname"];
     [self.postView.view setFrame:CGRectMake(0, 64, 320, 504)];
     [self.view addSubview:self.postView.view];
-}
-
--(void)rightBtnClick{
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated{

@@ -165,8 +165,10 @@
     [lineImageView setBackgroundColor:RGBCOLOR(203, 203, 203)];
     [self.contentView addSubview:lineImageView];
     
-    UIImageView *headBgImage = [[UIImageView alloc] initWithFrame:CGRectMake(5, 10, 47.5, 47.5)];
-    [headBgImage setImage:[UIImage imageNamed:@"03-1_30.png"]];
+    UIImageView *headBgImage = [[UIImageView alloc] initWithFrame:CGRectMake(3.5, 8.5, 50.5, 50.5)];
+    [headBgImage setBackgroundColor:[UIColor whiteColor]];
+    headBgImage.layer.cornerRadius = 50.5/2;
+    headBgImage.layer.masksToBounds = YES;
     [self.contentView addSubview:headBgImage];
     
     //headView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"03_1_03.png"]];
@@ -176,11 +178,11 @@
     [self.contentView addSubview:headView];
     
     UIImageView *dianView = [[UIImageView alloc] initWithFrame:CGRectMake(12.3, 83, 6.5, 6.5)];
-    [dianView setImage:[UIImage imageNamed:@"03-1_12.png"]];
+    [dianView setImage:[UIImage imageNamed:@"dian"]];
     [self.contentView addSubview:dianView];
     
     UIImageView *contentView = [[UIImageView alloc] initWithFrame:CGRectMake(55, 10, 260, 106.5)];
-    [contentView setImage:[UIImage imageNamed:@"03-1_34.png"]];
+    [contentView setImage:[UIImage imageNamed:@"多边形-1"]];
     [self.contentView addSubview:contentView];
     
     namelabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 52.5, 45, 30)];
@@ -200,27 +202,36 @@
     [moreImageView setImage:[UIImage imageNamed:@"03-1_24.png"]];
     [self.contentView addSubview:moreImageView];
     
-    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(75, 87, 130, 1)];
+    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(69, 87, 138, 1)];
     [lineImage setBackgroundColor:[UIColor blackColor]];
     [self.contentView addSubview:lineImage];
     lineImage.alpha = 0.2;
     
-    pricelabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 87, 100, 30)];
+    pricelabel = [[UILabel alloc] initWithFrame:CGRectMake(69, 87, 60, 30)];
     pricelabel.font = [UIFont systemFontOfSize:12];
     pricelabel.textColor = RGBCOLOR(242, 66, 146);
     [self.contentView addSubview:pricelabel];
     
-    goodImage = [[UIImageView alloc] initWithFrame:CGRectMake(170, 97, 10, 8.5)];
-    [goodImage setImage:[UIImage imageNamed:@"03-1_17.png"]];
+    commetImage = [[UIImageView alloc] initWithFrame:CGRectMake(127, 98, 9, 9)];
+    [commetImage setImage:[UIImage imageNamed:@"comment_icon"]];
+    [self.contentView addSubview:commetImage];
+    
+    commetLabel = [[UILabel alloc] initWithFrame:CGRectMake(140, 86, 30, 30)];
+    commetLabel.font = [UIFont systemFontOfSize:12];
+    commetLabel.textColor = RGBCOLOR(159, 159, 159);
+    [self.contentView addSubview:commetLabel];
+    
+    goodImage = [[UIImageView alloc] initWithFrame:CGRectMake(172, 97, 11, 9)];
+    [goodImage setImage:[UIImage imageNamed:@"good"]];
     [self.contentView addSubview:goodImage];
     
-    goodlabel = [[UILabel alloc] initWithFrame:CGRectMake(185, 86, 100, 30)];
+    goodlabel = [[UILabel alloc] initWithFrame:CGRectMake(187, 86, 20, 30)];
     goodlabel.font = [UIFont systemFontOfSize:12];
     goodlabel.textColor = RGBCOLOR(159, 159, 159);
     [self.contentView addSubview:goodlabel];
     
     //bigImage = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"03_1_03"]];
-    bigImage = [[UIImageView alloc] initWithFrame:CGRectMake(210, 12, 100, 100)];
+    bigImage = [[UIImageView alloc] initWithFrame:CGRectMake(212, 12, 100, 100)];
     [self.contentView addSubview:bigImage];
     
     contentNamelabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 5, 30, 30)];
@@ -253,11 +264,11 @@
 
 -(void)setModel:(ListModel *)model{
     lineImageView.frame=CGRectMake(15, 0, 1, !self.myNeedLong?130:600);
-    pricelabel.text = [NSString stringWithFormat:@"￥ %@",model.price];
+    pricelabel.text = [NSString stringWithFormat:@"￥%@",model.price];
     [bigImage sd_setImageWithURL:[NSURL URLWithString:model.content] placeholderImage:nil];
     goodlabel.text = model.likes;
     distancelabel.text = model.distance_str;
-    [headView sd_setImageWithURL:[NSURL URLWithString:model.createdby[@"avatar"]] placeholderImage:nil];
+    [headView sd_setImageWithURL:[NSURL URLWithString:model.createdby[@"avatar"]] placeholderImage:[UIImage imageNamed:@"icon114"]];
     
     contentNamelabel.text = @"";
     contentlabel.text = @"";
@@ -265,6 +276,7 @@
     contentlabel2.text = @"";
     contentNamelabel3.text = @"";
     contentlabel3.text = @"";
+    commetLabel.text = @"";
     if(model.comments.count !=0){
         for(int i=0;i<model.comments.count;i++){
             if(i==0){
@@ -284,6 +296,7 @@
                 }
             }
         }
+        commetLabel.text = [NSString stringWithFormat:@"%d",model.comments.count];
     }else{
         contentNamelabel.text = @"";
         contentlabel.text = @"";
@@ -291,6 +304,7 @@
         contentlabel2.text = @"";
         contentNamelabel3.text = @"";
         contentlabel3.text = @"";
+        commetLabel.text = @"0";
     }
 }
 @end
