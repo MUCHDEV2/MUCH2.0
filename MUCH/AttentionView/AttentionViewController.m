@@ -79,7 +79,7 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
     AttentionModel* model=self.datas[indexPath.row];
-    AttentionViewCellModel* cellModel=[AttentionViewCellModel modelWithImageName:@"good_icon_selected" userName:model.nickname isFocuse:model.isFocuse indexPathRow:indexPath.row userImageUrl:model.avatar];
+    AttentionViewCellModel* cellModel=[AttentionViewCellModel modelWithImageName:@"good_icon_selected" userName:model.nickname isFocuse:model.isFocuse indexPathRow:indexPath.row userImageUrl:model.avatar unreadDot:model.unreadDot];
     cell.model=cellModel;
     return cell;
 }

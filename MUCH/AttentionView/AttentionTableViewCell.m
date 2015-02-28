@@ -15,6 +15,7 @@
 @property(nonatomic,strong)UIImageView* focuseBtn;
 @property(nonatomic,strong)UIImageView* separatorLine;
 @property(nonatomic,weak)id<AttentionTableViewCellDelegate>delegate;
+@property(nonatomic,strong)UIView* unreadDotView;
 @end
 @implementation AttentionTableViewCell
 
@@ -46,6 +47,16 @@
     return _focuseBtn;
 }
 
+-(UIView *)unreadDotView{
+    if (!_unreadDotView) {
+        _unreadDotView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 5, 5)];
+        _unreadDotView.layer.cornerRadius=_unreadDotView.frame.size.width*.5;
+        _unreadDotView.backgroundColor=[UIColor redColor];
+        _unreadDotView.center=CGPointMake(self.userView.frame.size.width-_unreadDotView.frame.size.width*.5, _unreadDotView.frame.size.height*.5);
+    }
+    return _unreadDotView;
+}
+
 -(void)chooseUserFocuse:(UITapGestureRecognizer*)tap{
     [self.delegate userFocuseWithIndexPathRow:self.model.indexPathRow];
 }
@@ -65,6 +76,7 @@
         [self addSubview:self.nameLabel];
         [self addSubview:self.focuseBtn];
         [self addSubview:self.separatorLine];
+        [self.userView addSubview:self.unreadDotView];
     }
     return self;
 }
@@ -74,6 +86,7 @@
     self.nameLabel.text=model.userName;
     self.focuseBtn.image=[GetImagePath getImagePath:model.isFocuse?@"unfollow":@"follow"];
     [self.userView.smallRound sd_setImageWithURL:[NSURL URLWithString:model.userImageUrl]];
+    self.unreadDotView.alpha=model.hasUnread;
 }
 @end
 
