@@ -21,5 +21,6 @@
     self.username = dict[@"username"];
     self.phone = dict[@"phone"];
     self.city = dict[@"city"];
+    self.unreadDot = [NSString stringWithFormat:@"%@",dict[@"unreadDot"]];
 }
 @end
