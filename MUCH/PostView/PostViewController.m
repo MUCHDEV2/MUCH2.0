@@ -97,8 +97,8 @@
                 self.showArr = posts;
                 for(int i=0; i<[[posts[0] allKeys]count];i++){
                     self.postContentView = [PostContentView setFram:[posts[0] objectForKey:[posts[0] allKeys][i]]];
-                    [self.viewArr insertObject:self.postContentView atIndex:0];
-                    [self.dateArr insertObject:[posts[0] allKeys][i] atIndex:0];
+                    [self.viewArr addObject:self.postContentView];
+                    [self.dateArr addObject:[posts[0] allKeys][i]];
                 }
                 [self.tableView reloadData];
             }

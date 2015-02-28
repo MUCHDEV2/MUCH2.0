@@ -10,7 +10,11 @@
 #import "SliderViewController.h"
 #import "LoginSqlite.h"
 #import "AppDelegate.h"
+#import "MuchApi.h"
+#import "userModel.h"
 @interface LeftViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic,strong)UITableView* tableView;
+@property(nonatomic,strong)NSString *unreadDot;
 @end
 
 @implementation LeftViewController
@@ -22,6 +26,7 @@
     [self getListView];
     //[self getQuitView];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (changeHeadImage) name:@"changHead" object:nil];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadMyData) name:@"reloadMyData" object:nil];
 }
 
 -(void)getMainView{
@@ -56,13 +61,13 @@
 }
 
 -(void)getListView{
-    UITableView* tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 200, 320, 225) style:UITableViewStylePlain];
-    tableView.delegate=self;
-    tableView.dataSource=self;
-    tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    tableView.rowHeight=45;
-    tableView.scrollEnabled=NO;
-    [self.view addSubview:tableView];
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 200, 320, 225) style:UITableViewStylePlain];
+    self.tableView.delegate=self;
+    self.tableView.dataSource=self;
+    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.tableView.rowHeight=45;
+    self.tableView.scrollEnabled=NO;
+    [self.view addSubview:self.tableView];
 }
 
 //-(void)getQuitView{
@@ -89,6 +94,7 @@
         backView.backgroundColor=RGBCOLOR(195, 195, 195);
         cell.selectedBackgroundView=backView;
     }
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     NSArray* imageNames=@[@"side_menu_much_icon",
                           @"side_menu_mymuch_icon",
                           @"side_menu_favuser_icon",
@@ -105,6 +111,12 @@
         UIView* separotorLine=[self getSeparatorLine];
         separotorLine.frame=CGRectMake(0, 44, 320, 1);
         [cell.contentView addSubview:separotorLine];
+    }
+    
+    if(indexPath.row == 2){
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(180, 10, 20, 20)];
+        label.text = self.unreadDot;
+        [cell.contentView addSubview:label];
     }
     return cell;
 }
@@ -195,5 +207,18 @@
     LoginViewController *loginVC = app.loginView;
     UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:loginVC];
     [self.view.window.rootViewController presentViewController:nv animated:YES completion:nil];
+}
+
+-(void)reloadMyData{
+    NSLog(@"reloadMyData");
+    [MuchApi GetUserWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if(!error){
+            userModel *model = posts[0];
+            NSLog(@"%@",model.unreadDot);
+            self.unreadDot = model.unreadDot;
+            NSIndexPath *indexPath=[NSIndexPath indexPathForRow:2 inSection:0];
+            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+        }
+    }];
 }
 @end

@@ -342,6 +342,7 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
             [UIView commitAnimations];
             
             _tapGestureRec.enabled = YES;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMyData" object:nil];
             return;
         }
         if ((finalX < -_RightSJudgeOffset) )
