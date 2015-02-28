@@ -15,7 +15,8 @@
 #import "MuchApi.h"
 #import "GTMBase64.h"
 #import "LoginSqlite.h"
-@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
+#import "NoDataView.h"
+@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,NoDataViewDelegate>{
     NSTimeInterval lastOffsetCapture;
     CGPoint lastOffset;
     BOOL isScrollingFast;
@@ -411,6 +412,9 @@
         startIndex = 0;
         [MuchApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
             if(!error){
+//                NoDataView* view=[NoDataView getNoDataViewWithDelegate:self];
+//                [self.navigationController.view addSubview:view];
+//                return ;
                 //NSLog(@"posts ==> %@",posts);
                 showArr = posts;
                 [self.tableView reloadData];
@@ -420,6 +424,10 @@
             }
         }start:startIndex indexSize:5 log:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.longitude] lat:[NSString stringWithFormat:@"%f",[AppDelegate instance].coor.latitude] range:range from:from];
     }
+}
+
+-(void)noDataViewAddBtnClicked{
+    NSLog(@"noDataViewAddBtnClicked");
 }
 
 -(void)loginSucsee{
