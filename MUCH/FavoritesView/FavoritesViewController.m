@@ -13,26 +13,46 @@
 #import "MBProgressHUD.h"
 #import "LoginSqlite.h"
 #import "SliderViewController.h"
+#import "PostViewController.h"
 @interface FavoritesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
 @property(nonatomic,retain)UITableView *tableView;
-
+@property(nonatomic,strong)PostViewController *postView;
 @end
 
 @implementation FavoritesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.view addSubview:self.tableView];
-    [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
-    self.tableView.separatorStyle = NO;
-    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadList) name:@"reloadData" object:nil];
-    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadList) name:@"reloadDataFav" object:nil];
-    showArr = [[NSMutableArray alloc] init];
-    [self reloadList];
+//    self.view.backgroundColor = [UIColor whiteColor];
+//    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
+//    self.tableView.delegate = self;
+//    self.tableView.dataSource = self;
+//    [self.view addSubview:self.tableView];
+//    [self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
+//    self.tableView.separatorStyle = NO;
+//    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadList) name:@"reloadData" object:nil];
+//    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadList) name:@"reloadDataFav" object:nil];
+//    showArr = [[NSMutableArray alloc] init];
+//    [self reloadList];
+    
+    //RightButton设置属性
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton setFrame:CGRectMake(0, 0, 19, 18)];
+    [rightButton setBackgroundImage:[UIImage imageNamed:@"favourite"] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
+    
+    self.postView = [[PostViewController alloc] init];
+    self.postView.targetId = [LoginSqlite getdata:@"userId"];
+    self.postView.avatarUrl = [LoginSqlite getdata:@"avatar"];
+    self.postView.userName = [LoginSqlite getdata:@"nickname"];
+    [self.postView.view setFrame:CGRectMake(0, 64, 320, 504)];
+    [self.view addSubview:self.postView.view];
+}
+
+-(void)rightBtnClick{
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{

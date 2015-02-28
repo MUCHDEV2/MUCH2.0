@@ -28,7 +28,7 @@
     self.orginCenter=self.view.center;
     self.view.backgroundColor=RGBCOLOR(220, 220, 220);
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector (reloadData) name:@"reloadData" object:nil];
-    [self getTitleView];
+    //[self getTitleView];
     [self getTapResign];
     [self getListView];
     [self reloadData];
@@ -67,7 +67,7 @@
 }
 
 -(void)getListView{
-    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 45, 320, 568-45) style:UITableViewStylePlain];
+    self.tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 504) style:UITableViewStylePlain];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;

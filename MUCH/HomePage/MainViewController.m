@@ -41,8 +41,8 @@
     [self.view addSubview:self.tableView];
     //[self.tableView setContentOffset:CGPointMake(0, 114) animated:NO];
     self.tableView.separatorStyle = NO;
-    self.tableView.backgroundColor = RGBCOLOR(220, 220, 220);
-    
+    self.tableView.backgroundColor = RGBCOLOR(217, 217, 217);
+   
 //    self.button = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [self.button setImage:[UIImage imageNamed:@"menu_icon"] forState:UIControlStateNormal];
 //    [self.button setFrame:CGRectMake(30, 494, 44, 44)];
@@ -152,6 +152,7 @@
     if(!cell){
         cell = [[MainViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringcell] ;
     }
+    cell.myNeedLong=(indexPath.row==showArr.count)?YES:NO;
     cell.model = showArr[indexPath.row];
     cell.selectionStyle = NO;
     return cell;
@@ -171,7 +172,7 @@
 //    if(indexPath.row <2){
 //        return 57;
 //    }
-    return 319;
+    return 130;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -261,7 +262,7 @@
 //    }
 //    [self showBtn];
 //}
-
+//
 //-(void)showBtn{
 //    [UIView animateWithDuration:0.5 animations:^{
 //        self.button.alpha = 1;
@@ -275,7 +276,7 @@
 //        }
 //    }];
 //}
-//
+
 //-(void)gotoTop{
 //    [self.tableView setContentOffset:CGPointMake(0, 114) animated:YES];
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

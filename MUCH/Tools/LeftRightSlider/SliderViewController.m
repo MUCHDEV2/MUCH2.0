@@ -175,12 +175,12 @@ typedef NS_ENUM(NSInteger, RMoveDirection) {
     }
     
     controller.view.frame = _mainContentView.frame;
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
+    self.nav = [[UINavigationController alloc] initWithRootViewController:controller];
     //nav.navigationBarHidden = YES;
     //NavigationBar设置背景图
-    nav.navigationBar.barTintColor = RGBCOLOR(255,228,19);
-    [_mainContentView addSubview:nav.view];
-    self.MainVC=nav;
+    self.nav.navigationBar.barTintColor = RGBCOLOR(255,228,19);
+    [_mainContentView addSubview:self.nav.view];
+    self.MainVC=self.nav;
 }
 
 - (void)leftItemClick

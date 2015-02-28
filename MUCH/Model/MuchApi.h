@@ -68,4 +68,7 @@
 
 //微信个人信息
 + (void)GetWeiXinUser:(void (^)(NSDictionary *dic, NSError *error))block access_token:(NSString *)access_token;
+
+//获取个人发得所有帖子
++ (NSURLSessionDataTask *)GetPostWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block aid:(NSString *)aid;
 @end

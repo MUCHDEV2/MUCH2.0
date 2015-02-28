@@ -12,6 +12,7 @@
 #import "MuchApi.h"
 #import "AttentionModel.h"
 #import "LoginSqlite.h"
+#import "PostViewController.h"
 @interface AttentionViewController ()<UITableViewDataSource,UITableViewDelegate,AttentionTableViewCellDelegate,UISearchBarDelegate>
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)NSMutableArray* datas;
@@ -81,10 +82,6 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"asdfasfa");
-}
-
 -(void)userFocuseWithIndexPathRow:(NSInteger)indexPathRow{
     AttentionModel* model=self.datas[indexPathRow];
     if (model.isFocuse) {
@@ -98,7 +95,12 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"indexPath==%d",indexPath.row);
+    AttentionModel* model=self.datas[indexPath.row];
+    PostViewController *postView = [[PostViewController alloc] init];
+    postView.targetId = model.aid;
+    postView.avatarUrl = model.avatar;
+    postView.userName = model.nickname;
+    [self.navigationController pushViewController:postView animated:YES];
 }
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{

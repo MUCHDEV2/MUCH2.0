@@ -524,4 +524,26 @@
         block([NSDictionary dictionaryWithDictionary:resultDict],nil);
     }
 }
+
++ (NSURLSessionDataTask *)GetPostWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block aid:(NSString *)aid{
+    NSString *urlStr = [NSString stringWithFormat:@"/owner?id=%@&viewerid=%@",aid,[LoginSqlite getdata:@"userId"]];
+    return [[AFAppDotNetAPIClient sharedClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        if([[NSString stringWithFormat:@"%@",JSON[@"status"][@"code"]]isEqualToString:@"200"]){
+            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
+            [mutablePosts addObject:JSON[@"result"]];
+            if (block) {
+                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:JSON[@"status"][@"text"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        NSLog(@"error ==> %@",error);
+        if (block) {
+            block([NSMutableArray array], error);
+        }
+    }];
+}
 @end

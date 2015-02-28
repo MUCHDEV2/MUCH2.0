@@ -28,6 +28,9 @@
 		5BAD27FB1A8CA87F0019BBAD /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BAD27F81A8CA87F0019BBAD /* libbaidumapapi.a */; };
 		5BAD27FC1A8CA87F0019BBAD /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BAD27FA1A8CA87F0019BBAD /* libbaidumapapi.a */; };
 		5BAD27FE1A8CA8910019BBAD /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5BAD27FD1A8CA8910019BBAD /* mapapi.bundle */; };
+		D3A47BFB1A8DCD1200767D11 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A47BFA1A8DCD1200767D11 /* PostViewController.m */; };
+		D3A47BFE1A8DCFBE00767D11 /* PostContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A47BFD1A8DCFBE00767D11 /* PostContentView.m */; };
+		D3A47C011A8DEC0400767D11 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A47C001A8DEC0400767D11 /* PostTableViewCell.m */; };
 		D3AD32481A24543700A76607 /* check_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD32341A24543600A76607 /* check_icon.png */; };
 		D3AD32491A24543700A76607 /* check_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD32351A24543600A76607 /* check_icon@2x.png */; };
 		D3AD324C1A24543700A76607 /* login_register_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = D3AD32381A24543600A76607 /* login_register_bar.png */; };
@@ -73,6 +76,12 @@
 		D3D3E7B01A2EE9B200E83BE3 /* long@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D3E7AE1A2EE9B200E83BE3 /* long@2x.png */; };
 		D3D3E7B31A2EE9F400E83BE3 /* distance.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D3E7B11A2EE9F400E83BE3 /* distance.png */; };
 		D3D3E7B41A2EE9F400E83BE3 /* distance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D3E7B21A2EE9F400E83BE3 /* distance@2x.png */; };
+		D3D53C1C1AA14F370005BFB1 /* 矩形-4.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C1A1AA14F370005BFB1 /* 矩形-4.png */; };
+		D3D53C1D1AA14F370005BFB1 /* 矩形-4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C1B1AA14F370005BFB1 /* 矩形-4@2x.png */; };
+		D3D53C201AA151900005BFB1 /* 椭圆-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C1E1AA151900005BFB1 /* 椭圆-1.png */; };
+		D3D53C211AA151900005BFB1 /* 椭圆-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C1F1AA151900005BFB1 /* 椭圆-1@2x.png */; };
+		D3D53C241AA152700005BFB1 /* favourite.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C221AA152700005BFB1 /* favourite.png */; };
+		D3D53C251AA152700005BFB1 /* favourite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D53C231AA152700005BFB1 /* favourite@2x.png */; };
 		D3D5468D1A2028DB001AE44E /* back_to_top.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D546751A2028DB001AE44E /* back_to_top.png */; };
 		D3D5468E1A2028DB001AE44E /* back_to_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D546761A2028DB001AE44E /* back_to_top@2x.png */; };
 		D3D5468F1A2028DB001AE44E /* closed_icon_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D546771A2028DB001AE44E /* closed_icon_grey.png */; };
@@ -366,6 +375,12 @@
 		5BAD27F81A8CA87F0019BBAD /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		5BAD27FA1A8CA87F0019BBAD /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		5BAD27FD1A8CA8910019BBAD /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
+		D3A47BF91A8DCD1200767D11 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
+		D3A47BFA1A8DCD1200767D11 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		D3A47BFC1A8DCFBE00767D11 /* PostContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostContentView.h; sourceTree = "<group>"; };
+		D3A47BFD1A8DCFBE00767D11 /* PostContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostContentView.m; sourceTree = "<group>"; };
+		D3A47BFF1A8DEC0400767D11 /* PostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableViewCell.h; sourceTree = "<group>"; };
+		D3A47C001A8DEC0400767D11 /* PostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCell.m; sourceTree = "<group>"; };
 		D3AD32301A24520900A76607 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		D3AD32341A24543600A76607 /* check_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_icon.png; sourceTree = "<group>"; };
 		D3AD32351A24543600A76607 /* check_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check_icon@2x.png"; sourceTree = "<group>"; };
@@ -419,6 +434,12 @@
 		D3D3E7AE1A2EE9B200E83BE3 /* long@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "long@2x.png"; sourceTree = "<group>"; };
 		D3D3E7B11A2EE9F400E83BE3 /* distance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distance.png; sourceTree = "<group>"; };
 		D3D3E7B21A2EE9F400E83BE3 /* distance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "distance@2x.png"; sourceTree = "<group>"; };
+		D3D53C1A1AA14F370005BFB1 /* 矩形-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "矩形-4.png"; sourceTree = "<group>"; };
+		D3D53C1B1AA14F370005BFB1 /* 矩形-4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "矩形-4@2x.png"; sourceTree = "<group>"; };
+		D3D53C1E1AA151900005BFB1 /* 椭圆-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "椭圆-1.png"; sourceTree = "<group>"; };
+		D3D53C1F1AA151900005BFB1 /* 椭圆-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "椭圆-1@2x.png"; sourceTree = "<group>"; };
+		D3D53C221AA152700005BFB1 /* favourite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favourite.png; sourceTree = "<group>"; };
+		D3D53C231AA152700005BFB1 /* favourite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favourite@2x.png"; sourceTree = "<group>"; };
 		D3D546751A2028DB001AE44E /* back_to_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_to_top.png; sourceTree = "<group>"; };
 		D3D546761A2028DB001AE44E /* back_to_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_to_top@2x.png"; sourceTree = "<group>"; };
 		D3D546771A2028DB001AE44E /* closed_icon_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closed_icon_grey.png; sourceTree = "<group>"; };
@@ -859,6 +880,19 @@
 			path = "Release-iphonesimulator";
 			sourceTree = "<group>";
 		};
+		D3A47BF81A8DCC7500767D11 /* PostView */ = {
+			isa = PBXGroup;
+			children = (
+				D3A47BF91A8DCD1200767D11 /* PostViewController.h */,
+				D3A47BFA1A8DCD1200767D11 /* PostViewController.m */,
+				D3A47BFC1A8DCFBE00767D11 /* PostContentView.h */,
+				D3A47BFD1A8DCFBE00767D11 /* PostContentView.m */,
+				D3A47BFF1A8DEC0400767D11 /* PostTableViewCell.h */,
+				D3A47C001A8DEC0400767D11 /* PostTableViewCell.m */,
+			);
+			path = PostView;
+			sourceTree = "<group>";
+		};
 		D3AD322E1A2451DF00A76607 /* 登陆 */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,6 +942,19 @@
 				D3AD32621A247AE300A76607 /* PrintObject.m */,
 			);
 			path = Json;
+			sourceTree = "<group>";
+		};
+		D3D53C191AA14F1F0005BFB1 /* 新图 */ = {
+			isa = PBXGroup;
+			children = (
+				D3D53C221AA152700005BFB1 /* favourite.png */,
+				D3D53C231AA152700005BFB1 /* favourite@2x.png */,
+				D3D53C1E1AA151900005BFB1 /* 椭圆-1.png */,
+				D3D53C1F1AA151900005BFB1 /* 椭圆-1@2x.png */,
+				D3D53C1A1AA14F370005BFB1 /* 矩形-4.png */,
+				D3D53C1B1AA14F370005BFB1 /* 矩形-4@2x.png */,
+			);
+			path = "新图";
 			sourceTree = "<group>";
 		};
 		D3D546741A2028DB001AE44E /* 大图列表模式元素 */ = {
@@ -1197,6 +1244,7 @@
 			isa = PBXGroup;
 			children = (
 				D3D546B51A203891001AE44E /* Model */,
+				D3A47BF81A8DCC7500767D11 /* PostView */,
 				D3AD322F1A2451F600A76607 /* LoginView */,
 				5B6644711A2476FF009CC28D /* RegisterViewController */,
 				D3D5EAC71A231DBB00411D50 /* DetailView */,
@@ -1252,6 +1300,7 @@
 		D3D8BF6F1A1AED90007222CC /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3D53C191AA14F1F0005BFB1 /* 新图 */,
 				D3D23D351A271903002E0314 /* loading30ms.gif */,
 				D3AD322E1A2451DF00A76607 /* 登陆 */,
 				D3D5EACE1A2329D300411D50 /* 详情页 */,
@@ -1638,6 +1687,7 @@
 				5B6644761A2479E7009CC28D /* follow.png in Resources */,
 				D3D5EAF31A232CEA00411D50 /* good_icon_selected.png in Resources */,
 				D3AD324D1A24543700A76607 /* login_register_bar@2x.png in Resources */,
+				D3D53C211AA151900005BFB1 /* 椭圆-1@2x.png in Resources */,
 				D3AD32681A247D2A00A76607 /* cross_x_icon@2x.png in Resources */,
 				D3D32D311A24270900A86F54 /* search_icon@2x.png in Resources */,
 				D3D5469B1A2028DB001AE44E /* user_avatar_white.png in Resources */,
@@ -1669,6 +1719,7 @@
 				D3D8BF771A1AEEF6007222CC /* huanying.png in Resources */,
 				D3D5468E1A2028DB001AE44E /* back_to_top@2x.png in Resources */,
 				5BAD27FE1A8CA8910019BBAD /* mapapi.bundle in Resources */,
+				D3D53C1C1AA14F370005BFB1 /* 矩形-4.png in Resources */,
 				D3D5EAFC1A23449300411D50 /* comment_icon_blue.png in Resources */,
 				D3AD32491A24543700A76607 /* check_icon@2x.png in Resources */,
 				D3D546961A2028DB001AE44E /* menu_icon@2x.png in Resources */,
@@ -1684,10 +1735,13 @@
 				D3D5EAFD1A23449300411D50 /* comment_icon_blue@2x.png in Resources */,
 				D3E1EA401A22F7DD009F0910 /* side_menu_favuser_icon.png in Resources */,
 				D3D546A11A2028DB001AE44E /* user_faved_icon.png in Resources */,
+				D3D53C1D1AA14F370005BFB1 /* 矩形-4@2x.png in Resources */,
+				D3D53C241AA152700005BFB1 /* favourite.png in Resources */,
 				D3D5EAE21A2329D300411D50 /* details_view_reply_user_white@2x.png in Resources */,
 				D3D546901A2028DB001AE44E /* closed_icon_grey@2x.png in Resources */,
 				D3E1EA231A22EF99009F0910 /* divid_line.png in Resources */,
 				D3D23D361A271903002E0314 /* loading30ms.gif in Resources */,
+				D3D53C201AA151900005BFB1 /* 椭圆-1.png in Resources */,
 				D3D3B0FC1A25AEED0088E7E5 /* empty_data_full.png in Resources */,
 				D3D5EAE71A2329D300411D50 /* details_view_zan_selected_icon.png in Resources */,
 				D3E1EA481A22F7DD009F0910 /* unselect_icon.png in Resources */,
@@ -1718,6 +1772,7 @@
 				D3D5EADD1A2329D300411D50 /* details_view_distance_green.png in Resources */,
 				5B646CA71A2C5EEA007F7460 /* WeiboSDK.bundle in Resources */,
 				D3E1EA3C1A22F7DD009F0910 /* placeholder_slider_icon.png in Resources */,
+				D3D53C251AA152700005BFB1 /* favourite@2x.png in Resources */,
 				D3D8BF721A1AEDC4007222CC /* icon114.png in Resources */,
 				D3D3B0EF1A25A0030088E7E5 /* distance_5km@2x.png in Resources */,
 				D3E1EA431A22F7DD009F0910 /* side_menu_much_icon@2x.png in Resources */,
@@ -1791,9 +1846,11 @@
 				D3D5EB001A23460800411D50 /* userModel.m in Sources */,
 				D3D3B0E11A25730D0088E7E5 /* FavoritesTableViewCell.m in Sources */,
 				D3D54DF01A1F383A005DAAB6 /* UIScrollView+MJRefresh.m in Sources */,
+				D3A47C011A8DEC0400767D11 /* PostTableViewCell.m in Sources */,
 				D3D8C0851A1B08BD007222CC /* SDWebImageCompat.m in Sources */,
 				D3D54DEF1A1F383A005DAAB6 /* UIScrollView+Extension.m in Sources */,
 				D3D5EACA1A231DC900411D50 /* DetailViewController.m in Sources */,
+				D3A47BFB1A8DCD1200767D11 /* PostViewController.m in Sources */,
 				D3D54DEC1A1F383A005DAAB6 /* MJRefreshConst.m in Sources */,
 				D3AD32721A247E7300A76607 /* LoginViewController.m in Sources */,
 				D3D2B3C61A26C90F0062224B /* CommentModel.m in Sources */,
@@ -1846,6 +1903,7 @@
 				D3D54DED1A1F383A005DAAB6 /* MJRefreshFooterView.m in Sources */,
 				D3D8C0871A1B08BD007222CC /* SDWebImageDownloader.m in Sources */,
 				D3D8C08B1A1B08BD007222CC /* UIButton+WebCache.m in Sources */,
+				D3A47BFE1A8DCFBE00767D11 /* PostContentView.m in Sources */,
 				D3D8C03A1A1AFE24007222CC /* UIRefreshControl+AFNetworking.m in Sources */,
 				D3D8C0831A1B08BD007222CC /* NSData+ImageContentType.m in Sources */,
 				D3D8C0381A1AFE24007222CC /* UIImageView+AFNetworking.m in Sources */,
